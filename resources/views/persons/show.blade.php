@@ -1,0 +1,105 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-6">
+            <a href="{{ route('persons.index') }}" class="text-green-700 hover:text-green-800">
+                &larr; Back to Persons
+            </a>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-6">
+                <h1 class="text-3xl font-bold mb-6">{{ $person->post_title }}</h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        @php
+                            $position = $person->getMeta('position');
+                            $email = $person->getMeta('email');
+                            $phone = $person->getMeta('phone');
+                            $linkedin = $person->getMeta('linkedin');
+                        @endphp
+
+                        @if($thumbnail)
+                            <div class="mb-6">
+                                {!! $thumbnail !!}
+                            </div>
+                        @endif
+
+                        @if($position)
+                            <div class="mb-6">
+                                <h2 class="text-lg font-semibold mb-2">Position</h2>
+                                <p class="text-gray-700">{{ $position }}</p>
+                            </div>
+                        @endif
+
+                        <div class="space-y-4">
+                            @if($email)
+                                <div>
+                                    <h2 class="text-lg font-semibold mb-2">Contact Information</h2>
+                                    <p class="text-gray-700">
+                                        <span class="font-medium">Email:</span>
+                                        <a href="mailto:{{ $email }}" class="text-primary hover:text-primary-600">
+                                            {{ $email }}
+                                        </a>
+                                    </p>
+                                </div>
+                            @endif
+
+                            @if($phone)
+                                <p class="text-gray-700">
+                                    <span class="font-medium">Phone:</span>
+                                    <a href="tel:{{ $phone }}" class="text-primary hover:text-primary-600">
+                                        {{ $phone }}
+                                    </a>
+                                </p>
+                            @endif
+
+                            @if($linkedin)
+                                <p class="text-gray-700">
+                                    <span class="font-medium">LinkedIn:</span>
+                                    <a href="{{ $linkedin }}" target="_blank" rel="noopener noreferrer" 
+                                       class="text-primary hover:text-primary-600">
+                                        View Profile
+                                    </a>
+                                </p>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div>
+                        @if($person->post_content)
+                            <div class="prose max-w-none">
+                                {!! wp_kses_post($person->post_content) !!}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                @if($assignments->isNotEmpty())
+                    <div class="mt-8">
+                        <h2 class="text-2xl font-semibold mb-4">Current Assignments</h2>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <ul class="space-y-4">
+                                @foreach($assignments as $assignment)
+                                    <li class="flex items-center justify-between">
+                                        <div>
+                                            <p>{{ $assignment->id }}</p>
+                                            <p class="font-medium">{{ $assignment->board->post_title }}</p>
+                                            <p class="text-gray-600">{{ $assignment->role }}</p>
+                                        </div>
+                                        <p class="text-gray-600">
+                                            {{ $assignment->period_start->format('Y-m-d') }} - 
+                                            {{ $assignment->period_end->format('Y-m-d') }}
+                                        </p>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+@endsection

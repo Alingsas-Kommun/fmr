@@ -1,0 +1,53 @@
+{
+  "name": "alingsas-kommun/fmr",
+  "type": "wordpress-theme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Förtroendemannaregister is a wordpress theme for municipalities presenting their elected politicians and their assignments.",
+  "homepage": "https://roots.io/sage/",
+  "authors": [
+    {
+      "name": "Adam Alexandersson",
+      "email": "adam.alexandersson@consid.com",
+      "homepage": "https://github.com/considadam"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "support": {
+    "issues": "https://github.com/roots/sage/issues",
+    "forum": "https://discourse.roots.io/"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\": "database/"
+    },
+    "files": [
+      "app/App.php"
+    ]
+  },
+  "require": {
+    "php": ">=8.2",
+    "roots/acorn": "^5.0"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.20"
+  },
+  "suggest": {
+    "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0)."
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+    ]
+  }
+}

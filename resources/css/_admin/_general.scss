@@ -1,0 +1,23 @@
+#adminmenumain .wp-menu-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#adminmenumain .wp-menu-image img {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
+#wp-admin-bar-wp-logo {
+    display: none;
+}
+
+#wpfooter {
+    display: none;
+}
+
+#collapse-menu {
+    display: none;
+}

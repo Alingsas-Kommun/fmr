@@ -1,0 +1,76 @@
+body.login {
+    background-color: #f6f6f6;
+
+    a {
+        color: #000 !important;
+    }
+
+    #login {
+        width: 400px !important;
+    }
+
+    .login h1.admin-email__heading {
+        color: #191919;
+    }
+
+    #login_error,
+    .message {
+        border-radius: 10px;
+    }
+
+    .button {
+        color: #236151;
+    }
+
+    .button,
+    .button-primary {
+        border-color: #236151;
+
+        &:hover {
+            border-color: #236151;
+        }
+    }
+
+    .button-primary {
+        background: #236151 !important;
+        color: #fff;
+        border: 0 !important;
+    }
+
+    #loginform {
+        a {
+            color: #236151 !important;
+        }
+
+        .input {
+            &:focus {
+                border-color: #236151;
+                box-shadow: 0 0 0 1px #236151;
+            }
+        }
+    }
+
+    #loginform,
+    #lostpasswordform,
+    .admin-email-confirm-form {
+        border-radius: 10px;
+        border: 0 !important;
+    }
+
+    .login #nav a,
+    .login #backtoblog a,
+    .dashicons.dashicons-translation {
+        color: #000 !important;
+    }
+
+    #login h1 a,
+    .login h1 a {
+        background-image: url("@images/fmr-logotype.png");
+        height: 70px;
+        width: 265px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left center;
+        margin-bottom: 30px;
+    }
+}
