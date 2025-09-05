@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-02T22:19:19+00:00\n"
+"POT-Creation-Date: 2025-09-05T15:31:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -34,50 +34,104 @@ msgstr ""
 msgid "Consid"
 msgstr ""
 
-#: app/App.php:31
+#: app/App.php:29
 msgid "You must be using PHP 8.2 or greater."
 msgstr ""
 
-#: app/App.php:32
+#: app/App.php:30
 msgid "Invalid PHP version"
 msgstr ""
 
-#: app/App.php:41
+#: app/App.php:39
 msgid "You must be using WordPress 6.8.0 or greater."
 msgstr ""
 
-#: app/App.php:42
+#: app/App.php:40
 msgid "Invalid WordPress version"
 msgstr ""
 
-#: app/App.php:61
+#: app/App.php:59
 msgid "Theme setup class is missing"
 msgstr ""
 
-#: app/App.php:67
+#: app/App.php:65
 msgid "Filter setup class is missing"
 msgstr ""
 
-#: app/App.php:81
+#: app/App.php:71
 msgid "Admin init class is missing"
 msgstr ""
 
-#: app/App.php:87
+#: app/App.php:77
 msgid "Assets class is missing"
 msgstr ""
 
-#: app/App.php:100
+#: app/App.php:90
 msgid "App &rsaquo; Error"
 msgstr ""
 
-#: app/Core/Admin/Init.php:32
-msgid "Images"
+#: app/Core/Admin/AssignmentListTable.php:48
+#: app/Core/Admin/AssignmentListTable.php:49
+#: resources/views/admin/assignments/list-table.blade.php:2
+#: resources/views/assignments/index.blade.php:6
+#: resources/views/sections/header.blade.php:15
+msgid "Assignments"
 msgstr ""
 
+#: app/Core/Admin/AssignmentListTable.php:104
+#, php-format
+msgid "%s assignment was deleted."
+msgid_plural "%s assignments were deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Core/Admin/AssignmentListTable.php:140
+msgid "All"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:148
+msgid "Ongoing"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:156
+msgid "Past"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:166
+msgid "Delete"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:174
+#: app/Core/PostTypes/Persons.php:30
+#: resources/views/assignments/index.blade.php:33
+#: resources/views/assignments/show.blade.php:21
+#: resources/views/boards/show.blade.php:19
+msgid "Person"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:175
 #: app/Core/PostTypes/Boards.php:30
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
 msgid "Board"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:176
+#: resources/views/assignments/index.blade.php:34
+#: resources/views/assignments/show.blade.php:28
+#: resources/views/boards/show.blade.php:23
+msgid "Role"
+msgstr ""
+
+#: app/Core/Admin/AssignmentListTable.php:177
+#: resources/views/assignments/index.blade.php:35
+#: resources/views/assignments/show.blade.php:33
+#: resources/views/boards/show.blade.php:31
+msgid "Period"
+msgstr ""
+
+#: app/Core/Admin/Init.php:46
+msgid "Images"
 msgstr ""
 
 #: app/Core/PostTypes/Boards.php:31
@@ -216,13 +270,6 @@ msgstr ""
 msgid "No parties found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:30
-#: resources/views/assignments/index.blade.php:33
-#: resources/views/assignments/show.blade.php:21
-#: resources/views/boards/show.blade.php:19
-msgid "Person"
-msgstr ""
-
 #: app/Core/PostTypes/Persons.php:31
 #: resources/views/sections/header.blade.php:20
 msgid "Persons"
@@ -288,9 +335,12 @@ msgstr ""
 msgid "Thumbnail"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:6
-#: resources/views/sections/header.blade.php:15
-msgid "Assignments"
+#: resources/views/admin/assignments/list-table.blade.php:3
+msgid "Add new assignment"
+msgstr ""
+
+#: resources/views/admin/assignments/list-table.blade.php:11
+msgid "Search Assignments"
 msgstr ""
 
 #: resources/views/assignments/index.blade.php:11
@@ -319,18 +369,6 @@ msgstr ""
 
 #: resources/views/assignments/index.blade.php:23
 msgid "Filter"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:34
-#: resources/views/assignments/show.blade.php:28
-#: resources/views/boards/show.blade.php:23
-msgid "Role"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:35
-#: resources/views/assignments/show.blade.php:33
-#: resources/views/boards/show.blade.php:31
-msgid "Period"
 msgstr ""
 
 #: resources/views/assignments/index.blade.php:36
@@ -369,25 +407,8 @@ msgstr ""
 msgid "Current Assignments"
 msgstr ""
 
-#: resources/views/boards/show.blade.php:74
+#: resources/views/boards/show.blade.php:68
 msgid "No active assignments found."
-msgstr ""
-
-#: resources/views/homepage.blade.php:8
-msgid "Find your politician in Alingsås"
-msgstr ""
-
-#: resources/views/homepage.blade.php:12
-msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
-msgstr ""
-
-#: resources/views/homepage.blade.php:19
-#: resources/views/homepage.blade.php:29
-msgid "Search"
-msgstr ""
-
-#: resources/views/homepage.blade.php:25
-msgid "Enter name, party or role..."
 msgstr ""
 
 #: resources/views/index.blade.php:8
@@ -397,6 +418,23 @@ msgstr ""
 #: resources/views/layouts/app.blade.php:18
 #: resources/views/layouts/full-height.blade.php:16
 msgid "Skip to content"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:37
+msgid "Find your politician in Alingsås"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:41
+msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
+msgstr ""
+
+#: resources/views/sections/header.blade.php:48
+#: resources/views/sections/header.blade.php:58
+msgid "Search"
+msgstr ""
+
+#: resources/views/sections/header.blade.php:54
+msgid "Enter name, party or role..."
 msgstr ""
 
 #: public/build/assets/theme.json

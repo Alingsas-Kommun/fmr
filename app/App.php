@@ -5,8 +5,6 @@ namespace App;
 use App\Core\Theme;
 use App\Core\Filters;
 use App\Core\Assets\Assets;
-use App\Core\Admin\Whitelabel;
-use App\Core\Admin\Tinymce;
 use App\Core\Admin\Init as Admin;
 
 class App // phpcs:ignore
@@ -65,14 +63,6 @@ class App // phpcs:ignore
                 new Filters();
             } else {
                 $this->error(__('Filter setup class is missing', 'fmr'));
-            }
-
-            if (class_exists('App\\Core\\Admin\\Tinymce')) {
-                new Tinymce();
-            }
-
-            if (class_exists('App\\Core\\Admin\\Whitelabel')) {
-                new Whitelabel();
             }
 
             if (class_exists('App\\Core\\Admin\\Init')) {

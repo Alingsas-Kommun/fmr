@@ -17,6 +17,20 @@ class Init
             wp_deregister_script('heartbeat');
         });
 
+        if (class_exists('App\\Core\\Admin\\Tinymce')) {
+            new Tinymce();
+        }
+
+        if (class_exists('App\\Core\\Admin\\Whitelabel')) {
+            new Whitelabel();
+        }
+
+        if (class_exists('App\\Core\\Admin\\AssignmentListTable')) {
+            add_action('admin_menu', function () {
+                AssignmentListTable::register();
+            });
+        }
+
         /**
          * Modify admin menu
          */

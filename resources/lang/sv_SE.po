@@ -4,14 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-02T22:19:19+00:00\n"
-"PO-Revision-Date: 2025-09-03 00:23+0200\n"
+"POT-Creation-Date: 2025-09-05T15:31:51+00:00\n"
+"PO-Revision-Date: 2025-09-05 17:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.7\n"
 "X-Domain: fmr\n"
 
@@ -37,51 +38,103 @@ msgstr ""
 msgid "Consid"
 msgstr ""
 
-#: app/App.php:31
+#: app/App.php:29
 msgid "You must be using PHP 8.2 or greater."
 msgstr ""
 
-#: app/App.php:32
+#: app/App.php:30
 msgid "Invalid PHP version"
 msgstr ""
 
-#: app/App.php:41
+#: app/App.php:39
 msgid "You must be using WordPress 6.8.0 or greater."
 msgstr ""
 
-#: app/App.php:42
+#: app/App.php:40
 msgid "Invalid WordPress version"
 msgstr ""
 
-#: app/App.php:61
+#: app/App.php:59
 msgid "Theme setup class is missing"
 msgstr ""
 
-#: app/App.php:67
+#: app/App.php:65
 msgid "Filter setup class is missing"
 msgstr ""
 
-#: app/App.php:81
+#: app/App.php:71
 msgid "Admin init class is missing"
 msgstr ""
 
-#: app/App.php:87
+#: app/App.php:77
 msgid "Assets class is missing"
 msgstr ""
 
-#: app/App.php:100
+#: app/App.php:90
 msgid "App &rsaquo; Error"
 msgstr ""
 
-#: app/Core/Admin/Init.php:32
-msgid "Images"
-msgstr "Bilder"
+#: app/Core/Admin/AssignmentListTable.php:48
+#: app/Core/Admin/AssignmentListTable.php:49
+#: resources/views/admin/assignments/list-table.blade.php:2
+#: resources/views/assignments/index.blade.php:6
+#: resources/views/sections/header.blade.php:15
+msgid "Assignments"
+msgstr "Uppdrag"
 
-#: app/Core/PostTypes/Boards.php:30
+#: app/Core/Admin/AssignmentListTable.php:104
+#, php-format
+msgid "%s assignment was deleted."
+msgid_plural "%s assignments were deleted."
+msgstr[0] "%s uppdrag raderades."
+msgstr[1] "%s uppdrag raderades."
+
+#: app/Core/Admin/AssignmentListTable.php:140
+msgid "All"
+msgstr "Alla"
+
+#: app/Core/Admin/AssignmentListTable.php:148
+msgid "Ongoing"
+msgstr "Pågående"
+
+#: app/Core/Admin/AssignmentListTable.php:156
+msgid "Past"
+msgstr "Historiska"
+
+#: app/Core/Admin/AssignmentListTable.php:166
+msgid "Delete"
+msgstr "Radera"
+
+#: app/Core/Admin/AssignmentListTable.php:174 app/Core/PostTypes/Persons.php:30
+#: resources/views/assignments/index.blade.php:33
+#: resources/views/assignments/show.blade.php:21
+#: resources/views/boards/show.blade.php:19
+msgid "Person"
+msgstr "Person"
+
+#: app/Core/Admin/AssignmentListTable.php:175 app/Core/PostTypes/Boards.php:30
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
 msgid "Board"
 msgstr "Instans"
+
+#: app/Core/Admin/AssignmentListTable.php:176
+#: resources/views/assignments/index.blade.php:34
+#: resources/views/assignments/show.blade.php:28
+#: resources/views/boards/show.blade.php:23
+msgid "Role"
+msgstr "Roll"
+
+#: app/Core/Admin/AssignmentListTable.php:177
+#: resources/views/assignments/index.blade.php:35
+#: resources/views/assignments/show.blade.php:33
+#: resources/views/boards/show.blade.php:31
+msgid "Period"
+msgstr "Period"
+
+#: app/Core/Admin/Init.php:46
+msgid "Images"
+msgstr "Bilder"
 
 #: app/Core/PostTypes/Boards.php:31 resources/views/boards/index.blade.php:6
 #: resources/views/sections/header.blade.php:25
@@ -214,13 +267,6 @@ msgstr "Inga partier hittades."
 msgid "No parties found in Trash."
 msgstr "Inga partier hittades i papperskorgen."
 
-#: app/Core/PostTypes/Persons.php:30
-#: resources/views/assignments/index.blade.php:33
-#: resources/views/assignments/show.blade.php:21
-#: resources/views/boards/show.blade.php:19
-msgid "Person"
-msgstr "Person"
-
 #: app/Core/PostTypes/Persons.php:31
 #: resources/views/sections/header.blade.php:20
 msgid "Persons"
@@ -286,10 +332,13 @@ msgstr "Inga personer hittades i papperskorgen."
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: resources/views/assignments/index.blade.php:6
-#: resources/views/sections/header.blade.php:15
-msgid "Assignments"
-msgstr "Uppdrag"
+#: resources/views/admin/assignments/list-table.blade.php:3
+msgid "Add new assignment"
+msgstr "Lägg till nytt uppdrag"
+
+#: resources/views/admin/assignments/list-table.blade.php:11
+msgid "Search Assignments"
+msgstr "Sök uppdrag"
 
 #: resources/views/assignments/index.blade.php:11
 msgid "All roles"
@@ -318,18 +367,6 @@ msgstr "Endast aktiva"
 #: resources/views/assignments/index.blade.php:23
 msgid "Filter"
 msgstr "Filter"
-
-#: resources/views/assignments/index.blade.php:34
-#: resources/views/assignments/show.blade.php:28
-#: resources/views/boards/show.blade.php:23
-msgid "Role"
-msgstr "Roll"
-
-#: resources/views/assignments/index.blade.php:35
-#: resources/views/assignments/show.blade.php:33
-#: resources/views/boards/show.blade.php:31
-msgid "Period"
-msgstr "Period"
 
 #: resources/views/assignments/index.blade.php:36
 msgid "Actions"
@@ -367,27 +404,9 @@ msgstr "Uppdragsdetaljer"
 msgid "Current Assignments"
 msgstr "Nuvarande uppdrag"
 
-#: resources/views/boards/show.blade.php:74
+#: resources/views/boards/show.blade.php:68
 msgid "No active assignments found."
 msgstr "Inga aktiva uppdrag hittades."
-
-#: resources/views/homepage.blade.php:8
-msgid "Find your politician in Alingsås"
-msgstr "Hitta din politiker i Alingsås"
-
-#: resources/views/homepage.blade.php:12
-msgid ""
-"Search through assignments, parties and politicians in the municipality of "
-"Alingsås."
-msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
-
-#: resources/views/homepage.blade.php:19 resources/views/homepage.blade.php:29
-msgid "Search"
-msgstr "Sök"
-
-#: resources/views/homepage.blade.php:25
-msgid "Enter name, party or role..."
-msgstr "Ange namn, parti eller roll..."
 
 #: resources/views/index.blade.php:8
 msgid "Sorry, no results were found."
@@ -397,6 +416,25 @@ msgstr "Tyvärr, inga resultat hittades."
 #: resources/views/layouts/full-height.blade.php:16
 msgid "Skip to content"
 msgstr "Hoppa till innehåll"
+
+#: resources/views/sections/header.blade.php:37
+msgid "Find your politician in Alingsås"
+msgstr "Hitta din politiker i Alingsås"
+
+#: resources/views/sections/header.blade.php:41
+msgid ""
+"Search through assignments, parties and politicians in the municipality of "
+"Alingsås."
+msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
+
+#: resources/views/sections/header.blade.php:48
+#: resources/views/sections/header.blade.php:58
+msgid "Search"
+msgstr "Sök"
+
+#: resources/views/sections/header.blade.php:54
+msgid "Enter name, party or role..."
+msgstr "Ange namn, parti eller roll..."
 
 #: public/build/assets/theme.json
 msgctxt "Color name"
