@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-05T15:31:51+00:00\n"
-"PO-Revision-Date: 2025-09-05 17:32+0200\n"
+"POT-Creation-Date: 2025-09-05T18:36:54+00:00\n"
+"PO-Revision-Date: 2025-09-05 20:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -74,65 +74,91 @@ msgstr ""
 msgid "App &rsaquo; Error"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:48
+#: app/Core/Admin/AssignmentHandler.php:27
+#: app/Core/Admin/AssignmentHandler.php:28
+#: resources/views/admin/assignments/list-table.blade.php:3
+msgid "Add new assignment"
+msgstr "Lägg till nytt uppdrag"
+
+#: app/Core/Admin/AssignmentHandler.php:64
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Du har inte tillräcklig behörighet för att komma åt den här sidan."
+
+#: app/Core/Admin/AssignmentHandler.php:88
+msgid "Assignment updated successfully."
+msgstr "Uppgiften har uppdaterats."
+
+#: app/Core/Admin/AssignmentHandler.php:89
+msgid "Assignment created successfully."
+msgstr "Uppgiften har skapats."
+
 #: app/Core/Admin/AssignmentListTable.php:49
+#: app/Core/Admin/AssignmentListTable.php:50
 #: resources/views/admin/assignments/list-table.blade.php:2
 #: resources/views/assignments/index.blade.php:6
 #: resources/views/sections/header.blade.php:15
 msgid "Assignments"
 msgstr "Uppdrag"
 
-#: app/Core/Admin/AssignmentListTable.php:104
+#: app/Core/Admin/AssignmentListTable.php:105
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] "%s uppdrag raderades."
 msgstr[1] "%s uppdrag raderades."
 
-#: app/Core/Admin/AssignmentListTable.php:140
+#: app/Core/Admin/AssignmentListTable.php:141
 msgid "All"
 msgstr "Alla"
 
-#: app/Core/Admin/AssignmentListTable.php:148
+#: app/Core/Admin/AssignmentListTable.php:149
 msgid "Ongoing"
 msgstr "Pågående"
 
-#: app/Core/Admin/AssignmentListTable.php:156
+#: app/Core/Admin/AssignmentListTable.php:157
 msgid "Past"
 msgstr "Historiska"
 
-#: app/Core/Admin/AssignmentListTable.php:166
+#: app/Core/Admin/AssignmentListTable.php:167
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/AssignmentListTable.php:174 app/Core/PostTypes/Persons.php:30
+#: app/Core/Admin/AssignmentListTable.php:175 app/Core/PostTypes/Persons.php:30
+#: resources/views/admin/assignments/edit.blade.php:21
 #: resources/views/assignments/index.blade.php:33
 #: resources/views/assignments/show.blade.php:21
 #: resources/views/boards/show.blade.php:19
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/AssignmentListTable.php:175 app/Core/PostTypes/Boards.php:30
+#: app/Core/Admin/AssignmentListTable.php:176 app/Core/PostTypes/Boards.php:30
+#: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
 msgid "Board"
 msgstr "Instans"
 
-#: app/Core/Admin/AssignmentListTable.php:176
+#: app/Core/Admin/AssignmentListTable.php:177
+#: resources/views/admin/assignments/edit.blade.php:57
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
 #: resources/views/boards/show.blade.php:23
 msgid "Role"
 msgstr "Roll"
 
-#: app/Core/Admin/AssignmentListTable.php:177
+#: app/Core/Admin/AssignmentListTable.php:178
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
 #: resources/views/boards/show.blade.php:31
 msgid "Period"
 msgstr "Period"
 
-#: app/Core/Admin/Init.php:46
+#: app/Core/Admin/AssignmentListTable.php:179
+#: resources/views/assignments/index.blade.php:36
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: app/Core/Admin/Init.php:50
 msgid "Images"
 msgstr "Bilder"
 
@@ -332,9 +358,37 @@ msgstr "Inga personer hittades i papperskorgen."
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: resources/views/admin/assignments/list-table.blade.php:3
-msgid "Add new assignment"
+#: resources/views/admin/assignments/edit.blade.php:3
+msgid "Edit Assignment"
+msgstr "Redigera uppdrag"
+
+#: resources/views/admin/assignments/edit.blade.php:3
+msgid "Add New Assignment"
 msgstr "Lägg till nytt uppdrag"
+
+#: resources/views/admin/assignments/edit.blade.php:25
+msgid "Select Person"
+msgstr "Välj person"
+
+#: resources/views/admin/assignments/edit.blade.php:43
+msgid "Select Board"
+msgstr "Välj beslutsinstans"
+
+#: resources/views/admin/assignments/edit.blade.php:70
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: resources/views/admin/assignments/edit.blade.php:83
+msgid "End Date"
+msgstr "Slutdatum"
+
+#: resources/views/admin/assignments/edit.blade.php:98
+msgid "Update Assignment"
+msgstr "Uppdatera uppdrag"
+
+#: resources/views/admin/assignments/edit.blade.php:98
+msgid "Create Assignment"
+msgstr "Skapa uppdrag"
 
 #: resources/views/admin/assignments/list-table.blade.php:11
 msgid "Search Assignments"
@@ -367,10 +421,6 @@ msgstr "Endast aktiva"
 #: resources/views/assignments/index.blade.php:23
 msgid "Filter"
 msgstr "Filter"
-
-#: resources/views/assignments/index.blade.php:36
-msgid "Actions"
-msgstr "Åtgärder"
 
 #: resources/views/assignments/index.blade.php:67
 msgid "View"
@@ -1735,6 +1785,9 @@ msgstr ""
 msgctxt "Font size name"
 msgid "9xl"
 msgstr ""
+
+#~ msgid "Add/Edit Assignment"
+#~ msgstr "Lägg till / Redigera uppdrag"
 
 #~ msgctxt "Admin menu name"
 #~ msgid "Parties"

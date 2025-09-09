@@ -60,6 +60,7 @@ class Filters
             'archive',
             'blog',
             'device-supports-hover',
+            'h-full'
         ];
 
         $classes = array_map('trim', array_map(function ($class) use ($allowed) {

@@ -2,7 +2,7 @@
 
 namespace App\Core\Admin;
 
-use App\Models\Assignment;
+use App\Http\Controllers\Admin\AssignmentController;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -21,7 +21,13 @@ if (!class_exists('WP_List_Table')) {
 class AssignmentListTable extends \WP_List_Table
 {
     private static $instance = null;
+    protected $controller;
 
+    /**
+     * Initialize the singleton instance.
+     *
+     * @return self
+     */
     public static function init()
     {
         if (null === self::$instance) {
@@ -31,6 +37,9 @@ class AssignmentListTable extends \WP_List_Table
         return self::$instance;
     }
 
+    /**
+     * Constructor. Set up the list table properties.
+     */
     private function __construct()
     {
         parent::__construct([
@@ -38,13 +47,19 @@ class AssignmentListTable extends \WP_List_Table
             'plural'   => 'assignments',
             'ajax'     => false
         ]);
+
+        $this->controller = new AssignmentController();
     }
 
+    /**
+     * Register the assignments menu page in WordPress admin.
+     *
+     * @return void
+     */
     public static function register()
     {
         self::init();
         
-        // Add main menu page
         add_menu_page(
             __('Assignments', 'fmr'),
             __('Assignments', 'fmr'),
@@ -54,37 +69,29 @@ class AssignmentListTable extends \WP_List_Table
             'dashicons-list-view',
             30
         );
-
-        $assignmentHandler = new AssignmentHandler();
-
-        // Add hidden edit page
-        add_submenu_page(
-            null,
-            __('Add/Edit Assignment', 'fmr'),
-            __('Add/Edit Assignment', 'fmr'),
-            'manage_options',
-            'assignment_edit',
-            [$assignmentHandler, 'handleEdit']
-        );
-
-        // Register save handler
-        add_action('admin_post_save_assignment', [$assignmentHandler, 'handleSave']);
     }
 
+    /**
+     * Render the assignments list table page.
+     *
+     * @return void
+     */
     public function render_page()
     {
-        // Process bulk actions
         $this->process_bulk_action();
 
-        // Display any error messages
         settings_errors('bulk_action');
 
-        // Ensure we have the correct screen
         set_current_screen('assignments');
 
         echo view('admin.assignments.list-table', ['list_table' => $this])->render();
     }
 
+    /**
+     * Process bulk actions (e.g., delete multiple assignments).
+     *
+     * @return void
+     */
     public function process_bulk_action()
     {
         $action = $this->current_action();
@@ -93,21 +100,17 @@ class AssignmentListTable extends \WP_List_Table
             return;
         }
 
-        // Verify nonce
         check_admin_referer('bulk-' . $this->_args['plural']);
 
-        // Get assignments to delete
         $assignments = $_REQUEST['assignments'] ?? [];
         if (empty($assignments)) {
             return;
         }
 
-        // Process deletions
-        $controller = new \App\Http\Controllers\Admin\AssignmentController();
         $deleted = 0;
 
         foreach ($assignments as $id) {
-            if ($controller->destroy($id)) {
+            if ($this->controller->destroy($id)) {
                 $deleted++;
             }
         }
@@ -132,50 +135,50 @@ class AssignmentListTable extends \WP_List_Table
         wp_redirect(wp_get_referer());
     }
 
+    /**
+     * Get an array of views available on this table (all, ongoing, past).
+     *
+     * @return array Array of views with their labels and counts.
+     */
     public function get_views()
     {
         $views = [];
         $current = isset($_REQUEST['period_status']) ? $_REQUEST['period_status'] : 'all';
 
-        // Get counts
-        $all_count = Assignment::count();
-        $ongoing_count = Assignment::where(function($query) {
-            $query->where('period_start', '<=', date('Y-m-d'))
-                ->where(function($q) {
-                    $q->where('period_end', '>=', date('Y-m-d'))
-                        ->orWhereNull('period_end');
-                });
-        })->count();
-        $past_count = Assignment::where('period_end', '<', date('Y-m-d'))->count();
+        $counts = $this->controller->getStatusCounts();
 
-        // Build views array
         $views['all'] = sprintf(
             '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(\remove_query_arg('period_status')),
+            esc_url(remove_query_arg('period_status')),
             $current === 'all' ? 'current' : '',
             __('All', 'fmr'),
-            number_format_i18n($all_count)
+            number_format_i18n($counts['all'])
         );
 
         $views['ongoing'] = sprintf(
             '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(\add_query_arg('period_status', 'ongoing')),
+            esc_url(add_query_arg('period_status', 'ongoing')),
             $current === 'ongoing' ? 'current' : '',
             __('Ongoing', 'fmr'),
-            number_format_i18n($ongoing_count)
+            number_format_i18n($counts['ongoing'])
         );
 
         $views['past'] = sprintf(
             '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(\add_query_arg('period_status', 'past')),
+            esc_url(add_query_arg('period_status', 'past')),
             $current === 'past' ? 'current' : '',
             __('Past', 'fmr'),
-            number_format_i18n($past_count)
+            number_format_i18n($counts['past'])
         );
 
         return $views;
     }
 
+    /**
+     * Get an array of bulk actions available on this table.
+     *
+     * @return array Array of bulk actions.
+     */
     public function get_bulk_actions()
     {
         return [
@@ -183,6 +186,11 @@ class AssignmentListTable extends \WP_List_Table
         ];
     }
 
+    /**
+     * Get an array of columns to display in the list table.
+     *
+     * @return array Array of column names and their labels.
+     */
     public function get_columns()
     {
         return [
@@ -191,10 +199,58 @@ class AssignmentListTable extends \WP_List_Table
             'institution'   => __('Board', 'fmr'),
             'role'          => __('Role', 'fmr'),
             'period'        => __('Period', 'fmr'),
-            'edit'          => ''
+            'edit'          => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
         ];
     }
 
+    /**
+     * Get a list of CSS classes for the table tag.
+     *
+     * @return array Array of CSS classes.
+     */
+    protected function get_table_classes()
+    {
+        return ['widefat', 'fixed', 'striped', 'assignment-table'];
+    }
+
+    /**
+     * Get a list of sortable columns.
+     *
+     * @return array Array of sortable columns with their sort direction.
+     */
+    public function get_sortable_columns()
+    {
+        return [
+            'person'      => ['person', false],
+            'institution' => ['board', false],
+            'role'        => ['role', false]
+        ];
+    }
+
+    /**
+     * Extra controls to be displayed between bulk actions and pagination.
+     *
+     * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
+     * @return void
+     */
+    protected function extra_tablenav($which)
+    {
+        if ($which === 'top') {
+            echo '<style>
+                .wp-list-table .column-edit { 
+                    width: 65px;
+                    text-align: right;
+                }
+            </style>';
+        }
+    }
+
+    /**
+     * Render the edit column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
     public function column_edit($item)
     {
         $edit_link = add_query_arg(
@@ -208,6 +264,12 @@ class AssignmentListTable extends \WP_List_Table
         );
     }
 
+    /**
+     * Render the checkbox column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
     public function column_cb($item)
     {
         return sprintf(
@@ -216,6 +278,12 @@ class AssignmentListTable extends \WP_List_Table
         );
     }
 
+    /**
+     * Render the person column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
     public function column_person($item)
     {
         if (!$item->person) {
@@ -232,6 +300,12 @@ class AssignmentListTable extends \WP_List_Table
         );
     }
 
+    /**
+     * Render the institution (board) column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
     public function column_institution($item)
     {
         if (!$item->board) {
@@ -248,6 +322,12 @@ class AssignmentListTable extends \WP_List_Table
         );
     }
 
+    /**
+     * Render the period column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
     public function column_period($item)
     {
         $start = $item->period_start ? wp_date('j M Y', strtotime($item->period_start)) : '—';
@@ -260,6 +340,13 @@ class AssignmentListTable extends \WP_List_Table
         );
     }
 
+    /**
+     * Handle any custom columns that don't have a specific method.
+     *
+     * @param object $item The current assignment item.
+     * @param string $column_name The name of the column being rendered.
+     * @return string The column output.
+     */
     public function column_default($item, $column_name)
     {
         switch ($column_name) {
@@ -270,58 +357,37 @@ class AssignmentListTable extends \WP_List_Table
         }
     }
 
+    /**
+     * Prepare the items for display in the list table.
+     * 
+     * This sets up the pagination, sorting, filtering and displays the items.
+     *
+     * @return void
+     */
     public function prepare_items()
     {
-        $columns = $this->get_columns();
-        $hidden = [];
-        $sortable = [];
-        
-        $this->_column_headers = [$columns, $hidden, $sortable];
+        $this->_column_headers = [
+            $this->get_columns(),          // columns
+            [],                            // hidden columns
+            $this->get_sortable_columns(), // sortable columns
+            'person'                       // primary column
+        ];
 
-        $per_page = 20;
-        $current_page = $this->get_pagenum();
+        $result = $this->controller->getPaginatedAssignments([
+            'per_page' => 15,
+            'current_page' => $this->get_pagenum(),
+            'orderby' => $_REQUEST['orderby'] ?? 'id',
+            'order' => $_REQUEST['order'] ?? 'desc',
+            'period_status' => $_REQUEST['period_status'] ?? 'all',
+            'search' => isset($_REQUEST['s']) ? trim($_REQUEST['s']) : ''
+        ]);
 
-        // Build query
-        $query = Assignment::with(['person', 'board']);
-
-        // Handle period status filter
-        $period_status = isset($_REQUEST['period_status']) ? $_REQUEST['period_status'] : 'all';
-        if ($period_status === 'ongoing') {
-            $query->where(function($q) {
-                $q->where('period_start', '<=', date('Y-m-d'))
-                    ->where(function($q) {
-                        $q->where('period_end', '>=', date('Y-m-d'))
-                            ->orWhereNull('period_end');
-                    });
-            });
-        } elseif ($period_status === 'past') {
-            $query->where('period_end', '<', date('Y-m-d'));
-        }
-
-        // Handle search
-        $search = isset($_REQUEST['s']) ? trim($_REQUEST['s']) : '';
-        if (!empty($search)) {
-            $query->where(function($q) use ($search) {
-                $q->whereHas('person', function($q) use ($search) {
-                    $q->where('post_title', 'like', '%' . $search . '%');
-                })
-                ->orWhereHas('board', function($q) use ($search) {
-                    $q->where('post_title', 'like', '%' . $search . '%');
-                })
-                ->orWhere('role', 'like', '%' . $search . '%');
-            });
-        }
-
-        $total_items = $query->count();
-
-        $this->items = $query->skip(($current_page - 1) * $per_page)
-            ->take($per_page)
-            ->get();
+        $this->items = $result['items'];
 
         $this->set_pagination_args([
-            'total_items' => $total_items,
-            'per_page'   => $per_page,
-            'total_pages'=> ceil($total_items / $per_page)
+            'total_items' => $result['total_items'],
+            'per_page'   => $result['per_page'],
+            'total_pages'=> $result['total_pages']
         ]);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Core;
 
 use App\Utilities\Dir;
-use ReflectionMethod;
 
 class Theme
 {
@@ -19,8 +18,11 @@ class Theme
         add_action('after_setup_theme', [$this, 'addThemeSupport'], 20);
         add_action('after_setup_theme', [$this, 'removeThemeSupport'], 20);
 
+        add_action('switch_theme', function () {
+            delete_option('theme_migrations_ran');
+        });
+
         add_action('init', [$this, 'loadPostTypes']);
-        add_action('init', [$this, 'loadTaxonomies']);
     }
 
     /**
@@ -105,26 +107,6 @@ class Theme
 
                 if (class_exists($post_type)) {
                     new $post_type();
-                }
-            }
-        }
-    }
-
-    /**
-     * Load taxonomies
-     */
-    public function loadTaxonomies()
-    {
-        $dir = __DIR__ . '/Taxonomies';
-        $taxonomies = Dir::list($dir, 'files');
-        $namespace = 'App\\Core\\Taxonomies\\';
-
-        if (! empty($taxonomies)) {
-            foreach ($taxonomies as $taxonomy) {
-                $taxonomy = $namespace . basename($taxonomy, '.php');
-
-                if (class_exists($taxonomy)) {                    
-                    new $taxonomy();
                 }
             }
         }

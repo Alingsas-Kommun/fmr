@@ -1,7 +1,7 @@
 <div class="wrap">
-    <h1 class="wp-heading-inline">
-        {{ $assignment->exists ? __('Edit Assignment', 'fmr') : __('Add New Assignment', 'fmr') }}
-    </h1>
+    <h1 class="wp-heading-inline">{{ $assignment->exists ? __('Edit Assignment', 'fmr') : __('Add New Assignment', 'fmr') }}</h1>
+    <a href="{{ admin_url('admin.php?page=assignment_edit') }}" class="page-title-action">{{ __('Add new assignment', 'fmr') }}</a>
+
     <hr class="wp-header-end">
 
     <form action="{{ admin_url('admin-post.php') }}" method="post">
@@ -19,11 +19,14 @@
                         <label for="person_id">{{ __('Person', 'fmr') }}</label>
                     </th>
                     <td>
-                        <input type="text" 
-                               name="person_id" 
-                               id="person_id" 
-                               value="{{ old('person_id', $assignment->person_id) }}" 
-                               class="regular-text">
+                        <select name="person_id" id="person_id" class="regular-text">
+                            <option value="">{{ __('Select Person', 'fmr') }}</option>
+                            @foreach($persons as $person)
+                                <option value="{{ $person->ID }}" {{ old('person_id', $assignment->person_id) == $person->ID ? 'selected' : '' }}>
+                                    {{ $person->post_title }}
+                                </option>
+                            @endforeach
+                        </select>
                     </td>
                 </tr>
 
@@ -32,11 +35,14 @@
                         <label for="board_id">{{ __('Board', 'fmr') }}</label>
                     </th>
                     <td>
-                        <input type="text" 
-                               name="board_id" 
-                               id="board_id" 
-                               value="{{ old('board_id', $assignment->board_id) }}" 
-                               class="regular-text">
+                        <select name="board_id" id="board_id" class="regular-text">
+                            <option value="">{{ __('Select Board', 'fmr') }}</option>
+                            @foreach($boards as $board)
+                                <option value="{{ $board->ID }}" {{ old('board_id', $assignment->board_id) == $board->ID ? 'selected' : '' }}>
+                                    {{ $board->post_title }}
+                                </option>
+                            @endforeach
+                        </select>
                     </td>
                 </tr>
 

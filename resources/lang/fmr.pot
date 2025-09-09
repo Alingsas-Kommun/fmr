@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-05T15:31:51+00:00\n"
+"POT-Creation-Date: 2025-09-05T18:36:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -70,67 +70,93 @@ msgstr ""
 msgid "App &rsaquo; Error"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:48
+#: app/Core/Admin/AssignmentHandler.php:27
+#: app/Core/Admin/AssignmentHandler.php:28
+#: resources/views/admin/assignments/list-table.blade.php:3
+msgid "Add new assignment"
+msgstr ""
+
+#: app/Core/Admin/AssignmentHandler.php:64
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: app/Core/Admin/AssignmentHandler.php:88
+msgid "Assignment updated successfully."
+msgstr ""
+
+#: app/Core/Admin/AssignmentHandler.php:89
+msgid "Assignment created successfully."
+msgstr ""
+
 #: app/Core/Admin/AssignmentListTable.php:49
+#: app/Core/Admin/AssignmentListTable.php:50
 #: resources/views/admin/assignments/list-table.blade.php:2
 #: resources/views/assignments/index.blade.php:6
 #: resources/views/sections/header.blade.php:15
 msgid "Assignments"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:104
+#: app/Core/Admin/AssignmentListTable.php:105
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Core/Admin/AssignmentListTable.php:140
+#: app/Core/Admin/AssignmentListTable.php:141
 msgid "All"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:148
+#: app/Core/Admin/AssignmentListTable.php:149
 msgid "Ongoing"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:156
+#: app/Core/Admin/AssignmentListTable.php:157
 msgid "Past"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:166
+#: app/Core/Admin/AssignmentListTable.php:167
 msgid "Delete"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:174
+#: app/Core/Admin/AssignmentListTable.php:175
 #: app/Core/PostTypes/Persons.php:30
+#: resources/views/admin/assignments/edit.blade.php:21
 #: resources/views/assignments/index.blade.php:33
 #: resources/views/assignments/show.blade.php:21
 #: resources/views/boards/show.blade.php:19
 msgid "Person"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:175
+#: app/Core/Admin/AssignmentListTable.php:176
 #: app/Core/PostTypes/Boards.php:30
+#: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
 msgid "Board"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:176
+#: app/Core/Admin/AssignmentListTable.php:177
+#: resources/views/admin/assignments/edit.blade.php:57
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
 #: resources/views/boards/show.blade.php:23
 msgid "Role"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:177
+#: app/Core/Admin/AssignmentListTable.php:178
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
 #: resources/views/boards/show.blade.php:31
 msgid "Period"
 msgstr ""
 
-#: app/Core/Admin/Init.php:46
+#: app/Core/Admin/AssignmentListTable.php:179
+#: resources/views/assignments/index.blade.php:36
+msgid "Actions"
+msgstr ""
+
+#: app/Core/Admin/Init.php:50
 msgid "Images"
 msgstr ""
 
@@ -335,8 +361,36 @@ msgstr ""
 msgid "Thumbnail"
 msgstr ""
 
-#: resources/views/admin/assignments/list-table.blade.php:3
-msgid "Add new assignment"
+#: resources/views/admin/assignments/edit.blade.php:3
+msgid "Edit Assignment"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:3
+msgid "Add New Assignment"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:25
+msgid "Select Person"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:43
+msgid "Select Board"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:70
+msgid "Start Date"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:83
+msgid "End Date"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:98
+msgid "Update Assignment"
+msgstr ""
+
+#: resources/views/admin/assignments/edit.blade.php:98
+msgid "Create Assignment"
 msgstr ""
 
 #: resources/views/admin/assignments/list-table.blade.php:11
@@ -369,10 +423,6 @@ msgstr ""
 
 #: resources/views/assignments/index.blade.php:23
 msgid "Filter"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:36
-msgid "Actions"
 msgstr ""
 
 #: resources/views/assignments/index.blade.php:67

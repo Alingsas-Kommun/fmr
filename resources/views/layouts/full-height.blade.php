@@ -12,12 +12,6 @@
     <body @php(body_class('h-full'))>
         @php(wp_body_open())
 
-        <a class="sr-only focus:not-sr-only" href="#main">
-            {{ __('Skip to content', 'fmr') }}
-        </a>
-
-        @include('sections.header')
-
         @yield('content')
 
         @php(do_action('get_footer'))

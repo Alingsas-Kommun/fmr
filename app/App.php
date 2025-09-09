@@ -4,7 +4,6 @@ namespace App;
 
 use App\Core\Theme;
 use App\Core\Filters;
-use App\Core\Assets\Assets;
 use App\Core\Admin\Init as Admin;
 
 class App // phpcs:ignore
@@ -69,12 +68,6 @@ class App // phpcs:ignore
                 new Admin();
             } else {
                 $this->error(__('Admin init class is missing', 'fmr'));
-            }
-
-            if (class_exists('App\\Core\\Assets\\Assets')) {
-                new Assets();
-            } else {
-                $this->error(__('Assets class is missing', 'fmr'));
             }
         }, 0);
     }

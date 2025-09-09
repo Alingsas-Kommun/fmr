@@ -3,18 +3,36 @@
 namespace App\Core\Admin;
 
 use App\Http\Controllers\Admin\AssignmentController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\BoardController;
 use Illuminate\Http\Request;
-use App\Models\Assignment;
 
 use function Roots\view;
 
 class AssignmentHandler
 {
     protected $controller;
+    protected $personController;
+    protected $boardController;
 
     public function __construct()
     {
         $this->controller = new AssignmentController();
+        $this->personController = new PersonController();
+        $this->boardController = new BoardController();
+
+        add_action('admin_menu', function () {
+            add_submenu_page(
+                'assignments',
+                __('Add new assignment', 'fmr'),
+                __('Add new assignment', 'fmr'),
+                'manage_options',
+                'assignment_edit',
+                [$this, 'handleEdit']
+            );
+        });
+        
+        add_action('admin_post_save_assignment', [$this, 'handleSave']);
     }
 
     /**
@@ -25,9 +43,13 @@ class AssignmentHandler
     public function handleEdit()
     {
         $id = $_GET['id'] ?? null;
-        $assignment = $id ? $this->controller->show($id) : new Assignment();
+        $assignment = $this->controller->edit($id);
 
-        echo view('admin.assignments.edit', ['assignment' => $assignment])->render();
+        echo view('admin.assignments.edit', [
+            'assignment' => $assignment,
+            'persons' => $this->personController->getAll(),
+            'boards' => $this->boardController->getAll()
+        ])->render();
     }
 
     /**
@@ -43,8 +65,8 @@ class AssignmentHandler
 
         check_admin_referer('save_assignment');
 
-        // Format dates for database
         $data = $_POST;
+        
         foreach (['period_start', 'period_end'] as $field) {
             if (!empty($data[$field])) {
                 $data[$field] = date('Y-m-d', strtotime($data[$field]));
@@ -72,7 +94,7 @@ class AssignmentHandler
                 'updated'
             );
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             add_settings_error(
                 'assignment_update',
                 'assignment_error',

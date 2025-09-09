@@ -3,20 +3,6 @@
 namespace App\Core;
 
 /**
- * Helper function to retrieve necessary localized data for theme.
- * @return array
- */
-function getLocalizedData()
-{
-    $localized = [];
-
-    $localized['ajaxUrl'] = admin_url('admin-ajax.php');
-    $localized['isLoggedIn'] = is_user_logged_in();
-
-    return apply_filters('fmr/core/localized', $localized);
-}
-
-/**
  * Helper function to splice associative array
  */
 
