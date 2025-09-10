@@ -12,15 +12,25 @@
             <div class="grid grid-cols-2 gap-6">
                 <div>
                     <h2 class="text-lg font-semibold mb-4">{!! __('Board', 'fmr') !!}</h2>
+                    
                     @if($assignment->board)
-                        <p class="text-gray-700">{{ $assignment->board->post_title }}</p>
+                        <a href="{{ get_permalink($assignment->board->ID) }}" class="text-green-700 hover:text-green-800">{{ $assignment->board->post_title }}</a>
+                    @endif
+                </div>
+
+                <div>
+                    <h2 class="text-lg font-semibold mb-4">{!! __('Decision Authority', 'fmr') !!}</h2>
+                    
+                    @if($assignment->decisionAuthority)
+                        <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-green-700 hover:text-green-800">{{ $assignment->decisionAuthority->title }}</a>
                     @endif
                 </div>
 
                 <div>
                     <h2 class="text-lg font-semibold mb-4">{!! __('Person', 'fmr') !!}</h2>
+                    
                     @if($assignment->person)
-                        <p class="text-gray-700">{{ $assignment->person->post_title }}</p>
+                        <a href="{{ get_permalink($assignment->person->ID) }}" class="text-green-700 hover:text-green-800">{{ $assignment->person->post_title }}</a>
                     @endif
                 </div>
 
