@@ -98,6 +98,16 @@ class Parties
             'title' => '',
             'priority' => 1,
         ];
+        $columns_to_add[] = [
+            'slug' => 'party-shortening',
+            'title' => __('Shortening', 'fmr'),
+            'priority' => 3,
+        ];
+        $columns_to_add[] = [
+            'slug' => 'party-group-leader',
+            'title' => __('Group Leader, City Council', 'fmr'),
+            'priority' => 4,
+        ];
 
         foreach ($columns_to_add as $col) {
             arraySpliceAssoc($columns, $col['priority'], 0, [$col['slug'] => $col['title']]);
@@ -118,6 +128,14 @@ class Parties
                 $image .= "</a>";
 
                 echo $image;
+
+                break;
+            case 'party-shortening':
+                echo get_meta_field($post_id, 'party_shortening');
+
+                break;
+            case 'party-group-leader':
+                echo get_meta_field($post_id, 'party_group_leader');
 
                 break;
         }

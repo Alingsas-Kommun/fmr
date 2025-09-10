@@ -33,6 +33,7 @@ class Boards
         self::register();
 
         add_filter('manage_' . self::$base . '_posts_columns', [__CLASS__, 'addColumns']);
+        add_action('manage_' . self::$base . '_posts_custom_column', [__CLASS__, 'addColumnData'], 10, 2);
     }
 
     /**
@@ -89,10 +90,36 @@ class Boards
         unset($columns['date']);
         unset($columns['author']);
 
-        // foreach ($columns_to_add as $col) {
-        //     arraySpliceAssoc($columns, $col['priority'], 0, [$col['slug'] => $col['title']]);
-        // }
+        $columns_to_add = [];
+        $columns_to_add[] = [
+            'slug' => 'board-category',
+            'title' => __('Category', 'fmr'),
+            'priority' => 2,
+        ];
+        $columns_to_add[] = [
+            'slug' => 'board-shortening',
+            'title' => __('Shortening', 'fmr'),
+            'priority' => 2,
+        ];
+
+        foreach ($columns_to_add as $col) {
+            arraySpliceAssoc($columns, $col['priority'], 0, [$col['slug'] => $col['title']]);
+        }
 
         return $columns;
+    }
+
+    public static function addColumnData($column, $post_id)
+    {
+        switch ($column) {
+            case 'board-category':
+                echo get_meta_field($post_id, 'board_category');
+
+                break;
+            case 'board-shortening':
+                echo get_meta_field($post_id, 'board_shortening');
+
+                break;
+        }
     }
 }

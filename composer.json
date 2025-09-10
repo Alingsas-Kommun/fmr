@@ -25,7 +25,8 @@
       "Database\\": "database/"
     },
     "files": [
-      "app/App.php"
+      "app/App.php",
+      "helpers.php"
     ]
   },
   "require": {
