@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-05T18:36:54+00:00\n"
-"PO-Revision-Date: 2025-09-05 20:38+0200\n"
+"POT-Creation-Date: 2025-09-10T13:15:41+00:00\n"
+"PO-Revision-Date: 2025-09-10 15:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -38,122 +38,119 @@ msgstr ""
 msgid "Consid"
 msgstr ""
 
-#: app/App.php:29
+#: app/App.php:28
 msgid "You must be using PHP 8.2 or greater."
 msgstr ""
 
-#: app/App.php:30
+#: app/App.php:29
 msgid "Invalid PHP version"
 msgstr ""
 
-#: app/App.php:39
+#: app/App.php:38
 msgid "You must be using WordPress 6.8.0 or greater."
 msgstr ""
 
-#: app/App.php:40
+#: app/App.php:39
 msgid "Invalid WordPress version"
 msgstr ""
 
-#: app/App.php:59
+#: app/App.php:58
 msgid "Theme setup class is missing"
 msgstr ""
 
-#: app/App.php:65
+#: app/App.php:64
 msgid "Filter setup class is missing"
 msgstr ""
 
-#: app/App.php:71
+#: app/App.php:70
 msgid "Admin init class is missing"
 msgstr ""
 
-#: app/App.php:77
-msgid "Assets class is missing"
-msgstr ""
-
-#: app/App.php:90
+#: app/App.php:83
 msgid "App &rsaquo; Error"
 msgstr ""
 
 #: app/Core/Admin/AssignmentHandler.php:27
 #: app/Core/Admin/AssignmentHandler.php:28
+#: resources/views/admin/assignments/edit.blade.php:3
 #: resources/views/admin/assignments/list-table.blade.php:3
 msgid "Add new assignment"
 msgstr "Lägg till nytt uppdrag"
 
-#: app/Core/Admin/AssignmentHandler.php:64
+#: app/Core/Admin/AssignmentHandler.php:63
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Du har inte tillräcklig behörighet för att komma åt den här sidan."
 
-#: app/Core/Admin/AssignmentHandler.php:88
+#: app/Core/Admin/AssignmentHandler.php:87
 msgid "Assignment updated successfully."
 msgstr "Uppgiften har uppdaterats."
 
-#: app/Core/Admin/AssignmentHandler.php:89
+#: app/Core/Admin/AssignmentHandler.php:88
 msgid "Assignment created successfully."
 msgstr "Uppgiften har skapats."
 
-#: app/Core/Admin/AssignmentListTable.php:49
-#: app/Core/Admin/AssignmentListTable.php:50
+#: app/Core/Admin/AssignmentListTable.php:64
+#: app/Core/Admin/AssignmentListTable.php:65
 #: resources/views/admin/assignments/list-table.blade.php:2
 #: resources/views/assignments/index.blade.php:6
 #: resources/views/sections/header.blade.php:15
 msgid "Assignments"
 msgstr "Uppdrag"
 
-#: app/Core/Admin/AssignmentListTable.php:105
+#: app/Core/Admin/AssignmentListTable.php:123
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] "%s uppdrag raderades."
 msgstr[1] "%s uppdrag raderades."
 
-#: app/Core/Admin/AssignmentListTable.php:141
+#: app/Core/Admin/AssignmentListTable.php:154
 msgid "All"
 msgstr "Alla"
 
-#: app/Core/Admin/AssignmentListTable.php:149
+#: app/Core/Admin/AssignmentListTable.php:162
 msgid "Ongoing"
 msgstr "Pågående"
 
-#: app/Core/Admin/AssignmentListTable.php:157
+#: app/Core/Admin/AssignmentListTable.php:170
 msgid "Past"
 msgstr "Historiska"
 
-#: app/Core/Admin/AssignmentListTable.php:167
+#: app/Core/Admin/AssignmentListTable.php:185
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/AssignmentListTable.php:175 app/Core/PostTypes/Persons.php:30
-#: resources/views/admin/assignments/edit.blade.php:21
+#: app/Core/Admin/AssignmentListTable.php:198 app/Core/PostTypes/Persons.php:30
+#: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
 #: resources/views/assignments/show.blade.php:21
 #: resources/views/boards/show.blade.php:19
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/AssignmentListTable.php:176 app/Core/PostTypes/Boards.php:30
-#: resources/views/admin/assignments/edit.blade.php:39
+#: app/Core/Admin/AssignmentListTable.php:199 app/Core/PostTypes/Boards.php:30
+#: resources/views/admin/assignments/edit.blade.php:38
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
 msgid "Board"
 msgstr "Instans"
 
-#: app/Core/Admin/AssignmentListTable.php:177
-#: resources/views/admin/assignments/edit.blade.php:57
+#: app/Core/Admin/AssignmentListTable.php:200
+#: resources/views/admin/assignments/edit.blade.php:56
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
 #: resources/views/boards/show.blade.php:23
 msgid "Role"
 msgstr "Roll"
 
-#: app/Core/Admin/AssignmentListTable.php:178
+#: app/Core/Admin/AssignmentListTable.php:201
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
 #: resources/views/boards/show.blade.php:31
 msgid "Period"
 msgstr "Period"
 
-#: app/Core/Admin/AssignmentListTable.php:179
+#: app/Core/Admin/AssignmentListTable.php:202
 #: resources/views/assignments/index.blade.php:36
 msgid "Actions"
 msgstr "Åtgärder"
@@ -161,6 +158,173 @@ msgstr "Åtgärder"
 #: app/Core/Admin/Init.php:50
 msgid "Images"
 msgstr "Bilder"
+
+#: app/Core/FieldGroups/PartyDetails.php:14
+msgid "Party Details"
+msgstr "Partiuppgifter"
+
+#: app/Core/FieldGroups/PartyDetails.php:22
+msgid "General"
+msgstr "Allmänt"
+
+#: app/Core/FieldGroups/PartyDetails.php:25
+#: app/Core/FieldGroups/PartyDetails.php:72
+msgid "Contact Details"
+msgstr "Kontaktuppgifter"
+
+#: app/Core/FieldGroups/PartyDetails.php:35
+#: app/Core/FieldGroups/PersonDetails.php:22
+msgid "Basic Information"
+msgstr "Grundläggande information"
+
+#: app/Core/FieldGroups/PartyDetails.php:42
+msgid "Description"
+msgstr "Beskrivning"
+
+#: app/Core/FieldGroups/PartyDetails.php:52
+msgid "Shortening"
+msgstr "Förkortning"
+
+#: app/Core/FieldGroups/PartyDetails.php:62
+msgid "Group Leader, City Council"
+msgstr "Gruppledare, kommunfullmäktige"
+
+#: app/Core/FieldGroups/PartyDetails.php:79
+#: app/Core/FieldGroups/PersonDetails.php:158
+#: app/Core/FieldGroups/PersonDetails.php:265
+msgid "Address"
+msgstr "Adress"
+
+#: app/Core/FieldGroups/PartyDetails.php:90
+msgid "ZIP Code"
+msgstr "Postnummer"
+
+#: app/Core/FieldGroups/PartyDetails.php:97
+#: app/Core/FieldGroups/PersonDetails.php:182
+#: app/Core/FieldGroups/PersonDetails.php:289
+msgid "City"
+msgstr "Stad"
+
+#: app/Core/FieldGroups/PartyDetails.php:108
+msgid "Website"
+msgstr "Webbplats"
+
+#: app/Core/FieldGroups/PartyDetails.php:119
+msgid "E-mail"
+msgstr "E-post"
+
+#: app/Core/FieldGroups/PartyDetails.php:129
+#: app/Core/FieldGroups/PersonDetails.php:224
+#: app/Core/FieldGroups/PersonDetails.php:331
+msgid "Phone"
+msgstr "Telefonnummer"
+
+#: app/Core/FieldGroups/PersonDetails.php:14
+msgid "Person Details"
+msgstr "Personuppgifter"
+
+#: app/Core/FieldGroups/PersonDetails.php:25
+msgid "Addresses"
+msgstr "Adresser"
+
+#: app/Core/FieldGroups/PersonDetails.php:35
+msgid "Personal Information"
+msgstr "Personlig information"
+
+#: app/Core/FieldGroups/PersonDetails.php:42
+msgid "Firstname"
+msgstr "Förnamn"
+
+#: app/Core/FieldGroups/PersonDetails.php:48
+msgid "Lastname"
+msgstr "Efternamn"
+
+#: app/Core/FieldGroups/PersonDetails.php:58
+msgid "Date of birth"
+msgstr "Födelsedatum"
+
+#: app/Core/FieldGroups/PersonDetails.php:67
+msgid "Social security number"
+msgstr "Personnummer"
+
+#: app/Core/FieldGroups/PersonDetails.php:80
+msgid "Politics Information"
+msgstr "Politikinformation"
+
+#: app/Core/FieldGroups/PersonDetails.php:87
+msgid "Member of party"
+msgstr "Medlem av partiet"
+
+#: app/Core/FieldGroups/PersonDetails.php:91
+msgid "Select party"
+msgstr "Välj parti"
+
+#: app/Core/FieldGroups/PersonDetails.php:92
+msgid "Party 1"
+msgstr "Parti 1"
+
+#: app/Core/FieldGroups/PersonDetails.php:93
+msgid "Party 2"
+msgstr "Parti 2"
+
+#: app/Core/FieldGroups/PersonDetails.php:98
+msgid "Total kilometers"
+msgstr "Totalt antal kilometer"
+
+#: app/Core/FieldGroups/PersonDetails.php:111
+msgid "Active"
+msgstr "Aktiv"
+
+#: app/Core/FieldGroups/PersonDetails.php:114
+#: app/Core/FieldGroups/PersonDetails.php:122
+msgid "Yes"
+msgstr "Ja"
+
+#: app/Core/FieldGroups/PersonDetails.php:115
+#: app/Core/FieldGroups/PersonDetails.php:123
+msgid "No"
+msgstr "Nej"
+
+#: app/Core/FieldGroups/PersonDetails.php:119
+msgid "Group leader"
+msgstr "Gruppledare"
+
+#: app/Core/FieldGroups/PersonDetails.php:127
+msgid "Listing"
+msgstr "Lista"
+
+#: app/Core/FieldGroups/PersonDetails.php:141
+msgid "Home Information"
+msgstr "Heminformation"
+
+#: app/Core/FieldGroups/PersonDetails.php:148
+#: app/Core/FieldGroups/PersonDetails.php:255
+msgid "Visiting address"
+msgstr "Besöksadress"
+
+#: app/Core/FieldGroups/PersonDetails.php:172
+#: app/Core/FieldGroups/PersonDetails.php:279
+msgid "Zip code"
+msgstr "Postnummer"
+
+#: app/Core/FieldGroups/PersonDetails.php:196
+#: app/Core/FieldGroups/PersonDetails.php:303
+msgid "Webpage"
+msgstr "Webbsida"
+
+#: app/Core/FieldGroups/PersonDetails.php:210
+#: app/Core/FieldGroups/PersonDetails.php:317
+msgid "Email"
+msgstr "E-post"
+
+#: app/Core/FieldGroups/PersonDetails.php:234
+#: app/Core/FieldGroups/PersonDetails.php:341
+msgid "Mobile"
+msgstr "Mobil"
+
+#: app/Core/FieldGroups/PersonDetails.php:248
+msgid "Work Information"
+msgstr "Arbetsinformation"
 
 #: app/Core/PostTypes/Boards.php:31 resources/views/boards/index.blade.php:6
 #: resources/views/sections/header.blade.php:25
@@ -358,41 +522,45 @@ msgstr "Inga personer hittades i papperskorgen."
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: resources/views/admin/assignments/edit.blade.php:3
+#: resources/views/admin/assignments/edit.blade.php:2
 msgid "Edit Assignment"
 msgstr "Redigera uppdrag"
 
-#: resources/views/admin/assignments/edit.blade.php:3
+#: resources/views/admin/assignments/edit.blade.php:2
 msgid "Add New Assignment"
 msgstr "Lägg till nytt uppdrag"
 
-#: resources/views/admin/assignments/edit.blade.php:25
+#: resources/views/admin/assignments/edit.blade.php:24
 msgid "Select Person"
 msgstr "Välj person"
 
-#: resources/views/admin/assignments/edit.blade.php:43
+#: resources/views/admin/assignments/edit.blade.php:42
 msgid "Select Board"
 msgstr "Välj beslutsinstans"
 
-#: resources/views/admin/assignments/edit.blade.php:70
+#: resources/views/admin/assignments/edit.blade.php:69
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: resources/views/admin/assignments/edit.blade.php:83
+#: resources/views/admin/assignments/edit.blade.php:82
 msgid "End Date"
 msgstr "Slutdatum"
 
-#: resources/views/admin/assignments/edit.blade.php:98
+#: resources/views/admin/assignments/edit.blade.php:97
 msgid "Update Assignment"
 msgstr "Uppdatera uppdrag"
 
-#: resources/views/admin/assignments/edit.blade.php:98
+#: resources/views/admin/assignments/edit.blade.php:97
 msgid "Create Assignment"
 msgstr "Skapa uppdrag"
 
 #: resources/views/admin/assignments/list-table.blade.php:11
 msgid "Search Assignments"
 msgstr "Sök uppdrag"
+
+#: resources/views/admin/meta-fields/field.blade.php:7
+msgid "Optional"
+msgstr "Valfritt"
 
 #: resources/views/assignments/index.blade.php:11
 msgid "All roles"
@@ -463,7 +631,6 @@ msgid "Sorry, no results were found."
 msgstr "Tyvärr, inga resultat hittades."
 
 #: resources/views/layouts/app.blade.php:18
-#: resources/views/layouts/full-height.blade.php:16
 msgid "Skip to content"
 msgstr "Hoppa till innehåll"
 
@@ -1785,6 +1952,12 @@ msgstr ""
 msgctxt "Font size name"
 msgid "9xl"
 msgstr ""
+
+#~ msgid "Public"
+#~ msgstr "Offentlig"
+
+#~ msgid "Private"
+#~ msgstr "Privat"
 
 #~ msgid "Add/Edit Assignment"
 #~ msgstr "Lägg till / Redigera uppdrag"

@@ -1,0 +1,142 @@
+<?php
+
+namespace App\Core\FieldGroups;
+
+use App\Core\Abstracts\FieldGroup;
+
+class PartyDetails extends FieldGroup
+{
+    protected static $post_type = 'party';
+    protected static $id = 'party_details';
+
+    protected function getTitle()
+    {
+        return __('Party Details', 'fmr');
+    }
+
+    protected function getTabs()
+    {
+        return [
+            'general' => [
+                'label' => __('General', 'fmr'),
+            ],
+            'contact' => [
+                'label' => __('Contact Details', 'fmr'),
+            ],
+        ];
+    }
+
+    protected function getFields()
+    {
+        return [
+            [
+                'id' => 'basic_info',
+                'label' => __('Basic Information', 'fmr'),
+                'tab' => 'general',
+                'fields' => [
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_description',
+                                'label' => __('Description', 'fmr'),
+                                'type' => 'textarea',
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_shortening',
+                                'label' => __('Shortening', 'fmr'),
+                                'type' => 'text',
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_group_leader',
+                                'label' => __('Group Leader, City Council', 'fmr'),
+                                'type' => 'text',
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'id' => 'contact_details',
+                'label' => __('Contact Details', 'fmr'),
+                'tab' => 'contact',
+                'fields' => [
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_address',
+                                'label' => __('Address', 'fmr'),
+                                'type' => 'text',
+                                'optional' => true,
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_zip',
+                                'label' => __('ZIP Code', 'fmr'),
+                                'type' => 'text',
+                                'optional' => true,
+                                'cols' => 4,
+                            ],
+                            [
+                                'id' => 'party_city',
+                                'label' => __('City', 'fmr'),
+                                'type' => 'text',
+                                'optional' => true,
+                                'cols' => 8,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_website',
+                                'label' => __('Website', 'fmr'),
+                                'type' => 'url',
+                                'optional' => true,
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_email',
+                                'label' => __('E-mail', 'fmr'),
+                                'type' => 'email',
+                                'optional' => true,
+                                'visibility' => [
+                                    'default' => true,
+                                ],
+                                'cols' => 6,
+                            ],
+                            [
+                                'id' => 'party_phone',
+                                'label' => __('Phone', 'fmr'),
+                                'type' => 'number',
+                                'optional' => true,
+                                'visibility' => [
+                                    'default' => false,
+                                ],
+                                'cols' => 6,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+}

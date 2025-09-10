@@ -1,0 +1,62 @@
+.visibility-toggle-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px 4px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 30px;
+    background: none;
+
+    &.is-visible {
+        background-color: #edf7ed;
+        border-color: #00a32a;
+
+        svg {
+            fill: #00a32a;
+        }
+
+        .toggle-label {
+            color: #00a32a;
+        }
+    }
+
+    &.is-hidden {
+        background-color: #fcf0f1;
+        border-color: #d63638;
+
+        svg {
+            fill: #d63638;
+        }
+
+        .toggle-label {
+            color: #d63638;
+        }
+    }
+
+    &.lg {
+        padding: 8px 16px 8px 16px;
+        min-height: 40px;
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 3px #2271b1;
+        outline: none;
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .toggle-label {
+        font-size: 13px;
+        font-weight: 500;
+    }
+}

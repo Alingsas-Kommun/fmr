@@ -1,0 +1,148 @@
+.meta-box {
+    $parent: &;
+    
+    &-tabs {
+        margin-top: 1rem;
+    }
+
+    &-tab {
+        &-nav {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid #ccd0d4;
+            margin-bottom: 1rem;
+        }
+
+        &-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccd0d4;
+            border-bottom: none;
+            background: #f0f0f1;
+            cursor: pointer;
+            margin-bottom: -1px;
+
+            &.active {
+                background: #fff;
+                border-bottom: 1px solid #fff;
+            }
+        }
+    }
+
+    &-group {
+        margin-bottom: 2rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &-title {
+            margin-bottom: 1rem;
+            font-size: 1.3em;
+        }
+
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        & #{$parent}-row {
+            margin-bottom: 1rem;
+        }   
+    }
+
+    &-row {
+        margin-bottom: 2rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &-field {
+        &-row {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        &-col {
+            grid-column: span var(--cols, 12);
+        }
+    }
+
+    &-field {
+        flex: 1;
+        min-width: 0;
+
+        &-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .optional-label {
+            color: #666;
+            font-weight: normal;
+            font-size: 0.9em;
+            margin-left: 0.25rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="number"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .description {
+            color: #666;
+            font-style: italic;
+            margin: 0.25rem 0 0;
+            font-size: 0.9em;
+        }
+
+        .checkbox-label,
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    &-field-visibility {
+        flex: 0 0 auto;
+        margin-top: 26px; // Align with input, accounting for label
+    }
+}

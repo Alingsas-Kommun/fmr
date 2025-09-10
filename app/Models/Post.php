@@ -113,9 +113,22 @@ class Post extends Model
      */
     public function getMeta($key, $default = null)
     {
+        $visibility = $this->getMetaVisibility($key);
+        
+        if (!$visibility) {
+            return $default;
+        }
+
         return $this->meta()
             ->where('meta_key', $key)
             ->value('meta_value') ?? $default;
+    }
+
+    public function getMetaVisibility($key)
+    {
+        return $this->meta()
+            ->where('meta_key', $key . '_visibility')
+            ->value('meta_value') ?? true;
     }
 
     /**

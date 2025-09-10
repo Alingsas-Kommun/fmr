@@ -15,10 +15,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         @php
-                            $position = $person->getMeta('position');
-                            $email = $person->getMeta('email');
-                            $phone = $person->getMeta('phone');
-                            $linkedin = $person->getMeta('linkedin');
+                            $first_name = $person->getMeta('person_firstname');
+                            $last_name = $person->getMeta('person_lastname');
+                            $birth_date = $person->getMeta('person_birth_date');
+                            $ssn = $person->getMeta('person_ssn');
+                            $email = $person->getMeta('person_home_email');
+                            $phone = $person->getMeta('person_home_phone');
+                            $mobile = $person->getMeta('person_home_mobile');
                         @endphp
 
                         @if($thumbnail)
@@ -27,24 +30,32 @@
                             </div>
                         @endif
 
-                        @if($position)
-                            <div class="mb-6">
-                                <h2 class="text-lg font-semibold mb-2">Position</h2>
-                                <p class="text-gray-700">{{ $position }}</p>
-                            </div>
+                        @if($first_name && $last_name)
+                            <h2 class="text-lg font-semibold mb-2">{{ $first_name }} {{ $last_name }}</h2>
                         @endif
 
                         <div class="space-y-4">
+                            @if($birth_date)
+                                <p class="text-gray-700">
+                                    <span class="font-medium">Birth date:</span>
+                                    {{ $birth_date }}
+                                </p>
+                            @endif
+
+                            @if($ssn)
+                                <p class="text-gray-700">
+                                    <span class="font-medium">Social security number:</span>
+                                    {{ $ssn }}
+                                </p>
+                            @endif
+
                             @if($email)
-                                <div>
-                                    <h2 class="text-lg font-semibold mb-2">Contact Information</h2>
-                                    <p class="text-gray-700">
-                                        <span class="font-medium">Email:</span>
-                                        <a href="mailto:{{ $email }}" class="text-primary hover:text-primary-600">
-                                            {{ $email }}
-                                        </a>
-                                    </p>
-                                </div>
+                                <p class="text-gray-700">
+                                    <span class="font-medium">Email:</span>
+                                    <a href="mailto:{{ $email }}" class="text-primary hover:text-primary-600">
+                                        {{ $email }}
+                                    </a>
+                                </p>
                             @endif
 
                             @if($phone)
@@ -56,12 +67,11 @@
                                 </p>
                             @endif
 
-                            @if($linkedin)
+                            @if($mobile)
                                 <p class="text-gray-700">
-                                    <span class="font-medium">LinkedIn:</span>
-                                    <a href="{{ $linkedin }}" target="_blank" rel="noopener noreferrer" 
-                                       class="text-primary hover:text-primary-600">
-                                        View Profile
+                                    <span class="font-medium">Mobile:</span>
+                                    <a href="tel:{{ $mobile }}" class="text-primary hover:text-primary-600">
+                                        {{ $mobile }}
                                     </a>
                                 </p>
                             @endif
