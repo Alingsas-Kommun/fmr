@@ -3,9 +3,7 @@
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <div class="mb-8">
-            <a href="{{ route('decision-authorities.index') }}" class="text-emerald-600 hover:text-emerald-800">
-                {{ __('Decision Authorities', 'fmr') }}
-            </a>
+            <a href="{{ route('decision-authorities.index') }}" class="text-emerald-600 hover:text-emerald-800">{{ __('Decision Authorities', 'fmr') }}</a>
 
             <span class="mx-2">/</span>
 
@@ -59,6 +57,9 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 {{ __('Period', 'fmr') }}
                             </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {{ __('Actions', 'fmr') }}
+                            </th>
                         </tr>
                     </thead>
 
@@ -66,7 +67,7 @@
                         @forelse($activeAssignments as $assignment)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-600 hover:text-emerald-900">
+                                    <a href="{{ get_permalink($assignment->person->ID) }}" class="text-emerald-600 hover:text-emerald-900">
                                         {{ $assignment->person->post_title }}
                                     </a>
                                 </td>
@@ -78,6 +79,12 @@
                                 <td class="px-6 py-4">
                                     {{ date('j M Y', strtotime($assignment->period_start)) }} –
                                     {{ date('j M Y', strtotime($assignment->period_end)) }}
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-600 hover:text-emerald-900">
+                                        {{ __('View', 'fmr') }}
+                                    </a>
                                 </td>
                             </tr>
                         @empty

@@ -6,20 +6,8 @@
             </a>
 
             <nav class="flex items-center space-x-8">
-                <a href="{{ get_post_type_archive_link('party') }}" class="text-green-700 hover:text-green-800 font-medium">
-                    {!! __('Parties', 'fmr') !!}
-                </a>
-
                 <a href="{{ route('assignments.index') }}" class="text-green-700 hover:text-green-800 font-medium">
                     {!! __('Assignments', 'fmr') !!}
-                </a>
-
-                <a href="{!! get_post_type_archive_link('person') !!}" class="text-green-700 hover:text-green-800 font-medium">
-                    {!! __('Persons', 'fmr') !!}
-                </a>
-
-                <a href="{{ get_post_type_archive_link('board') }}" class="text-green-700 hover:text-green-800 font-medium">
-                    {!! __('Boards', 'fmr') !!}
                 </a>
 
                 <a href="{{ route('decision-authorities.index') }}" class="text-green-700 hover:text-green-800 font-medium">

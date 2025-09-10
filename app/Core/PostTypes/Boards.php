@@ -18,7 +18,7 @@ class Boards
         'title',
     ];
 
-    public static $archive_page = true;
+    public static $archive_page = false;
 
     public static $single_page = true;
 
