@@ -6,7 +6,7 @@
             </a>
 
             <nav class="flex items-center space-x-8">
-                <a href="{{ route('parties.index') }}" class="text-green-700 hover:text-green-800 font-medium">
+                <a href="{{ get_post_type_archive_link('party') }}" class="text-green-700 hover:text-green-800 font-medium">
                     {!! __('Parties', 'fmr') !!}
                 </a>
 
@@ -18,7 +18,7 @@
                     {!! __('Persons', 'fmr') !!}
                 </a>
 
-                <a href="{{ route('boards.index') }}" class="text-green-700 hover:text-green-800 font-medium">
+                <a href="{{ get_post_type_archive_link('board') }}" class="text-green-700 hover:text-green-800 font-medium">
                     {!! __('Boards', 'fmr') !!}
                 </a>
             </nav>

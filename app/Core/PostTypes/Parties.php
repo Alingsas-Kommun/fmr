@@ -19,9 +19,9 @@ class Parties
         'thumbnail',
     ];
 
-    public static $archive_page = false;
+    public static $archive_page = true;
 
-    public static $single_page = false;
+    public static $single_page = true;
 
     public static $labels = [];
 
@@ -75,6 +75,7 @@ class Parties
             'show_ui'            => true,
             'show_in_menu'       => true,
             'query_var'          => true,
+            'rewrite'            => ['slug' => __('parties', 'fmr')],
             'capability_type'    => 'post',
             'has_archive'        => self::$archive_page,
             'hierarchical'       => false,

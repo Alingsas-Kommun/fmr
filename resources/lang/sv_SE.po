@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-10T16:02:32+00:00\n"
-"PO-Revision-Date: 2025-09-10 18:03+0200\n"
+"POT-Creation-Date: 2025-09-10T18:46:24+00:00\n"
+"PO-Revision-Date: 2025-09-10 20:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -124,11 +124,10 @@ msgstr "Radera"
 #: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
 #: resources/views/assignments/show.blade.php:21
-#: resources/views/boards/show.blade.php:19
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/AssignmentListTable.php:199 app/Core/PostTypes/Boards.php:30
+#: app/Core/Admin/AssignmentListTable.php:199 app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/assignments/edit.blade.php:38
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
@@ -139,14 +138,12 @@ msgstr "Instans"
 #: resources/views/admin/assignments/edit.blade.php:56
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
-#: resources/views/boards/show.blade.php:23
 msgid "Role"
 msgstr "Roll"
 
 #: app/Core/Admin/AssignmentListTable.php:201
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
-#: resources/views/boards/show.blade.php:31
 msgid "Period"
 msgstr "Period"
 
@@ -155,69 +152,117 @@ msgstr "Period"
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: app/Core/Admin/Init.php:50
+#: app/Core/Admin/Init.php:46
 msgid "Images"
 msgstr "Bilder"
 
-#: app/Core/FieldGroups/PartyDetails.php:14
-msgid "Party Details"
-msgstr "Partiuppgifter"
+#: app/Core/FieldGroups/BoardDetails.php:14
+msgid "Board Details"
+msgstr "Styrelseuppgifter"
 
+#: app/Core/FieldGroups/BoardDetails.php:21
 #: app/Core/FieldGroups/PartyDetails.php:21
 msgid "General"
 msgstr "Allmänt"
 
-#: app/Core/FieldGroups/PartyDetails.php:24
-#: app/Core/FieldGroups/PartyDetails.php:71
-msgid "Contact Details"
-msgstr "Kontaktuppgifter"
-
+#: app/Core/FieldGroups/BoardDetails.php:31
 #: app/Core/FieldGroups/PartyDetails.php:34
 #: app/Core/FieldGroups/PersonDetails.php:21
 msgid "Basic Information"
 msgstr "Grundläggande information"
 
-#: app/Core/FieldGroups/PartyDetails.php:41
-msgid "Description"
-msgstr "Beskrivning"
+#: app/Core/FieldGroups/BoardDetails.php:38
+msgid "Category"
+msgstr "Kategori"
 
+#: app/Core/FieldGroups/BoardDetails.php:41
+msgid "Select type"
+msgstr "Välj typ"
+
+#: app/Core/FieldGroups/BoardDetails.php:42
+msgid "Company"
+msgstr "Företag"
+
+#: app/Core/FieldGroups/BoardDetails.php:43
+msgid "Council"
+msgstr "Råd"
+
+#: app/Core/FieldGroups/BoardDetails.php:44
+msgid "Committee"
+msgstr "Nämnd"
+
+#: app/Core/FieldGroups/BoardDetails.php:45
+msgid "Foundation"
+msgstr "Stiftelse"
+
+#: app/Core/FieldGroups/BoardDetails.php:46
+msgid "Other"
+msgstr "Övrigt"
+
+#: app/Core/FieldGroups/BoardDetails.php:56
 #: app/Core/FieldGroups/PartyDetails.php:51
 msgid "Shortening"
 msgstr "Förkortning"
 
-#: app/Core/FieldGroups/PartyDetails.php:61
-msgid "Group Leader, City Council"
-msgstr "Gruppledare, kommunfullmäktige"
+#: app/Core/FieldGroups/BoardDetails.php:66
+#: app/Core/FieldGroups/PartyDetails.php:24
+#: app/Core/FieldGroups/PartyDetails.php:71
+msgid "Contact Details"
+msgstr "Kontaktuppgifter"
 
+#: app/Core/FieldGroups/BoardDetails.php:73
+#: app/Core/FieldGroups/PersonDetails.php:147
+#: app/Core/FieldGroups/PersonDetails.php:254
+msgid "Visiting address"
+msgstr "Besöksadress"
+
+#: app/Core/FieldGroups/BoardDetails.php:80
 #: app/Core/FieldGroups/PartyDetails.php:78
 #: app/Core/FieldGroups/PersonDetails.php:157
 #: app/Core/FieldGroups/PersonDetails.php:264
 msgid "Address"
 msgstr "Adress"
 
+#: app/Core/FieldGroups/BoardDetails.php:91
 #: app/Core/FieldGroups/PartyDetails.php:89
 msgid "ZIP Code"
 msgstr "Postnummer"
 
+#: app/Core/FieldGroups/BoardDetails.php:98
 #: app/Core/FieldGroups/PartyDetails.php:96
 #: app/Core/FieldGroups/PersonDetails.php:181
 #: app/Core/FieldGroups/PersonDetails.php:288
 msgid "City"
 msgstr "Stad"
 
+#: app/Core/FieldGroups/BoardDetails.php:109
 #: app/Core/FieldGroups/PartyDetails.php:107
 msgid "Website"
 msgstr "Webbplats"
 
+#: app/Core/FieldGroups/BoardDetails.php:120
 #: app/Core/FieldGroups/PartyDetails.php:118
 msgid "E-mail"
 msgstr "E-post"
 
+#: app/Core/FieldGroups/BoardDetails.php:130
 #: app/Core/FieldGroups/PartyDetails.php:128
 #: app/Core/FieldGroups/PersonDetails.php:223
 #: app/Core/FieldGroups/PersonDetails.php:330
 msgid "Phone"
 msgstr "Telefonnummer"
+
+#: app/Core/FieldGroups/PartyDetails.php:14
+msgid "Party Details"
+msgstr "Partiuppgifter"
+
+#: app/Core/FieldGroups/PartyDetails.php:41
+msgid "Description"
+msgstr "Beskrivning"
+
+#: app/Core/FieldGroups/PartyDetails.php:61
+msgid "Group Leader, City Council"
+msgstr "Gruppledare, kommunfullmäktige"
 
 #: app/Core/FieldGroups/PersonDetails.php:14
 msgid "Person Details"
@@ -297,11 +342,6 @@ msgstr "Lista"
 msgid "Home Information"
 msgstr "Heminformation"
 
-#: app/Core/FieldGroups/PersonDetails.php:147
-#: app/Core/FieldGroups/PersonDetails.php:254
-msgid "Visiting address"
-msgstr "Besöksadress"
-
 #: app/Core/FieldGroups/PersonDetails.php:171
 #: app/Core/FieldGroups/PersonDetails.php:278
 msgid "Zip code"
@@ -326,77 +366,81 @@ msgstr "Mobil"
 msgid "Work Information"
 msgstr "Arbetsinformation"
 
-#: app/Core/PostTypes/Boards.php:31 resources/views/boards/index.blade.php:6
+#: app/Core/PostTypes/Boards.php:30
 #: resources/views/sections/header.blade.php:25
 msgid "Boards"
-msgstr "Instanser"
+msgstr "Nämnder/Styrelser"
 
-#: app/Core/PostTypes/Boards.php:47
+#: app/Core/PostTypes/Boards.php:46
 msgctxt "Post type general name"
 msgid "Boards"
-msgstr "Instanser"
+msgstr "Nämnder/Styrelser"
 
-#: app/Core/PostTypes/Boards.php:48
+#: app/Core/PostTypes/Boards.php:47
 msgctxt "Post type singular name"
 msgid "Board"
-msgstr "Instans"
+msgstr "Nämnd/Styrelse"
 
-#: app/Core/PostTypes/Boards.php:49
+#: app/Core/PostTypes/Boards.php:48
 msgctxt "Admin Menu text"
 msgid "Boards"
-msgstr "Instanser"
+msgstr "Nämnd/Styrelse"
 
-#: app/Core/PostTypes/Boards.php:50
+#: app/Core/PostTypes/Boards.php:49
 msgctxt "Add New on Toolbar"
 msgid "Board"
-msgstr "Instans"
+msgstr "Nämnd/Styrelse"
 
-#: app/Core/PostTypes/Boards.php:51 app/Core/PostTypes/Parties.php:53
+#: app/Core/PostTypes/Boards.php:50 app/Core/PostTypes/Parties.php:53
 #: app/Core/PostTypes/Persons.php:53
 msgid "Add new"
 msgstr "Lägg till ny"
 
-#: app/Core/PostTypes/Boards.php:52
+#: app/Core/PostTypes/Boards.php:51
 msgid "Add new board"
-msgstr "Lägg till ny instans"
+msgstr "Lägg till ny nämnd/styrelse"
+
+#: app/Core/PostTypes/Boards.php:52
+msgid "New board"
+msgstr "Ny nämnd/styrelse"
 
 #: app/Core/PostTypes/Boards.php:53
-msgid "New board"
-msgstr "Ny instans"
+msgid "Edit board"
+msgstr "Redigera nämnd/styrelse"
 
 #: app/Core/PostTypes/Boards.php:54
-msgid "Edit board"
-msgstr "Redigera instans"
-
-#: app/Core/PostTypes/Boards.php:55 resources/views/boards/index.blade.php:27
 msgid "View board"
-msgstr "Visa instans"
+msgstr "Visa nämnd/styrelse"
+
+#: app/Core/PostTypes/Boards.php:55
+msgid "All board"
+msgstr "Alla nämnder/styrelser"
 
 #: app/Core/PostTypes/Boards.php:56
-msgid "All board"
-msgstr "Alla instanser"
+msgid "Search boards"
+msgstr "Sök nämnder/styrelser"
 
 #: app/Core/PostTypes/Boards.php:57
-msgid "Search boards"
-msgstr "Sök instanser"
+msgid "Parent boards:"
+msgstr "Överordnade nämnder/styrelser:"
 
 #: app/Core/PostTypes/Boards.php:58
-msgid "Parent boards:"
-msgstr "Överordnade instanser"
+msgid "No boards found."
+msgstr "Inga nämnder/styrelser hittades."
 
 #: app/Core/PostTypes/Boards.php:59
-msgid "No boards found."
-msgstr "Inga instanser hittades."
-
-#: app/Core/PostTypes/Boards.php:60
 msgid "No boards found in Trash."
-msgstr "Inga instanser hittades i papperskorgen."
+msgstr "Inga nämnder/styrelser hittades i papperskorgen."
 
-#: app/Core/PostTypes/Parties.php:30 resources/views/boards/show.blade.php:27
+#: app/Core/PostTypes/Boards.php:75
+msgid "boards"
+msgstr "namnd-styrelse"
+
+#: app/Core/PostTypes/Parties.php:30
 msgid "Party"
 msgstr "Parti"
 
-#: app/Core/PostTypes/Parties.php:31 resources/views/parties/index.blade.php:6
+#: app/Core/PostTypes/Parties.php:31
 #: resources/views/sections/header.blade.php:10
 msgid "Parties"
 msgstr "Partier"
@@ -456,6 +500,10 @@ msgstr "Inga partier hittades."
 #: app/Core/PostTypes/Parties.php:62
 msgid "No parties found in Trash."
 msgstr "Inga partier hittades i papperskorgen."
+
+#: app/Core/PostTypes/Parties.php:78
+msgid "parties"
+msgstr "partier"
 
 #: app/Core/PostTypes/Persons.php:31
 #: resources/views/sections/header.blade.php:20
@@ -635,14 +683,6 @@ msgstr "Tillbaka till Uppgifter"
 #: resources/views/assignments/show.blade.php:10
 msgid "Assignment Details"
 msgstr "Uppdragsdetaljer"
-
-#: resources/views/boards/show.blade.php:11
-msgid "Current Assignments"
-msgstr "Nuvarande uppdrag"
-
-#: resources/views/boards/show.blade.php:68
-msgid "No active assignments found."
-msgstr "Inga aktiva uppdrag hittades."
 
 #: resources/views/index.blade.php:8
 msgid "Sorry, no results were found."
@@ -1971,6 +2011,12 @@ msgctxt "Font size name"
 msgid "9xl"
 msgstr ""
 
+#~ msgid "Current Assignments"
+#~ msgstr "Nuvarande uppdrag"
+
+#~ msgid "No active assignments found."
+#~ msgstr "Inga aktiva uppdrag hittades."
+
 #~ msgid "Public"
 #~ msgstr "Offentlig"
 
@@ -1989,6 +2035,3 @@ msgstr ""
 
 #~ msgid "Update party"
 #~ msgstr "Uppdatera parti"
-
-#~ msgid "parties"
-#~ msgstr "partier"

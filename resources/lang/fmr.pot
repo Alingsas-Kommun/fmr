@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-10T16:02:32+00:00\n"
+"POT-Creation-Date: 2025-09-10T18:46:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -121,12 +121,11 @@ msgstr ""
 #: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
 #: resources/views/assignments/show.blade.php:21
-#: resources/views/boards/show.blade.php:19
 msgid "Person"
 msgstr ""
 
 #: app/Core/Admin/AssignmentListTable.php:199
-#: app/Core/PostTypes/Boards.php:30
+#: app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/assignments/edit.blade.php:38
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:14
@@ -137,14 +136,12 @@ msgstr ""
 #: resources/views/admin/assignments/edit.blade.php:56
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
-#: resources/views/boards/show.blade.php:23
 msgid "Role"
 msgstr ""
 
 #: app/Core/Admin/AssignmentListTable.php:201
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
-#: resources/views/boards/show.blade.php:31
 msgid "Period"
 msgstr ""
 
@@ -153,68 +150,116 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: app/Core/Admin/Init.php:50
+#: app/Core/Admin/Init.php:46
 msgid "Images"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:14
-msgid "Party Details"
+#: app/Core/FieldGroups/BoardDetails.php:14
+msgid "Board Details"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:21
 #: app/Core/FieldGroups/PartyDetails.php:21
 msgid "General"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:24
-#: app/Core/FieldGroups/PartyDetails.php:71
-msgid "Contact Details"
-msgstr ""
-
+#: app/Core/FieldGroups/BoardDetails.php:31
 #: app/Core/FieldGroups/PartyDetails.php:34
 #: app/Core/FieldGroups/PersonDetails.php:21
 msgid "Basic Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:41
-msgid "Description"
+#: app/Core/FieldGroups/BoardDetails.php:38
+msgid "Category"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:41
+msgid "Select type"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:42
+msgid "Company"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:43
+msgid "Council"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:44
+msgid "Committee"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:45
+msgid "Foundation"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:46
+msgid "Other"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:56
 #: app/Core/FieldGroups/PartyDetails.php:51
 msgid "Shortening"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:61
-msgid "Group Leader, City Council"
+#: app/Core/FieldGroups/BoardDetails.php:66
+#: app/Core/FieldGroups/PartyDetails.php:24
+#: app/Core/FieldGroups/PartyDetails.php:71
+msgid "Contact Details"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:73
+#: app/Core/FieldGroups/PersonDetails.php:147
+#: app/Core/FieldGroups/PersonDetails.php:254
+msgid "Visiting address"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:80
 #: app/Core/FieldGroups/PartyDetails.php:78
 #: app/Core/FieldGroups/PersonDetails.php:157
 #: app/Core/FieldGroups/PersonDetails.php:264
 msgid "Address"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:91
 #: app/Core/FieldGroups/PartyDetails.php:89
 msgid "ZIP Code"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:98
 #: app/Core/FieldGroups/PartyDetails.php:96
 #: app/Core/FieldGroups/PersonDetails.php:181
 #: app/Core/FieldGroups/PersonDetails.php:288
 msgid "City"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:109
 #: app/Core/FieldGroups/PartyDetails.php:107
 msgid "Website"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:120
 #: app/Core/FieldGroups/PartyDetails.php:118
 msgid "E-mail"
 msgstr ""
 
+#: app/Core/FieldGroups/BoardDetails.php:130
 #: app/Core/FieldGroups/PartyDetails.php:128
 #: app/Core/FieldGroups/PersonDetails.php:223
 #: app/Core/FieldGroups/PersonDetails.php:330
 msgid "Phone"
+msgstr ""
+
+#: app/Core/FieldGroups/PartyDetails.php:14
+msgid "Party Details"
+msgstr ""
+
+#: app/Core/FieldGroups/PartyDetails.php:41
+msgid "Description"
+msgstr ""
+
+#: app/Core/FieldGroups/PartyDetails.php:61
+msgid "Group Leader, City Council"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:14
@@ -295,11 +340,6 @@ msgstr ""
 msgid "Home Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:147
-#: app/Core/FieldGroups/PersonDetails.php:254
-msgid "Visiting address"
-msgstr ""
-
 #: app/Core/FieldGroups/PersonDetails.php:171
 #: app/Core/FieldGroups/PersonDetails.php:278
 msgid "Zip code"
@@ -324,82 +364,82 @@ msgstr ""
 msgid "Work Information"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:31
-#: resources/views/boards/index.blade.php:6
+#: app/Core/PostTypes/Boards.php:30
 #: resources/views/sections/header.blade.php:25
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:47
+#: app/Core/PostTypes/Boards.php:46
 msgctxt "Post type general name"
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:48
+#: app/Core/PostTypes/Boards.php:47
 msgctxt "Post type singular name"
 msgid "Board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:49
+#: app/Core/PostTypes/Boards.php:48
 msgctxt "Admin Menu text"
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:50
+#: app/Core/PostTypes/Boards.php:49
 msgctxt "Add New on Toolbar"
 msgid "Board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:51
+#: app/Core/PostTypes/Boards.php:50
 #: app/Core/PostTypes/Parties.php:53
 #: app/Core/PostTypes/Persons.php:53
 msgid "Add new"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:52
+#: app/Core/PostTypes/Boards.php:51
 msgid "Add new board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:53
+#: app/Core/PostTypes/Boards.php:52
 msgid "New board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:54
+#: app/Core/PostTypes/Boards.php:53
 msgid "Edit board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:55
-#: resources/views/boards/index.blade.php:27
+#: app/Core/PostTypes/Boards.php:54
 msgid "View board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:56
+#: app/Core/PostTypes/Boards.php:55
 msgid "All board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:57
+#: app/Core/PostTypes/Boards.php:56
 msgid "Search boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:58
+#: app/Core/PostTypes/Boards.php:57
 msgid "Parent boards:"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:59
+#: app/Core/PostTypes/Boards.php:58
 msgid "No boards found."
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:60
+#: app/Core/PostTypes/Boards.php:59
 msgid "No boards found in Trash."
 msgstr ""
 
+#: app/Core/PostTypes/Boards.php:75
+msgid "boards"
+msgstr ""
+
 #: app/Core/PostTypes/Parties.php:30
-#: resources/views/boards/show.blade.php:27
 msgid "Party"
 msgstr ""
 
 #: app/Core/PostTypes/Parties.php:31
-#: resources/views/parties/index.blade.php:6
 #: resources/views/sections/header.blade.php:10
 msgid "Parties"
 msgstr ""
@@ -458,6 +498,10 @@ msgstr ""
 
 #: app/Core/PostTypes/Parties.php:62
 msgid "No parties found in Trash."
+msgstr ""
+
+#: app/Core/PostTypes/Parties.php:78
+msgid "parties"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:31
@@ -637,14 +681,6 @@ msgstr ""
 
 #: resources/views/assignments/show.blade.php:10
 msgid "Assignment Details"
-msgstr ""
-
-#: resources/views/boards/show.blade.php:11
-msgid "Current Assignments"
-msgstr ""
-
-#: resources/views/boards/show.blade.php:68
-msgid "No active assignments found."
 msgstr ""
 
 #: resources/views/index.blade.php:8
