@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-10T13:15:41+00:00\n"
+"POT-Creation-Date: 2025-09-10T16:02:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -161,59 +161,59 @@ msgstr ""
 msgid "Party Details"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:22
+#: app/Core/FieldGroups/PartyDetails.php:21
 msgid "General"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:25
-#: app/Core/FieldGroups/PartyDetails.php:72
+#: app/Core/FieldGroups/PartyDetails.php:24
+#: app/Core/FieldGroups/PartyDetails.php:71
 msgid "Contact Details"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:35
-#: app/Core/FieldGroups/PersonDetails.php:22
+#: app/Core/FieldGroups/PartyDetails.php:34
+#: app/Core/FieldGroups/PersonDetails.php:21
 msgid "Basic Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:42
+#: app/Core/FieldGroups/PartyDetails.php:41
 msgid "Description"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:52
+#: app/Core/FieldGroups/PartyDetails.php:51
 msgid "Shortening"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:62
+#: app/Core/FieldGroups/PartyDetails.php:61
 msgid "Group Leader, City Council"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:79
-#: app/Core/FieldGroups/PersonDetails.php:158
-#: app/Core/FieldGroups/PersonDetails.php:265
+#: app/Core/FieldGroups/PartyDetails.php:78
+#: app/Core/FieldGroups/PersonDetails.php:157
+#: app/Core/FieldGroups/PersonDetails.php:264
 msgid "Address"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:90
+#: app/Core/FieldGroups/PartyDetails.php:89
 msgid "ZIP Code"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:97
-#: app/Core/FieldGroups/PersonDetails.php:182
-#: app/Core/FieldGroups/PersonDetails.php:289
+#: app/Core/FieldGroups/PartyDetails.php:96
+#: app/Core/FieldGroups/PersonDetails.php:181
+#: app/Core/FieldGroups/PersonDetails.php:288
 msgid "City"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:108
+#: app/Core/FieldGroups/PartyDetails.php:107
 msgid "Website"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:119
+#: app/Core/FieldGroups/PartyDetails.php:118
 msgid "E-mail"
 msgstr ""
 
-#: app/Core/FieldGroups/PartyDetails.php:129
-#: app/Core/FieldGroups/PersonDetails.php:224
-#: app/Core/FieldGroups/PersonDetails.php:331
+#: app/Core/FieldGroups/PartyDetails.php:128
+#: app/Core/FieldGroups/PersonDetails.php:223
+#: app/Core/FieldGroups/PersonDetails.php:330
 msgid "Phone"
 msgstr ""
 
@@ -221,106 +221,106 @@ msgstr ""
 msgid "Person Details"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:25
+#: app/Core/FieldGroups/PersonDetails.php:24
 msgid "Addresses"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:35
+#: app/Core/FieldGroups/PersonDetails.php:34
 msgid "Personal Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:42
+#: app/Core/FieldGroups/PersonDetails.php:41
 msgid "Firstname"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:48
+#: app/Core/FieldGroups/PersonDetails.php:47
 msgid "Lastname"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:58
+#: app/Core/FieldGroups/PersonDetails.php:57
 msgid "Date of birth"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:67
+#: app/Core/FieldGroups/PersonDetails.php:66
 msgid "Social security number"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:80
+#: app/Core/FieldGroups/PersonDetails.php:79
 msgid "Politics Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:87
+#: app/Core/FieldGroups/PersonDetails.php:86
 msgid "Member of party"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:91
+#: app/Core/FieldGroups/PersonDetails.php:90
 msgid "Select party"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:92
+#: app/Core/FieldGroups/PersonDetails.php:91
 msgid "Party 1"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:93
+#: app/Core/FieldGroups/PersonDetails.php:92
 msgid "Party 2"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:98
+#: app/Core/FieldGroups/PersonDetails.php:97
 msgid "Total kilometers"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:111
+#: app/Core/FieldGroups/PersonDetails.php:110
 msgid "Active"
+msgstr ""
+
+#: app/Core/FieldGroups/PersonDetails.php:113
+#: app/Core/FieldGroups/PersonDetails.php:121
+msgid "Yes"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:114
 #: app/Core/FieldGroups/PersonDetails.php:122
-msgid "Yes"
-msgstr ""
-
-#: app/Core/FieldGroups/PersonDetails.php:115
-#: app/Core/FieldGroups/PersonDetails.php:123
 msgid "No"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:119
+#: app/Core/FieldGroups/PersonDetails.php:118
 msgid "Group leader"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:127
+#: app/Core/FieldGroups/PersonDetails.php:126
 msgid "Listing"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:141
+#: app/Core/FieldGroups/PersonDetails.php:140
 msgid "Home Information"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:148
-#: app/Core/FieldGroups/PersonDetails.php:255
+#: app/Core/FieldGroups/PersonDetails.php:147
+#: app/Core/FieldGroups/PersonDetails.php:254
 msgid "Visiting address"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:172
-#: app/Core/FieldGroups/PersonDetails.php:279
+#: app/Core/FieldGroups/PersonDetails.php:171
+#: app/Core/FieldGroups/PersonDetails.php:278
 msgid "Zip code"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:196
-#: app/Core/FieldGroups/PersonDetails.php:303
+#: app/Core/FieldGroups/PersonDetails.php:195
+#: app/Core/FieldGroups/PersonDetails.php:302
 msgid "Webpage"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:210
-#: app/Core/FieldGroups/PersonDetails.php:317
+#: app/Core/FieldGroups/PersonDetails.php:209
+#: app/Core/FieldGroups/PersonDetails.php:316
 msgid "Email"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:234
-#: app/Core/FieldGroups/PersonDetails.php:341
+#: app/Core/FieldGroups/PersonDetails.php:233
+#: app/Core/FieldGroups/PersonDetails.php:340
 msgid "Mobile"
 msgstr ""
 
-#: app/Core/FieldGroups/PersonDetails.php:248
+#: app/Core/FieldGroups/PersonDetails.php:247
 msgid "Work Information"
 msgstr ""
 
@@ -521,8 +521,26 @@ msgstr ""
 msgid "No persons found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:97
+#: app/Core/PostTypes/Persons.php:78
+msgid "persons"
+msgstr ""
+
+#: app/Core/PostTypes/Persons.php:98
 msgid "Thumbnail"
+msgstr ""
+
+#: app/View/Composers/Post.php:34
+msgid "Latest Posts"
+msgstr ""
+
+#. translators: %s is replaced with the search query
+#: app/View/Composers/Post.php:44
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: app/View/Composers/Post.php:50
+msgid "Not Found"
 msgstr ""
 
 #: resources/views/admin/assignments/edit.blade.php:2

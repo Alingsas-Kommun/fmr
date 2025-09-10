@@ -34,7 +34,3 @@ Route::get(General::getRouteSlug('assignments').'/{assignment}', [AssignmentCont
 // Board routes
 Route::get(General::getRouteSlug('boards'), [BoardController::class, 'index'])->name('boards.index');
 Route::get(General::getRouteSlug('boards').'/{board}', [BoardController::class, 'show'])->name('boards.show');
-
-// Person routes
-Route::get(General::getRouteSlug('persons'), [PersonController::class, 'index'])->name('persons.index');
-Route::get(General::getRouteSlug('persons').'/{person}', [PersonController::class, 'show'])->name('persons.show');

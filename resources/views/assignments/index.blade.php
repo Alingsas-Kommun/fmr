@@ -46,7 +46,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->person)
-                                    <a href="{{ route('persons.show', $assignment->person) }}" 
+                                    <a href="{{ get_permalink($assignment->person->ID) }}" 
                                        class="text-green-700 hover:text-green-800">
                                         {{ $assignment->person->post_title }}
                                     </a>

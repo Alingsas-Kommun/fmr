@@ -14,7 +14,7 @@
                     {!! __('Assignments', 'fmr') !!}
                 </a>
 
-                <a href="{{ route('persons.index') }}" class="text-green-700 hover:text-green-800 font-medium">
+                <a href="{!! get_post_type_archive_link('person') !!}" class="text-green-700 hover:text-green-800 font-medium">
                     {!! __('Persons', 'fmr') !!}
                 </a>
 
@@ -37,7 +37,7 @@
             </p>
             
             <div class="mt-10">
-                <form action="{{ route('persons.index') }}" method="GET" class="max-w-lg mx-auto">
+                <form action="#" method="GET" class="max-w-lg mx-auto">
                     <div class="flex gap-x-4">
                         <label for="search" class="sr-only">{!! __('Search', 'fmr') !!}</label>
                         <div class="flex-auto">
