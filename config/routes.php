@@ -13,17 +13,13 @@ return [
 
     'slugs' => [
         'en' => [
-            'parties' => 'parties',
-            'persons' => 'persons',
             'assignments' => 'assignments',
-            'boards' => 'boards',
+            'decision-authorities' => 'decision-authorities',
             'style-guide' => 'style-guide',
         ],
         'sv' => [
-            'parties' => 'partier',
-            'persons' => 'personer',
             'assignments' => 'uppdrag',
-            'boards' => 'beslutsinstanser',
+            'decision-authorities' => 'beslutsinstanser',
             'style-guide' => 'stilguide',
         ],
     ],

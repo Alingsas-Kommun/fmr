@@ -21,14 +21,24 @@ class Init
             new Whitelabel();
         }
 
-        if (class_exists('App\\Core\\Admin\\AssignmentListTable')) {
+        if (class_exists('App\\Core\\Admin\\Assignments')) {
             add_action('admin_menu', function () {
-                AssignmentListTable::register();
+                Assignments::register();
             });
         }
 
         if (class_exists('App\\Core\\Admin\\AssignmentHandler')) {
             new AssignmentHandler();
+        }
+
+        if (class_exists('App\\Core\\Admin\\DecisionAuthorities')) {
+            add_action('admin_menu', function () {
+                DecisionAuthorities::register();
+            });
+        }
+
+        if (class_exists('App\\Core\\Admin\\DecisionAuthorityHandler')) {
+            new DecisionAuthorityHandler();
         }
 
         /**

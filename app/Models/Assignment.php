@@ -19,7 +19,7 @@ class Assignment extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'board_id',
+        'decision_authority_id',
         'person_id',
         'role',
         'period_start',
@@ -41,9 +41,24 @@ class Assignment extends Model
     /**
      * Get the board associated with the assignment.
      */
+    public function decisionAuthority()
+    {
+        return $this->belongsTo(DecisionAuthority::class);
+    }
+
+    /**
+     * Get the board associated with the assignment through decision authority.
+     */
     public function board()
     {
-        return $this->belongsTo(Post::class, 'board_id', 'ID')->where('post_type', 'board');
+        return $this->hasOneThrough(
+            Post::class,
+            DecisionAuthority::class,
+            'id', // Foreign key on decision_authority table
+            'ID', // Foreign key on posts table
+            'decision_authority_id', // Local key on assignments table
+            'board_id' // Local key on decision_authority table
+        )->where('post_type', 'board');
     }
 
     /**

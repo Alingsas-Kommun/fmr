@@ -15,10 +15,10 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * Class AssignmentListTable
+ * Class Assignments
  * @package App\Core\Admin
  */
-class AssignmentListTable extends \WP_List_Table
+class Assignments extends \WP_List_Table
 {
     private static $instance = null;
     protected $controller;
@@ -66,8 +66,8 @@ class AssignmentListTable extends \WP_List_Table
             'manage_options',
             'assignments',
             [self::$instance, 'render_page'],
-            'dashicons-list-view',
-            30
+            'dashicons-portfolio',
+            40
         );
     }
 
@@ -194,12 +194,13 @@ class AssignmentListTable extends \WP_List_Table
     public function get_columns()
     {
         return [
-            'cb'            => '<input type="checkbox" />',
-            'person'        => __('Person', 'fmr'),
-            'institution'   => __('Board', 'fmr'),
-            'role'          => __('Role', 'fmr'),
-            'period'        => __('Period', 'fmr'),
-            'edit'          => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
+            'cb'                    => '<input type="checkbox" />',
+            'person'                => __('Person', 'fmr'),
+            'role'                  => __('Role', 'fmr'),
+            'board'                 => __('Board', 'fmr'),
+            'decision_authority'    => __('Decision Authority', 'fmr'),
+            'period'                => __('Period', 'fmr'),
+            'edit'                  => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
         ];
     }
 
@@ -221,9 +222,10 @@ class AssignmentListTable extends \WP_List_Table
     public function get_sortable_columns()
     {
         return [
-            'person'      => ['person', false],
-            'institution' => ['board', false],
-            'role'        => ['role', false]
+            'person'             => ['person', false],
+            'role'               => ['role', false],
+            'board'              => ['board', false],
+            'decision_authority' => ['decision_authority', false]
         ];
     }
 
@@ -301,12 +303,12 @@ class AssignmentListTable extends \WP_List_Table
     }
 
     /**
-     * Render the institution (board) column.
+     * Render the board (board) column.
      *
      * @param object $item The current assignment item.
      * @return string The column output.
      */
-    public function column_institution($item)
+    public function column_board($item)
     {
         if (!$item->board) {
             return '—';
@@ -315,11 +317,29 @@ class AssignmentListTable extends \WP_List_Table
         $edit_link = get_edit_post_link($item->board->ID);
         $title = esc_html($item->board->post_title);
         
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url($edit_link),
-            $title
+        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $title);
+    }
+
+    /**
+     * Render the decision authority column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
+    public function column_decision_authority($item)
+    {
+        if (!$item->decisionAuthority) {
+            return '—';
+        }
+
+        $title = esc_html($item->decisionAuthority->title);
+
+        $edit_link = add_query_arg(
+            ['page' => 'decision_authority_edit', 'id' => $item->decisionAuthority->id],
+            admin_url('admin.php')
         );
+
+        return sprintf('<a href="%s">%s</a>', $edit_link, $title);
     }
 
     /**

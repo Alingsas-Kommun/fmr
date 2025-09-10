@@ -30,18 +30,29 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Person', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
                     </tr>
                 </thead>
+
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($assignments as $assignment)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->board)
-                                    {{ $assignment->board->post_title }}
+                                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-green-700 hover:text-green-800"> 
+                                        {{ $assignment->board->post_title }}
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if($assignment->decisionAuthority)
+                                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-green-700 hover:text-green-800">
+                                        {{ $assignment->decisionAuthority->title }}
+                                    </a>
                                 @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -68,20 +79,35 @@
         </div>
 
         @if($pagination['last_page'] > 1)
-            <div class="mt-4 flex justify-center gap-2">
-                @if($pagination['current_page'] > 1)
-                    <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] - 1]) }}" 
-                       class="px-4 py-2 bg-white border rounded hover:bg-gray-50">&larr; {!! __('Previous', 'fmr') !!}</a>
-                @endif
+            <div class="mt-6 flex justify-center">
+                <nav class="flex space-x-2">
+                    @if($pagination['current_page'] > 1)
+                        <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] - 1]) }}" 
+                           class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            {{ __('Previous', 'fmr') }}
+                        </a>
+                    @endif
 
-                <span class="px-4 py-2 bg-white border rounded">
-                    {!! __('Page', 'fmr') !!} {{ $pagination['current_page'] }} {!! __('of', 'fmr') !!} {{ $pagination['last_page'] }}
-                </span>
+                    @for($i = 1; $i <= $pagination['last_page']; $i++)
+                        @if($i == $pagination['current_page'])
+                            <span class="px-3 py-2 text-sm font-medium text-white bg-emerald-600 border border-emerald-600 rounded-md">
+                                {{ $i }}
+                            </span>
+                        @else
+                            <a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}" 
+                               class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                                {{ $i }}
+                            </a>
+                        @endif
+                    @endfor
 
-                @if($pagination['current_page'] < $pagination['last_page'])
-                    <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] + 1]) }}" 
-                       class="px-4 py-2 bg-white border rounded hover:bg-gray-50">{!! __('Next', 'fmr') !!} &rarr;</a>
-                @endif
+                    @if($pagination['current_page'] < $pagination['last_page'])
+                        <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] + 1]) }}" 
+                           class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            {{ __('Next', 'fmr') }}
+                        </a>
+                    @endif
+                </nav>
             </div>
         @endif
     </div>

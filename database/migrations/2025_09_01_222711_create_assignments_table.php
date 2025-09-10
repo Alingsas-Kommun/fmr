@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('board_id')->comment('Reference to wp_posts.ID for board post type');
+            $table->unsignedBigInteger('decision_authority_id')->comment('Reference to decision_authority.id');
             $table->unsignedBigInteger('person_id')->comment('Reference to wp_posts.ID for person post type');
             $table->string('role')->comment('The role of the person in the board (e.g. Ersättare, Ordförande)');
             $table->date('period_start')->comment('Start date of the assignment');
@@ -21,14 +21,14 @@ return new class extends Migration
             $table->timestamps();
             
             // Add indexes for better query performance
-            $table->index('board_id');
+            $table->index('decision_authority_id');
             $table->index('person_id');
             $table->index(['period_start', 'period_end']);
             
-            // Add foreign key constraints to wp_posts table
-            $table->foreign('board_id')
-                ->references('ID')
-                ->on('posts')
+            // Add foreign key constraints
+            $table->foreign('decision_authority_id')
+                ->references('id')
+                ->on('decision_authority')
                 ->onDelete('cascade');
                 
             $table->foreign('person_id')

@@ -20,6 +20,9 @@ class BoardDetails extends FieldGroup
             'general' => [
                 'label' => __('General', 'fmr'),
             ],
+            'contact' => [
+                'label' => __('Contact Details', 'fmr'),
+            ],
         ];
     }
 
@@ -64,7 +67,7 @@ class BoardDetails extends FieldGroup
             [
                 'id' => 'contact_details',
                 'label' => __('Contact Details', 'fmr'),
-                'tab' => 'general',
+                'tab' => 'contact',
                 'fields' => [
                     [
                         'fields' => [

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-10T18:46:24+00:00\n"
+"POT-Creation-Date: 2025-09-10T20:30:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -74,6 +74,7 @@ msgid "Add new assignment"
 msgstr ""
 
 #: app/Core/Admin/AssignmentHandler.php:63
+#: app/Core/Admin/DecisionAuthorityHandler.php:59
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
@@ -85,38 +86,42 @@ msgstr ""
 msgid "Assignment created successfully."
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:64
-#: app/Core/Admin/AssignmentListTable.php:65
+#: app/Core/Admin/Assignments.php:64
+#: app/Core/Admin/Assignments.php:65
 #: resources/views/admin/assignments/list-table.blade.php:2
 #: resources/views/assignments/index.blade.php:6
 #: resources/views/sections/header.blade.php:15
 msgid "Assignments"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:123
+#: app/Core/Admin/Assignments.php:123
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Core/Admin/AssignmentListTable.php:154
+#: app/Core/Admin/Assignments.php:154
+#: app/Core/Admin/DecisionAuthorities.php:154
 msgid "All"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:162
+#: app/Core/Admin/Assignments.php:162
+#: app/Core/Admin/DecisionAuthorities.php:162
 msgid "Ongoing"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:170
+#: app/Core/Admin/Assignments.php:170
+#: app/Core/Admin/DecisionAuthorities.php:170
 msgid "Past"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:185
+#: app/Core/Admin/Assignments.php:185
+#: app/Core/Admin/DecisionAuthorities.php:185
 msgid "Delete"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:198
+#: app/Core/Admin/Assignments.php:198
 #: app/Core/PostTypes/Persons.php:30
 #: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
@@ -124,33 +129,78 @@ msgstr ""
 msgid "Person"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:199
-#: app/Core/PostTypes/Boards.php:29
-#: resources/views/admin/assignments/edit.blade.php:38
-#: resources/views/assignments/index.blade.php:32
-#: resources/views/assignments/show.blade.php:14
-msgid "Board"
-msgstr ""
-
-#: app/Core/Admin/AssignmentListTable.php:200
-#: resources/views/admin/assignments/edit.blade.php:56
+#: app/Core/Admin/Assignments.php:199
+#: resources/views/admin/assignments/edit.blade.php:66
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/assignments/show.blade.php:28
 msgid "Role"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:201
+#: app/Core/Admin/Assignments.php:200
+#: app/Core/Admin/DecisionAuthorities.php:199
+#: app/Core/PostTypes/Boards.php:29
+#: resources/views/admin/decision-authorities/edit.blade.php:20
+#: resources/views/assignments/index.blade.php:32
+#: resources/views/assignments/show.blade.php:14
+msgid "Board"
+msgstr ""
+
+#: app/Core/Admin/Assignments.php:201
+#: resources/views/admin/assignments/edit.blade.php:38
+msgid "Decision Authority"
+msgstr ""
+
+#: app/Core/Admin/Assignments.php:202
+#: app/Core/Admin/DecisionAuthorities.php:201
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:33
 msgid "Period"
 msgstr ""
 
-#: app/Core/Admin/AssignmentListTable.php:202
+#: app/Core/Admin/Assignments.php:203
+#: app/Core/Admin/DecisionAuthorities.php:202
 #: resources/views/assignments/index.blade.php:36
 msgid "Actions"
 msgstr ""
 
-#: app/Core/Admin/Init.php:46
+#: app/Core/Admin/DecisionAuthorities.php:64
+#: app/Core/Admin/DecisionAuthorities.php:65
+#: resources/views/admin/decision-authorities/list-table.blade.php:2
+msgid "Decision Authorities"
+msgstr ""
+
+#: app/Core/Admin/DecisionAuthorities.php:123
+#, php-format
+msgid "%s decision authority was deleted."
+msgid_plural "%s decision authorities were deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Core/Admin/DecisionAuthorities.php:198
+#: resources/views/admin/decision-authorities/edit.blade.php:38
+msgid "Title"
+msgstr ""
+
+#: app/Core/Admin/DecisionAuthorities.php:200
+#: resources/views/admin/decision-authorities/edit.blade.php:52
+msgid "Type"
+msgstr ""
+
+#: app/Core/Admin/DecisionAuthorityHandler.php:24
+#: app/Core/Admin/DecisionAuthorityHandler.php:25
+#: resources/views/admin/decision-authorities/edit.blade.php:3
+msgid "Add new decision authority"
+msgstr ""
+
+#: app/Core/Admin/DecisionAuthorityHandler.php:83
+msgid "Decision authority updated successfully."
+msgstr ""
+
+#: app/Core/Admin/DecisionAuthorityHandler.php:84
+msgid "Decision authority created successfully."
+msgstr ""
+
+#: app/Core/Admin/Init.php:56
 msgid "Images"
 msgstr ""
 
@@ -163,87 +213,88 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:31
-#: app/Core/FieldGroups/PartyDetails.php:34
-#: app/Core/FieldGroups/PersonDetails.php:21
-msgid "Basic Information"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:38
-msgid "Category"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:41
-msgid "Select type"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:42
-msgid "Company"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:43
-msgid "Council"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:44
-msgid "Committee"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:45
-msgid "Foundation"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:46
-msgid "Other"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:56
-#: app/Core/FieldGroups/PartyDetails.php:51
-msgid "Shortening"
-msgstr ""
-
-#: app/Core/FieldGroups/BoardDetails.php:66
+#: app/Core/FieldGroups/BoardDetails.php:24
+#: app/Core/FieldGroups/BoardDetails.php:69
 #: app/Core/FieldGroups/PartyDetails.php:24
 #: app/Core/FieldGroups/PartyDetails.php:71
 msgid "Contact Details"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:73
+#: app/Core/FieldGroups/BoardDetails.php:34
+#: app/Core/FieldGroups/PartyDetails.php:34
+#: app/Core/FieldGroups/PersonDetails.php:21
+msgid "Basic Information"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:41
+msgid "Category"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:44
+msgid "Select type"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:45
+msgid "Company"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:46
+msgid "Council"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:47
+msgid "Committee"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:48
+msgid "Foundation"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:49
+msgid "Other"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:59
+#: app/Core/FieldGroups/PartyDetails.php:51
+msgid "Shortening"
+msgstr ""
+
+#: app/Core/FieldGroups/BoardDetails.php:76
 #: app/Core/FieldGroups/PersonDetails.php:147
 #: app/Core/FieldGroups/PersonDetails.php:254
 msgid "Visiting address"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:80
+#: app/Core/FieldGroups/BoardDetails.php:83
 #: app/Core/FieldGroups/PartyDetails.php:78
 #: app/Core/FieldGroups/PersonDetails.php:157
 #: app/Core/FieldGroups/PersonDetails.php:264
 msgid "Address"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:91
+#: app/Core/FieldGroups/BoardDetails.php:94
 #: app/Core/FieldGroups/PartyDetails.php:89
 msgid "ZIP Code"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:98
+#: app/Core/FieldGroups/BoardDetails.php:101
 #: app/Core/FieldGroups/PartyDetails.php:96
 #: app/Core/FieldGroups/PersonDetails.php:181
 #: app/Core/FieldGroups/PersonDetails.php:288
 msgid "City"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:109
+#: app/Core/FieldGroups/BoardDetails.php:112
 #: app/Core/FieldGroups/PartyDetails.php:107
 msgid "Website"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:120
+#: app/Core/FieldGroups/BoardDetails.php:123
 #: app/Core/FieldGroups/PartyDetails.php:118
 msgid "E-mail"
 msgstr ""
 
-#: app/Core/FieldGroups/BoardDetails.php:130
+#: app/Core/FieldGroups/BoardDetails.php:133
 #: app/Core/FieldGroups/PartyDetails.php:128
 #: app/Core/FieldGroups/PersonDetails.php:223
 #: app/Core/FieldGroups/PersonDetails.php:330
@@ -600,27 +651,58 @@ msgid "Select Person"
 msgstr ""
 
 #: resources/views/admin/assignments/edit.blade.php:42
-msgid "Select Board"
+msgid "Select Decision Authority"
 msgstr ""
 
-#: resources/views/admin/assignments/edit.blade.php:69
+#: resources/views/admin/assignments/edit.blade.php:79
+#: resources/views/admin/decision-authorities/edit.blade.php:70
 msgid "Start Date"
 msgstr ""
 
-#: resources/views/admin/assignments/edit.blade.php:82
+#: resources/views/admin/assignments/edit.blade.php:92
+#: resources/views/admin/decision-authorities/edit.blade.php:84
 msgid "End Date"
 msgstr ""
 
-#: resources/views/admin/assignments/edit.blade.php:97
+#: resources/views/admin/assignments/edit.blade.php:107
 msgid "Update Assignment"
 msgstr ""
 
-#: resources/views/admin/assignments/edit.blade.php:97
+#: resources/views/admin/assignments/edit.blade.php:107
 msgid "Create Assignment"
 msgstr ""
 
 #: resources/views/admin/assignments/list-table.blade.php:11
 msgid "Search Assignments"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:2
+msgid "Edit Decision Authority"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:2
+#: resources/views/admin/decision-authorities/list-table.blade.php:3
+msgid "Add New Decision Authority"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:24
+msgid "Select Board"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:56
+msgid "Select Type"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:100
+msgid "Update Decision Authority"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/edit.blade.php:100
+msgid "Create Decision Authority"
+msgstr ""
+
+#: resources/views/admin/decision-authorities/list-table.blade.php:11
+msgid "Search Decision Authorities"
 msgstr ""
 
 #: resources/views/admin/meta-fields/field.blade.php:7

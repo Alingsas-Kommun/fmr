@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(AssignmentsTableSeeder::class);
+        $this->call([
+            DecisionAuthorityTableSeeder::class,
+            AssignmentsTableSeeder::class,
+        ]);
     }
 }

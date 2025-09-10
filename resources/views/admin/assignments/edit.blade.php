@@ -32,15 +32,25 @@
 
                 <tr>
                     <th scope="row">
-                        <label for="board_id">{{ __('Board', 'fmr') }}</label>
+                        <label for="decision_authority_id">{{ __('Decision Authority', 'fmr') }}</label>
                     </th>
                     <td>
-                        <select name="board_id" id="board_id" class="regular-text">
-                            <option value="">{{ __('Select Board', 'fmr') }}</option>
-                            @foreach($boards as $board)
-                                <option value="{{ $board->ID }}" {{ old('board_id', $assignment->board_id) == $board->ID ? 'selected' : '' }}>
-                                    {{ $board->post_title }}
-                                </option>
+                        <select name="decision_authority_id" id="decision_authority_id" class="regular-text">
+                            <option value="">{{ __('Select Decision Authority', 'fmr') }}</option>
+                            @php
+                                $groupedAuthorities = $decisionAuthorities->groupBy(function($authority) {
+                                    return $authority->board->post_title;
+                                });
+                            @endphp
+
+                            @foreach($groupedAuthorities as $boardTitle => $authorities)
+                                <optgroup label="{{ $boardTitle }}">
+                                    @foreach($authorities as $authority)
+                                        <option value="{{ $authority->id }}" {{ old('decision_authority_id', $assignment->decision_authority_id) == $authority->id ? 'selected' : '' }}>
+                                            {{ $authority->title }} ({{ date('Y-m-d', strtotime($authority->start_date)) }} - {{ date('Y-m-d', strtotime($authority->end_date)) }})
+                                        </option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                         </select>
                     </td>

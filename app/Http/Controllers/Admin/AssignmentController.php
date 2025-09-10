@@ -28,7 +28,7 @@ class AssignmentController
     {
         return Assignment::create($request->only([
             'person_id',
-            'board_id',
+            'decision_authority_id',
             'role',
             'period_start',
             'period_end'
@@ -48,7 +48,7 @@ class AssignmentController
         
         $assignment->update($request->only([
             'person_id',
-            'board_id',
+            'decision_authority_id',
             'role',
             'period_start',
             'period_end'
@@ -109,7 +109,7 @@ class AssignmentController
      */
     public function getPaginatedAssignments($args = [])
     {
-        $query = Assignment::with(['person', 'board']);
+        $query = Assignment::with(['person', 'board', 'decisionAuthority']);
 
         // Handle sorting
         $orderby = $args['orderby'] ?? 'id';

@@ -2,37 +2,34 @@
 
 namespace App\Core\Admin;
 
-use App\Http\Controllers\Admin\AssignmentController;
-use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Http\Controllers\Admin\BoardController;
 use Illuminate\Http\Request;
 
 use function Roots\view;
 
-class AssignmentHandler
+class DecisionAuthorityHandler
 {
     protected $controller;
-    protected $personController;
-    protected $decisionAuthorityController;
+    protected $boardController;
 
     public function __construct()
     {
-        $this->controller = new AssignmentController();
-        $this->personController = new PersonController();
-        $this->decisionAuthorityController = new DecisionAuthorityController();
+        $this->controller = new DecisionAuthorityController();
+        $this->boardController = new BoardController();
 
         add_action('admin_menu', function () {
             add_submenu_page(
-                'assignments',
-                __('Add new assignment', 'fmr'),
-                __('Add new assignment', 'fmr'),
+                'decision_authorities',
+                __('Add new decision authority', 'fmr'),
+                __('Add new decision authority', 'fmr'),
                 'manage_options',
-                'assignment_edit',
+                'decision_authority_edit',
                 [$this, 'handleEdit']
             );
         });
         
-        add_action('admin_post_save_assignment', [$this, 'handleSave']);
+        add_action('admin_post_save_decision_authority', [$this, 'handleSave']);
     }
 
     /**
@@ -43,12 +40,11 @@ class AssignmentHandler
     public function handleEdit()
     {
         $id = $_GET['id'] ?? null;
-        $assignment = $this->controller->edit($id);
+        $decisionAuthority = $this->controller->show($id);
 
-        echo view('admin.assignments.edit', [
-            'assignment' => $assignment,
-            'persons' => $this->personController->getAll(),
-            'decisionAuthorities' => $this->decisionAuthorityController->getAll()
+        echo view('admin.decision-authorities.edit', [
+            'decisionAuthority' => $decisionAuthority,
+            'boards' => $this->boardController->getAll()
         ])->render();
     }
 
@@ -63,11 +59,11 @@ class AssignmentHandler
             wp_die(__('You do not have sufficient permissions to access this page.', 'fmr'));
         }
 
-        check_admin_referer('save_assignment');
+        check_admin_referer('save_decision_authority');
 
         $data = $_POST;
         
-        foreach (['period_start', 'period_end'] as $field) {
+        foreach (['start_date', 'end_date'] as $field) {
             if (!empty($data[$field])) {
                 $data[$field] = date('Y-m-d', strtotime($data[$field]));
             }
@@ -84,27 +80,27 @@ class AssignmentHandler
             }
 
             $message = $id 
-                ? __('Assignment updated successfully.', 'fmr')
-                : __('Assignment created successfully.', 'fmr');
+                ? __('Decision authority updated successfully.', 'fmr')
+                : __('Decision authority created successfully.', 'fmr');
 
             add_settings_error(
-                'assignment_update',
-                'assignment_updated',
+                'decision_authority_update',
+                'decision_authority_updated',
                 $message,
                 'updated'
             );
 
         } catch (Exception $e) {
             add_settings_error(
-                'assignment_update',
-                'assignment_error',
+                'decision_authority_update',
+                'decision_authority_error',
                 $e->getMessage(),
                 'error'
             );
         }
 
         wp_redirect(add_query_arg(
-            ['page' => 'assignments', 'updated' => 1],
+            ['page' => 'decision_authorities', 'updated' => 1],
             admin_url('admin.php')
         ));
         exit;

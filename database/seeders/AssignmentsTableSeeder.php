@@ -12,11 +12,10 @@ class AssignmentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // First, let's get some actual board and person IDs from WordPress
-        $boards = DB::table('posts')
-            ->where('post_type', 'board')
-            ->get(['ID', 'post_title']);
-
+        // Get all decision authorities
+        $authorities = DB::table('decision_authority')->get();
+        
+        // Get all persons from WordPress
         $persons = DB::table('posts')
             ->where('post_type', 'person')
             ->get(['ID', 'post_title']);
@@ -30,23 +29,27 @@ class AssignmentsTableSeeder extends Seeder
             'Sekreterare'
         ];
 
-        // Only proceed if we have both boards and persons
-        if ($boards->isNotEmpty() && $persons->isNotEmpty()) {
+        // Only proceed if we have both decision authorities and persons
+        if ($authorities->isNotEmpty() && $persons->isNotEmpty()) {
             $assignments = [];
             
             // Create some example assignments
-            foreach ($boards as $board) {
-                // Assign up to 3 random persons to each board
-                $numAssignments = min(3, $persons->count());
-                $assignedPersons = $persons->random($numAssignments);
+            foreach ($authorities as $authority) {
+                // Convert persons collection to array and shuffle it
+                $availablePersons = $persons->toArray();
+                shuffle($availablePersons);
+                
+                // Take up to 5 persons
+                $numAssignments = min(5, count($availablePersons));
+                $assignedPersons = array_slice($availablePersons, 0, $numAssignments);
                 
                 foreach ($assignedPersons as $index => $person) {
                     $assignments[] = [
-                        'board_id' => $board->ID,
+                        'decision_authority_id' => $authority->id,
                         'person_id' => $person->ID,
                         'role' => $roles[$index % count($roles)], // Cycle through roles
-                        'period_start' => '2024-01-01',
-                        'period_end' => '2026-12-31',
+                        'period_start' => $authority->start_date,
+                        'period_end' => $authority->end_date,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];

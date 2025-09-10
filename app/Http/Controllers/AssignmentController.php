@@ -12,7 +12,7 @@ class AssignmentController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Assignment::with(['board', 'person']);
+        $query = Assignment::with(['board', 'decisionAuthority', 'person']);
 
         // Filter by role if provided
         if ($request->filled('role')) {
@@ -58,7 +58,7 @@ class AssignmentController extends Controller
      */
     public function show(Assignment $assignment)
     {
-        $assignment->load(['board', 'person']);
+        $assignment->load(['board', 'decisionAuthority', 'person']);
 
         return view('assignments.show', [
             'assignment' => $assignment

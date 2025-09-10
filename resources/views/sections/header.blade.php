@@ -21,6 +21,10 @@
                 <a href="{{ get_post_type_archive_link('board') }}" class="text-green-700 hover:text-green-800 font-medium">
                     {!! __('Boards', 'fmr') !!}
                 </a>
+
+                <a href="{{ route('decision-authorities.index') }}" class="text-green-700 hover:text-green-800 font-medium">
+                    {!! __('Decision Authorities', 'fmr') !!}
+                </a>
             </nav>
         </div>
     </div>
