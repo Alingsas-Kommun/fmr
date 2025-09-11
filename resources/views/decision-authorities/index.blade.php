@@ -4,7 +4,7 @@
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-8">{{ __('Decision Authorities', 'fmr') }}</h1>
 
-        <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <div class="bg-white dark:bg-gray-100 rounded-lg shadow p-6 mb-8">
             <form action="{{ url()->current() }}" method="get" class="flex gap-4 items-end">
                 <div>
                     <label for="type" class="block text-sm font-medium text-gray-700 mb-2">{{ __('Type', 'fmr') }}</label>
@@ -26,14 +26,14 @@
             </form>
         </div>
 
-        <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+                <thead class="bg-gray-50 dark:bg-gray-200">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             {{ __('Title', 'fmr') }}
                         </th>
-                        
+
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             {{ __('Board', 'fmr') }}
                         </th>
@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
 
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
                     @forelse($decisionAuthorities as $authority)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4">

@@ -1,4 +1,4 @@
-<header class="bg-white">
+<header class="bg-white dark:bg-gray-50">
     <div class="mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <a href="{{ route('homepage') }}" class="flex-shrink-0">
@@ -18,10 +18,10 @@
     </div>
 </header>
 
-<div class="bg-[#cadfde] rounded-xl">
+<div class="bg-emerald-100 rounded-xl">
     <div class="mx-auto max-w-3xl py-15 sm:py-20 lg:py-25">
         <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-teal-700 sm:text-5xl text-balance">
+            <h1 class="text-4xl font-bold tracking-tight text-emerald-700 sm:text-5xl text-balance">
                 {!! __('Find your politician in Alingsås', 'fmr') !!}
             </h1>
             <p class="mt-6 text-lg leading-8 text-gray-800">
@@ -36,7 +36,7 @@
                             <input type="text" 
                                     name="search" 
                                     id="search" 
-                                    class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" 
+                                    class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
                                     placeholder="{!! __('Enter name, party or role...', 'fmr') !!}">
                         </div>
                         <button type="submit" 

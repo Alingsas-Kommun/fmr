@@ -1,4 +1,4 @@
-@extends('layouts.full-height')
+@extends('layouts.app')
 
 @section('content')
     @if (! have_posts())

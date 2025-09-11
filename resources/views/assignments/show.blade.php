@@ -6,7 +6,7 @@
             <a href="{{ route('assignments.index') }}" class="text-green-700 hover:text-green-800">&larr; {!! __('Back to Assignments', 'fmr') !!}</a>
         </div>
 
-        <div class="bg-white rounded-lg shadow overflow-hidden p-6">
+        <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden p-6">
             <h1 class="text-2xl font-bold mb-6">{!! __('Assignment Details', 'fmr') !!}</h1>
 
             <div class="grid grid-cols-2 gap-6">

@@ -10,7 +10,7 @@
             <span class="text-gray-600">{{ $decisionAuthority->title }}</span>
         </div>
 
-        <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <div class="bg-white dark:bg-gray-100 rounded-lg shadow p-6 mb-8">
             <div class="flex justify-between items-start">
                 <div>
                     <h1 class="text-3xl font-bold mb-2">{{ $decisionAuthority->title }}</h1>
@@ -40,13 +40,13 @@
         </div>
 
         @if($activeAssignments->count() > 0)
-            <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
                 </div>
 
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gray-50 dark:bg-gray-200">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 {{ __('Name', 'fmr') }}
@@ -63,7 +63,7 @@
                         </tr>
                     </thead>
 
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
                         @forelse($activeAssignments as $assignment)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4">

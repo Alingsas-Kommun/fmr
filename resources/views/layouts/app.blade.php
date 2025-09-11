@@ -1,15 +1,25 @@
 <!doctype html>
-<html @php(language_attributes())>
+<html @php(language_attributes()) class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script type="text/javascript">
+            (function() {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    document.documentElement.classList.add('dark');
+                }
+            })();
+        </script>
+        
         @php(do_action('get_header'))
         @php(wp_head())
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body @php(body_class())>
+    <body @php(body_class('h-full bg-white dark:bg-gray-50 text-gray-900'))>
         @php(wp_body_open())
 
         <div id="app">

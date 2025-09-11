@@ -60,11 +60,14 @@ class Filters
             'archive',
             'blog',
             'device-supports-hover',
-            'h-full'
         ];
 
         $classes = array_map('trim', array_map(function ($class) use ($allowed) {
             if (in_array($class, $allowed)) {
+                return $class;
+            }
+
+            if (isTailwindClass($class)) {
                 return $class;
             }
 
