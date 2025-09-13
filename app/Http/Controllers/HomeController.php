@@ -15,6 +15,16 @@ class HomeController extends Controller
             ->orderBy('post_title')
             ->get();
 
-        return view('homepage', compact('parties'));
+        $groupLeaders = Post::persons()
+            ->whereHas('meta', function($query) {
+                $query->where('meta_key', 'person_group_leader')
+                      ->where('meta_value', '1');
+            })
+            ->get();
+
+        $boards = Post::boards()
+            ->get();
+
+        return view('homepage', compact('parties', 'groupLeaders', 'boards'));
     }
 }

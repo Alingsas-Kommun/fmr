@@ -131,7 +131,7 @@ class BoardDetails extends FieldGroup
                             [
                                 'id' => 'board_phone',
                                 'label' => __('Phone', 'fmr'),
-                                'type' => 'number',
+                                'type' => 'tel',
                                 'optional' => true,
                                 'visibility' => [
                                     'default' => false,

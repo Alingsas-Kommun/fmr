@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-10T22:17:25+00:00\n"
+"POT-Creation-Date: 2025-09-13T21:17:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -89,8 +89,9 @@ msgstr ""
 #: app/Core/Admin/Assignments.php:64
 #: app/Core/Admin/Assignments.php:65
 #: resources/views/admin/assignments/list-table.blade.php:2
-#: resources/views/assignments/index.blade.php:6
-#: resources/views/sections/header.blade.php:15
+#: resources/views/assignments/index.blade.php:5
+#: resources/views/partials/content-single-person.blade.php:306
+#: resources/views/partials/header.blade.php:10
 msgid "Assignments"
 msgstr ""
 
@@ -124,16 +125,17 @@ msgstr ""
 #: app/Core/Admin/Assignments.php:198
 #: app/Core/PostTypes/Persons.php:30
 #: resources/views/admin/assignments/edit.blade.php:20
-#: resources/views/assignments/index.blade.php:34
-#: resources/views/assignments/show.blade.php:30
+#: resources/views/assignments/index.blade.php:33
+#: resources/views/assignments/show.blade.php:25
 msgid "Person"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:199
 #: resources/views/admin/assignments/edit.blade.php:66
-#: resources/views/assignments/index.blade.php:35
-#: resources/views/assignments/show.blade.php:38
-#: resources/views/decision-authorities/show.blade.php:61
+#: resources/views/assignments/index.blade.php:34
+#: resources/views/assignments/show.blade.php:33
+#: resources/views/decision-authorities/show.blade.php:57
+#: resources/views/partials/content-single-person.blade.php:314
 msgid "Role"
 msgstr ""
 
@@ -141,33 +143,40 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities.php:199
 #: app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/edit.blade.php:20
-#: resources/views/assignments/index.blade.php:32
-#: resources/views/assignments/show.blade.php:14
-#: resources/views/decision-authorities/index.blade.php:41
-#: resources/views/decision-authorities/show.blade.php:22
+#: resources/views/assignments/index.blade.php:31
+#: resources/views/assignments/show.blade.php:9
+#: resources/views/decision-authorities/index.blade.php:42
+#: resources/views/decision-authorities/show.blade.php:18
+#: resources/views/partials/content-single-person.blade.php:312
 msgid "Board"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:201
 #: resources/views/admin/assignments/edit.blade.php:38
-#: resources/views/assignments/index.blade.php:33
-#: resources/views/assignments/show.blade.php:22
+#: resources/views/assignments/index.blade.php:32
+#: resources/views/assignments/show.blade.php:17
+#: resources/views/partials/content-single-person.blade.php:313
 msgid "Decision Authority"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:202
 #: app/Core/Admin/DecisionAuthorities.php:201
-#: resources/views/assignments/index.blade.php:36
-#: resources/views/assignments/show.blade.php:43
-#: resources/views/decision-authorities/index.blade.php:51
-#: resources/views/decision-authorities/show.blade.php:36
-#: resources/views/decision-authorities/show.blade.php:65
+#: resources/views/assignments/index.blade.php:35
+#: resources/views/assignments/show.blade.php:38
+#: resources/views/decision-authorities/index.blade.php:52
+#: resources/views/decision-authorities/show.blade.php:32
+#: resources/views/decision-authorities/show.blade.php:61
+#: resources/views/partials/content-single-board.blade.php:129
+#: resources/views/partials/content-single-person.blade.php:315
 msgid "Period"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:203
 #: app/Core/Admin/DecisionAuthorities.php:202
-#: resources/views/assignments/index.blade.php:37
+#: resources/views/assignments/index.blade.php:36
+#: resources/views/decision-authorities/show.blade.php:65
+#: resources/views/partials/content-single-board.blade.php:133
+#: resources/views/partials/content-single-person.blade.php:316
 msgid "Actions"
 msgstr ""
 
@@ -175,8 +184,9 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities.php:65
 #: resources/views/admin/decision-authorities/list-table.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
-#: resources/views/decision-authorities/show.blade.php:7
-#: resources/views/sections/header.blade.php:30
+#: resources/views/decision-authorities/show.blade.php:5
+#: resources/views/partials/content-single-board.blade.php:115
+#: resources/views/partials/header.blade.php:15
 msgid "Decision Authorities"
 msgstr ""
 
@@ -189,15 +199,17 @@ msgstr[1] ""
 
 #: app/Core/Admin/DecisionAuthorities.php:198
 #: resources/views/admin/decision-authorities/edit.blade.php:38
-#: resources/views/decision-authorities/index.blade.php:36
+#: resources/views/decision-authorities/index.blade.php:37
+#: resources/views/partials/content-single-board.blade.php:121
 msgid "Title"
 msgstr ""
 
 #: app/Core/Admin/DecisionAuthorities.php:200
 #: resources/views/admin/decision-authorities/edit.blade.php:52
 #: resources/views/decision-authorities/index.blade.php:10
-#: resources/views/decision-authorities/index.blade.php:46
-#: resources/views/decision-authorities/show.blade.php:27
+#: resources/views/decision-authorities/index.blade.php:47
+#: resources/views/decision-authorities/show.blade.php:23
+#: resources/views/partials/content-single-board.blade.php:125
 msgid "Type"
 msgstr ""
 
@@ -287,6 +299,9 @@ msgstr ""
 #: app/Core/FieldGroups/PartyDetails.php:78
 #: app/Core/FieldGroups/PersonDetails.php:157
 #: app/Core/FieldGroups/PersonDetails.php:264
+#: resources/views/partials/content-single-board.blade.php:82
+#: resources/views/partials/content-single-person.blade.php:179
+#: resources/views/partials/content-single-person.blade.php:272
 msgid "Address"
 msgstr ""
 
@@ -304,6 +319,9 @@ msgstr ""
 
 #: app/Core/FieldGroups/BoardDetails.php:112
 #: app/Core/FieldGroups/PartyDetails.php:107
+#: resources/views/partials/content-single-board.blade.php:33
+#: resources/views/partials/content-single-person.blade.php:166
+#: resources/views/partials/content-single-person.blade.php:259
 msgid "Website"
 msgstr ""
 
@@ -316,6 +334,9 @@ msgstr ""
 #: app/Core/FieldGroups/PartyDetails.php:128
 #: app/Core/FieldGroups/PersonDetails.php:223
 #: app/Core/FieldGroups/PersonDetails.php:330
+#: resources/views/partials/content-single-board.blade.php:63
+#: resources/views/partials/content-single-person.blade.php:140
+#: resources/views/partials/content-single-person.blade.php:233
 msgid "Phone"
 msgstr ""
 
@@ -329,6 +350,7 @@ msgstr ""
 
 #: app/Core/FieldGroups/PartyDetails.php:61
 #: app/Core/PostTypes/Parties.php:108
+#: resources/views/partials/content-single-party.blade.php:95
 msgid "Group Leader, City Council"
 msgstr ""
 
@@ -406,10 +428,12 @@ msgid "Group leader"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:126
+#: resources/views/partials/content-single-person.blade.php:80
 msgid "Listing"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:140
+#: resources/views/partials/content-single-person.blade.php:118
 msgid "Home Information"
 msgstr ""
 
@@ -425,20 +449,25 @@ msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:209
 #: app/Core/FieldGroups/PersonDetails.php:316
+#: resources/views/partials/content-single-board.blade.php:48
+#: resources/views/partials/content-single-person.blade.php:127
+#: resources/views/partials/content-single-person.blade.php:220
 msgid "Email"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:233
 #: app/Core/FieldGroups/PersonDetails.php:340
+#: resources/views/partials/content-single-person.blade.php:153
+#: resources/views/partials/content-single-person.blade.php:246
 msgid "Mobile"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:247
+#: resources/views/partials/content-single-person.blade.php:211
 msgid "Work Information"
 msgstr ""
 
 #: app/Core/PostTypes/Boards.php:30
-#: resources/views/sections/header.blade.php:25
 msgid "Boards"
 msgstr ""
 
@@ -514,7 +543,6 @@ msgid "Party"
 msgstr ""
 
 #: app/Core/PostTypes/Parties.php:31
-#: resources/views/sections/header.blade.php:10
 msgid "Parties"
 msgstr ""
 
@@ -579,7 +607,6 @@ msgid "parties"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:31
-#: resources/views/sections/header.blade.php:20
 msgid "Persons"
 msgstr ""
 
@@ -656,6 +683,7 @@ msgid "SSN"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:118
+#: resources/views/partials/content-single-person.blade.php:44
 msgid "Group Leader"
 msgstr ""
 
@@ -752,53 +780,52 @@ msgstr ""
 msgid "Optional"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:11
+#: resources/views/assignments/index.blade.php:10
 msgid "All roles"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:12
+#: resources/views/assignments/index.blade.php:11
 msgid "Chairman"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:13
+#: resources/views/assignments/index.blade.php:12
 msgid "Vice Chairman"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:14
+#: resources/views/assignments/index.blade.php:13
 msgid "Member"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:15
+#: resources/views/assignments/index.blade.php:14
 msgid "Deputy"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:20
+#: resources/views/assignments/index.blade.php:19
 msgid "Active only"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:23
+#: resources/views/assignments/index.blade.php:22
 msgid "Filter"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:79
+#: resources/views/assignments/index.blade.php:78
+#: resources/views/decision-authorities/show.blade.php:94
+#: resources/views/partials/content-single-board.blade.php:166
+#: resources/views/partials/content-single-person.blade.php:349
 msgid "View"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:93
-#: resources/views/decision-authorities/index.blade.php:108
+#: resources/views/assignments/index.blade.php:92
+#: resources/views/decision-authorities/index.blade.php:109
 msgid "Previous"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:116
-#: resources/views/decision-authorities/index.blade.php:131
+#: resources/views/assignments/index.blade.php:115
+#: resources/views/decision-authorities/index.blade.php:132
 msgid "Next"
 msgstr ""
 
-#: resources/views/assignments/show.blade.php:6
-msgid "Back to Assignments"
-msgstr ""
-
-#: resources/views/assignments/show.blade.php:10
+#: resources/views/assignments/show.blade.php:5
 msgid "Assignment Details"
 msgstr ""
 
@@ -810,46 +837,80 @@ msgstr ""
 msgid "Clear filters"
 msgstr ""
 
-#: resources/views/decision-authorities/index.blade.php:93
+#: resources/views/decision-authorities/index.blade.php:94
 msgid "No decision authorities found."
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:50
+#: resources/views/decision-authorities/show.blade.php:46
 msgid "Active Assignments"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:57
+#: resources/views/decision-authorities/show.blade.php:53
 msgid "Name"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:95
-#: resources/views/decision-authorities/show.blade.php:105
+#: resources/views/decision-authorities/show.blade.php:102
+#: resources/views/decision-authorities/show.blade.php:112
 msgid "No active assignments found."
+msgstr ""
+
+#: resources/views/homepage.blade.php:8
+msgid "Find your politician in Alingsås"
+msgstr ""
+
+#: resources/views/homepage.blade.php:12
+msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
+msgstr ""
+
+#: resources/views/homepage.blade.php:19
+#: resources/views/homepage.blade.php:29
+msgid "Search"
+msgstr ""
+
+#: resources/views/homepage.blade.php:25
+msgid "Enter name, party or role..."
+msgstr ""
+
+#: resources/views/homepage.blade.php:60
+msgid "Group Leaders"
+msgstr ""
+
+#: resources/views/homepage.blade.php:105
+msgid "Boards & Committees"
 msgstr ""
 
 #: resources/views/index.blade.php:8
 msgid "Sorry, no results were found."
 msgstr ""
 
-#: resources/views/layouts/app.blade.php:18
+#: resources/views/layouts/app.blade.php:28
 msgid "Skip to content"
 msgstr ""
 
-#: resources/views/sections/header.blade.php:42
-msgid "Find your politician in Alingsås"
+#: resources/views/partials/content-single-board.blade.php:104
+#: resources/views/partials/content-single-person.blade.php:198
+#: resources/views/partials/content-single-person.blade.php:292
+msgid "Visiting Address"
 msgstr ""
 
-#: resources/views/sections/header.blade.php:46
-msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
+#: resources/views/partials/content-single-party.blade.php:106
+msgid "Members"
 msgstr ""
 
-#: resources/views/sections/header.blade.php:53
-#: resources/views/sections/header.blade.php:63
-msgid "Search"
+#: resources/views/partials/content-single-person.blade.php:60
+msgid "Birth Date"
 msgstr ""
 
-#: resources/views/sections/header.blade.php:59
-msgid "Enter name, party or role..."
+#: resources/views/partials/content-single-person.blade.php:70
+msgid "Social Security Number"
+msgstr ""
+
+#: resources/views/partials/content-single-person.blade.php:97
+msgid "Hide Additional Information"
+msgstr ""
+
+#: resources/views/partials/content-single-person.blade.php:97
+msgid "Show Additional Information"
 msgstr ""
 
 #: public/build/assets/theme.json

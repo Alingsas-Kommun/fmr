@@ -23,14 +23,14 @@
         @php(wp_body_open())
 
         <div id="app">
-            <div class="container mx-auto">
+            <div class="max-w-5xl px-4 mx-auto">
                 <a class="sr-only focus:not-sr-only" href="#main">
                     {{ __('Skip to content', 'fmr') }}
                 </a>
 
-                @include('sections.header')
+                @include('partials.header')
 
-                <main id="main" class="main">
+                <main id="main" class="pb-8">
                     @yield('content')
                 </main>
             </div>

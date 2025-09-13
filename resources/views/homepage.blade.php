@@ -1,7 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto px-4 py-15">
+    <div class="bg-emerald-50 rounded-xl mt-3">
+        <div class="mx-auto max-w-3xl py-15">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-emerald-700 sm:text-5xl text-balance">
+                    {!! __('Find your politician in Alingsås', 'fmr') !!}
+                </h1>
+                <p class="mt-3 text-lg leading-8 text-gray-800">
+                    {!! __('Search through assignments, parties and politicians in the municipality of Alingsås.', 'fmr') !!}
+                </p>
+                
+                <div class="mt-7">
+                    <form action="#" method="GET" class="max-w-lg mx-auto">
+                        <div class="flex gap-x-4">
+                            <label for="search" class="sr-only">{!! __('Search', 'fmr') !!}</label>
+                            <div class="flex-auto">
+                                <input type="text" 
+                                        name="search" 
+                                        id="search" 
+                                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                                        placeholder="{!! __('Enter name, party or role...', 'fmr') !!}">
+                            </div>
+                            <button type="submit" 
+                                    class="flex-none rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+                                {!! __('Search', 'fmr') !!}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-15">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-wrap justify-center items-center gap-12">
                 @foreach($parties as $party)
@@ -16,4 +48,78 @@
             </div>
         </div>
     </div>
+
+    @if($groupLeaders->isNotEmpty())
+        <div class="py-8">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Group Leaders', 'fmr') !!}</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($groupLeaders as $leader)
+                    <a href="{{ get_permalink($leader->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
+                        <div class="flex items-center space-x-4">
+                            @if($leader->thumbnail())
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full overflow-hidden">
+                                        {!! $leader->thumbnail() !!}
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors duration-200">
+                                    @if($leader->getMeta('person_firstname') && $leader->getMeta('person_lastname'))
+                                        {{ $leader->getMeta('person_firstname') }} {{ $leader->getMeta('person_lastname') }}
+                                    @else
+                                        {{ $leader->post_title }}
+                                    @endif
+                                </h3>
+
+                                @if($leader->getMeta('person_party'))
+                                    <p class="text-sm text-gray-600 mt-1">{{ $leader->getMeta('person_party') }}</p>
+                                @endif
+                            </div>
+
+                            <div class="flex-shrink-0">
+                                <x-heroicon-o-arrow-right class="h-5 w-5 text-gray-400 group-hover:text-emerald-600 transition-colors duration-200" />
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
+    @if($boards->isNotEmpty())
+        <div class="py-8">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Boards & Committees', 'fmr') !!}</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($boards as $board)
+                    <a href="{{ get_permalink($board->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors duration-200 mb-2">
+                                    {{ $board->post_title }}
+                                </h3>
+
+                                @if($board->getMeta('board_category'))
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                        {{ $board->getMeta('board_category') }}
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="flex-shrink-0 ml-4">
+                                <x-heroicon-o-arrow-right class="h-5 w-5 text-gray-400 group-hover:text-emerald-600 transition-colors duration-200" />
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
 @endsection

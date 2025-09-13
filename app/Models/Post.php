@@ -161,6 +161,39 @@ class Post extends Model
     }
 
     /**
+     * Get multiple meta values by keys with visibility check
+     *
+     * @param array $keys
+     * @return array
+     */
+    public function getVisibleMetaValues(array $keys)
+    {
+        // Add visibility keys
+        $visibilityKeys = array_map(function($key) {
+            return $key . '_visibility';
+        }, $keys);
+
+        // Get all meta values in a single query
+        $allMetaKeys = array_merge($keys, $visibilityKeys);
+        $metaValues = $this->getMetaValues($allMetaKeys);
+
+        // Process the results and check visibility
+        $result = [];
+        foreach ($keys as $key) {
+            $visibilityKey = $key . '_visibility';
+            $isVisible = $metaValues[$visibilityKey] ?? true;
+            
+            if ($isVisible) {
+                $result[$key] = $metaValues[$key] ?? null;
+            } else {
+                $result[$key] = null;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Scope a query to only include published posts
      */
     public function scopePublished($query)
