@@ -1,44 +1,90 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden p-6 mt-8">
-        <h1 class="text-2xl font-bold mb-6">{!! __('Assignment Details', 'fmr') !!}</h1>
+    <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg md:shadow overflow-hidden md:p-8 mt-8">
+        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 mb-8">
+            <div class="flex items-center space-x-6 flex-1">
+                <div class="flex-shrink-0">
+                    <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-200 rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-briefcase class="h-8 w-8 text-emerald-600" />
+                    </div>
+                </div>
+                
+                <div class="flex-1 space-y-2">
+                    <h1 class="text-2xl font-bold text-gray-900">{!! $assignment->role !!}</h1>
+                    
+                    @if($assignment->person)
+                        <div class="flex items-center space-x-2">
+                            @if($assignment->person->thumbnail())
+                                <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
+                                    {!! $assignment->person->thumbnail() !!}
+                                </div>
+                            @else
+                                <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        @php
+                                            $name = $assignment->person->post_title;
+                                            $initials = '';
+                                            $words = explode(' ', $name);
+                                            foreach($words as $word) {
+                                                if(!empty($word)) {
+                                                    $initials .= strtoupper(substr($word, 0, 1));
+                                                }
+                                            }
+                                            echo substr($initials, 0, 2);
+                                        @endphp
+                                    </span>
+                                </div>
+                            @endif
+                            
+                            <a href="{{ get_permalink($assignment->person->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                                {{ $assignment->person->post_title }}
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
 
-        <div class="grid grid-cols-2 gap-6">
-            <div>
-                <h2 class="text-lg font-semibold mb-4">{!! __('Board', 'fmr') !!}</h2>
+            <div class="flex-shrink-0 md:ml-auto border-t md:border-t-0 border-gray-200 dark:border-gray-300 pt-6 md:pt-0 mt-3 md:mt-0">
+                <div class="flex items-center space-x-2 mb-2">
+                    <x-heroicon-o-calendar class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <span class="text-sm font-medium text-gray-700">{{ __('Period', 'fmr') }}</span>
+                </div>
+                <div class="text-lg font-semibold text-gray-900">
+                    {{ $assignment->period_start->format('j M Y') }} - {{ $assignment->period_end->format('j M Y') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:bg-gray-50 dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
+                    <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mr-3" />
+                    {!! __('Board', 'fmr') !!}
+                </h3>
                 
                 @if($assignment->board)
-                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800">{{ $assignment->board->post_title }}</a>
+                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                        {{ $assignment->board->post_title }}
+                    </a>
+                @else
+                    <span class="text-gray-400 italic">{{ __('No board assigned', 'fmr') }}</span>
                 @endif
             </div>
 
-            <div>
-                <h2 class="text-lg font-semibold mb-4">{!! __('Decision Authority', 'fmr') !!}</h2>
+            <div class="md:bg-gray-50 dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
+                    <x-heroicon-o-scale class="h-5 w-5 text-emerald-600 mr-3" />
+                    {!! __('Decision Authority', 'fmr') !!}
+                </h3>
                 
                 @if($assignment->decisionAuthority)
-                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800">{{ $assignment->decisionAuthority->title }}</a>
+                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                        {{ $assignment->decisionAuthority->title }}
+                    </a>
+                @else
+                    <span class="text-gray-400 italic">{{ __('No decision authority assigned', 'fmr') }}</span>
                 @endif
-            </div>
-
-            <div>
-                <h2 class="text-lg font-semibold mb-4">{!! __('Person', 'fmr') !!}</h2>
-                
-                @if($assignment->person)
-                    <a href="{{ get_permalink($assignment->person->ID) }}" class="text-emerald-700 hover:text-emerald-800">{{ $assignment->person->post_title }}</a>
-                @endif
-            </div>
-
-            <div>
-                <h2 class="text-lg font-semibold mb-4">{!! __('Role', 'fmr') !!}</h2>
-                <p class="text-gray-700">{{ $assignment->role }}</p>
-            </div>
-
-            <div>
-                <h2 class="text-lg font-semibold mb-4">{!! __('Period', 'fmr') !!}</h2>
-                <p class="text-gray-700">
-                    {{ $assignment->period_start->format('Y-m-d') }} - {{ $assignment->period_end->format('Y-m-d') }}
-                </p>
             </div>
         </div>
     </div>

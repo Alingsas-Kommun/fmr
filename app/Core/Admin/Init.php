@@ -78,6 +78,12 @@ class Init
         }
 
         $this->disableComments();
+        $this->disableRevisions();
+    }
+
+    public function disableRevisions()
+    {
+        add_filter('wp_revisions_to_keep', '__return_false');
     }
 
     public function disableComments()

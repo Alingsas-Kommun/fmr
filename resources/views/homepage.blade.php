@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="bg-emerald-50 rounded-xl mt-3">
-        <div class="mx-auto max-w-3xl py-15">
+        <div class="mx-auto max-w-3xl py-15 px-4">
             <div class="text-center">
-                <h1 class="text-4xl font-bold tracking-tight text-emerald-700 sm:text-5xl text-balance">
+                <h1 class="text-3xl font-bold tracking-tight text-emerald-700 sm:text-4xl text-balance">
                     {!! __('Find your politician in Alingsås', 'fmr') !!}
                 </h1>
                 <p class="mt-3 text-lg leading-8 text-gray-800">

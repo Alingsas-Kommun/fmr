@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-13T21:17:21+00:00\n"
-"PO-Revision-Date: 2025-09-13 23:17+0200\n"
+"POT-Creation-Date: 2025-09-13T22:21:46+00:00\n"
+"PO-Revision-Date: 2025-09-14 00:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -128,15 +128,13 @@ msgstr "Radera"
 #: app/Core/Admin/Assignments.php:198 app/Core/PostTypes/Persons.php:30
 #: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
-#: resources/views/assignments/show.blade.php:25
 msgid "Person"
 msgstr "Person"
 
 #: app/Core/Admin/Assignments.php:199
 #: resources/views/admin/assignments/edit.blade.php:66
 #: resources/views/assignments/index.blade.php:34
-#: resources/views/assignments/show.blade.php:33
-#: resources/views/decision-authorities/show.blade.php:57
+#: resources/views/decision-authorities/show.blade.php:66
 #: resources/views/partials/content-single-person.blade.php:314
 msgid "Role"
 msgstr "Roll"
@@ -145,9 +143,9 @@ msgstr "Roll"
 #: app/Core/Admin/DecisionAuthorities.php:199 app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:31
-#: resources/views/assignments/show.blade.php:9
-#: resources/views/decision-authorities/index.blade.php:42
-#: resources/views/decision-authorities/show.blade.php:18
+#: resources/views/assignments/show.blade.php:66
+#: resources/views/decision-authorities/index.blade.php:60
+#: resources/views/decision-authorities/show.blade.php:20
 #: resources/views/partials/content-single-person.blade.php:312
 msgid "Board"
 msgstr "Nämnd/Styrelse"
@@ -155,7 +153,7 @@ msgstr "Nämnd/Styrelse"
 #: app/Core/Admin/Assignments.php:201
 #: resources/views/admin/assignments/edit.blade.php:38
 #: resources/views/assignments/index.blade.php:32
-#: resources/views/assignments/show.blade.php:17
+#: resources/views/assignments/show.blade.php:83
 #: resources/views/partials/content-single-person.blade.php:313
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
@@ -163,10 +161,10 @@ msgstr "Beslutsinstans"
 #: app/Core/Admin/Assignments.php:202
 #: app/Core/Admin/DecisionAuthorities.php:201
 #: resources/views/assignments/index.blade.php:35
-#: resources/views/assignments/show.blade.php:38
-#: resources/views/decision-authorities/index.blade.php:52
-#: resources/views/decision-authorities/show.blade.php:32
-#: resources/views/decision-authorities/show.blade.php:61
+#: resources/views/assignments/show.blade.php:53
+#: resources/views/decision-authorities/index.blade.php:74
+#: resources/views/decision-authorities/show.blade.php:41
+#: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/content-single-board.blade.php:129
 #: resources/views/partials/content-single-person.blade.php:315
 msgid "Period"
@@ -175,7 +173,7 @@ msgstr "Period"
 #: app/Core/Admin/Assignments.php:203
 #: app/Core/Admin/DecisionAuthorities.php:202
 #: resources/views/assignments/index.blade.php:36
-#: resources/views/decision-authorities/show.blade.php:65
+#: resources/views/decision-authorities/show.blade.php:74
 #: resources/views/partials/content-single-board.blade.php:133
 #: resources/views/partials/content-single-person.blade.php:316
 msgid "Actions"
@@ -200,16 +198,16 @@ msgstr[1] "%s uppdrag raderades."
 
 #: app/Core/Admin/DecisionAuthorities.php:198
 #: resources/views/admin/decision-authorities/edit.blade.php:38
-#: resources/views/decision-authorities/index.blade.php:37
+#: resources/views/decision-authorities/index.blade.php:53
 #: resources/views/partials/content-single-board.blade.php:121
 msgid "Title"
 msgstr "Titel"
 
 #: app/Core/Admin/DecisionAuthorities.php:200
 #: resources/views/admin/decision-authorities/edit.blade.php:52
-#: resources/views/decision-authorities/index.blade.php:10
-#: resources/views/decision-authorities/index.blade.php:47
-#: resources/views/decision-authorities/show.blade.php:23
+#: resources/views/decision-authorities/index.blade.php:16
+#: resources/views/decision-authorities/index.blade.php:67
+#: resources/views/decision-authorities/show.blade.php:29
 #: resources/views/partials/content-single-board.blade.php:125
 msgid "Type"
 msgstr "Typ"
@@ -348,7 +346,7 @@ msgid "Description"
 msgstr "Beskrivning"
 
 #: app/Core/FieldGroups/PartyDetails.php:61 app/Core/PostTypes/Parties.php:108
-#: resources/views/partials/content-single-party.blade.php:95
+#: resources/views/partials/content-single-party.blade.php:96
 msgid "Group Leader, City Council"
 msgstr "Gruppledare, kommunfullmäktige"
 
@@ -805,48 +803,57 @@ msgid "Filter"
 msgstr "Filter"
 
 #: resources/views/assignments/index.blade.php:78
-#: resources/views/decision-authorities/show.blade.php:94
+#: resources/views/decision-authorities/show.blade.php:103
 #: resources/views/partials/content-single-board.blade.php:166
 #: resources/views/partials/content-single-person.blade.php:349
 msgid "View"
 msgstr "Visa"
 
 #: resources/views/assignments/index.blade.php:92
-#: resources/views/decision-authorities/index.blade.php:109
+#: resources/views/decision-authorities/index.blade.php:135
 msgid "Previous"
 msgstr "Föregående"
 
 #: resources/views/assignments/index.blade.php:115
-#: resources/views/decision-authorities/index.blade.php:132
+#: resources/views/decision-authorities/index.blade.php:158
 msgid "Next"
 msgstr "Nästa"
 
-#: resources/views/assignments/show.blade.php:5
-msgid "Assignment Details"
-msgstr "Uppdragsdetaljer"
+#: resources/views/assignments/show.blade.php:76
+#: resources/views/decision-authorities/index.blade.php:97
+msgid "No board assigned"
+msgstr "Ingen nämnd/styrelse tilldelad"
 
-#: resources/views/decision-authorities/index.blade.php:13
+#: resources/views/assignments/show.blade.php:93
+msgid "No decision authority assigned"
+msgstr "Ingen beslutsinstans tilldelad"
+
+#: resources/views/decision-authorities/index.blade.php:12
+msgid "Filters"
+msgstr "Filter"
+
+#: resources/views/decision-authorities/index.blade.php:19
 msgid "All Types"
 msgstr "Alla typer"
 
-#: resources/views/decision-authorities/index.blade.php:24
-msgid "Clear filters"
-msgstr "Töm filter"
+#: resources/views/decision-authorities/index.blade.php:36
+msgid "Clear"
+msgstr "Töm"
 
-#: resources/views/decision-authorities/index.blade.php:94
+#: resources/views/decision-authorities/index.blade.php:119
 msgid "No decision authorities found."
 msgstr "Inga beslutsinstanser hittades."
 
-#: resources/views/decision-authorities/show.blade.php:46
+#: resources/views/decision-authorities/show.blade.php:55
 msgid "Active Assignments"
 msgstr "Aktiva uppdrag"
 
-#: resources/views/decision-authorities/show.blade.php:53
+#: resources/views/decision-authorities/show.blade.php:62
 msgid "Name"
 msgstr "Namn"
 
-#: resources/views/decision-authorities/show.blade.php:102
-#: resources/views/decision-authorities/show.blade.php:112
+#: resources/views/decision-authorities/show.blade.php:111
+#: resources/views/decision-authorities/show.blade.php:121
 msgid "No active assignments found."
 msgstr "Inga aktiva uppdrag hittades."
 
@@ -872,7 +879,7 @@ msgstr "Ange namn, parti eller roll..."
 msgid "Group Leaders"
 msgstr "Gruppledare"
 
-#: resources/views/homepage.blade.php:105
+#: resources/views/homepage.blade.php:106
 msgid "Boards & Committees"
 msgstr "Nämnder & Styrelser"
 
@@ -890,7 +897,7 @@ msgstr "Hoppa till innehåll"
 msgid "Visiting Address"
 msgstr "Besöksadress"
 
-#: resources/views/partials/content-single-party.blade.php:106
+#: resources/views/partials/content-single-party.blade.php:108
 msgid "Members"
 msgstr "Medlemmar"
 
@@ -2209,6 +2216,12 @@ msgstr ""
 msgctxt "Font size name"
 msgid "9xl"
 msgstr ""
+
+#~ msgid "Assignment Details"
+#~ msgstr "Uppdragsdetaljer"
+
+#~ msgid "Clear filters"
+#~ msgstr "Töm filter"
 
 #~ msgid "Back to Assignments"
 #~ msgstr "Tillbaka till Uppgifter"
