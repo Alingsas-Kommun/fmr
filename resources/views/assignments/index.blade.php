@@ -28,25 +28,25 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50 dark:bg-gray-200">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
+                    {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th> --}}
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Person', 'fmr') !!}</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sr-only">{!! __('Show', 'fmr') !!}</th>
                 </tr>
             </thead>
 
             <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
                 @foreach($assignments as $assignment)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        {{-- <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->board)
                                 <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800"> 
                                     {{ $assignment->board->post_title }}
                                 </a>
                             @endif
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->decisionAuthority)
                                 <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800">
@@ -69,7 +69,10 @@
                             {{ $assignment->period_start->format('Y-m-d') }} - {{ $assignment->period_end->format('Y-m-d') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-700 hover:text-emerald-800">{!! __('View', 'fmr') !!}</a>
+                            <a href="{{ route('assignments.show', $assignment) }}" class="inline-flex items-center text-emerald-700 hover:text-emerald-800 font-medium transition-colors duration-200 flex space-x-1">
+                                <span>{!! __('View', 'fmr') !!}</span>
+                                <x-heroicon-o-arrow-right class="h-4 w-4 mr-1" />
+                            </a>
                         </td>
                     </tr>
                 @endforeach
