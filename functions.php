@@ -1,6 +1,7 @@
 <?php
 
 use Roots\Acorn\Application;
+use App\Providers\ThemeServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ require $composer;
 
 Application::configure()
     ->withProviders([
-        App\Providers\ThemeServiceProvider::class,
+        ThemeServiceProvider::class,
     ])
     ->withRouting(
         // Configure routing with named parameters
