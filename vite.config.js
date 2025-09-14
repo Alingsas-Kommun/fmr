@@ -12,6 +12,7 @@ export default defineConfig({
         'resources/css/app.css',
         'resources/js/app.js',
         'resources/css/admin.scss',
+        'resources/js/admin.js',
         'resources/css/_admin/color-profiles/fmr/fmr.scss',
       ],
       refresh: true,

@@ -2,6 +2,8 @@
 
 namespace App\Core\Admin;
 
+use App\Utilities\Dir;
+
 class Init
 {
     public function __construct()
@@ -40,6 +42,8 @@ class Init
         if (class_exists('App\\Core\\Admin\\DecisionAuthorityHandler')) {
             new DecisionAuthorityHandler();
         }
+
+        $this->registerRelationHandlers();
 
         /**
          * Modify admin menu
@@ -80,6 +84,27 @@ class Init
         $this->disableComments();
         $this->disableRevisions();
     }
+
+    /**
+     * Load relation handlers for post types
+     */
+    private function registerRelationHandlers()
+    {
+        $dir = __DIR__ . '/../RelationHandlers';
+        $relation_handlers = Dir::list($dir, 'files');
+        $namespace = 'App\\Core\\RelationHandlers\\';
+
+        if (!empty($relation_handlers)) {
+            foreach ($relation_handlers as $handler) {
+                $handler_class = $namespace . basename($handler, '.php');
+
+                if (class_exists($handler_class)) {
+                    new $handler_class();
+                }
+            }
+        }
+    }
+
 
     public function disableRevisions()
     {

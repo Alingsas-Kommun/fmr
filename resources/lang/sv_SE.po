@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-13T22:21:46+00:00\n"
-"PO-Revision-Date: 2025-09-14 00:22+0200\n"
+"POT-Creation-Date: 2025-09-14T00:26:18+00:00\n"
+"PO-Revision-Date: 2025-09-14 02:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -142,7 +142,6 @@ msgstr "Roll"
 #: app/Core/Admin/Assignments.php:200
 #: app/Core/Admin/DecisionAuthorities.php:199 app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/edit.blade.php:20
-#: resources/views/assignments/index.blade.php:31
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:20
@@ -172,7 +171,6 @@ msgstr "Period"
 
 #: app/Core/Admin/Assignments.php:203
 #: app/Core/Admin/DecisionAuthorities.php:202
-#: resources/views/assignments/index.blade.php:36
 #: resources/views/decision-authorities/show.blade.php:74
 #: resources/views/partials/content-single-board.blade.php:133
 #: resources/views/partials/content-single-person.blade.php:316
@@ -226,7 +224,7 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 msgid "Decision authority created successfully."
 msgstr "Beslutsinstansen har skapats framgångsrikt."
 
-#: app/Core/Admin/Init.php:56
+#: app/Core/Admin/Init.php:60
 msgid "Images"
 msgstr "Bilder"
 
@@ -410,12 +408,14 @@ msgstr "Aktiv"
 #: app/Core/FieldGroups/PersonDetails.php:113
 #: app/Core/FieldGroups/PersonDetails.php:121
 #: app/Core/PostTypes/Persons.php:165
+#: resources/views/admin/relation-handler/relation-row.blade.php:82
 msgid "Yes"
 msgstr "Ja"
 
 #: app/Core/FieldGroups/PersonDetails.php:114
 #: app/Core/FieldGroups/PersonDetails.php:122
 #: app/Core/PostTypes/Persons.php:165
+#: resources/views/admin/relation-handler/relation-row.blade.php:82
 msgid "No"
 msgstr "Nej"
 
@@ -774,6 +774,53 @@ msgstr "Sök beslutsinstanser"
 msgid "Optional"
 msgstr "Valfritt"
 
+#: resources/views/admin/relation-handler/meta-box.blade.php:12
+#: resources/views/admin/relation-handler/meta-box.blade.php:70
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:12
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:41
+#: resources/views/admin/relation-handler/relation-row.blade.php:68
+#, php-format
+msgid "Select %s"
+msgstr "Välj %s"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:64
+#, php-format
+msgid "Add %s"
+msgstr "Lägg till %s"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:78
+#, php-format
+msgid "Ongoing %s"
+msgstr "Pågående %s"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:87
+#, php-format
+msgid "Historical %s"
+msgstr "Historiska %s"
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:96
+#, php-format
+msgid "No %s found. Add one using the form above."
+msgstr "Inga %s hittades. Lägg till ett genom formuläret ovan."
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:15
+msgid "(unsaved changes)"
+msgstr "(osparade ändringar)"
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:19
+msgid "(new)"
+msgstr "(ny)"
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:47
+msgid "required"
+msgstr "obligatorisk"
+
 #: resources/views/assignments/index.blade.php:10
 msgid "All roles"
 msgstr "Alla roller"
@@ -802,19 +849,23 @@ msgstr "Endast aktiva"
 msgid "Filter"
 msgstr "Filter"
 
-#: resources/views/assignments/index.blade.php:78
+#: resources/views/assignments/index.blade.php:36
+msgid "Show"
+msgstr "Visa"
+
+#: resources/views/assignments/index.blade.php:79
 #: resources/views/decision-authorities/show.blade.php:103
 #: resources/views/partials/content-single-board.blade.php:166
 #: resources/views/partials/content-single-person.blade.php:349
 msgid "View"
 msgstr "Visa"
 
-#: resources/views/assignments/index.blade.php:92
+#: resources/views/assignments/index.blade.php:95
 #: resources/views/decision-authorities/index.blade.php:135
 msgid "Previous"
 msgstr "Föregående"
 
-#: resources/views/assignments/index.blade.php:115
+#: resources/views/assignments/index.blade.php:118
 #: resources/views/decision-authorities/index.blade.php:158
 msgid "Next"
 msgstr "Nästa"

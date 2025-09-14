@@ -102,6 +102,20 @@ class AssignmentController
     }
 
     /**
+     * Get assignments for a specific person.
+     *
+     * @param int $person_id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPersonsAssignments($person_id)
+    {
+        return Assignment::where('person_id', $person_id)
+            ->with('decisionAuthority')
+            ->orderBy('period_start', 'desc')
+            ->get();
+    }
+
+    /**
      * Get paginated assignments with filters and sorting.
      *
      * @param array $args

@@ -20,6 +20,20 @@ class DecisionAuthorityController
     }
 
     /**
+     * Get decision authorities for a specific board.
+     *
+     * @param int $board_id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getDecisionAuthoritiesForBoard($board_id)
+    {
+        return DecisionAuthority::where('board_id', $board_id)
+            ->with('board')
+            ->orderBy('start_date', 'desc')
+            ->get();
+    }
+
+    /**
      * Display the specified decision authority.
      *
      * @param int $id

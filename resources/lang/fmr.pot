@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-13T22:21:46+00:00\n"
+"POT-Creation-Date: 2025-09-14T00:26:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -141,7 +141,6 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities.php:199
 #: app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/edit.blade.php:20
-#: resources/views/assignments/index.blade.php:31
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:20
@@ -171,7 +170,6 @@ msgstr ""
 
 #: app/Core/Admin/Assignments.php:203
 #: app/Core/Admin/DecisionAuthorities.php:202
-#: resources/views/assignments/index.blade.php:36
 #: resources/views/decision-authorities/show.blade.php:74
 #: resources/views/partials/content-single-board.blade.php:133
 #: resources/views/partials/content-single-person.blade.php:316
@@ -225,7 +223,7 @@ msgstr ""
 msgid "Decision authority created successfully."
 msgstr ""
 
-#: app/Core/Admin/Init.php:56
+#: app/Core/Admin/Init.php:60
 msgid "Images"
 msgstr ""
 
@@ -412,12 +410,14 @@ msgstr ""
 #: app/Core/FieldGroups/PersonDetails.php:113
 #: app/Core/FieldGroups/PersonDetails.php:121
 #: app/Core/PostTypes/Persons.php:165
+#: resources/views/admin/relation-handler/relation-row.blade.php:82
 msgid "Yes"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:114
 #: app/Core/FieldGroups/PersonDetails.php:122
 #: app/Core/PostTypes/Persons.php:165
+#: resources/views/admin/relation-handler/relation-row.blade.php:82
 msgid "No"
 msgstr ""
 
@@ -778,6 +778,53 @@ msgstr ""
 msgid "Optional"
 msgstr ""
 
+#: resources/views/admin/relation-handler/meta-box.blade.php:12
+#: resources/views/admin/relation-handler/meta-box.blade.php:70
+msgid "Cancel"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:12
+msgid "Add New"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:41
+#: resources/views/admin/relation-handler/relation-row.blade.php:68
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:64
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:78
+#, php-format
+msgid "Ongoing %s"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:87
+#, php-format
+msgid "Historical %s"
+msgstr ""
+
+#: resources/views/admin/relation-handler/meta-box.blade.php:96
+#, php-format
+msgid "No %s found. Add one using the form above."
+msgstr ""
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:15
+msgid "(unsaved changes)"
+msgstr ""
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:19
+msgid "(new)"
+msgstr ""
+
+#: resources/views/admin/relation-handler/relation-row.blade.php:47
+msgid "required"
+msgstr ""
+
 #: resources/views/assignments/index.blade.php:10
 msgid "All roles"
 msgstr ""
@@ -806,19 +853,23 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:78
+#: resources/views/assignments/index.blade.php:36
+msgid "Show"
+msgstr ""
+
+#: resources/views/assignments/index.blade.php:79
 #: resources/views/decision-authorities/show.blade.php:103
 #: resources/views/partials/content-single-board.blade.php:166
 #: resources/views/partials/content-single-person.blade.php:349
 msgid "View"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:92
+#: resources/views/assignments/index.blade.php:95
 #: resources/views/decision-authorities/index.blade.php:135
 msgid "Previous"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:115
+#: resources/views/assignments/index.blade.php:118
 #: resources/views/decision-authorities/index.blade.php:158
 msgid "Next"
 msgstr ""

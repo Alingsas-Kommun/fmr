@@ -84,6 +84,9 @@ class Whitelabel
         $style = Vite::asset('resources/css/admin.scss');
         wp_enqueue_style('admin-css', $style, false, '');
 
+        $script = Vite::asset('resources/js/admin.js');
+        wp_enqueue_script('admin-js', $script, false, '');
+
         wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
 
         // Add the noConflict wrapper to avoid conflicts with WP Underscore library
