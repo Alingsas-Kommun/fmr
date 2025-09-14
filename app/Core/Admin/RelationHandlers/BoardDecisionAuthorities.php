@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\RelationHandlers;
+namespace App\Core\Admin\RelationHandlers;
 
-use App\Core\Abstracts\RelationHandler;
+use App\Core\Admin\Abstracts\RelationHandler;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
 use Illuminate\Http\Request;
 

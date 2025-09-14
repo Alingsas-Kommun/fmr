@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Admin;
+namespace App\Core\Admin\DecisionAuthorities;
 
 use App\Http\Controllers\Admin\DecisionAuthorityController;
 use App\Http\Controllers\Admin\BoardController;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use function Roots\view;
 
-class DecisionAuthorityHandler
+class Edit
 {
     protected $controller;
     protected $boardController;

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Core\FieldGroups;
+namespace App\Core\Admin\FieldGroups;
 
-use App\Core\Abstracts\FieldGroup;
+use App\Core\Admin\Abstracts\FieldGroup;
 
-class BoardDetails extends FieldGroup
+class PartyDetails extends FieldGroup
 {
-    protected static $post_type = 'board';
-    protected static $id = 'board_details';
+    protected static $post_type = 'party';
+    protected static $id = 'party_details';
 
     protected function getTitle()
     {
-        return __('Board Details', 'fmr');
+        return __('Party Details', 'fmr');
     }
 
     protected function getTabs()
@@ -37,17 +37,9 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_category',
-                                'label' => __('Category', 'fmr'),
-                                'type' => 'select',
-                                'options' => [
-                                    '' => __('Select type', 'fmr'),
-                                    'company' => __('Company', 'fmr'),
-                                    'council' => __('Council', 'fmr'),
-                                    'committee' => __('Committee', 'fmr'),
-                                    'foundation' => __('Foundation', 'fmr'),
-                                    'other' => __('Other', 'fmr'),
-                                ],
+                                'id' => 'party_description',
+                                'label' => __('Description', 'fmr'),
+                                'type' => 'textarea',
                                 'cols' => 12,
                             ],
                         ],
@@ -55,8 +47,18 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_shortening',
+                                'id' => 'party_shortening',
                                 'label' => __('Shortening', 'fmr'),
+                                'type' => 'text',
+                                'cols' => 12,
+                            ],
+                        ],
+                    ],
+                    [
+                        'fields' => [
+                            [
+                                'id' => 'party_group_leader',
+                                'label' => __('Group Leader, City Council', 'fmr'),
                                 'type' => 'text',
                                 'cols' => 12,
                             ],
@@ -72,14 +74,7 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_visiting_address',
-                                'label' => __('Visiting address', 'fmr'),
-                                'type' => 'text',
-                                'optional' => true,
-                                'cols' => 12,
-                            ],
-                            [
-                                'id' => 'board_address',
+                                'id' => 'party_address',
                                 'label' => __('Address', 'fmr'),
                                 'type' => 'text',
                                 'optional' => true,
@@ -90,14 +85,14 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_zip',
+                                'id' => 'party_zip',
                                 'label' => __('ZIP Code', 'fmr'),
                                 'type' => 'text',
                                 'optional' => true,
                                 'cols' => 4,
                             ],
                             [
-                                'id' => 'board_city',
+                                'id' => 'party_city',
                                 'label' => __('City', 'fmr'),
                                 'type' => 'text',
                                 'optional' => true,
@@ -108,7 +103,7 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_website',
+                                'id' => 'party_website',
                                 'label' => __('Website', 'fmr'),
                                 'type' => 'url',
                                 'optional' => true,
@@ -119,7 +114,7 @@ class BoardDetails extends FieldGroup
                     [
                         'fields' => [
                             [
-                                'id' => 'board_email',
+                                'id' => 'party_email',
                                 'label' => __('E-mail', 'fmr'),
                                 'type' => 'email',
                                 'optional' => true,
@@ -129,9 +124,9 @@ class BoardDetails extends FieldGroup
                                 'cols' => 6,
                             ],
                             [
-                                'id' => 'board_phone',
+                                'id' => 'party_phone',
                                 'label' => __('Phone', 'fmr'),
-                                'type' => 'tel',
+                                'type' => 'number',
                                 'optional' => true,
                                 'visibility' => [
                                     'default' => false,

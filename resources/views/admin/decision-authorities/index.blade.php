@@ -5,11 +5,11 @@
 
     <form method="post">
         @php
-            wp_nonce_field('bulk-' . $list_table->_args['plural']);
-            $list_table->prepare_items();
-            $list_table->views();
-            $list_table->search_box(__('Search Decision Authorities', 'fmr'), 'decision_authorities');
-            $list_table->display();
+            wp_nonce_field('bulk-' . $list->_args['plural']);
+            $list->prepare_items();
+            $list->views();
+            $list->search_box(__('Search Decision Authorities', 'fmr'), 'decision_authorities');
+            $list->display();
         @endphp
     </form>
 </div>

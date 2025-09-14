@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Admin;
+namespace App\Core\Admin\Assignments;
 
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\PersonController;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 use function Roots\view;
 
-class AssignmentHandler
+class Edit
 {
     protected $controller;
     protected $personController;

@@ -14,7 +14,7 @@
             >
                 {{ $field['label'] }}
                 
-                @if($field['optional'])
+                @if(isset($field['optional']) && $field['optional'])
                     <span class="description">{!! __('Optional', 'fmr') !!}</span>
                 @endif
             </label>
@@ -35,7 +35,7 @@
                             @input="updateRelation({{ $relationId }}, '{{ $field['key'] }}', $event.target.value); clearFieldValidation('{{ $field['key'] }}')"
                         @endif
 
-                        @if(!$field['optional'])
+                        @if(isset($field['optional']) && !$field['optional'])
                             @if($prefix === 'new')
                                 :required="showNewForm"
                             @else
@@ -58,7 +58,7 @@
                             @change="updateRelation({{ $relationId }}, '{{ $field['key'] }}', $event.target.value); clearFieldValidation('{{ $field['key'] }}')"
                         @endif
 
-                        @if(!$field['optional'])
+                        @if(isset($field['optional']) && !$field['optional'])
                             @if($prefix === 'new')
                                 :required="showNewForm"
                             @else
@@ -87,7 +87,7 @@
                             @change="updateRelation({{ $relationId }}, '{{ $field['key'] }}', $event.target.value); clearFieldValidation('{{ $field['key'] }}')"
                         @endif
                         
-                        @if(!$field['optional'])
+                        @if(isset($field['optional']) && !$field['optional'])
                             @if($prefix === 'new')
                                 :required="showNewForm"
                             @else
@@ -121,7 +121,7 @@
                                 @change="updateRelation({{ $relationId }}, '{{ $field['key'] }}', $event.target.checked); clearFieldValidation('{{ $field['key'] }}')"
                             @endif
 
-                            @if(!$field['optional'])
+                            @if(isset($field['optional']) && !$field['optional'])
                                 @if($prefix === 'new')
                                     :required="showNewForm"
                                 @else

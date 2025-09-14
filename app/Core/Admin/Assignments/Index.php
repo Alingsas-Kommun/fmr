@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Admin;
+namespace App\Core\Admin\Assignments;
 
-use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Http\Controllers\Admin\AssignmentController;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -15,10 +15,10 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * Class DecisionAuthorities
+ * Class Assignments
  * @package App\Core\Admin
  */
-class DecisionAuthorities extends \WP_List_Table
+class Index extends \WP_List_Table
 {
     private static $instance = null;
     protected $controller;
@@ -43,16 +43,16 @@ class DecisionAuthorities extends \WP_List_Table
     private function __construct()
     {
         parent::__construct([
-            'singular' => 'decision_authority',
-            'plural'   => 'decision_authorities',
+            'singular' => 'assignment',
+            'plural'   => 'assignments',
             'ajax'     => false
         ]);
 
-        $this->controller = new DecisionAuthorityController();
+        $this->controller = new AssignmentController();
     }
 
     /**
-     * Register the decision authorities menu page in WordPress admin.
+     * Register the assignments menu page in WordPress admin.
      *
      * @return void
      */
@@ -61,18 +61,27 @@ class DecisionAuthorities extends \WP_List_Table
         self::init();
         
         add_menu_page(
-            __('Decision Authorities', 'fmr'),
-            __('Decision Authorities', 'fmr'),
+            __('Assignments', 'fmr'),
+            __('Assignments', 'fmr'),
             'manage_options',
-            'decision_authorities',
+            'assignments',
             [self::$instance, 'render_page'],
-            'dashicons-list-view',
-            30
+            'dashicons-portfolio',
+            40
+        );
+
+        add_submenu_page(
+            'assignments',
+            __('Roles', 'fmr'),
+            __('Roles', 'fmr'),
+            'manage_options',
+            'edit-tags.php?taxonomy=role',
+            null
         );
     }
 
     /**
-     * Render the decision authorities list table page.
+     * Render the assignments list table page.
      *
      * @return void
      */
@@ -82,13 +91,13 @@ class DecisionAuthorities extends \WP_List_Table
 
         settings_errors('bulk_action');
 
-        set_current_screen('decision_authorities');
+        set_current_screen('assignments');
 
-        echo view('admin.decision-authorities.list-table', ['list_table' => $this])->render();
+        echo view('admin.assignments.index', ['list' => $this])->render();
     }
 
     /**
-     * Process bulk actions (e.g., delete multiple decision authorities).
+     * Process bulk actions (e.g., delete multiple assignments).
      *
      * @return void
      */
@@ -102,14 +111,14 @@ class DecisionAuthorities extends \WP_List_Table
 
         check_admin_referer('bulk-' . $this->_args['plural']);
 
-        $authorities = $_REQUEST['decision_authorities'] ?? [];
-        if (empty($authorities)) {
+        $assignments = $_REQUEST['assignments'] ?? [];
+        if (empty($assignments)) {
             return;
         }
 
         $deleted = 0;
 
-        foreach ($authorities as $id) {
+        foreach ($assignments as $id) {
             if ($this->controller->destroy($id)) {
                 $deleted++;
             }
@@ -118,11 +127,11 @@ class DecisionAuthorities extends \WP_List_Table
         if ($deleted > 0) {
             add_settings_error(
                 'bulk_action',
-                'decision_authorities_deleted',
+                'assignments_deleted',
                 sprintf(
                     _n(
-                        '%s decision authority was deleted.',
-                        '%s decision authorities were deleted.',
+                        '%s assignment was deleted.',
+                        '%s assignments were deleted.',
                         $deleted,
                         'fmr'
                     ),
@@ -194,12 +203,13 @@ class DecisionAuthorities extends \WP_List_Table
     public function get_columns()
     {
         return [
-            'cb'            => '<input type="checkbox" />',
-            'title'         => __('Title', 'fmr'),
-            'board'         => __('Board', 'fmr'),
-            'type'          => __('Type', 'fmr'),
-            'period'        => __('Period', 'fmr'),
-            'edit'          => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
+            'cb'                    => '<input type="checkbox" />',
+            'person'                => __('Person', 'fmr'),
+            'role'                  => __('Role', 'fmr'),
+            'board'                 => __('Board', 'fmr'),
+            'decision_authority'    => __('Decision Authority', 'fmr'),
+            'period'                => __('Period', 'fmr'),
+            'edit'                  => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
         ];
     }
 
@@ -210,7 +220,7 @@ class DecisionAuthorities extends \WP_List_Table
      */
     protected function get_table_classes()
     {
-        return ['widefat', 'fixed', 'striped', 'decision-authority-table'];
+        return ['widefat', 'fixed', 'striped', 'assignment-table'];
     }
 
     /**
@@ -221,9 +231,10 @@ class DecisionAuthorities extends \WP_List_Table
     public function get_sortable_columns()
     {
         return [
-            'title'         => ['title', false],
-            'board'         => ['board', false],
-            'type'          => ['type', false]
+            'person'             => ['person', false],
+            'role'               => ['role', false],
+            'board'              => ['board', false],
+            'decision_authority' => ['decision_authority', false]
         ];
     }
 
@@ -248,13 +259,13 @@ class DecisionAuthorities extends \WP_List_Table
     /**
      * Render the edit column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
     public function column_edit($item)
     {
         $edit_link = add_query_arg(
-            ['page' => 'decision_authority_edit', 'id' => $item->id],
+            ['page' => 'assignment_edit', 'id' => $item->id],
             admin_url('admin.php')
         );
 
@@ -267,35 +278,43 @@ class DecisionAuthorities extends \WP_List_Table
     /**
      * Render the checkbox column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
     public function column_cb($item)
     {
         return sprintf(
-            '<input type="checkbox" name="decision_authorities[]" value="%s" />',
+            '<input type="checkbox" name="assignments[]" value="%s" />',
             $item->id
         );
     }
 
     /**
-     * Render the title column.
+     * Render the person column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
-    public function column_title($item)
+    public function column_person($item)
     {
+        if (!$item->person) {
+            return '—';
+        }
+
+        $edit_link = get_edit_post_link($item->person->ID);
+        $title = esc_html($item->person->post_title);
+        
         return sprintf(
-            '<strong>%s</strong>',
-            esc_html($item->title)
+            '<a href="%s">%s</a>',
+            esc_url($edit_link),
+            $title
         );
     }
 
     /**
-     * Render the board column.
+     * Render the board (board) column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
     public function column_board($item)
@@ -307,34 +326,41 @@ class DecisionAuthorities extends \WP_List_Table
         $edit_link = get_edit_post_link($item->board->ID);
         $title = esc_html($item->board->post_title);
         
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url($edit_link),
-            $title
-        );
+        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $title);
     }
 
     /**
-     * Render the type column.
+     * Render the decision authority column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
-    public function column_type($item)
+    public function column_decision_authority($item)
     {
-        return esc_html($item->type);
+        if (!$item->decisionAuthority) {
+            return '—';
+        }
+
+        $title = esc_html($item->decisionAuthority->title);
+
+        $edit_link = add_query_arg(
+            ['page' => 'decision_authority_edit', 'id' => $item->decisionAuthority->id],
+            admin_url('admin.php')
+        );
+
+        return sprintf('<a href="%s">%s</a>', $edit_link, $title);
     }
 
     /**
      * Render the period column.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @return string The column output.
      */
     public function column_period($item)
     {
-        $start = $item->start_date ? wp_date('j M Y', strtotime($item->start_date)) : '—';
-        $end = $item->end_date ? wp_date('j M Y', strtotime($item->end_date)) : '—';
+        $start = $item->period_start ? wp_date('j M Y', strtotime($item->period_start)) : '—';
+        $end = $item->period_end ? wp_date('j M Y', strtotime($item->period_end)) : '—';
         
         return sprintf(
             '%s – %s',
@@ -344,9 +370,34 @@ class DecisionAuthorities extends \WP_List_Table
     }
 
     /**
+     * Render the role column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
+    public function column_role($item)
+    {
+        if (!$item->roleTerm) {
+            return '—';
+        }
+
+        $edit_link = add_query_arg(
+            [
+                'taxonomy' => 'role',
+                'tag_ID' => $item->roleTerm->term_id,
+            ],
+            admin_url('term.php')
+        );
+
+        $role_name = esc_html($item->roleTerm->name);
+        
+        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $role_name);
+    }
+
+    /**
      * Handle any custom columns that don't have a specific method.
      *
-     * @param object $item The current decision authority item.
+     * @param object $item The current assignment item.
      * @param string $column_name The name of the column being rendered.
      * @return string The column output.
      */
@@ -368,10 +419,10 @@ class DecisionAuthorities extends \WP_List_Table
             $this->get_columns(),          // columns
             [],                            // hidden columns
             $this->get_sortable_columns(), // sortable columns
-            'title'                        // primary column
+            'person'                       // primary column
         ];
 
-        $result = $this->controller->getPaginatedDecisionAuthorities([
+        $result = $this->controller->getPaginatedAssignments([
             'per_page' => 15,
             'current_page' => $this->get_pagenum(),
             'orderby' => $_REQUEST['orderby'] ?? 'id',
@@ -389,3 +440,4 @@ class DecisionAuthorities extends \WP_List_Table
         ]);
     }
 }
+

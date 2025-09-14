@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\FieldGroups;
+namespace App\Core\Admin\FieldGroups;
 
-use App\Core\Abstracts\FieldGroup;
+use App\Core\Admin\Abstracts\FieldGroup;
 
 class PersonDetails extends FieldGroup
 {

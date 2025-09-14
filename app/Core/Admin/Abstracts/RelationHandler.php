@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Abstracts;
+namespace App\Core\Admin\Abstracts;
 
 use function Roots\view;
 

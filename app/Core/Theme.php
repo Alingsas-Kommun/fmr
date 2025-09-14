@@ -24,7 +24,6 @@ class Theme
 
         add_action('init', [$this, 'loadPostTypes']);
         add_action('init', [$this, 'loadTaxonomies']);
-        add_action('init', [$this, 'loadFieldGroups']);
     }
 
     /**
@@ -129,26 +128,6 @@ class Theme
 
                 if (class_exists($taxonomy)) {
                     new $taxonomy();
-                }
-            }
-        }
-    }
-
-    /**
-     * Load meta boxes
-     */
-    public function loadFieldGroups()
-    {
-        $dir = __DIR__ . '/FieldGroups';
-        $field_groups = Dir::list($dir, 'files');
-        $namespace = 'App\\Core\\FieldGroups\\';
-
-        if (!empty($field_groups)) {
-            foreach ($field_groups as $box) {
-                $field_group = $namespace . basename($box, '.php');
-
-                if (class_exists($field_group)) {
-                    new $field_group();
                 }
             }
         }

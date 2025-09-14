@@ -59,19 +59,6 @@ class General
     }
 
     /**
-     * Parse array, all string values that are "true" or "false" will be returned as booleans.
-     * IMPORTANT: Keeping this here for backward compatibility, function moved to Arr class.
-     *
-     * @param array &$array
-     *
-     * @return void
-     */
-    public static function parseBool(&$array)
-    {
-        Arr::parseBool($array);
-    }
-
-    /**
      * Get the localized route slug from config
      *
      * @param string $key The slug key to look up

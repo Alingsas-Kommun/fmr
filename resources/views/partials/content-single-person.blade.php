@@ -10,7 +10,7 @@
         
         <div class="flex-1">
             @if($party)
-                <a href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1 text-emerald-700 hover:text-emerald-800">
+                <a href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1 text-gray-800 hover:text-gray-900">
                     @if($party->thumbnail())
                         <div class="w-5 h-5 flex-shrink-0">
                             {!! $party->thumbnail('w-5 h-5') !!}
@@ -36,7 +36,8 @@
                     @if($person->workEmail)
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-envelope class="h-6 w-6 text-emerald-600 flex-shrink-0" />
-                            <a href="mailto:{{ $person->workEmail }}" class="text-emerald-700 hover:text-emerald-800">
+
+                            <a href="mailto:{{ $person->workEmail }}" class="text-gray-800 hover:text-gray-900">
                                 {{ $person->workEmail }}
                             </a>
                         </div>
@@ -45,6 +46,7 @@
                     @if($person->groupLeader)
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-user-circle class="h-6 w-6 text-emerald-600 flex-shrink-0" />
+
                             <span class="text-gray-700">{!! __('Group Leader', 'fmr') !!}</span>
                         </div>
                     @endif
@@ -60,6 +62,7 @@
             @if($person->birthDate)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-calendar class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
                         <div>{{ $person->birthDate }}</div>
@@ -70,6 +73,7 @@
             @if($person->ssn)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-identification class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
                         <div>{{ $person->ssn }}</div>
@@ -80,6 +84,7 @@
             @if($person->listing)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-list-bullet class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
                         <div>{{ $person->listing }}</div>
@@ -126,6 +131,7 @@
                         @if($person->homeEmail)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
                                     <a href="mailto:{{ $person->homeEmail }}" class="text-emerald-700 hover:text-emerald-800">
@@ -138,6 +144,7 @@
                         @if($person->homePhone)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-phone class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
                                     <a href="tel:{{ $person->homePhone }}" class="text-emerald-700 hover:text-emerald-800">
@@ -150,6 +157,7 @@
                         @if($person->homeMobile)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
                                     <a href="tel:{{ $person->homeMobile }}" class="text-emerald-700 hover:text-emerald-800">
@@ -162,6 +170,7 @@
                         @if($person->homeWebpage)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-globe-alt class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
                                     <a href="{{ $person->homeWebpage }}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800">
@@ -174,6 +183,7 @@
                         @if($person->homeAddress || $person->homeZip || $person->homeCity)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-map-pin class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
                                     @if($person->homeAddress)
@@ -214,6 +224,7 @@
                         @if($person->workEmail)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
                                     <a href="mailto:{{ $person->workEmail }}" class="text-emerald-700 hover:text-emerald-800">
@@ -226,6 +237,7 @@
                         @if($person->workPhone)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-phone class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
                                     <a href="tel:{{ $person->workPhone }}" class="text-emerald-700 hover:text-emerald-800">
@@ -238,6 +250,7 @@
                         @if($person->workMobile)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
                                     <a href="tel:{{ $person->workMobile }}" class="text-emerald-700 hover:text-emerald-800">
@@ -250,6 +263,7 @@
                         @if($person->workWebpage)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-globe-alt class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
                                     <a href="{{ $person->workWebpage }}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800">
@@ -262,6 +276,7 @@
                         @if($person->workAddress || $person->workZip || $person->workCity)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-map-pin class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
                                     @if($person->workAddress)
@@ -282,11 +297,12 @@
                         @if($person->workVisitingAddress)
                             <div class="flex items-start space-x-3">
                                 <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
                                     <div>{{ $person->workVisitingAddress }}</div>
                                 </div>
-                                    </div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -295,10 +311,11 @@
     @endif
 </div>
 
-@if($assignments->isNotEmpty())
-    <div class="my-6">
-        <h2 class="text-2xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
-        
+
+<div class="my-6">
+    <h2 class="text-2xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
+    
+    @if($assignments->isNotEmpty())
         <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 dark:bg-gray-200">
@@ -321,6 +338,7 @@
                                     </a>
                                 @endif
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->decisionAuthority)
                                     <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800">
@@ -328,12 +346,15 @@
                                     </a>
                                 @endif
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $assignment->role }}
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $assignment->period_start->format('Y-m-d') }} - {{ $assignment->period_end->format('Y-m-d') }}
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-700 hover:text-emerald-800">{!! __('View', 'fmr') !!}</a>
                             </td>
@@ -342,5 +363,9 @@
                 </tbody>
             </table>
         </div>
-    </div>
-@endif
+    @else
+        <x-alert type="info">
+            {{ __('No assignments found.', 'fmr') }}
+        </x-alert>
+    @endif
+</div>
