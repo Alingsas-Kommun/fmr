@@ -14,8 +14,8 @@ class Person extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.content-single-person',
-        'partials.content-person',
+        'partials.post-types.content-single-person',
+        'partials.post-types.content-person',
     ];
 
     /**

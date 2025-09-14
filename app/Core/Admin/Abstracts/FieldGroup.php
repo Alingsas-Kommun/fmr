@@ -45,7 +45,7 @@ abstract class FieldGroup
             'groups' => $this->prepareGroups($post),
         ];
 
-        echo view('admin.meta-fields.fields', $data)->render();
+        echo view('admin.field-groups.fields', $data)->render();
     }
 
     protected function getTabs()

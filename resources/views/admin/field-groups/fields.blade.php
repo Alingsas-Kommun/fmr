@@ -20,13 +20,13 @@
         @foreach($tabs as $tab_id => $tab)
             <div class="meta-box-tab-content" x-show="activeTab === '{{ $tab_id }}'" x-cloak>
                 @foreach($tab['groups'] as $group)
-                    @includeIf('admin.meta-fields.group', ['group' => $group])
+                    @includeIf('admin.field-groups.group', ['group' => $group])
                 @endforeach
             </div>
         @endforeach
     </div>
 @else
     @foreach($groups as $group)
-        @includeIf('admin.meta-fields.group', ['group' => $group])
+        @includeIf('admin.field-groups.group', ['group' => $group])
     @endforeach
 @endif

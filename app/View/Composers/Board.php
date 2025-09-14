@@ -15,8 +15,8 @@ class Board extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.content-single-board',
-        'partials.content-board',
+        'partials.post-types.content-single-board',
+        'partials.post-types.content-board',
     ];
 
     /**

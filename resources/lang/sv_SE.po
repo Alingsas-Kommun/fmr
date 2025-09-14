@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-14T18:34:29+00:00\n"
-"PO-Revision-Date: 2025-09-14 20:38+0200\n"
+"POT-Creation-Date: 2025-09-14T18:59:24+00:00\n"
+"PO-Revision-Date: 2025-09-14 21:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -19,12 +19,12 @@ msgstr ""
 #. Theme Name of the theme
 #: style.css
 msgid "Förtroendemannaregister"
-msgstr ""
+msgstr "Förtroendemannaregister"
 
 #. Theme URI of the theme
 #: style.css
 msgid "https://roots.io/sage/"
-msgstr ""
+msgstr "https://roots.io/sage/"
 
 #. Description of the theme
 #: style.css
@@ -97,7 +97,7 @@ msgstr "Uppgiften har skapats."
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
-#: resources/views/partials/content-single-person.blade.php:314
+#: resources/views/partials/content-single-person.blade.php:330
 #: resources/views/partials/header.blade.php:10
 msgid "Assignments"
 msgstr "Uppdrag"
@@ -147,7 +147,7 @@ msgstr "Person"
 #: resources/views/admin/assignments/edit.blade.php:68
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/decision-authorities/show.blade.php:66
-#: resources/views/partials/content-single-person.blade.php:323
+#: resources/views/partials/content-single-person.blade.php:339
 msgid "Role"
 msgstr "Roll"
 
@@ -158,7 +158,7 @@ msgstr "Roll"
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:20
-#: resources/views/partials/content-single-person.blade.php:321
+#: resources/views/partials/content-single-person.blade.php:337
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
@@ -167,7 +167,7 @@ msgstr "Nämnd/Styrelse"
 #: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:83
-#: resources/views/partials/content-single-person.blade.php:322
+#: resources/views/partials/content-single-person.blade.php:338
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
@@ -179,7 +179,7 @@ msgstr "Beslutsinstans"
 #: resources/views/decision-authorities/show.blade.php:41
 #: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/content-single-board.blade.php:129
-#: resources/views/partials/content-single-person.blade.php:324
+#: resources/views/partials/content-single-person.blade.php:340
 msgid "Period"
 msgstr "Period"
 
@@ -187,7 +187,7 @@ msgstr "Period"
 #: app/Core/Admin/DecisionAuthorities/Index.php:202
 #: resources/views/decision-authorities/show.blade.php:74
 #: resources/views/partials/content-single-board.blade.php:133
-#: resources/views/partials/content-single-person.blade.php:325
+#: resources/views/partials/content-single-person.blade.php:341
 msgid "Actions"
 msgstr "Åtgärder"
 
@@ -313,8 +313,8 @@ msgstr "Besöksadress"
 #: app/Core/Admin/FieldGroups/PersonDetails.php:145
 #: app/Core/Admin/FieldGroups/PersonDetails.php:252
 #: resources/views/partials/content-single-board.blade.php:82
-#: resources/views/partials/content-single-person.blade.php:187
-#: resources/views/partials/content-single-person.blade.php:280
+#: resources/views/partials/content-single-person.blade.php:197
+#: resources/views/partials/content-single-person.blade.php:295
 msgid "Address"
 msgstr "Adress"
 
@@ -333,8 +333,8 @@ msgstr "Stad"
 #: app/Core/Admin/FieldGroups/BoardDetails.php:112
 #: app/Core/Admin/FieldGroups/PartyDetails.php:107
 #: resources/views/partials/content-single-board.blade.php:33
-#: resources/views/partials/content-single-person.blade.php:174
-#: resources/views/partials/content-single-person.blade.php:267
+#: resources/views/partials/content-single-person.blade.php:183
+#: resources/views/partials/content-single-person.blade.php:281
 msgid "Website"
 msgstr "Webbplats"
 
@@ -348,8 +348,8 @@ msgstr "E-post"
 #: app/Core/Admin/FieldGroups/PersonDetails.php:211
 #: app/Core/Admin/FieldGroups/PersonDetails.php:318
 #: resources/views/partials/content-single-board.blade.php:63
-#: resources/views/partials/content-single-person.blade.php:148
-#: resources/views/partials/content-single-person.blade.php:241
+#: resources/views/partials/content-single-person.blade.php:155
+#: resources/views/partials/content-single-person.blade.php:253
 msgid "Phone"
 msgstr "Telefonnummer"
 
@@ -425,12 +425,12 @@ msgid "No"
 msgstr "Nej"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:114
-#: resources/views/partials/content-single-person.blade.php:88
+#: resources/views/partials/content-single-person.blade.php:93
 msgid "Listing"
 msgstr "Lista"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:128
-#: resources/views/partials/content-single-person.blade.php:126
+#: resources/views/partials/content-single-person.blade.php:131
 msgid "Home Information"
 msgstr "Heminformation"
 
@@ -447,20 +447,20 @@ msgstr "Webbsida"
 #: app/Core/Admin/FieldGroups/PersonDetails.php:197
 #: app/Core/Admin/FieldGroups/PersonDetails.php:304
 #: resources/views/partials/content-single-board.blade.php:48
-#: resources/views/partials/content-single-person.blade.php:135
-#: resources/views/partials/content-single-person.blade.php:228
+#: resources/views/partials/content-single-person.blade.php:141
+#: resources/views/partials/content-single-person.blade.php:239
 msgid "Email"
 msgstr "E-post"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:221
 #: app/Core/Admin/FieldGroups/PersonDetails.php:328
-#: resources/views/partials/content-single-person.blade.php:161
-#: resources/views/partials/content-single-person.blade.php:254
+#: resources/views/partials/content-single-person.blade.php:169
+#: resources/views/partials/content-single-person.blade.php:267
 msgid "Mobile"
 msgstr "Mobil"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:235
-#: resources/views/partials/content-single-person.blade.php:219
+#: resources/views/partials/content-single-person.blade.php:229
 msgid "Work Information"
 msgstr "Arbetsinformation"
 
@@ -708,7 +708,7 @@ msgid "Birthday"
 msgstr "Födelsedag"
 
 #: app/Core/PostTypes/Persons.php:115
-#: resources/views/partials/content-single-person.blade.php:52
+#: resources/views/partials/content-single-person.blade.php:54
 msgid "Group Leader"
 msgstr "Gruppledare"
 
@@ -782,6 +782,22 @@ msgstr "Sökresultat för %s"
 msgid "Not Found"
 msgstr "Hittades inte"
 
+#: resources/views/404.blade.php:7
+msgid "404"
+msgstr "404"
+
+#: resources/views/404.blade.php:8
+msgid "Page not found"
+msgstr "Sidan hittades inte"
+
+#: resources/views/404.blade.php:9
+msgid "Sorry, we couldn’t find the page you’re looking for."
+msgstr "Tyvärr kunde vi inte hitta sidan du letar efter."
+
+#: resources/views/404.blade.php:12
+msgid "Go back home"
+msgstr "Gå tillbaka hem"
+
 #: resources/views/admin/assignments/edit.blade.php:2
 msgid "Edit Assignment"
 msgstr "Redigera uppdrag"
@@ -843,12 +859,12 @@ msgstr "Skapa beslutsinstans"
 msgid "Search Decision Authorities"
 msgstr "Sök beslutsinstanser"
 
-#: resources/views/admin/meta-fields/field.blade.php:7
+#: resources/views/admin/field-groups/field.blade.php:7
 #: resources/views/admin/relation-handler/form.blade.php:20
 msgid "Optional"
 msgstr "Valfritt"
 
-#: resources/views/admin/meta-fields/field.blade.php:122
+#: resources/views/admin/field-groups/field.blade.php:122
 #: resources/views/admin/relation-handler/form.blade.php:71
 #: resources/views/admin/relation-handler/form.blade.php:100
 #, php-format
@@ -938,7 +954,7 @@ msgstr "Visa"
 #: resources/views/assignments/index.blade.php:79
 #: resources/views/decision-authorities/show.blade.php:103
 #: resources/views/partials/content-single-board.blade.php:166
-#: resources/views/partials/content-single-person.blade.php:358
+#: resources/views/partials/content-single-person.blade.php:378
 msgid "View"
 msgstr "Visa"
 
@@ -1025,8 +1041,8 @@ msgid "Skip to content"
 msgstr "Hoppa till innehåll"
 
 #: resources/views/partials/content-single-board.blade.php:104
-#: resources/views/partials/content-single-person.blade.php:206
-#: resources/views/partials/content-single-person.blade.php:300
+#: resources/views/partials/content-single-person.blade.php:216
+#: resources/views/partials/content-single-person.blade.php:316
 msgid "Visiting Address"
 msgstr "Besöksadress"
 
@@ -1034,1325 +1050,25 @@ msgstr "Besöksadress"
 msgid "Members"
 msgstr "Medlemmar"
 
-#: resources/views/partials/content-single-person.blade.php:68
+#: resources/views/partials/content-single-person.blade.php:71
 msgid "Birth Date"
 msgstr "Födelsedag"
 
-#: resources/views/partials/content-single-person.blade.php:78
+#: resources/views/partials/content-single-person.blade.php:82
 msgid "Social Security Number"
 msgstr "Personnummer"
 
-#: resources/views/partials/content-single-person.blade.php:105
+#: resources/views/partials/content-single-person.blade.php:110
 msgid "Hide Additional Information"
 msgstr "Dölj ytterligare information"
 
-#: resources/views/partials/content-single-person.blade.php:105
+#: resources/views/partials/content-single-person.blade.php:110
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
 
-#: resources/views/partials/content-single-person.blade.php:367
+#: resources/views/partials/content-single-person.blade.php:387
 msgid "No assignments found."
 msgstr "Inga uppdrag hittades."
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Red (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Orange (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Amber (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Yellow (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Lime (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Green (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Emerald (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Teal (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Cyan (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Sky (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Blue (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Indigo (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Violet (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Purple (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Fuchsia (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Pink (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Rose (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Slate (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Gray (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Zinc (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Neutral (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (50)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (100)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (200)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (300)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (400)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (500)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (600)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (700)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (800)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (900)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Stone (950)"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "Black"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Color name"
-msgid "White"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font family name"
-msgid "sans"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font family name"
-msgid "serif"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font family name"
-msgid "mono"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "xs"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "sm"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "base"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "lg"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "2xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "3xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "4xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "5xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "6xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "7xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "8xl"
-msgstr ""
-
-#: public/build/assets/theme.json
-msgctxt "Font size name"
-msgid "9xl"
-msgstr ""
 
 #~ msgid "SSN"
 #~ msgstr "Personnummer"

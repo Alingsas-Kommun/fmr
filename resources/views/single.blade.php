@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @while(have_posts()) @php(the_post())
+    @posts
         <div class="mt-8">
-            @includeFirst(['partials.content-single-' . get_post_type(), 'partials.content-single'])
+            @includeFirst(['partials.post-types.content-single-' . get_post_type(), 'partials.post-types.content-single'])
         </div>
-    @endwhile
+    @endposts
 @endsection

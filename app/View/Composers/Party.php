@@ -14,8 +14,8 @@ class Party extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.content-single-party',
-        'partials.content-party',
+        'partials.post-types.content-single-party',
+        'partials.post-types.content-party',
     ];
 
     /**

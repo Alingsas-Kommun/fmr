@@ -6,7 +6,7 @@
             <div class="meta-box-field-row">
                 @foreach($row['fields'] as $field)
                     <div class="meta-box-field-col" style="--cols: {{ $field['cols'] ?? 12 }}">
-                        @includeIf('admin.meta-fields.field', [
+                        @includeIf('admin.field-groups.field', [
                             'field' => $field,
                             'value' => $field['value'] ?? ''
                         ])
