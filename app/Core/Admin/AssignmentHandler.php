@@ -5,6 +5,7 @@ namespace App\Core\Admin;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 use function Roots\view;
@@ -48,7 +49,8 @@ class AssignmentHandler
         echo view('admin.assignments.edit', [
             'assignment' => $assignment,
             'persons' => $this->personController->getAll(),
-            'decisionAuthorities' => $this->decisionAuthorityController->getAll()
+            'decisionAuthorities' => $this->decisionAuthorityController->getAll(),
+            'roles' => $this->getRoles()
         ])->render();
     }
 
@@ -108,5 +110,17 @@ class AssignmentHandler
             admin_url('admin.php')
         ));
         exit;
+    }
+
+    /**
+     * Get all roles from the role taxonomy.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    private function getRoles()
+    {
+        return Term::whereHas('termTaxonomy', function ($query) {
+            $query->where('taxonomy', 'role');
+        })->orderBy('name')->get();
     }
 }

@@ -29,7 +29,7 @@ class AssignmentController
         return Assignment::create($request->only([
             'person_id',
             'decision_authority_id',
-            'role',
+            'role_term_id',
             'period_start',
             'period_end'
         ]));
@@ -49,7 +49,7 @@ class AssignmentController
         $assignment->update($request->only([
             'person_id',
             'decision_authority_id',
-            'role',
+            'role_term_id',
             'period_start',
             'period_end'
         ]));
@@ -123,7 +123,7 @@ class AssignmentController
      */
     public function getPaginatedAssignments($args = [])
     {
-        $query = Assignment::with(['person', 'board', 'decisionAuthority']);
+        $query = Assignment::with(['person', 'board', 'decisionAuthority', 'roleTerm']);
 
         // Handle sorting
         $orderby = $args['orderby'] ?? 'id';
@@ -139,7 +139,8 @@ class AssignmentController
                     ->orderBy('board.post_title', $order);
                 break;
             case 'role':
-                $query->orderBy('role', $order);
+                $query->join('terms as role_term', 'assignments.role_term_id', '=', 'role_term.term_id')
+                    ->orderBy('role_term.name', $order);
                 break;
             default:
                 $query->orderBy('id', 'desc');
@@ -172,7 +173,9 @@ class AssignmentController
                 ->orWhereHas('board', function($q) use ($search) {
                     $q->where('post_title', 'like', '%' . $search . '%');
                 })
-                ->orWhere('role', 'like', '%' . $search . '%');
+                ->orWhereHas('roleTerm', function($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%');
+                });
             });
         }
 

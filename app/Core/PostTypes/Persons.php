@@ -109,11 +109,6 @@ class Persons
             'priority' => 4,
         ];
         $columns_to_add[] = [
-            'slug' => 'person-ssn',
-            'title' => __('SSN', 'fmr'),
-            'priority' => 5,
-        ];
-        $columns_to_add[] = [
             'slug' => 'person-group-leader',
             'title' => __('Group Leader', 'fmr'),
             'priority' => 6,
@@ -146,18 +141,16 @@ class Persons
 
                 break;
             case 'person-party':
-                $party = get_meta_field($post_id, 'person_party');
-                echo $party ? $party : '-';
+                $partyId = get_meta_field($post_id, 'person_party');
+                $partyTitle = get_the_title($partyId);
+                $partyLink = get_edit_post_link($partyId);
+
+                echo $partyTitle ? "<a href='{$partyLink}'>{$partyTitle}</a>" : '-';
 
                 break;
             case 'person-birthday':
                 $birthday = get_meta_field($post_id, 'person_birth_date');
                 echo $birthday ? date('Y-m-d', strtotime($birthday)) : '-';
-
-                break;
-            case 'person-ssn':
-                $ssn = get_meta_field($post_id, 'person_ssn');
-                echo $ssn ? $ssn : '-';
 
                 break;
             case 'person-group-leader':

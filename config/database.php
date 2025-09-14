@@ -12,7 +12,7 @@ return [
             'password' => DB_PASSWORD,
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
-            'prefix' => 'fmr_',
+            'prefix' => TABLE_PREFIX,
             'strict' => true,
             'engine' => null,
         ],

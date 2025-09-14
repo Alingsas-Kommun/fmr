@@ -10,51 +10,58 @@ class BoardDecisionAuthorities extends RelationHandler
 {
     protected static $post_type = 'board';
     protected static $meta_box_id = 'board_decision_authorities';
-    protected static $meta_box_title = 'Decision Authorities';
     protected static $priority = 'low';
-    
-    protected static $config = [
-        'entity' => 'Decision Authority',
-        'entity_plural' => 'Decision Authorities',
-        'storage_key' => '_decision_authorities_data',
-        'fields' => [
-            [
-                'key' => 'title',
-                'type' => 'text',
-                'label' => 'Title',
-                'required' => true,
-                'is_title' => true,
-            ],
-            [
-                'key' => 'type',
-                'type' => 'select',
-                'label' => 'Type',
-                'required' => true,
-                'options' => [
-                    'Nämnd' => 'Nämnd', 
-                    'Styrelse' => 'Styrelse', 
-                    'Utskott' => 'Utskott', 
-                    'Beredning' => 'Beredning', 
-                    'Råd' => 'Råd',
+
+    protected function getTitle()
+    {
+        return __('Decision Authorities', 'fmr');
+    }
+
+    protected function getConfig()
+    {
+        return [
+            'entity' => __('decision authority', 'fmr'),
+            'entity_plural' => __('decision authorities', 'fmr'),
+            'storage_key' => '_decision_authorities_data',
+            'fields' => [
+                [
+                    'key' => 'title',
+                    'type' => 'text',
+                    'label' => __('Title', 'fmr'),
+                    'is_title' => true,
+                    'cols' => 3,
+                ],
+                [
+                    'key' => 'type',
+                    'type' => 'select',
+                    'label' => __('Type', 'fmr'),
+                    'options' => [
+                        'Nämnd' => 'Nämnd', 
+                        'Styrelse' => 'Styrelse', 
+                        'Utskott' => 'Utskott', 
+                        'Beredning' => 'Beredning', 
+                        'Råd' => 'Råd',
+                    ],
+                    'cols' => 3,
+                ],
+                [
+                    'key' => 'start_date',
+                    'type' => 'date',
+                    'label' => __('Start Date', 'fmr'),
+                    'is_subtitle' => true,
+                    'cols' => 3,
+                ],
+                [
+                    'key' => 'end_date',
+                    'type' => 'date',
+                    'label' => __('End Date', 'fmr'),
+                    'cols' => 3,
                 ],
             ],
-            [
-                'key' => 'start_date',
-                'type' => 'date',
-                'label' => 'Start Date',
-                'required' => true,
-                'is_subtitle' => true,
-            ],
-            [
-                'key' => 'end_date',
-                'type' => 'date',
-                'label' => 'End Date',
-                'required' => false,
-            ],
-        ],
-        'grouping_field' => 'end_date',
-        'grouping_logic' => 'date_based',
-    ];
+            'grouping_field' => 'end_date',
+            'grouping_logic' => 'date_based',
+        ];
+    }
 
     protected function loadExistingData($post_id)
     {

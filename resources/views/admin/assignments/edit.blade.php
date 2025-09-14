@@ -21,6 +21,7 @@
                     <td>
                         <select name="person_id" id="person_id" class="regular-text">
                             <option value="">{{ __('Select Person', 'fmr') }}</option>
+                            
                             @foreach($persons as $person)
                                 <option value="{{ $person->ID }}" {{ old('person_id', $assignment->person_id) == $person->ID ? 'selected' : '' }}>
                                     {{ $person->post_title }}
@@ -37,6 +38,7 @@
                     <td>
                         <select name="decision_authority_id" id="decision_authority_id" class="regular-text">
                             <option value="">{{ __('Select Decision Authority', 'fmr') }}</option>
+                            
                             @php
                                 $groupedAuthorities = $decisionAuthorities->groupBy(function($authority) {
                                     return $authority->board->post_title;
@@ -58,14 +60,18 @@
 
                 <tr>
                     <th scope="row">
-                        <label for="role">{{ __('Role', 'fmr') }}</label>
+                        <label for="role_term_id">{{ __('Role', 'fmr') }}</label>
                     </th>
                     <td>
-                        <input type="text" 
-                               name="role" 
-                               id="role" 
-                               value="{{ old('role', $assignment->role) }}" 
-                               class="regular-text">
+                        <select name="role_term_id" id="role_term_id" class="regular-text">
+                            <option value="">{{ __('Select Role', 'fmr') }}</option>
+                            
+                            @foreach($roles as $term)
+                                <option value="{{ $term->term_id }}" {{ old('role_term_id', $assignment->role_term_id) == $term->term_id ? 'selected' : '' }}>
+                                    {{ $term->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </td>
                 </tr>
 

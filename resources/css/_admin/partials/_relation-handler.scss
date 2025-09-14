@@ -1,4 +1,7 @@
-// Relation Handler Styles
+// =============================================================================
+// MAIN CONTAINER & LAYOUT
+// =============================================================================
+
 .relation-handler-new-form {
     border: 1px solid #ddd;
     padding: 15px;
@@ -9,6 +12,11 @@
 .relation-list {
     margin: 10px 0;
 }
+
+// =============================================================================
+// RELATION ROW COMPONENT
+// =============================================================================
+// Individual relation item container and header styling
 
 .relation-row {
     border: 1px solid #ddd;
@@ -25,5 +33,211 @@
     &:hover {
         background: #f0f0f0;
     }
+
+    .relation-header-info {
+        flex: 1;
+    }
+    
+    .relation-subtitle {
+        color: #666;
+        margin-left: 10px;
+    }
+    
+    .relation-field-value {
+        color: #999;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+    
+    .relation-unsaved-changes {
+        background-color: #fef3c7;
+        border: 1px solid #f59e0b;
+        color: #92400e;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+    
+    .relation-new {
+        background-color: #edf7ed;
+        border: 1px solid #00a32a;
+        color: #00a32a;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
 }
 
+.relation-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.relation-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.relation-delete-btn {
+    margin-right: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 4px 8px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    .dashicons {
+        font-size: 16px;
+        line-height: 1;
+        vertical-align: middle;
+    }
+
+    &:hover,
+    &:focus {
+        background: #fae5e5;
+    }
+}
+
+.relation-toggle-icon {
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.relation-content {
+    display: none;
+    padding: 15px;
+}
+
+.relation-row-form {
+    padding: 15px;
+}
+
+// =============================================================================
+// FORM FIELDS GRID SYSTEM
+// =============================================================================
+// 12-column responsive grid system for form fields
+
+.relation-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    @media (max-width: 480px) {
+        gap: 12px;
+        padding: 10px 0;
+    }
+}
+
+.relation-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    @media (max-width: 768px) {
+        grid-column: span 1 !important;
+        gap: 6px;
+    }
+    
+    &.field-invalid {
+        .relation-field-label {
+            color: #d63638;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        select {
+            border-color: #d63638;
+            background-color: #fef2f2;
+            
+            &:focus {
+                border-color: #d63638;
+                box-shadow: 0 0 0 1px #d63638;
+            }
+        }
+    }
+}
+
+// =============================================================================
+// GRID COLUMN WIDTHS
+// =============================================================================
+// 12-column grid system classes for responsive field layouts
+
+.relation-field-cols-1 { grid-column: span 1; }
+.relation-field-cols-2 { grid-column: span 2; }
+.relation-field-cols-3 { grid-column: span 3; }
+.relation-field-cols-4 { grid-column: span 4; }
+.relation-field-cols-5 { grid-column: span 5; }
+.relation-field-cols-6 { grid-column: span 6; }
+.relation-field-cols-7 { grid-column: span 7; }
+.relation-field-cols-8 { grid-column: span 8; }
+.relation-field-cols-9 { grid-column: span 9; }
+.relation-field-cols-10 { grid-column: span 10; }
+.relation-field-cols-11 { grid-column: span 11; }
+.relation-field-cols-12 { grid-column: span 12; }
+
+// =============================================================================
+// FORM FIELD STYLING
+// =============================================================================
+// Labels, inputs, and form element styling
+
+.relation-field-label {
+    font-weight: 600;
+    color: #23282d;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    
+    .description {
+        font-weight: 400;
+        color: #666;
+        font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+        font-size: 13px;
+    }
+    
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
+}
+
+.relation-field-input {
+    width: 100%;
+    
+    input[type="text"],
+    input[type="date"],
+    select {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 400;
+        cursor: pointer;
+        
+        input[type="checkbox"] {
+            margin: 0;
+        }
+    }
+}

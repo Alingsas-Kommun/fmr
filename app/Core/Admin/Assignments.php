@@ -69,6 +69,15 @@ class Assignments extends \WP_List_Table
             'dashicons-portfolio',
             40
         );
+
+        add_submenu_page(
+            'assignments',
+            __('Roles', 'fmr'),
+            __('Roles', 'fmr'),
+            'manage_options',
+            'edit-tags.php?taxonomy=role',
+            null
+        );
     }
 
     /**
@@ -361,6 +370,31 @@ class Assignments extends \WP_List_Table
     }
 
     /**
+     * Render the role column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
+    public function column_role($item)
+    {
+        if (!$item->roleTerm) {
+            return '—';
+        }
+
+        $edit_link = add_query_arg(
+            [
+                'taxonomy' => 'role',
+                'tag_ID' => $item->roleTerm->term_id,
+            ],
+            admin_url('term.php')
+        );
+
+        $role_name = esc_html($item->roleTerm->name);
+        
+        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $role_name);
+    }
+
+    /**
      * Handle any custom columns that don't have a specific method.
      *
      * @param object $item The current assignment item.
@@ -369,12 +403,7 @@ class Assignments extends \WP_List_Table
      */
     public function column_default($item, $column_name)
     {
-        switch ($column_name) {
-            case 'role':
-                return esc_html($item->$column_name);
-            default:
-                return print_r($item, true);
-        }
+        return print_r($item, true);
     }
 
     /**

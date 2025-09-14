@@ -93,6 +93,10 @@ abstract class FieldGroup
                 foreach ($row['fields'] as &$field) {
                     $field['value'] = get_post_meta($post->ID, $field['id'], true);
                     
+                    if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
+                        $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title');
+                    }
+                    
                     if (isset($field['visibility'])) {
                         $visibility_id = $field['id'] . '_visibility';
                         $field['visibility']['id'] = $visibility_id;
@@ -173,5 +177,42 @@ abstract class FieldGroup
                 }
             }
         }
+    }
+
+    /**
+     * Get post relation options for a specific post type
+     *
+     * @param string $post_type
+     * @param string $display_field
+     * @return array
+     */
+    protected function getPostRelationOptions($post_type, $display_field = 'post_title')
+    {
+        $posts = get_posts([
+            'post_type' => $post_type,
+            'post_status' => 'publish',
+            'numberposts' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC'
+        ]);
+
+        $options = [];
+        foreach ($posts as $post) {
+            $display_value = $post->$display_field;
+            
+            // If display_field is a meta field, get it
+            if ($display_field !== 'post_title' && $display_field !== 'post_content') {
+                $display_value = get_post_meta($post->ID, $display_field, true);
+            }
+            
+            // Fallback to post title if display value is empty
+            if (empty($display_value)) {
+                $display_value = $post->post_title;
+            }
+            
+            $options[$post->ID] = $display_value;
+        }
+
+        return $options;
     }
 }

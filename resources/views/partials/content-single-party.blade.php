@@ -97,9 +97,9 @@
     </div>
 </div>
 
-@if($members->isNotEmpty())
-    <div class="mt-6">
-        <h2 class="text-2xl font-semibold mb-6">{!! __('Members', 'fmr') !!}</h2>
+<div class="mt-6">
+    <h2 class="text-2xl font-semibold mb-6">{!! __('Members', 'fmr') !!}</h2>
+    @if($members->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($members as $member)
                 <a href="{{ get_permalink($member->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
@@ -130,5 +130,9 @@
 
             @endforeach
         </div>
-    </div>
-@endif
+    @else
+        <x-alert type="info">
+            {!! __('No members found for this party.', 'fmr') !!}
+        </x-alert>
+    @endif
+</div>

@@ -2,6 +2,7 @@
 
 namespace App\Core\Admin;
 
+use Illuminate\Support\Facades\Vite;
 use App\Utilities\Dir;
 
 class Init
@@ -11,13 +12,6 @@ class Init
         if (!function_exists('add_action')) {
             return;
         }
-
-        /**
-         * Disable heartbeat in admin.
-         */
-        add_action('init', function () {
-            wp_deregister_script('heartbeat');
-        });
 
         if (class_exists('App\\Core\\Admin\\Whitelabel')) {
             new Whitelabel();
@@ -42,8 +36,11 @@ class Init
         if (class_exists('App\\Core\\Admin\\DecisionAuthorityHandler')) {
             new DecisionAuthorityHandler();
         }
-
-        $this->registerRelationHandlers();
+        
+        /**
+         * Register relation handlers
+         */
+        add_action('init', [$this, 'registerRelationHandlers']);
 
         /**
          * Modify admin menu
@@ -64,6 +61,18 @@ class Init
         });
 
         /**
+         * Disable heartbeat in admin.
+         */
+        add_action('init', function () {
+            wp_deregister_script('heartbeat');
+        });
+        
+        /**
+         * Enqueue admin assets
+         */
+        add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
+
+        /**
          * Redirect to person insead of dashboard when visiting index or login
          */
         if (!is_network_admin()) {
@@ -81,6 +90,14 @@ class Init
             endif;
         }
 
+        add_action( 'template_redirect', function() {
+            if (is_preview()) {
+                wp_redirect(home_url());
+                
+                exit;
+            }
+        });
+
         $this->disableComments();
         $this->disableRevisions();
     }
@@ -88,7 +105,7 @@ class Init
     /**
      * Load relation handlers for post types
      */
-    private function registerRelationHandlers()
+    public function registerRelationHandlers()
     {
         $dir = __DIR__ . '/../RelationHandlers';
         $relation_handlers = Dir::list($dir, 'files');
@@ -103,6 +120,42 @@ class Init
                 }
             }
         }
+    }
+
+    public function enqueueAdminAssets()
+    {
+        // Skip asset loading in CLI context
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
+
+        $style = Vite::asset('resources/css/admin.scss');
+        wp_enqueue_style('admin-css', $style, false, '');
+
+        $script = Vite::asset('resources/js/admin.js');
+        wp_enqueue_script('admin-js', $script, [], null, true);
+
+        wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
+
+        // Add the noConflict wrapper to avoid conflicts with WP Underscore library
+        wp_add_inline_script(
+            'alpine-safe',
+            <<<JS
+            (function() {
+                var old_ = window._; // save WP's Underscore
+                delete window._;     // remove temporarily
+
+                // Start Alpine after load
+                document.addEventListener('alpine:init', function() {
+                    if (old_) window._ = old_; // restore Underscore
+                });
+
+                if (window.Alpine) {
+                    window.Alpine.start();
+                }
+            })();
+            JS
+        );
     }
 
 

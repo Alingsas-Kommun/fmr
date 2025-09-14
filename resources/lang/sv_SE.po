@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-14T00:26:18+00:00\n"
-"PO-Revision-Date: 2025-09-14 02:28+0200\n"
+"POT-Creation-Date: 2025-09-14T16:43:21+00:00\n"
+"PO-Revision-Date: 2025-09-14 18:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -70,94 +70,103 @@ msgstr ""
 msgid "App &rsaquo; Error"
 msgstr ""
 
-#: app/Core/Admin/AssignmentHandler.php:27
 #: app/Core/Admin/AssignmentHandler.php:28
+#: app/Core/Admin/AssignmentHandler.php:29
 #: resources/views/admin/assignments/edit.blade.php:3
 #: resources/views/admin/assignments/list-table.blade.php:3
 msgid "Add new assignment"
 msgstr "Lägg till nytt uppdrag"
 
-#: app/Core/Admin/AssignmentHandler.php:63
+#: app/Core/Admin/AssignmentHandler.php:65
 #: app/Core/Admin/DecisionAuthorityHandler.php:59
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Du har inte tillräcklig behörighet för att komma åt den här sidan."
 
-#: app/Core/Admin/AssignmentHandler.php:87
+#: app/Core/Admin/AssignmentHandler.php:89
 msgid "Assignment updated successfully."
 msgstr "Uppgiften har uppdaterats."
 
-#: app/Core/Admin/AssignmentHandler.php:88
+#: app/Core/Admin/AssignmentHandler.php:90
 msgid "Assignment created successfully."
 msgstr "Uppgiften har skapats."
 
 #: app/Core/Admin/Assignments.php:64 app/Core/Admin/Assignments.php:65
+#: app/Core/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/list-table.blade.php:2
 #: resources/views/assignments/index.blade.php:5
-#: resources/views/partials/content-single-person.blade.php:306
+#: resources/views/partials/content-single-person.blade.php:314
 #: resources/views/partials/header.blade.php:10
 msgid "Assignments"
 msgstr "Uppdrag"
 
-#: app/Core/Admin/Assignments.php:123
+#: app/Core/Admin/Assignments.php:75 app/Core/Admin/Assignments.php:76
+#: app/Core/Taxonomies/Role.php:23 app/Core/Taxonomies/Role.php:25
+msgid "Roles"
+msgstr "Roller"
+
+#: app/Core/Admin/Assignments.php:132
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] "%s uppdrag raderades."
 msgstr[1] "%s uppdrag raderades."
 
-#: app/Core/Admin/Assignments.php:154
+#: app/Core/Admin/Assignments.php:163
 #: app/Core/Admin/DecisionAuthorities.php:154
 msgid "All"
 msgstr "Alla"
 
-#: app/Core/Admin/Assignments.php:162
+#: app/Core/Admin/Assignments.php:171
 #: app/Core/Admin/DecisionAuthorities.php:162
 msgid "Ongoing"
 msgstr "Pågående"
 
-#: app/Core/Admin/Assignments.php:170
+#: app/Core/Admin/Assignments.php:179
 #: app/Core/Admin/DecisionAuthorities.php:170
 msgid "Past"
 msgstr "Historiska"
 
-#: app/Core/Admin/Assignments.php:185
+#: app/Core/Admin/Assignments.php:194
 #: app/Core/Admin/DecisionAuthorities.php:185
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/Assignments.php:198 app/Core/PostTypes/Persons.php:30
+#: app/Core/Admin/Assignments.php:207 app/Core/PostTypes/Persons.php:30
 #: resources/views/admin/assignments/edit.blade.php:20
 #: resources/views/assignments/index.blade.php:33
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/Assignments.php:199
-#: resources/views/admin/assignments/edit.blade.php:66
+#: app/Core/Admin/Assignments.php:208
+#: app/Core/RelationHandlers/PersonAssignments.php:44
+#: app/Core/Taxonomies/Role.php:26
+#: resources/views/admin/assignments/edit.blade.php:68
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/decision-authorities/show.blade.php:66
-#: resources/views/partials/content-single-person.blade.php:314
+#: resources/views/partials/content-single-person.blade.php:322
 msgid "Role"
 msgstr "Roll"
 
-#: app/Core/Admin/Assignments.php:200
+#: app/Core/Admin/Assignments.php:209
 #: app/Core/Admin/DecisionAuthorities.php:199 app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/edit.blade.php:20
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:20
-#: resources/views/partials/content-single-person.blade.php:312
+#: resources/views/partials/content-single-person.blade.php:320
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
-#: app/Core/Admin/Assignments.php:201
-#: resources/views/admin/assignments/edit.blade.php:38
+#: app/Core/Admin/Assignments.php:210
+#: app/Core/RelationHandlers/PersonAssignments.php:35
+#: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:83
-#: resources/views/partials/content-single-person.blade.php:313
+#: resources/views/partials/content-single-person.blade.php:321
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
-#: app/Core/Admin/Assignments.php:202
+#: app/Core/Admin/Assignments.php:211
 #: app/Core/Admin/DecisionAuthorities.php:201
 #: resources/views/assignments/index.blade.php:35
 #: resources/views/assignments/show.blade.php:53
@@ -165,20 +174,21 @@ msgstr "Beslutsinstans"
 #: resources/views/decision-authorities/show.blade.php:41
 #: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/content-single-board.blade.php:129
-#: resources/views/partials/content-single-person.blade.php:315
+#: resources/views/partials/content-single-person.blade.php:323
 msgid "Period"
 msgstr "Period"
 
-#: app/Core/Admin/Assignments.php:203
+#: app/Core/Admin/Assignments.php:212
 #: app/Core/Admin/DecisionAuthorities.php:202
 #: resources/views/decision-authorities/show.blade.php:74
 #: resources/views/partials/content-single-board.blade.php:133
-#: resources/views/partials/content-single-person.blade.php:316
+#: resources/views/partials/content-single-person.blade.php:324
 msgid "Actions"
 msgstr "Åtgärder"
 
 #: app/Core/Admin/DecisionAuthorities.php:64
 #: app/Core/Admin/DecisionAuthorities.php:65
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:17
 #: resources/views/admin/decision-authorities/list-table.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
 #: resources/views/decision-authorities/show.blade.php:5
@@ -195,6 +205,7 @@ msgstr[0] "%s beslutsinstanser raderades."
 msgstr[1] "%s uppdrag raderades."
 
 #: app/Core/Admin/DecisionAuthorities.php:198
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:30
 #: resources/views/admin/decision-authorities/edit.blade.php:38
 #: resources/views/decision-authorities/index.blade.php:53
 #: resources/views/partials/content-single-board.blade.php:121
@@ -202,6 +213,7 @@ msgid "Title"
 msgstr "Titel"
 
 #: app/Core/Admin/DecisionAuthorities.php:200
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:37
 #: resources/views/admin/decision-authorities/edit.blade.php:52
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
@@ -224,7 +236,7 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 msgid "Decision authority created successfully."
 msgstr "Beslutsinstansen har skapats framgångsrikt."
 
-#: app/Core/Admin/Init.php:60
+#: app/Core/Admin/Init.php:57
 msgid "Images"
 msgstr "Bilder"
 
@@ -285,18 +297,18 @@ msgid "Shortening"
 msgstr "Förkortning"
 
 #: app/Core/FieldGroups/BoardDetails.php:76
-#: app/Core/FieldGroups/PersonDetails.php:147
-#: app/Core/FieldGroups/PersonDetails.php:254
+#: app/Core/FieldGroups/PersonDetails.php:143
+#: app/Core/FieldGroups/PersonDetails.php:250
 msgid "Visiting address"
 msgstr "Besöksadress"
 
 #: app/Core/FieldGroups/BoardDetails.php:83
 #: app/Core/FieldGroups/PartyDetails.php:78
-#: app/Core/FieldGroups/PersonDetails.php:157
-#: app/Core/FieldGroups/PersonDetails.php:264
+#: app/Core/FieldGroups/PersonDetails.php:153
+#: app/Core/FieldGroups/PersonDetails.php:260
 #: resources/views/partials/content-single-board.blade.php:82
-#: resources/views/partials/content-single-person.blade.php:179
-#: resources/views/partials/content-single-person.blade.php:272
+#: resources/views/partials/content-single-person.blade.php:187
+#: resources/views/partials/content-single-person.blade.php:280
 msgid "Address"
 msgstr "Adress"
 
@@ -307,16 +319,16 @@ msgstr "Postnummer"
 
 #: app/Core/FieldGroups/BoardDetails.php:101
 #: app/Core/FieldGroups/PartyDetails.php:96
-#: app/Core/FieldGroups/PersonDetails.php:181
-#: app/Core/FieldGroups/PersonDetails.php:288
+#: app/Core/FieldGroups/PersonDetails.php:177
+#: app/Core/FieldGroups/PersonDetails.php:284
 msgid "City"
 msgstr "Stad"
 
 #: app/Core/FieldGroups/BoardDetails.php:112
 #: app/Core/FieldGroups/PartyDetails.php:107
 #: resources/views/partials/content-single-board.blade.php:33
-#: resources/views/partials/content-single-person.blade.php:166
-#: resources/views/partials/content-single-person.blade.php:259
+#: resources/views/partials/content-single-person.blade.php:174
+#: resources/views/partials/content-single-person.blade.php:267
 msgid "Website"
 msgstr "Webbplats"
 
@@ -327,11 +339,11 @@ msgstr "E-post"
 
 #: app/Core/FieldGroups/BoardDetails.php:133
 #: app/Core/FieldGroups/PartyDetails.php:128
-#: app/Core/FieldGroups/PersonDetails.php:223
-#: app/Core/FieldGroups/PersonDetails.php:330
+#: app/Core/FieldGroups/PersonDetails.php:219
+#: app/Core/FieldGroups/PersonDetails.php:326
 #: resources/views/partials/content-single-board.blade.php:63
-#: resources/views/partials/content-single-person.blade.php:140
-#: resources/views/partials/content-single-person.blade.php:233
+#: resources/views/partials/content-single-person.blade.php:148
+#: resources/views/partials/content-single-person.blade.php:241
 msgid "Phone"
 msgstr "Telefonnummer"
 
@@ -380,86 +392,75 @@ msgstr "Personnummer"
 msgid "Politics Information"
 msgstr "Politikinformation"
 
-#: app/Core/FieldGroups/PersonDetails.php:86
-msgid "Member of party"
-msgstr "Medlem av partiet"
+#: app/Core/FieldGroups/PersonDetails.php:86 app/Core/PostTypes/Parties.php:30
+#: app/Core/PostTypes/Persons.php:103
+msgid "Party"
+msgstr "Parti"
 
-#: app/Core/FieldGroups/PersonDetails.php:90
-msgid "Select party"
-msgstr "Välj parti"
-
-#: app/Core/FieldGroups/PersonDetails.php:91
-msgid "Party 1"
-msgstr "Parti 1"
-
-#: app/Core/FieldGroups/PersonDetails.php:92
-msgid "Party 2"
-msgstr "Parti 2"
-
-#: app/Core/FieldGroups/PersonDetails.php:97
+#: app/Core/FieldGroups/PersonDetails.php:93
 msgid "Total kilometers"
 msgstr "Totalt antal kilometer"
 
-#: app/Core/FieldGroups/PersonDetails.php:110
-#: app/Core/PostTypes/Persons.php:170
+#: app/Core/FieldGroups/PersonDetails.php:106
+#: app/Core/PostTypes/Persons.php:163
 msgid "Active"
 msgstr "Aktiv"
 
-#: app/Core/FieldGroups/PersonDetails.php:113
-#: app/Core/FieldGroups/PersonDetails.php:121
-#: app/Core/PostTypes/Persons.php:165
-#: resources/views/admin/relation-handler/relation-row.blade.php:82
+#: app/Core/FieldGroups/PersonDetails.php:109
+#: app/Core/FieldGroups/PersonDetails.php:117
+#: app/Core/PostTypes/Persons.php:158
+#: resources/views/admin/relation-handler/form.blade.php:134
 msgid "Yes"
 msgstr "Ja"
 
-#: app/Core/FieldGroups/PersonDetails.php:114
-#: app/Core/FieldGroups/PersonDetails.php:122
-#: app/Core/PostTypes/Persons.php:165
-#: resources/views/admin/relation-handler/relation-row.blade.php:82
+#: app/Core/FieldGroups/PersonDetails.php:110
+#: app/Core/FieldGroups/PersonDetails.php:118
+#: app/Core/PostTypes/Persons.php:158
+#: resources/views/admin/relation-handler/form.blade.php:134
 msgid "No"
 msgstr "Nej"
 
-#: app/Core/FieldGroups/PersonDetails.php:118
+#: app/Core/FieldGroups/PersonDetails.php:114
 msgid "Group leader"
 msgstr "Gruppledare"
 
-#: app/Core/FieldGroups/PersonDetails.php:126
-#: resources/views/partials/content-single-person.blade.php:80
+#: app/Core/FieldGroups/PersonDetails.php:122
+#: resources/views/partials/content-single-person.blade.php:88
 msgid "Listing"
 msgstr "Lista"
 
-#: app/Core/FieldGroups/PersonDetails.php:140
-#: resources/views/partials/content-single-person.blade.php:118
+#: app/Core/FieldGroups/PersonDetails.php:136
+#: resources/views/partials/content-single-person.blade.php:126
 msgid "Home Information"
 msgstr "Heminformation"
 
-#: app/Core/FieldGroups/PersonDetails.php:171
-#: app/Core/FieldGroups/PersonDetails.php:278
+#: app/Core/FieldGroups/PersonDetails.php:167
+#: app/Core/FieldGroups/PersonDetails.php:274
 msgid "Zip code"
 msgstr "Postnummer"
 
-#: app/Core/FieldGroups/PersonDetails.php:195
-#: app/Core/FieldGroups/PersonDetails.php:302
+#: app/Core/FieldGroups/PersonDetails.php:191
+#: app/Core/FieldGroups/PersonDetails.php:298
 msgid "Webpage"
 msgstr "Webbsida"
 
-#: app/Core/FieldGroups/PersonDetails.php:209
-#: app/Core/FieldGroups/PersonDetails.php:316
+#: app/Core/FieldGroups/PersonDetails.php:205
+#: app/Core/FieldGroups/PersonDetails.php:312
 #: resources/views/partials/content-single-board.blade.php:48
-#: resources/views/partials/content-single-person.blade.php:127
-#: resources/views/partials/content-single-person.blade.php:220
+#: resources/views/partials/content-single-person.blade.php:135
+#: resources/views/partials/content-single-person.blade.php:228
 msgid "Email"
 msgstr "E-post"
 
-#: app/Core/FieldGroups/PersonDetails.php:233
-#: app/Core/FieldGroups/PersonDetails.php:340
-#: resources/views/partials/content-single-person.blade.php:153
-#: resources/views/partials/content-single-person.blade.php:246
+#: app/Core/FieldGroups/PersonDetails.php:229
+#: app/Core/FieldGroups/PersonDetails.php:336
+#: resources/views/partials/content-single-person.blade.php:161
+#: resources/views/partials/content-single-person.blade.php:254
 msgid "Mobile"
 msgstr "Mobil"
 
-#: app/Core/FieldGroups/PersonDetails.php:247
-#: resources/views/partials/content-single-person.blade.php:211
+#: app/Core/FieldGroups/PersonDetails.php:243
+#: resources/views/partials/content-single-person.blade.php:219
 msgid "Work Information"
 msgstr "Arbetsinformation"
 
@@ -531,10 +532,6 @@ msgstr "Inga nämnder/styrelser hittades i papperskorgen."
 #: app/Core/PostTypes/Boards.php:76
 msgid "boards"
 msgstr "namnd-styrelse"
-
-#: app/Core/PostTypes/Parties.php:30 app/Core/PostTypes/Persons.php:103
-msgid "Party"
-msgstr "Parti"
 
 #: app/Core/PostTypes/Parties.php:31
 msgid "Parties"
@@ -673,21 +670,93 @@ msgid "Birthday"
 msgstr "Födelsedag"
 
 #: app/Core/PostTypes/Persons.php:113
-msgid "SSN"
-msgstr "Personnummer"
-
-#: app/Core/PostTypes/Persons.php:118
-#: resources/views/partials/content-single-person.blade.php:44
+#: resources/views/partials/content-single-person.blade.php:52
 msgid "Group Leader"
 msgstr "Gruppledare"
 
-#: app/Core/PostTypes/Persons.php:123
+#: app/Core/PostTypes/Persons.php:118
 msgid "Status"
 msgstr "Status"
 
-#: app/Core/PostTypes/Persons.php:170
+#: app/Core/PostTypes/Persons.php:163
 msgid "Inactive"
 msgstr "Inaktiv"
+
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:23
+msgid "decision authority"
+msgstr "beslutsinstans"
+
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:24
+msgid "decision authorities"
+msgstr "beslutsinstanser"
+
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:50
+#: app/Core/RelationHandlers/PersonAssignments.php:52
+#: resources/views/admin/assignments/edit.blade.php:87
+#: resources/views/admin/decision-authorities/edit.blade.php:70
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: app/Core/RelationHandlers/BoardDecisionAuthorities.php:57
+#: app/Core/RelationHandlers/PersonAssignments.php:59
+#: resources/views/admin/assignments/edit.blade.php:100
+#: resources/views/admin/decision-authorities/edit.blade.php:84
+msgid "End Date"
+msgstr "Slutdatum"
+
+#: app/Core/RelationHandlers/PersonAssignments.php:27
+msgid "assignment"
+msgstr "uppdrag"
+
+#: app/Core/RelationHandlers/PersonAssignments.php:28
+msgid "assignments"
+msgstr "uppdrag"
+
+#: app/Core/RelationHandlers/PersonAssignments.php:104
+msgid "ongoing"
+msgstr "pågående"
+
+#: app/Core/Taxonomies/Role.php:27
+msgctxt "Admin menu name"
+msgid "Roles"
+msgstr "Roller"
+
+#: app/Core/Taxonomies/Role.php:28
+msgid "Search roles"
+msgstr "Sök roller"
+
+#: app/Core/Taxonomies/Role.php:29
+#: resources/views/assignments/index.blade.php:10
+msgid "All roles"
+msgstr "Alla roller"
+
+#: app/Core/Taxonomies/Role.php:30
+msgid "Parent role"
+msgstr "Överordnad roll"
+
+#: app/Core/Taxonomies/Role.php:31
+msgid "Parent role:"
+msgstr "Överordnad roll:"
+
+#: app/Core/Taxonomies/Role.php:32
+msgid "Edit role"
+msgstr "Redigera roll"
+
+#: app/Core/Taxonomies/Role.php:33
+msgid "Update role"
+msgstr "Uppdatera roll"
+
+#: app/Core/Taxonomies/Role.php:34
+msgid "Add new role"
+msgstr "Lägg till ny roll"
+
+#: app/Core/Taxonomies/Role.php:35
+msgid "New role name"
+msgstr "Ny roll"
+
+#: app/Core/Taxonomies/Role.php:36
+msgid "No roles were found"
+msgstr "Inga roller hittades"
 
 #: app/View/Composers/Post.php:34
 msgid "Latest Posts"
@@ -715,25 +784,19 @@ msgstr "Lägg till nytt uppdrag"
 msgid "Select Person"
 msgstr "Välj person"
 
-#: resources/views/admin/assignments/edit.blade.php:42
+#: resources/views/admin/assignments/edit.blade.php:43
 msgid "Select Decision Authority"
 msgstr "Välj beslutsinstans"
 
-#: resources/views/admin/assignments/edit.blade.php:79
-#: resources/views/admin/decision-authorities/edit.blade.php:70
-msgid "Start Date"
-msgstr "Startdatum"
+#: resources/views/admin/assignments/edit.blade.php:72
+msgid "Select Role"
+msgstr "Välj roll"
 
-#: resources/views/admin/assignments/edit.blade.php:92
-#: resources/views/admin/decision-authorities/edit.blade.php:84
-msgid "End Date"
-msgstr "Slutdatum"
-
-#: resources/views/admin/assignments/edit.blade.php:107
+#: resources/views/admin/assignments/edit.blade.php:115
 msgid "Update Assignment"
 msgstr "Uppdatera uppdrag"
 
-#: resources/views/admin/assignments/edit.blade.php:107
+#: resources/views/admin/assignments/edit.blade.php:115
 msgid "Create Assignment"
 msgstr "Skapa uppdrag"
 
@@ -771,59 +834,52 @@ msgid "Search Decision Authorities"
 msgstr "Sök beslutsinstanser"
 
 #: resources/views/admin/meta-fields/field.blade.php:7
+#: resources/views/admin/relation-handler/form.blade.php:20
 msgid "Optional"
 msgstr "Valfritt"
 
-#: resources/views/admin/relation-handler/meta-box.blade.php:12
-#: resources/views/admin/relation-handler/meta-box.blade.php:70
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: resources/views/admin/relation-handler/meta-box.blade.php:12
-msgid "Add New"
-msgstr "Lägg till ny"
-
-#: resources/views/admin/relation-handler/meta-box.blade.php:41
-#: resources/views/admin/relation-handler/relation-row.blade.php:68
+#: resources/views/admin/meta-fields/field.blade.php:122
+#: resources/views/admin/relation-handler/form.blade.php:71
+#: resources/views/admin/relation-handler/form.blade.php:100
 #, php-format
 msgid "Select %s"
 msgstr "Välj %s"
 
-#: resources/views/admin/relation-handler/meta-box.blade.php:64
+#: resources/views/admin/relation-handler/list.blade.php:6
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: resources/views/admin/relation-handler/list.blade.php:6
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: resources/views/admin/relation-handler/list.blade.php:14
 #, php-format
 msgid "Add %s"
 msgstr "Lägg till %s"
 
-#: resources/views/admin/relation-handler/meta-box.blade.php:78
+#: resources/views/admin/relation-handler/list.blade.php:21
 #, php-format
 msgid "Ongoing %s"
 msgstr "Pågående %s"
 
-#: resources/views/admin/relation-handler/meta-box.blade.php:87
+#: resources/views/admin/relation-handler/list.blade.php:31
 #, php-format
 msgid "Historical %s"
 msgstr "Historiska %s"
 
-#: resources/views/admin/relation-handler/meta-box.blade.php:96
+#: resources/views/admin/relation-handler/list.blade.php:41
 #, php-format
 msgid "No %s found. Add one using the form above."
 msgstr "Inga %s hittades. Lägg till ett genom formuläret ovan."
 
-#: resources/views/admin/relation-handler/relation-row.blade.php:15
-msgid "(unsaved changes)"
-msgstr "(osparade ändringar)"
+#: resources/views/admin/relation-handler/row.blade.php:8
+msgid "Unsaved changes"
+msgstr "Osparade ändringar"
 
-#: resources/views/admin/relation-handler/relation-row.blade.php:19
-msgid "(new)"
-msgstr "(ny)"
-
-#: resources/views/admin/relation-handler/relation-row.blade.php:47
-msgid "required"
-msgstr "obligatorisk"
-
-#: resources/views/assignments/index.blade.php:10
-msgid "All roles"
-msgstr "Alla roller"
+#: resources/views/admin/relation-handler/row.blade.php:9
+msgid "New"
+msgstr "Ny"
 
 #: resources/views/assignments/index.blade.php:11
 msgid "Chairman"
@@ -856,7 +912,7 @@ msgstr "Visa"
 #: resources/views/assignments/index.blade.php:79
 #: resources/views/decision-authorities/show.blade.php:103
 #: resources/views/partials/content-single-board.blade.php:166
-#: resources/views/partials/content-single-person.blade.php:349
+#: resources/views/partials/content-single-person.blade.php:357
 msgid "View"
 msgstr "Visa"
 
@@ -912,25 +968,25 @@ msgstr "Inga aktiva uppdrag hittades."
 msgid "Find your politician in Alingsås"
 msgstr "Hitta din politiker i Alingsås"
 
-#: resources/views/homepage.blade.php:12
+#: resources/views/homepage.blade.php:13
 msgid ""
 "Search through assignments, parties and politicians in the municipality of "
 "Alingsås."
 msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
 
-#: resources/views/homepage.blade.php:19 resources/views/homepage.blade.php:29
+#: resources/views/homepage.blade.php:20 resources/views/homepage.blade.php:32
 msgid "Search"
 msgstr "Sök"
 
-#: resources/views/homepage.blade.php:25
+#: resources/views/homepage.blade.php:27
 msgid "Enter name, party or role..."
 msgstr "Ange namn, parti eller roll..."
 
-#: resources/views/homepage.blade.php:60
+#: resources/views/homepage.blade.php:63
 msgid "Group Leaders"
 msgstr "Gruppledare"
 
-#: resources/views/homepage.blade.php:106
+#: resources/views/homepage.blade.php:105
 msgid "Boards & Committees"
 msgstr "Nämnder & Styrelser"
 
@@ -943,28 +999,32 @@ msgid "Skip to content"
 msgstr "Hoppa till innehåll"
 
 #: resources/views/partials/content-single-board.blade.php:104
-#: resources/views/partials/content-single-person.blade.php:198
-#: resources/views/partials/content-single-person.blade.php:292
+#: resources/views/partials/content-single-person.blade.php:206
+#: resources/views/partials/content-single-person.blade.php:300
 msgid "Visiting Address"
 msgstr "Besöksadress"
 
-#: resources/views/partials/content-single-party.blade.php:108
+#: resources/views/partials/content-single-party.blade.php:107
 msgid "Members"
 msgstr "Medlemmar"
 
-#: resources/views/partials/content-single-person.blade.php:60
+#: resources/views/partials/content-single-party.blade.php:145
+msgid "No members found for this party."
+msgstr "Inga medlemmar hittades för detta partiet."
+
+#: resources/views/partials/content-single-person.blade.php:68
 msgid "Birth Date"
 msgstr "Födelsedag"
 
-#: resources/views/partials/content-single-person.blade.php:70
+#: resources/views/partials/content-single-person.blade.php:78
 msgid "Social Security Number"
 msgstr "Personnummer"
 
-#: resources/views/partials/content-single-person.blade.php:97
+#: resources/views/partials/content-single-person.blade.php:105
 msgid "Hide Additional Information"
 msgstr "Dölj ytterligare information"
 
-#: resources/views/partials/content-single-person.blade.php:97
+#: resources/views/partials/content-single-person.blade.php:105
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
 
@@ -2268,6 +2328,27 @@ msgctxt "Font size name"
 msgid "9xl"
 msgstr ""
 
+#~ msgid "SSN"
+#~ msgstr "Personnummer"
+
+#~ msgid "(new)"
+#~ msgstr "(ny)"
+
+#~ msgid "required"
+#~ msgstr "obligatorisk"
+
+#~ msgid "Member of party"
+#~ msgstr "Medlem av partiet"
+
+#~ msgid "Select party"
+#~ msgstr "Välj parti"
+
+#~ msgid "Party 1"
+#~ msgstr "Parti 1"
+
+#~ msgid "Party 2"
+#~ msgstr "Parti 2"
+
 #~ msgid "Assignment Details"
 #~ msgstr "Uppdragsdetaljer"
 
@@ -2318,9 +2399,3 @@ msgstr ""
 #~ msgctxt "Admin menu name"
 #~ msgid "Parties"
 #~ msgstr "Partier"
-
-#~ msgid "Parent party"
-#~ msgstr "Överordnat parti"
-
-#~ msgid "Update party"
-#~ msgstr "Uppdatera parti"

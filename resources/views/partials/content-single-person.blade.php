@@ -9,11 +9,18 @@
         @endif
         
         <div class="flex-1">
-            @if($person->party)
-                <div class="flex items-center space-x-2 mb-1">
-                    <x-heroicon-o-user-group class="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                    <span class="text-gray-700">{{ $person->party }}</span>
-                </div>
+            @if($party)
+                <a href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1 text-emerald-700 hover:text-emerald-800">
+                    @if($party->thumbnail())
+                        <div class="w-5 h-5 flex-shrink-0">
+                            {!! $party->thumbnail('w-5 h-5') !!}
+                        </div>
+                    @else
+                        <x-heroicon-o-user-group class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    @endif
+
+                    <span>{{ $party->post_title }}</span>
+                </a>
             @endif
 
             @if($person->firstname && $person->lastname)
@@ -28,7 +35,7 @@
                 <div class="flex items-center space-x-4 mt-2">
                     @if($person->workEmail)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                            <x-heroicon-o-envelope class="h-6 w-6 text-emerald-600 flex-shrink-0" />
                             <a href="mailto:{{ $person->workEmail }}" class="text-emerald-700 hover:text-emerald-800">
                                 {{ $person->workEmail }}
                             </a>
@@ -37,7 +44,7 @@
 
                     @if($person->groupLeader)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-user-circle class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                            <x-heroicon-o-user-circle class="h-6 w-6 text-emerald-600 flex-shrink-0" />
                             <span class="text-gray-700">{!! __('Group Leader', 'fmr') !!}</span>
                         </div>
                     @endif
@@ -49,7 +56,7 @@
     @set($hasBasicInfo, $person->birthDate || $person->ssn || $person->listing)
 
     @if($hasBasicInfo)
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-200 py-6 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-200 pt-6 mt-8">
             @if($person->birthDate)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-calendar class="h-5 w-5 text-emerald-600 flex-shrink-0" />
@@ -87,7 +94,7 @@
     @set($hasAdditionalInfo, $hasHomeInfo || $hasWorkInfo)
     
     @if($hasAdditionalInfo)
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-6">
             <div class="flex-1 border-t border-gray-200"></div>
 
              <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors duration-200 focus:outline-none">

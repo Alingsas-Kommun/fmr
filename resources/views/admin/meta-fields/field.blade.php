@@ -111,6 +111,19 @@
                        class="widefat"
                        {{ !($field['optional'] ?? false) ? 'required' : '' }}>
                 @break
+
+            @case('post_relation')
+                <select id="{{ $field['id'] }}" name="{{ $field['id'] }}" class="widefat" {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                    <option value="">{{ sprintf(__('Select %s', 'fmr'), $field['label']) }}</option>
+                    
+                    @foreach($field['options'] as $option_value => $option_label)
+                        <option value="{{ esc_attr($option_value) }}" 
+                                {{ $value == $option_value ? 'selected' : '' }}>
+                            {{ esc_html($option_label) }}
+                        </option>
+                    @endforeach
+                </select>
+                @break
         @endswitch
 
         @if(!empty($field['description']))

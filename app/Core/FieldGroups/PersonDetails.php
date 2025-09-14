@@ -83,14 +83,10 @@ class PersonDetails extends FieldGroup
                         'fields' => [
                             [
                                 'id' => 'person_party',
-                                'label' => __('Member of party', 'fmr'),
-                                'type' => 'select',
+                                'label' => __('Party', 'fmr'),
+                                'type' => 'post_relation',
+                                'post_type' => 'party',
                                 'cols' => 6,
-                                'options' => [
-                                    '' => __('Select party', 'fmr'),
-                                    'party1' => __('Party 1', 'fmr'),
-                                    'party2' => __('Party 2', 'fmr'),
-                                ],
                             ],
                             [
                                 'id' => 'person_kilometers',

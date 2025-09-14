@@ -7,6 +7,7 @@
                 <h1 class="text-3xl font-bold tracking-tight text-emerald-700 sm:text-4xl text-balance">
                     {!! __('Find your politician in Alingsås', 'fmr') !!}
                 </h1>
+
                 <p class="mt-3 text-lg leading-8 text-gray-800">
                     {!! __('Search through assignments, parties and politicians in the municipality of Alingsås.', 'fmr') !!}
                 </p>
@@ -16,14 +17,16 @@
                         <div class="flex gap-x-4">
                             <label for="search" class="sr-only">{!! __('Search', 'fmr') !!}</label>
                             <div class="flex-auto">
-                                <input type="text" 
-                                        name="search" 
-                                        id="search" 
-                                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
-                                        placeholder="{!! __('Enter name, party or role...', 'fmr') !!}">
+                                <input 
+                                    type="text" 
+                                    name="search" 
+                                    id="search" 
+                                    class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                                    placeholder="{!! __('Enter name, party or role...', 'fmr') !!}"
+                                >
                             </div>
-                            <button type="submit" 
-                                    class="flex-none rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+
+                            <button type="submit" class="flex-none rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
                                 {!! __('Search', 'fmr') !!}
                             </button>
                         </div>
@@ -75,10 +78,6 @@
                                         {{ $leader->post_title }}
                                     @endif
                                 </h3>
-
-                                @if($leader->getMeta('person_party'))
-                                    <p class="text-sm text-gray-600 mt-1">{{ $leader->getMeta('person_party') }}</p>
-                                @endif
                             </div>
 
                             <div class="flex-shrink-0">

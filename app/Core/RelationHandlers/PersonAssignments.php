@@ -4,80 +4,114 @@ namespace App\Core\RelationHandlers;
 
 use App\Core\Abstracts\RelationHandler;
 use App\Http\Controllers\Admin\AssignmentController;
+use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 class PersonAssignments extends RelationHandler
 {
     protected static $post_type = 'person';
     protected static $meta_box_id = 'person_assignments';
-    protected static $meta_box_title = 'Assignments';
     protected static $priority = 'low';
-    
-    protected static $config = [
-        'entity' => 'Assignment',
-        'entity_plural' => 'Assignments',
-        'storage_key' => '_assignments_data',
-        'fields' => [
-            [
-                'key' => 'decision_authority_id',
-                'type' => 'select',
-                'label' => 'Decision Authority',
-                'required' => true,
-                'options' => [],
-                'relation_field' => 'decision_authority',
-                'relation_title_key' => 'title',
+    protected static $decision_authorities = [];
+    protected static $role_terms = [];
+
+    protected function getTitle()
+    {
+        return __('Assignments', 'fmr');
+    }
+
+    protected function getConfig()
+    {
+        return [
+            'entity' => __('assignment', 'fmr'),
+            'entity_plural' => __('assignments', 'fmr'),
+            'storage_key' => '_assignments_data',
+            'fields' => [
+                [
+                    'key' => 'decision_authority_id',
+                    'type' => 'select-grouped',
+                    'label' => __('Decision Authority', 'fmr'),
+                    'options' => static::$decision_authorities,
+                    'relation_field' => 'decision_authority',
+                    'relation_title_key' => 'title',
+                    'cols' => 7,
+                ],
+                [
+                    'key' => 'role_term_id',
+                    'type' => 'select',
+                    'label' => __('Role', 'fmr'),
+                    'is_title' => true,
+                    'options' => static::$role_terms,
+                    'cols' => 5,
+                ],
+                [
+                    'key' => 'period_start',
+                    'type' => 'date',
+                    'label' => __('Start Date', 'fmr'),
+                    'is_subtitle' => true,
+                    'cols' => 6,
+                ],
+                [
+                    'key' => 'period_end',
+                    'type' => 'date',
+                    'label' => __('End Date', 'fmr'),
+                    'cols' => 6,
+                ],
             ],
-            [
-                'key' => 'role',
-                'type' => 'text',
-                'label' => 'Role',
-                'required' => true,
-                'is_title' => true,
-            ],
-            [
-                'key' => 'period_start',
-                'type' => 'date',
-                'label' => 'Start Date',
-                'required' => true,
-                'is_subtitle' => true,
-            ],
-            [
-                'key' => 'period_end',
-                'type' => 'date',
-                'label' => 'End Date',
-                'required' => false,
-            ],
-        ],
-        'grouping_field' => 'period_end',
-        'grouping_logic' => 'date_based',
-    ];
+            'grouping_field' => 'period_end',
+            'grouping_logic' => 'date_based',
+        ];
+    }
 
     protected function loadExistingData($post_id)
     {
+        $this->loadDecisionAuthorities();
+        $this->loadRoleTerms();
+        
         $controller = new AssignmentController();
         $assignments = $controller->getPersonsAssignments($post_id)->toArray();
-            
-        $this->loadDecisionAuthorities();
             
         return $assignments;
     }
 
     protected function loadDecisionAuthorities()
     {
-        $authorities = \App\Models\DecisionAuthority::with('board')
-            ->orderBy('title')
-            ->get()
-            ->map(function ($authority) {
-                return [
-                    'id' => $authority->id,
-                    'title' => $authority->title . ' (' . $authority->board->post_title . ')',
-                ];
-            });
-
-        $authorityField = array_search('decision_authority_id', array_column(static::$config['fields'], 'key'));
-        if ($authorityField !== false) {
-            static::$config['fields'][$authorityField]['options'] = $authorities->pluck('title', 'id')->toArray();
+        $controller = new DecisionAuthorityController();
+        $authorities = $controller->getAll();
+        
+        $groupedAuthorities = [];
+        
+        foreach ($authorities as $authority) {
+            $boardTitle = $authority->board->post_title;
+            $timePeriod = $this->formatTimePeriod($authority->start_date, $authority->end_date);
+            $title = $authority->title . ' (' . $timePeriod . ')';
+            
+            if (!isset($groupedAuthorities[$boardTitle])) {
+                $groupedAuthorities[$boardTitle] = [];
+            }
+            
+            $groupedAuthorities[$boardTitle][$authority->id] = $title;
         }
+
+        static::$decision_authorities = $groupedAuthorities;
+    }
+    
+    protected function formatTimePeriod($startDate, $endDate)
+    {
+        $start = $startDate ? date('Y-m-d', strtotime($startDate)) : '';
+        $end = $endDate ? date('Y-m-d', strtotime($endDate)) : __('ongoing', 'fmr');
+        
+        return $start . ' - ' . $end;
+    }
+
+    protected function loadRoleTerms()
+    {
+        $roleTerms = Term::whereHas('termTaxonomy', function ($query) {
+            $query->where('taxonomy', 'role');
+        })->orderBy('name')->get();
+
+        static::$role_terms = $roleTerms->pluck('name', 'term_id')->toArray();
     }
 
     protected function processRelationData($post_id, $relation_data)

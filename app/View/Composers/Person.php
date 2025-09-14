@@ -28,7 +28,6 @@ class Person extends Composer
         'person_lastname',
         'person_birth_date',
         'person_ssn',
-        'person_party',
         'person_kilometers',
         'person_active',
         'person_group_leader',
@@ -61,6 +60,7 @@ class Person extends Composer
     {
         return [
             'person' => $this->personWithMeta(),
+            'party' => $this->party(),
             'assignments' => $this->assignments(),
             'thumbnail' => $this->thumbnail(),
         ];
@@ -78,6 +78,32 @@ class Person extends Composer
         }
 
         return Post::find($personId);
+    }
+
+    /**
+     * Get the party associated with this person.
+     */
+    public function party()
+    {
+        $person = $this->person();
+        
+        if (!$person) {
+            return null;
+        }
+
+        $partyId = $person->getMeta('person_party');
+        
+        if (!$partyId) {
+            return null;
+        }
+
+        $party = Post::find($partyId);
+        
+        if (!$party || $party->post_type !== 'party') {
+            return null;
+        }
+
+        return $party;
     }
 
     /**

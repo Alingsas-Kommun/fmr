@@ -21,7 +21,6 @@ class Whitelabel
          * Enqueue custom login assets
          */
         add_action('login_enqueue_scripts', [$this, 'enqueueAdminAssets'], 0);
-        add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets'], 0);
 
         // Set the color profile to only use the custom one
         add_action('user_edit_form_tag', [$this, 'removeSchemePicker']);
@@ -83,30 +82,5 @@ class Whitelabel
 
         $style = Vite::asset('resources/css/admin.scss');
         wp_enqueue_style('admin-css', $style, false, '');
-
-        $script = Vite::asset('resources/js/admin.js');
-        wp_enqueue_script('admin-js', $script, false, '');
-
-        wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
-
-        // Add the noConflict wrapper to avoid conflicts with WP Underscore library
-        wp_add_inline_script(
-            'alpine-safe',
-            <<<JS
-            (function() {
-                var old_ = window._; // save WP's Underscore
-                delete window._;     // remove temporarily
-
-                // Start Alpine after load
-                document.addEventListener('alpine:init', function() {
-                    if (old_) window._ = old_; // restore Underscore
-                });
-
-                if (window.Alpine) {
-                    window.Alpine.start();
-                }
-            })();
-            JS
-        );
     }
 }

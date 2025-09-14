@@ -21,7 +21,7 @@ class Assignment extends Model
     protected $fillable = [
         'decision_authority_id',
         'person_id',
-        'role',
+        'role_term_id',
         'period_start',
         'period_end',
     ];
@@ -67,5 +67,21 @@ class Assignment extends Model
     public function person()
     {
         return $this->belongsTo(Post::class, 'person_id', 'ID')->where('post_type', 'person');
+    }
+
+    /**
+     * Get the role term associated with the assignment.
+     */
+    public function roleTerm()
+    {
+        return $this->belongsTo(Term::class, 'role_term_id', 'term_id');
+    }
+
+    /**
+     * Get the role name through the term relationship.
+     */
+    public function getRoleAttribute()
+    {
+        return $this->roleTerm ? $this->roleTerm->name : null;
     }
 }
