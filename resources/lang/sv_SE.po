@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-14T16:43:21+00:00\n"
-"PO-Revision-Date: 2025-09-14 18:43+0200\n"
+"POT-Creation-Date: 2025-09-14T17:32:12+00:00\n"
+"PO-Revision-Date: 2025-09-14 19:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -138,7 +138,7 @@ msgid "Person"
 msgstr "Person"
 
 #: app/Core/Admin/Assignments.php:208
-#: app/Core/RelationHandlers/PersonAssignments.php:44
+#: app/Core/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Role.php:26
 #: resources/views/admin/assignments/edit.blade.php:68
 #: resources/views/assignments/index.blade.php:34
@@ -158,7 +158,7 @@ msgid "Board"
 msgstr "Nämnd/Styrelse"
 
 #: app/Core/Admin/Assignments.php:210
-#: app/Core/RelationHandlers/PersonAssignments.php:35
+#: app/Core/RelationHandlers/PersonAssignments.php:34
 #: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:83
@@ -292,7 +292,7 @@ msgstr "Övrigt"
 
 #: app/Core/FieldGroups/BoardDetails.php:59
 #: app/Core/FieldGroups/PartyDetails.php:51 app/Core/PostTypes/Boards.php:101
-#: app/Core/PostTypes/Parties.php:103
+#: app/Core/PostTypes/Parties.php:110
 msgid "Shortening"
 msgstr "Förkortning"
 
@@ -355,7 +355,7 @@ msgstr "Partiuppgifter"
 msgid "Description"
 msgstr "Beskrivning"
 
-#: app/Core/FieldGroups/PartyDetails.php:61 app/Core/PostTypes/Parties.php:108
+#: app/Core/FieldGroups/PartyDetails.php:61 app/Core/PostTypes/Parties.php:115
 #: resources/views/partials/content-single-party.blade.php:96
 msgid "Group Leader, City Council"
 msgstr "Gruppledare, kommunfullmäktige"
@@ -392,7 +392,7 @@ msgstr "Personnummer"
 msgid "Politics Information"
 msgstr "Politikinformation"
 
-#: app/Core/FieldGroups/PersonDetails.php:86 app/Core/PostTypes/Parties.php:30
+#: app/Core/FieldGroups/PersonDetails.php:86 app/Core/PostTypes/Parties.php:33
 #: app/Core/PostTypes/Persons.php:103
 msgid "Party"
 msgstr "Parti"
@@ -403,6 +403,7 @@ msgstr "Totalt antal kilometer"
 
 #: app/Core/FieldGroups/PersonDetails.php:106
 #: app/Core/PostTypes/Persons.php:163
+#: resources/views/admin/parties/party-members.blade.php:27
 msgid "Active"
 msgstr "Aktiv"
 
@@ -488,7 +489,7 @@ msgctxt "Add New on Toolbar"
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
-#: app/Core/PostTypes/Boards.php:51 app/Core/PostTypes/Parties.php:53
+#: app/Core/PostTypes/Boards.php:51 app/Core/PostTypes/Parties.php:60
 #: app/Core/PostTypes/Persons.php:53
 msgid "Add new"
 msgstr "Lägg till ny"
@@ -533,69 +534,73 @@ msgstr "Inga nämnder/styrelser hittades i papperskorgen."
 msgid "boards"
 msgstr "namnd-styrelse"
 
-#: app/Core/PostTypes/Parties.php:31
+#: app/Core/PostTypes/Parties.php:34
 msgid "Parties"
 msgstr "Partier"
 
-#: app/Core/PostTypes/Parties.php:49
+#: app/Core/PostTypes/Parties.php:56
 msgctxt "Post type general name"
 msgid "Parties"
 msgstr "Partier"
 
-#: app/Core/PostTypes/Parties.php:50
+#: app/Core/PostTypes/Parties.php:57
 msgctxt "Post type singular name"
 msgid "Party"
 msgstr "Parti"
 
-#: app/Core/PostTypes/Parties.php:51
+#: app/Core/PostTypes/Parties.php:58
 msgctxt "Admin Menu text"
 msgid "Parties"
 msgstr "Partier"
 
-#: app/Core/PostTypes/Parties.php:52
+#: app/Core/PostTypes/Parties.php:59
 msgctxt "Add New on Toolbar"
 msgid "Party"
 msgstr "Parti"
 
-#: app/Core/PostTypes/Parties.php:54
+#: app/Core/PostTypes/Parties.php:61
 msgid "Add new party"
 msgstr "Lägg till nytt parti"
 
-#: app/Core/PostTypes/Parties.php:55
+#: app/Core/PostTypes/Parties.php:62
 msgid "New party"
 msgstr "Nytt parti"
 
-#: app/Core/PostTypes/Parties.php:56
+#: app/Core/PostTypes/Parties.php:63
 msgid "Edit party"
 msgstr "Redigera parti"
 
-#: app/Core/PostTypes/Parties.php:57
+#: app/Core/PostTypes/Parties.php:64
 msgid "View party"
 msgstr "Visa parti"
 
-#: app/Core/PostTypes/Parties.php:58
+#: app/Core/PostTypes/Parties.php:65
 msgid "All parties"
 msgstr "Alla partier"
 
-#: app/Core/PostTypes/Parties.php:59
+#: app/Core/PostTypes/Parties.php:66
 msgid "Search parties"
 msgstr "Sök partier"
 
-#: app/Core/PostTypes/Parties.php:60
+#: app/Core/PostTypes/Parties.php:67
 msgid "Parent parties:"
 msgstr "Överordnat parti:"
 
-#: app/Core/PostTypes/Parties.php:61
+#: app/Core/PostTypes/Parties.php:68
 msgid "No parties found."
 msgstr "Inga partier hittades."
 
-#: app/Core/PostTypes/Parties.php:62
+#: app/Core/PostTypes/Parties.php:69
 msgid "No parties found in Trash."
 msgstr "Inga partier hittades i papperskorgen."
 
-#: app/Core/PostTypes/Parties.php:78
+#: app/Core/PostTypes/Parties.php:85
 msgid "parties"
 msgstr "partier"
+
+#: app/Core/PostTypes/Parties.php:162
+msgid "Party Members"
+msgstr "Partimedlemmar"
 
 #: app/Core/PostTypes/Persons.php:31
 msgid "Persons"
@@ -679,6 +684,7 @@ msgid "Status"
 msgstr "Status"
 
 #: app/Core/PostTypes/Persons.php:163
+#: resources/views/admin/parties/party-members.blade.php:67
 msgid "Inactive"
 msgstr "Inaktiv"
 
@@ -691,14 +697,14 @@ msgid "decision authorities"
 msgstr "beslutsinstanser"
 
 #: app/Core/RelationHandlers/BoardDecisionAuthorities.php:50
-#: app/Core/RelationHandlers/PersonAssignments.php:52
+#: app/Core/RelationHandlers/PersonAssignments.php:51
 #: resources/views/admin/assignments/edit.blade.php:87
 #: resources/views/admin/decision-authorities/edit.blade.php:70
 msgid "Start Date"
 msgstr "Startdatum"
 
 #: app/Core/RelationHandlers/BoardDecisionAuthorities.php:57
-#: app/Core/RelationHandlers/PersonAssignments.php:59
+#: app/Core/RelationHandlers/PersonAssignments.php:58
 #: resources/views/admin/assignments/edit.blade.php:100
 #: resources/views/admin/decision-authorities/edit.blade.php:84
 msgid "End Date"
@@ -712,7 +718,7 @@ msgstr "uppdrag"
 msgid "assignments"
 msgstr "uppdrag"
 
-#: app/Core/RelationHandlers/PersonAssignments.php:104
+#: app/Core/RelationHandlers/PersonAssignments.php:103
 msgid "ongoing"
 msgstr "pågående"
 
@@ -844,6 +850,22 @@ msgstr "Valfritt"
 #, php-format
 msgid "Select %s"
 msgstr "Välj %s"
+
+#: resources/views/admin/parties/party-members.blade.php:5
+#: resources/views/admin/party-members.blade.php:3
+msgid "Active Members"
+msgstr "Aktiva medlemmar"
+
+#: resources/views/admin/parties/party-members.blade.php:43
+#: resources/views/admin/party-members.blade.php:18
+msgid "Inactive Members"
+msgstr "Inaktiva medlemmar"
+
+#: resources/views/admin/parties/party-members.blade.php:82
+#: resources/views/admin/party-members.blade.php:33
+#: resources/views/partials/content-single-party.blade.php:145
+msgid "No members found for this party."
+msgstr "Inga medlemmar hittades för detta partiet."
 
 #: resources/views/admin/relation-handler/list.blade.php:6
 msgid "Cancel"
@@ -1007,10 +1029,6 @@ msgstr "Besöksadress"
 #: resources/views/partials/content-single-party.blade.php:107
 msgid "Members"
 msgstr "Medlemmar"
-
-#: resources/views/partials/content-single-party.blade.php:145
-msgid "No members found for this party."
-msgstr "Inga medlemmar hittades för detta partiet."
 
 #: resources/views/partials/content-single-person.blade.php:68
 msgid "Birth Date"

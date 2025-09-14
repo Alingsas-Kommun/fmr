@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-14T16:43:21+00:00\n"
+"POT-Creation-Date: 2025-09-14T17:32:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -138,7 +138,7 @@ msgid "Person"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:208
-#: app/Core/RelationHandlers/PersonAssignments.php:44
+#: app/Core/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Role.php:26
 #: resources/views/admin/assignments/edit.blade.php:68
 #: resources/views/assignments/index.blade.php:34
@@ -159,7 +159,7 @@ msgid "Board"
 msgstr ""
 
 #: app/Core/Admin/Assignments.php:210
-#: app/Core/RelationHandlers/PersonAssignments.php:35
+#: app/Core/RelationHandlers/PersonAssignments.php:34
 #: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:83
@@ -295,7 +295,7 @@ msgstr ""
 #: app/Core/FieldGroups/BoardDetails.php:59
 #: app/Core/FieldGroups/PartyDetails.php:51
 #: app/Core/PostTypes/Boards.php:101
-#: app/Core/PostTypes/Parties.php:103
+#: app/Core/PostTypes/Parties.php:110
 msgid "Shortening"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgid "Description"
 msgstr ""
 
 #: app/Core/FieldGroups/PartyDetails.php:61
-#: app/Core/PostTypes/Parties.php:108
+#: app/Core/PostTypes/Parties.php:115
 #: resources/views/partials/content-single-party.blade.php:96
 msgid "Group Leader, City Council"
 msgstr ""
@@ -397,7 +397,7 @@ msgid "Politics Information"
 msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:86
-#: app/Core/PostTypes/Parties.php:30
+#: app/Core/PostTypes/Parties.php:33
 #: app/Core/PostTypes/Persons.php:103
 msgid "Party"
 msgstr ""
@@ -408,6 +408,7 @@ msgstr ""
 
 #: app/Core/FieldGroups/PersonDetails.php:106
 #: app/Core/PostTypes/Persons.php:163
+#: resources/views/admin/parties/party-members.blade.php:27
 msgid "Active"
 msgstr ""
 
@@ -494,7 +495,7 @@ msgid "Board"
 msgstr ""
 
 #: app/Core/PostTypes/Boards.php:51
-#: app/Core/PostTypes/Parties.php:53
+#: app/Core/PostTypes/Parties.php:60
 #: app/Core/PostTypes/Persons.php:53
 msgid "Add new"
 msgstr ""
@@ -539,68 +540,72 @@ msgstr ""
 msgid "boards"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:31
+#: app/Core/PostTypes/Parties.php:34
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:49
+#: app/Core/PostTypes/Parties.php:56
 msgctxt "Post type general name"
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:50
+#: app/Core/PostTypes/Parties.php:57
 msgctxt "Post type singular name"
 msgid "Party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:51
+#: app/Core/PostTypes/Parties.php:58
 msgctxt "Admin Menu text"
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:52
+#: app/Core/PostTypes/Parties.php:59
 msgctxt "Add New on Toolbar"
 msgid "Party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:54
+#: app/Core/PostTypes/Parties.php:61
 msgid "Add new party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:55
+#: app/Core/PostTypes/Parties.php:62
 msgid "New party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:56
+#: app/Core/PostTypes/Parties.php:63
 msgid "Edit party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:57
+#: app/Core/PostTypes/Parties.php:64
 msgid "View party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:58
+#: app/Core/PostTypes/Parties.php:65
 msgid "All parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:59
+#: app/Core/PostTypes/Parties.php:66
 msgid "Search parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:60
+#: app/Core/PostTypes/Parties.php:67
 msgid "Parent parties:"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:61
+#: app/Core/PostTypes/Parties.php:68
 msgid "No parties found."
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:62
+#: app/Core/PostTypes/Parties.php:69
 msgid "No parties found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:78
+#: app/Core/PostTypes/Parties.php:85
 msgid "parties"
+msgstr ""
+
+#: app/Core/PostTypes/Parties.php:162
+msgid "Party Members"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:31
@@ -685,6 +690,7 @@ msgid "Status"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:163
+#: resources/views/admin/parties/party-members.blade.php:67
 msgid "Inactive"
 msgstr ""
 
@@ -697,14 +703,14 @@ msgid "decision authorities"
 msgstr ""
 
 #: app/Core/RelationHandlers/BoardDecisionAuthorities.php:50
-#: app/Core/RelationHandlers/PersonAssignments.php:52
+#: app/Core/RelationHandlers/PersonAssignments.php:51
 #: resources/views/admin/assignments/edit.blade.php:87
 #: resources/views/admin/decision-authorities/edit.blade.php:70
 msgid "Start Date"
 msgstr ""
 
 #: app/Core/RelationHandlers/BoardDecisionAuthorities.php:57
-#: app/Core/RelationHandlers/PersonAssignments.php:59
+#: app/Core/RelationHandlers/PersonAssignments.php:58
 #: resources/views/admin/assignments/edit.blade.php:100
 #: resources/views/admin/decision-authorities/edit.blade.php:84
 msgid "End Date"
@@ -718,7 +724,7 @@ msgstr ""
 msgid "assignments"
 msgstr ""
 
-#: app/Core/RelationHandlers/PersonAssignments.php:104
+#: app/Core/RelationHandlers/PersonAssignments.php:103
 msgid "ongoing"
 msgstr ""
 
@@ -849,6 +855,22 @@ msgstr ""
 #: resources/views/admin/relation-handler/form.blade.php:100
 #, php-format
 msgid "Select %s"
+msgstr ""
+
+#: resources/views/admin/parties/party-members.blade.php:5
+#: resources/views/admin/party-members.blade.php:3
+msgid "Active Members"
+msgstr ""
+
+#: resources/views/admin/parties/party-members.blade.php:43
+#: resources/views/admin/party-members.blade.php:18
+msgid "Inactive Members"
+msgstr ""
+
+#: resources/views/admin/parties/party-members.blade.php:82
+#: resources/views/admin/party-members.blade.php:33
+#: resources/views/partials/content-single-party.blade.php:145
+msgid "No members found for this party."
 msgstr ""
 
 #: resources/views/admin/relation-handler/list.blade.php:6
@@ -1011,10 +1033,6 @@ msgstr ""
 
 #: resources/views/partials/content-single-party.blade.php:107
 msgid "Members"
-msgstr ""
-
-#: resources/views/partials/content-single-party.blade.php:145
-msgid "No members found for this party."
 msgstr ""
 
 #: resources/views/partials/content-single-person.blade.php:68

@@ -1,0 +1,183 @@
+.party-members-meta-box {
+    padding-top: 0.5rem;
+
+    .party-members-section {
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .party-members-section-title {
+        margin: 0 0 0.75rem 0;
+        font-size: 1.1em;
+        color: #1d2327;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .party-members-count {
+            font-weight: normal;
+            color: #646970;
+            font-size: 0.9em;
+        }
+    }
+
+    .party-members-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .party-member-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        transition: all 0.2s ease;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:hover {
+            background: #f0f0f0;
+            border-color: #d0d0d0;
+        }
+    }
+
+    .party-member-content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .party-member-thumbnail {
+        flex-shrink: 0;
+    }
+
+    .party-member-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #e0e0e0;
+    }
+
+    .party-member-avatar-placeholder {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2271b1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #e0e0e0;
+
+        .party-member-initials {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+    }
+
+    .party-member-info {
+        display: flex;
+        gap: 0.5rem;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .party-member-name {
+        font-weight: 500;
+        color: #1d2327;
+        font-size: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .party-member-status {
+        font-size: 0.8em;
+        font-weight: 500;
+        padding: 0.125rem 0.5rem;
+        border-radius: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+
+        &.active {
+            background-color: #edf7ed;
+            border: 1px solid #00a32a;
+            color: #00a32a;
+        }
+
+        &.inactive {
+            background-color: #fee3d8;
+            border: 1px solid #f0551d;
+            color: #922d08;
+        }
+    }
+
+    .party-member-actions {
+        flex-shrink: 0;
+        margin-left: 0.5rem;
+    }
+
+    .party-member-edit-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        color: #646970;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+
+        &:hover {
+            color: #2271b1;
+            background: #f0f6fc;
+            border-color: #c3d4e6;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .party-members-empty {
+        text-align: center;
+        padding: 2rem 1rem;
+
+        .description {
+            color: #646970;
+            font-style: italic;
+            margin: 0;
+            font-size: 0.9em;
+        }
+    }
+
+    // Legacy support for old structure
+    h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1em;
+        color: #1d2327;
+    }
+
+    .description {
+        color: #646970;
+        font-style: italic;
+        margin: 0;
+        font-size: 0.9em;
+    }
+}

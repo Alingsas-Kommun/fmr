@@ -29,7 +29,6 @@ class Person extends Composer
         'person_birth_date',
         'person_ssn',
         'person_kilometers',
-        'person_active',
         'person_group_leader',
         'person_listing',
         'person_home_visiting_address',

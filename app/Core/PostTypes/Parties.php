@@ -3,6 +3,9 @@
 namespace App\Core\PostTypes;
 
 use function App\Core\{arraySpliceAssoc};
+use App\Models\Post;
+
+use function Roots\view;
 
 class Parties
 {
@@ -33,9 +36,13 @@ class Parties
 
         self::register();
 
+        // Manage columns
         add_filter('manage_' . self::$base . '_posts_columns', [__CLASS__, 'addColumns']);
         add_action('manage_' . self::$base . '_posts_custom_column', [__CLASS__, 'addColumnData'], 10, 2);
         add_action('admin_head', [__CLASS__, 'partyImageColumnWidth']);
+        
+        // Add members meta box
+        add_action('add_meta_boxes', [__CLASS__, 'addMembersMetaBox']);
     }
 
     /**
@@ -146,5 +153,71 @@ class Parties
         echo '<style type="text/css">';
         echo 'td.party-image, td.party-image img, th#party-image { max-width: 50px !important; width: 50px !important; height: auto !important; }';
         echo '</style>';
+    }
+
+    public static function addMembersMetaBox()
+    {
+        add_meta_box(
+            'party_members',
+            __('Party Members', 'fmr'),
+            [__CLASS__, 'renderMembersMetaBox'],
+            self::$base,
+            'normal',
+            'low'
+        );
+    }
+
+    public static function renderMembersMetaBox($post)
+    {
+        $active_members = self::getActiveMembers($post->ID);
+        $inactive_members = self::getInactiveMembers($post->ID);
+        
+        echo view('admin.parties.party-members', [
+            'active_members' => $active_members,
+            'inactive_members' => $inactive_members
+        ])->render();
+    }
+
+    public static function getActiveMembers($party_id)
+    {
+        return self::getPartyMembers($party_id, true);
+    }
+
+    public static function getInactiveMembers($party_id)
+    {
+        return self::getPartyMembers($party_id, false);
+    }
+
+    /**
+     * Get party members with optional active assignment filter
+     *
+     * @param int $party_id
+     * @param bool $has_active_assignments
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    private static function getPartyMembers($party_id, $has_active_assignments = true)
+    {
+        $now = now();
+        
+        $query = Post::where('post_type', 'person')
+            ->where('post_status', 'publish')
+            ->whereHas('meta', function($query) use ($party_id) {
+                $query->where('meta_key', 'person_party')
+                      ->where('meta_value', $party_id);
+            });
+
+        if ($has_active_assignments) {
+            $query->whereHas('personAssignments', function($query) use ($now) {
+                $query->where('period_start', '<=', $now)
+                      ->where('period_end', '>=', $now);
+            });
+        } else {
+            $query->whereDoesntHave('personAssignments', function($query) use ($now) {
+                $query->where('period_start', '<=', $now)
+                      ->where('period_end', '>=', $now);
+            });
+        }
+
+        return $query->orderBy('post_title')->get();
     }
 }

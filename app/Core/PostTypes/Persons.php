@@ -2,6 +2,8 @@
 
 namespace App\Core\PostTypes;
 
+use App\Http\Controllers\Admin\PersonController;
+
 use function App\Core\{arraySpliceAssoc};
 
 class Persons
@@ -159,7 +161,8 @@ class Persons
 
                 break;
             case 'person-status':
-                $status = get_meta_field($post_id, 'person_active');
+                $personController = new PersonController();
+                $status = $personController->isActive($post_id);
                 echo $status ? __('Active', 'fmr') : __('Inactive', 'fmr');
 
                 break;

@@ -17,4 +17,23 @@ class PersonController
             ->orderBy('post_title')
             ->get();
     }
+
+    /**
+     * Check if a person has active assignments and is active.
+     *
+     * @param int $person_id
+     * @return bool
+     */
+    public function isActive($person_id)
+    {
+        $now = now();
+        
+        return Post::where('ID', $person_id)
+            ->where('post_type', 'person')
+            ->whereHas('personAssignments', function($query) use ($now) {
+                $query->where('period_start', '<=', $now)
+                      ->where('period_end', '>=', $now);
+            })
+            ->exists();
+    }
 }
