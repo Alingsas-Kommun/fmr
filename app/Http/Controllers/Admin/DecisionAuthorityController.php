@@ -170,7 +170,9 @@ class DecisionAuthorityController
                     ->orWhere('type', 'like', '%' . $search . '%')
                     ->orWhereHas('board', function($q) use ($search) {
                         $q->where('post_title', 'like', '%' . $search . '%');
-                    });
+                    })
+                    ->orWhere('start_date', 'like', '%' . $search . '%')
+                    ->orWhere('end_date', 'like', '%' . $search . '%');
             });
         }
 

@@ -173,9 +173,16 @@ class AssignmentController
                 ->orWhereHas('board', function($q) use ($search) {
                     $q->where('post_title', 'like', '%' . $search . '%');
                 })
+                ->orWhereHas('decisionAuthority', function($q) use ($search) {
+                    $q->where('title', 'like', '%' . $search . '%');
+                    // $q->orWhere('start_date', 'like', '%' . $search . '%');
+                    // $q->orWhere('end_date', 'like', '%' . $search . '%');
+                })
                 ->orWhereHas('roleTerm', function($q) use ($search) {
                     $q->where('name', 'like', '%' . $search . '%');
-                });
+                })
+                ->orWhere('period_start', 'like', '%' . $search . '%')
+                ->orWhere('period_end', 'like', '%' . $search . '%');
             });
         }
 
