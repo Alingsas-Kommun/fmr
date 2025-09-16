@@ -18,34 +18,25 @@ class Init
             return;
         }
 
-        if (class_exists('App\\Core\\Admin\\Assignments\\Index')) {
-            add_action('admin_menu', function () {
-                AssignmentsIndex::register();
-            });
-        }
+        add_action('admin_menu', function () {
+            AssignmentsIndex::register();
+            DecisionAuthoritiesIndex::register();
+        });
 
-        if (class_exists('App\\Core\\Admin\\Assignments\\Edit')) {
+        add_action('init', function () {
             new AssignmentsEdit();
-        }
-
-        if (class_exists('App\\Core\\Admin\\DecisionAuthorities\\Index')) {
-            add_action('admin_menu', function () {
-                DecisionAuthoritiesIndex::register();
-            });
-        }
-
-        if (class_exists('App\\Core\\Admin\\DecisionAuthorities\\Edit')) {
             new DecisionAuthoritiesEdit();
-        }
+        });
 
-        if (class_exists('App\\Core\\Admin\\Whitelabel')) {
-            new Whitelabel();
-        }
+        /**
+         * Initialize whitelabel
+         */
+        new Whitelabel();
 
         /**
          * Initialize admin cleanup
          */
-        new cleanup();
+        new Cleanup();
 
         /**
          * Load field groups
