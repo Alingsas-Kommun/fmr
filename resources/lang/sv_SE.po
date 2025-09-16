@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-16T19:08:28+00:00\n"
-"PO-Revision-Date: 2025-09-16 21:09+0200\n"
+"POT-Creation-Date: 2025-09-16T20:58:54+00:00\n"
+"PO-Revision-Date: 2025-09-16 22:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -72,62 +72,60 @@ msgstr "Admin-initklassen saknas"
 msgid "App &rsaquo; Error"
 msgstr "Appfel"
 
-#: app/Core/Admin/Abstracts/EditPage.php:118
+#: app/Core/Admin/Abstracts/EditPage.php:123
 msgid "Create"
 msgstr "Skapa"
 
-#: app/Core/Admin/Abstracts/EditPage.php:119
+#: app/Core/Admin/Abstracts/EditPage.php:124
 msgid "Update"
 msgstr "Uppdatera"
 
-#: app/Core/Admin/Abstracts/EditPage.php:177
+#: app/Core/Admin/Abstracts/EditPage.php:182
 msgid "Publish"
 msgstr "Publicera"
 
-#: app/Core/Admin/Abstracts/EditPage.php:301
+#: app/Core/Admin/Abstracts/EditPage.php:307
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Du har inte tillräcklig behörighet för att komma åt den här sidan."
 
-#: app/Core/Admin/Abstracts/EditPage.php:305
+#: app/Core/Admin/Abstracts/EditPage.php:311
 msgid "Security check failed."
 msgstr "Säkerhetskontrollen misslyckades."
 
-#: app/Core/Admin/Abstracts/EditPage.php:320
+#: app/Core/Admin/Abstracts/EditPage.php:326
 msgid "Failed to save the object."
 msgstr "Det gick inte att spara objektet."
 
 #: app/Core/Admin/Assignments/Edit.php:27
 #: app/Core/Admin/Assignments/Edit.php:29
-#: app/Core/Admin/Assignments/Edit.php:31
-#: resources/views/admin/assignments/edit.blade.php:3
+#: app/Core/Admin/Assignments/Edit.php:32
 #: resources/views/admin/assignments/index.blade.php:3
 msgid "Add new assignment"
 msgstr "Lägg till nytt uppdrag"
 
-#: app/Core/Admin/Assignments/Edit.php:30
+#: app/Core/Admin/Assignments/Edit.php:31
 msgid "Edit assignment"
 msgstr "Redigera uppdrag"
 
-#: app/Core/Admin/Assignments/Edit.php:45
-#: resources/views/admin/assignments/edit.blade.php:115
+#: app/Core/Admin/Assignments/Edit.php:46
 msgid "Create Assignment"
 msgstr "Skapa uppdrag"
 
-#: app/Core/Admin/Assignments/Edit.php:46
-#: resources/views/admin/assignments/edit.blade.php:115
+#: app/Core/Admin/Assignments/Edit.php:47
 msgid "Update Assignment"
 msgstr "Uppdatera uppdrag"
 
-#: app/Core/Admin/Assignments/Edit.php:94
+#: app/Core/Admin/Assignments/Edit.php:95
 msgid "Assignment created successfully."
 msgstr "Uppgiften har skapats."
 
-#: app/Core/Admin/Assignments/Edit.php:102
+#: app/Core/Admin/Assignments/Edit.php:103
 msgid "Assignment updated successfully."
 msgstr "Uppgiften har uppdaterats."
 
 #: app/Core/Admin/Assignments/Index.php:64
 #: app/Core/Admin/Assignments/Index.php:65
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:19
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
@@ -169,17 +167,18 @@ msgstr "Historiska"
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/Assignments/Index.php:207 app/Core/PostTypes/Persons.php:32
-#: resources/views/admin/assignments/edit.blade.php:20
+#: app/Core/Admin/Assignments/Index.php:207
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:32
+#: app/Core/PostTypes/Persons.php:32
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:7
 #: resources/views/assignments/index.blade.php:33
 msgid "Person"
 msgstr "Person"
 
 #: app/Core/Admin/Assignments/Index.php:208
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:41
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Role.php:26
-#: resources/views/admin/assignments/edit.blade.php:68
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:25
 #: resources/views/assignments/index.blade.php:34
 #: resources/views/decision-authorities/show.blade.php:66
@@ -200,7 +199,6 @@ msgstr "Nämnd/Styrelse"
 
 #: app/Core/Admin/Assignments/Index.php:210
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:34
-#: resources/views/admin/assignments/edit.blade.php:39
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:49
 #: resources/views/assignments/index.blade.php:32
 #: resources/views/assignments/show.blade.php:83
@@ -237,29 +235,29 @@ msgstr "Detaljer"
 msgid "Images"
 msgstr "Bilder"
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:30
-#: app/Core/Admin/DecisionAuthorities/Edit.php:32
+#: app/Core/Admin/DecisionAuthorities/Edit.php:31
 #: app/Core/Admin/DecisionAuthorities/Edit.php:34
+#: app/Core/Admin/DecisionAuthorities/Edit.php:36
 msgid "Add new decision authority"
 msgstr "Lägg till beslutsinstans"
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:33
+#: app/Core/Admin/DecisionAuthorities/Edit.php:35
 msgid "Edit decision authority"
 msgstr "Redigera beslutsinstans"
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:47
+#: app/Core/Admin/DecisionAuthorities/Edit.php:50
 msgid "Create Decision Authority"
 msgstr "Skapa beslutsinstans"
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:48
+#: app/Core/Admin/DecisionAuthorities/Edit.php:51
 msgid "Update Decision Authority"
 msgstr "Uppdatera beslutsinstans"
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:96
+#: app/Core/Admin/DecisionAuthorities/Edit.php:100
 msgid "Decision authority created successfully."
 msgstr "Beslutsinstansen har skapats framgångsrikt."
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:104
+#: app/Core/Admin/DecisionAuthorities/Edit.php:108
 msgid "Decision authority updated successfully."
 msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 
@@ -297,6 +295,42 @@ msgstr "Titel"
 #: resources/views/partials/post-types/content-single-board.blade.php:125
 msgid "Type"
 msgstr "Typ"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:26
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:27
+msgid "assignment"
+msgstr "uppdrag"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:27
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:28
+msgid "assignments"
+msgstr "uppdrag"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:49
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:50
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
+#: resources/views/admin/assignments/meta-boxes/details.blade.php:82
+#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:48
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:56
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:57
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
+#: resources/views/admin/assignments/meta-boxes/details.blade.php:90
+#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:63
+msgid "End Date"
+msgstr "Slutdatum"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:118
+#: resources/views/admin/assignments/meta-boxes/details.blade.php:9
+msgid "Select Person"
+msgstr "Välj person"
+
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:133
+#: resources/views/admin/assignments/meta-boxes/details.blade.php:27
+msgid "Select Role"
+msgstr "Välj roll"
 
 #: app/Core/Admin/FieldGroups/BoardDetails.php:14
 msgid "Board Details"
@@ -524,30 +558,6 @@ msgstr "beslutsinstans"
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:24
 msgid "decision authorities"
 msgstr "beslutsinstanser"
-
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:50
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
-#: resources/views/admin/assignments/edit.blade.php:87
-#: resources/views/admin/assignments/meta-boxes/details.blade.php:82
-#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:48
-msgid "Start Date"
-msgstr "Startdatum"
-
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:57
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
-#: resources/views/admin/assignments/edit.blade.php:100
-#: resources/views/admin/assignments/meta-boxes/details.blade.php:97
-#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:63
-msgid "End Date"
-msgstr "Slutdatum"
-
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:27
-msgid "assignment"
-msgstr "uppdrag"
-
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:28
-msgid "assignments"
-msgstr "uppdrag"
 
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:103
 msgid "ongoing"
@@ -853,32 +863,13 @@ msgstr "Tyvärr kunde vi inte hitta sidan du letar efter."
 msgid "Go back home"
 msgstr "Gå tillbaka hem"
 
-#: resources/views/admin/assignments/edit.blade.php:2
-msgid "Edit Assignment"
-msgstr "Redigera uppdrag"
-
-#: resources/views/admin/assignments/edit.blade.php:2
-msgid "Add New Assignment"
-msgstr "Lägg till nytt uppdrag"
-
-#: resources/views/admin/assignments/edit.blade.php:24
-#: resources/views/admin/assignments/meta-boxes/details.blade.php:9
-msgid "Select Person"
-msgstr "Välj person"
-
-#: resources/views/admin/assignments/edit.blade.php:43
-#: resources/views/admin/assignments/meta-boxes/details.blade.php:51
-msgid "Select Decision Authority"
-msgstr "Välj beslutsinstans"
-
-#: resources/views/admin/assignments/edit.blade.php:72
-#: resources/views/admin/assignments/meta-boxes/details.blade.php:27
-msgid "Select Role"
-msgstr "Välj roll"
-
 #: resources/views/admin/assignments/index.blade.php:10
 msgid "Search Assignments"
 msgstr "Sök uppdrag"
+
+#: resources/views/admin/assignments/meta-boxes/details.blade.php:51
+msgid "Select Decision Authority"
+msgstr "Välj beslutsinstans"
 
 #: resources/views/admin/decision-authorities/index.blade.php:3
 msgid "Add New Decision Authority"
@@ -899,6 +890,10 @@ msgstr "Välj typ"
 #: resources/views/admin/edit-page.blade.php:36
 msgid "Enter title..."
 msgstr "Ange en rubrik…"
+
+#: resources/views/admin/edit-page.blade.php:47
+msgid "Permalink:"
+msgstr "Permalänk:"
 
 #: resources/views/admin/field-groups/field.blade.php:7
 #: resources/views/admin/relation-handler/form.blade.php:20
@@ -1110,6 +1105,12 @@ msgstr "Visa ytterligare information"
 #: resources/views/partials/post-types/content-single-person.blade.php:387
 msgid "No assignments found."
 msgstr "Inga uppdrag hittades."
+
+#~ msgid "Edit Assignment"
+#~ msgstr "Redigera uppdrag"
+
+#~ msgid "Add New Assignment"
+#~ msgstr "Lägg till nytt uppdrag"
 
 #, fuzzy
 #~| msgid "Add %s"

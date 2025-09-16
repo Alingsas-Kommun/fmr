@@ -35,6 +35,7 @@ class BoardDecisionAuthorities extends RelationHandler
                     'key' => 'type',
                     'type' => 'select',
                     'label' => __('Type', 'fmr'),
+                    'relation_field' => 'type',
                     'options' => [
                         'Nämnd' => 'Nämnd', 
                         'Styrelse' => 'Styrelse', 
