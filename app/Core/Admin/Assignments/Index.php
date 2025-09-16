@@ -78,6 +78,9 @@ class Index extends \WP_List_Table
             'edit-tags.php?taxonomy=role',
             null
         );
+
+        // Hook into admin actions
+        add_action('admin_action_delete_assignment', [self::$instance, 'handle_delete_assignment']);
     }
 
     /**
@@ -86,7 +89,6 @@ class Index extends \WP_List_Table
      * @return void
      */
     public function render_page()
-    {
         $this->process_bulk_action();
 
         settings_errors('bulk_action');
@@ -94,6 +96,54 @@ class Index extends \WP_List_Table
         set_current_screen('assignments');
 
         echo view('admin.assignments.index', ['list' => $this])->render();
+    }
+
+    /**
+     * Handle single assignment deletion via admin action.
+     *
+     * @return void
+     */
+    public function handle_delete_assignment()
+    {
+        if (!isset($_REQUEST['assignment_id']) || !isset($_REQUEST['_wpnonce'])) {
+            wp_die(__('Invalid request.', 'fmr'));
+        }
+
+        $assignment_id = intval($_REQUEST['assignment_id']);
+        $nonce = $_REQUEST['_wpnonce'];
+
+        if (!wp_verify_nonce($nonce, 'delete_assignment_' . $assignment_id)) {
+            wp_die(__('Security check failed. Please try again.', 'fmr'));
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have permission to perform this action.', 'fmr'));
+        }
+
+        if ($this->controller->destroy($assignment_id)) {
+            add_settings_error(
+                'bulk_action',
+                'assignment_deleted',
+                __('Assignment was deleted successfully.', 'fmr'),
+                'updated'
+            );
+        } else {
+            add_settings_error(
+                'bulk_action',
+                'assignment_delete_failed',
+                __('Failed to delete assignment.', 'fmr'),
+                'error'
+            );
+        }
+
+        // Get the referer URL and redirect
+        $redirect_url = wp_get_referer();
+        if (!$redirect_url) {
+            $redirect_url = admin_url('admin.php?page=assignments');
+        }
+
+        wp_redirect($redirect_url);
+        exit;
     }
 
     /**
@@ -208,8 +258,7 @@ class Index extends \WP_List_Table
             'role'                  => __('Role', 'fmr'),
             'board'                 => __('Board', 'fmr'),
             'decision_authority'    => __('Decision Authority', 'fmr'),
-            'period'                => __('Period', 'fmr'),
-            'edit'                  => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
+            'period'                => __('Period', 'fmr')
         ];
     }
 
@@ -248,31 +297,14 @@ class Index extends \WP_List_Table
     {
         if ($which === 'top') {
             echo '<style>
-                .wp-list-table .column-edit { 
-                    width: 65px;
-                    text-align: right;
+                .wp-list-table .row-actions {
+                    visibility: hidden;
+                }
+                .wp-list-table tr:hover .row-actions {
+                    visibility: visible;
                 }
             </style>';
         }
-    }
-
-    /**
-     * Render the edit column.
-     *
-     * @param object $item The current assignment item.
-     * @return string The column output.
-     */
-    public function column_edit($item)
-    {
-        $edit_link = add_query_arg(
-            ['page' => 'assignment_edit', 'id' => $item->id],
-            admin_url('admin.php')
-        );
-
-        return sprintf(
-            '<a href="%s" class="button button-small" style="padding: 0 6px;"><span class="dashicons dashicons-edit" style="margin: 3px 0;"></span></a>',
-            esc_url($edit_link)
-        );
     }
 
     /**
@@ -304,10 +336,36 @@ class Index extends \WP_List_Table
         $edit_link = get_edit_post_link($item->person->ID);
         $title = esc_html($item->person->post_title);
         
+        $edit_assignment_link = add_query_arg(
+            ['page' => 'assignment_edit', 'id' => $item->id],
+            admin_url('admin.php')
+        );
+
+        $delete_link = wp_nonce_url(
+            add_query_arg([
+                'action' => 'delete_assignment',
+                'assignment_id' => $item->id
+            ], admin_url('admin.php')),
+            'delete_assignment_' . $item->id
+        );
+
+        $row_actions = sprintf(
+            '<div class="row-actions">
+                <span class="edit"><a href="%s">%s</a> | </span>
+                <span class="trash"><a href="%s" onclick="return confirm(\'%s\')">%s</a></span>
+            </div>',
+            esc_url($edit_assignment_link),
+            __('Edit', 'fmr'),
+            esc_url($delete_link),
+            esc_js(__('Are you sure you want to delete this assignment?', 'fmr')),
+            __('Remove', 'fmr')
+        );
+        
         return sprintf(
-            '<a href="%s">%s</a>',
+            '<strong><a href="%s">%s</a></strong>%s',
             esc_url($edit_link),
-            $title
+            $title,
+            $row_actions
         );
     }
 

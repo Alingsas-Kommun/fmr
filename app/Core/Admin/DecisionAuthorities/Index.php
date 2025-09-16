@@ -69,6 +69,9 @@ class Index extends \WP_List_Table
             'dashicons-list-view',
             30
         );
+
+        // Hook into admin actions
+        add_action('admin_action_delete_decision_authority', [self::$instance, 'handle_delete_decision_authority']);
     }
 
     /**
@@ -85,6 +88,54 @@ class Index extends \WP_List_Table
         set_current_screen('decision_authorities');
 
         echo view('admin.decision-authorities.index', ['list' => $this])->render();
+    }
+
+    /**
+     * Handle single decision authority deletion via admin action.
+     *
+     * @return void
+     */
+    public function handle_delete_decision_authority()
+    {
+        if (!isset($_REQUEST['decision_authority_id']) || !isset($_REQUEST['_wpnonce'])) {
+            wp_die(__('Invalid request.', 'fmr'));
+        }
+
+        $authority_id = intval($_REQUEST['decision_authority_id']);
+        $nonce = $_REQUEST['_wpnonce'];
+
+        if (!wp_verify_nonce($nonce, 'delete_decision_authority_' . $authority_id)) {
+            wp_die(__('Security check failed. Please try again.', 'fmr'));
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have permission to perform this action.', 'fmr'));
+        }
+
+        if ($this->controller->destroy($authority_id)) {
+            add_settings_error(
+                'bulk_action',
+                'decision_authority_deleted',
+                __('Decision authority was deleted successfully.', 'fmr'),
+                'updated'
+            );
+        } else {
+            add_settings_error(
+                'bulk_action',
+                'decision_authority_delete_failed',
+                __('Failed to delete decision authority.', 'fmr'),
+                'error'
+            );
+        }
+
+        // Get the referer URL and redirect
+        $redirect_url = wp_get_referer();
+        if (!$redirect_url) {
+            $redirect_url = admin_url('admin.php?page=decision_authorities');
+        }
+
+        wp_redirect($redirect_url);
+        exit;
     }
 
     /**
@@ -198,8 +249,7 @@ class Index extends \WP_List_Table
             'title'         => __('Title', 'fmr'),
             'board'         => __('Board', 'fmr'),
             'type'          => __('Type', 'fmr'),
-            'period'        => __('Period', 'fmr'),
-            'edit'          => '<span class="screen-reader-text">' . __('Actions', 'fmr') . '</span>'
+            'period'        => __('Period', 'fmr')
         ];
     }
 
@@ -237,31 +287,14 @@ class Index extends \WP_List_Table
     {
         if ($which === 'top') {
             echo '<style>
-                .wp-list-table .column-edit { 
-                    width: 65px;
-                    text-align: right;
+                .wp-list-table .row-actions {
+                    visibility: hidden;
+                }
+                .wp-list-table tr:hover .row-actions {
+                    visibility: visible;
                 }
             </style>';
         }
-    }
-
-    /**
-     * Render the edit column.
-     *
-     * @param object $item The current decision authority item.
-     * @return string The column output.
-     */
-    public function column_edit($item)
-    {
-        $edit_link = add_query_arg(
-            ['page' => 'decision_authority_edit', 'id' => $item->id],
-            admin_url('admin.php')
-        );
-
-        return sprintf(
-            '<a href="%s" class="button button-small" style="padding: 0 6px;"><span class="dashicons dashicons-edit" style="margin: 3px 0;"></span></a>',
-            esc_url($edit_link)
-        );
     }
 
     /**
@@ -286,9 +319,35 @@ class Index extends \WP_List_Table
      */
     public function column_title($item)
     {
+        $edit_link = add_query_arg(
+            ['page' => 'decision_authority_edit', 'id' => $item->id],
+            admin_url('admin.php')
+        );
+
+        $delete_link = wp_nonce_url(
+            add_query_arg([
+                'action' => 'delete_decision_authority',
+                'decision_authority_id' => $item->id
+            ], admin_url('admin.php')),
+            'delete_decision_authority_' . $item->id
+        );
+
+        $row_actions = sprintf(
+            '<div class="row-actions">
+                <span class="edit"><a href="%s">%s</a> | </span>
+                <span class="trash"><a href="%s" onclick="return confirm(\'%s\')">%s</a></span>
+            </div>',
+            esc_url($edit_link),
+            __('Edit', 'fmr'),
+            esc_url($delete_link),
+            esc_js(__('Are you sure you want to delete this decision authority?', 'fmr')),
+            __('Remove', 'fmr')
+        );
+
         return sprintf(
-            '<strong>%s</strong>',
-            esc_html($item->title)
+            '<strong>%s</strong>%s',
+            esc_html($item->title),
+            $row_actions
         );
     }
 

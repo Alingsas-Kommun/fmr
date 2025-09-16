@@ -117,33 +117,24 @@ abstract class MetaBox
         // Handle Laravel Eloquent models
         if (is_object($object) && method_exists($object, 'getAttribute')) {
             $value = $object->getAttribute($field);
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log("getFieldValue: Field '{$field}' = " . ($value ?? 'NULL') . " (Eloquent model)");
-            }
+
             return $value ?? $default;
         }
 
         // Handle regular objects
         if (is_object($object) && property_exists($object, $field)) {
             $value = $object->$field;
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log("getFieldValue: Field '{$field}' = " . ($value ?? 'NULL') . " (regular object)");
-            }
+
             return $value;
         }
 
         // Handle arrays
         if (is_array($object) && array_key_exists($field, $object)) {
             $value = $object[$field];
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log("getFieldValue: Field '{$field}' = " . ($value ?? 'NULL') . " (array)");
-            }
+
             return $value;
         }
 
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log("getFieldValue: Field '{$field}' not found, returning default: " . $default);
-        }
         return $default;
     }
 }
