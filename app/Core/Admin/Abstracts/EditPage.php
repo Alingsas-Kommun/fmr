@@ -251,7 +251,7 @@ abstract class EditPage
      * Render the edit screen.
      */
     public function renderEditScreen()
-    {
+    {   
         $id = $_GET['id'] ?? null;
         $this->currentObject = $this->getCurrentObject($id);
 

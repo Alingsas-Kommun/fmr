@@ -4,6 +4,7 @@ namespace App\Core\Admin\DecisionAuthorities;
 
 use App\Core\Admin\Abstracts\EditPage;
 use App\Core\Admin\DecisionAuthorities\MetaBoxes\Details;
+use App\Core\Admin\DecisionAuthorities\MetaBoxes\Assignments;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
 use App\Http\Controllers\Admin\BoardController;
 use Illuminate\Http\Request;
@@ -38,6 +39,7 @@ class Edit extends EditPage
         $this->nonceField = '_wpnonce';
         $this->formAction = 'save_decision_authority';
         $this->redirectPage = 'decision_authority_edit';
+        $this->showTitleField = true;
     }
 
     /**
@@ -55,6 +57,7 @@ class Edit extends EditPage
     protected function registerCustomMetaBoxes()
     {
         new Details($this);
+        new Assignments($this);
     }
 
     /**

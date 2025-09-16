@@ -267,6 +267,9 @@ export function relationHandler(config, existingData = []) {
         getRelationFieldValue(relation) {
             // Find field with relation_field configuration
             const relationField = this.config.fields.find(f => f.relation_field);
+
+            console.log(relationField);
+            console.log(relation);
             
             if (relationField && relation[relationField.relation_field] && relation[relationField.relation_field][relationField.relation_title_key]) {
                 return relation[relationField.relation_field][relationField.relation_title_key];

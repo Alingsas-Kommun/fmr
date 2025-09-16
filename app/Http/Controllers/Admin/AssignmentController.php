@@ -8,6 +8,33 @@ use Illuminate\Http\Request;
 class AssignmentController
 {
     /**
+     * Get all assignments.
+     */
+    public function getAll()
+    {
+        return Assignment::with(['person', 'decisionAuthority', 'roleTerm'])->get();
+    }
+
+    /**
+     * Get assignments for a specific decision authority.
+     */
+    public function getByDecisionAuthority($decision_authority_id)
+    {
+        return Assignment::where('decision_authority_id', $decision_authority_id)
+            ->with(['person', 'roleTerm'])
+            ->orderBy('period_start', 'desc')
+            ->get();
+    }
+
+    /**
+     * Delete all assignments for a decision authority.
+     */
+    public function deleteByDecisionAuthority($decision_authority_id)
+    {
+        return Assignment::where('decision_authority_id', $decision_authority_id)->delete();
+    }
+
+    /**
      * Display the specified assignment.
      *
      * @param int $id
