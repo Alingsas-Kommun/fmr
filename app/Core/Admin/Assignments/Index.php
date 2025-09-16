@@ -89,6 +89,7 @@ class Index extends \WP_List_Table
      * @return void
      */
     public function render_page()
+    {
         $this->process_bulk_action();
 
         settings_errors('bulk_action');
