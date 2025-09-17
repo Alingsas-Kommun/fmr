@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-17T21:33:59+00:00\n"
-"PO-Revision-Date: 2025-09-17 23:35+0200\n"
+"POT-Creation-Date: 2025-09-17T22:42:37+00:00\n"
+"PO-Revision-Date: 2025-09-18 00:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -357,8 +357,8 @@ msgstr "uppdrag"
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:49
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:51
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
-#: app/Http/Controllers/Admin/AnniversaryController.php:85
-#: resources/views/admin/anniversaries/index.blade.php:83
+#: app/Http/Controllers/Admin/AnniversaryController.php:93
+#: resources/views/admin/anniversaries/index.blade.php:78
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:82
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:48
 msgid "Start Date"
@@ -367,8 +367,8 @@ msgstr "Startdatum"
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:56
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:58
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
-#: app/Http/Controllers/Admin/AnniversaryController.php:86
-#: resources/views/admin/anniversaries/index.blade.php:84
+#: app/Http/Controllers/Admin/AnniversaryController.php:94
+#: resources/views/admin/anniversaries/index.blade.php:79
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:90
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:63
 msgid "End Date"
@@ -885,22 +885,22 @@ msgstr "Ny roll"
 msgid "No roles were found"
 msgstr "Inga roller hittades"
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:84
-#: resources/views/admin/anniversaries/index.blade.php:82
+#: app/Http/Controllers/Admin/AnniversaryController.php:92
+#: resources/views/admin/anniversaries/index.blade.php:77
 msgid "Position"
 msgstr "Position"
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:87
+#: app/Http/Controllers/Admin/AnniversaryController.php:95
 msgid "Service Time"
 msgstr "Tjänstgöringstid"
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:103
-#: resources/views/admin/anniversaries/index.blade.php:92
+#: app/Http/Controllers/Admin/AnniversaryController.php:111
+#: resources/views/admin/anniversaries/index.blade.php:87
 msgid "Unknown Role"
 msgstr "Okänd roll"
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:112
-#: resources/views/admin/anniversaries/index.blade.php:102
+#: app/Http/Controllers/Admin/AnniversaryController.php:120
+#: resources/views/admin/anniversaries/index.blade.php:97
 msgid "Result:"
 msgstr "Resultat:"
 
@@ -924,32 +924,6 @@ msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s dag"
 msgstr[1] "%s dagar"
-
-#: app/Services/ExportService.php:338
-msgid "Downloading..."
-msgstr "Laddar ner…"
-
-#: app/Services/ExportService.php:384
-msgid "Downloading File..."
-msgstr ""
-
-#: app/Services/ExportService.php:385
-msgid "Your file download should start automatically."
-msgstr ""
-
-#: app/Services/ExportService.php:387
-msgid ""
-"If the download does not start, <a href=\"javascript:downloadFile()\" "
-"class=\"button\">click here</a>."
-msgstr ""
-
-#: app/Services/ExportService.php:420
-msgid "Download Complete!"
-msgstr ""
-
-#: app/Services/ExportService.php:421
-msgid "Your file has been downloaded successfully."
-msgstr "Din fil har laddats ner."
 
 #: app/View/Composers/Post.php:34
 msgid "Latest Posts"
@@ -1020,19 +994,19 @@ msgid_plural "%d persons found"
 msgstr[0] "%d person hittades"
 msgstr[1] "%d personer hittades"
 
-#: resources/views/admin/anniversaries/index.blade.php:53
+#: resources/views/admin/anniversaries/index.blade.php:52
 msgid "Export Excel"
 msgstr "Exportera Excel"
 
-#: resources/views/admin/anniversaries/index.blade.php:58
+#: resources/views/admin/anniversaries/index.blade.php:56
 msgid "Export CSV"
 msgstr "Exportera CSV"
 
-#: resources/views/admin/anniversaries/index.blade.php:67
+#: resources/views/admin/anniversaries/index.blade.php:65
 msgid "No persons found matching the specified criteria."
 msgstr "Inga personer hittades som matchade de angivna kriterierna."
 
-#: resources/views/admin/anniversaries/index.blade.php:111
+#: resources/views/admin/anniversaries/index.blade.php:106
 msgid "Use the filters above to find persons by their years of service."
 msgstr ""
 "Använd filtren ovan för att hitta personer baserat på deras tjänstgöringstid."
@@ -1264,6 +1238,12 @@ msgstr "Dölj ytterligare information"
 #: resources/views/partials/post-types/content-single-person.blade.php:110
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
+
+#~ msgid "Downloading..."
+#~ msgstr "Laddar ner…"
+
+#~ msgid "Your file has been downloaded successfully."
+#~ msgstr "Din fil har laddats ner."
 
 #~ msgid "Filter"
 #~ msgstr "Filter"
