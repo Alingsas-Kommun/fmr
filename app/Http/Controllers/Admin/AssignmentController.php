@@ -162,7 +162,8 @@ class AssignmentController
                     ->orderBy('person.post_title', $order);
                 break;
             case 'board':
-                $query->join('posts as board', 'assignments.board_id', '=', 'board.ID')
+                $query->join('decision_authority', 'assignments.decision_authority_id', '=', 'decision_authority.id')
+                    ->join('posts as board', 'decision_authority.board_id', '=', 'board.ID')
                     ->orderBy('board.post_title', $order);
                 break;
             case 'role':
@@ -197,7 +198,7 @@ class AssignmentController
                 $q->whereHas('person', function($q) use ($search) {
                     $q->where('post_title', 'like', '%' . $search . '%');
                 })
-                ->orWhereHas('board', function($q) use ($search) {
+                ->orWhereHas('decisionAuthority.board', function($q) use ($search) {
                     $q->where('post_title', 'like', '%' . $search . '%');
                 })
                 ->orWhereHas('decisionAuthority', function($q) use ($search) {
