@@ -1,0 +1,157 @@
+// =============================================================================
+// ANNIVERSARIES PAGE STYLES
+// =============================================================================
+
+// Variables
+$primary-color: #236151;
+$border-color: #ccd0d4;
+$light-gray: #f9f9f9;
+$text-color: #23282d;
+$shadow: 0 1px 1px rgba(0,0,0,.04);
+$border-radius: 3px;
+
+// =============================================================================
+// FILTER SECTION
+// =============================================================================
+
+.anniversary-filters {
+    margin-top: 15px;
+}
+
+.filter-row {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid $border-color;
+    box-shadow: $shadow;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+
+    .filter-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .filter-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    select {
+        padding: 4px 8px;
+        border: 1px solid #8c8f94;
+        border-radius: $border-radius;
+        min-width: 150px;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+}
+
+// =============================================================================
+// RESULTS SECTION
+// =============================================================================
+
+.anniversary-results {
+    .results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h3 {
+            margin: 0;
+            color: $text-color;
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 15px;
+            align-items: stretch;
+        }
+    }
+
+    .export-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .notice {
+        margin: 20px 0;
+    }
+}
+
+// =============================================================================
+// PERSON RESULT CARDS
+// =============================================================================
+
+.person-result {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid $border-color;
+    box-shadow: $shadow;
+
+    h4 {
+        margin-top: 0;
+        color: $primary-color;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+}
+
+// =============================================================================
+// ASSIGNMENTS TABLE
+// =============================================================================
+
+.assignments-list {
+    margin: 15px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
+
+    table {
+        margin-bottom: 0;
+        border-top: 0;
+        border-bottom: 0;
+        border-collapse: collapse;
+
+        th {
+            position: sticky;
+            top: 0;
+            background: $light-gray;
+            z-index: 1;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+    }
+}
+
+// =============================================================================
+// SERVICE SUMMARY
+// =============================================================================
+
+.service-summary {
+    background: #f0f6fc;
+    padding: 10px;
+    border-left: 4px solid $primary-color;
+    font-weight: bold;
+    margin-top: 15px;
+}

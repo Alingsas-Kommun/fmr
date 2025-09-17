@@ -7,6 +7,7 @@ use App\Core\Admin\Assignments\Index as AssignmentsIndex;
 use App\Core\Admin\Assignments\Edit as AssignmentsEdit;
 use App\Core\Admin\DecisionAuthorities\Index as DecisionAuthoritiesIndex;
 use App\Core\Admin\DecisionAuthorities\Edit as DecisionAuthoritiesEdit;
+use App\Core\Admin\Anniversaries\Index as AnniversariesIndex;
 use App\Core\Admin\Cleanup;
 use App\Utilities\Dir;
 
@@ -21,6 +22,7 @@ class Init
         add_action('admin_menu', function () {
             AssignmentsIndex::register();
             DecisionAuthoritiesIndex::register();
+            AnniversariesIndex::register();
         });
 
         add_action('init', function () {

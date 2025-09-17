@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-16T22:14:11+00:00\n"
+"POT-Creation-Date: 2025-09-17T21:33:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -90,6 +90,12 @@ msgstr ""
 msgid "Failed to save the object."
 msgstr ""
 
+#: app/Core/Admin/Anniversaries/Index.php:49
+#: app/Core/Admin/Anniversaries/Index.php:50
+#: resources/views/admin/anniversaries/index.blade.php:2
+msgid "Anniversaries"
+msgstr ""
+
 #: app/Core/Admin/Assignments/Edit.php:27
 #: app/Core/Admin/Assignments/Edit.php:29
 #: app/Core/Admin/Assignments/Edit.php:32
@@ -135,108 +141,119 @@ msgstr ""
 msgid "Roles"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:116
-msgid "Assignment was deleted successfully."
+#: app/Core/Admin/Assignments/Index.php:110
+#: app/Core/Admin/DecisionAuthorities/Index.php:101
+msgid "Invalid request."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:123
-msgid "Failed to delete assignment."
-msgstr ""
-
-#: app/Core/Admin/Assignments/Index.php:131
-#: app/Core/Admin/DecisionAuthorities/Index.php:122
+#: app/Core/Admin/Assignments/Index.php:117
+#: app/Core/Admin/DecisionAuthorities/Index.php:108
 msgid "Security check failed. Please try again."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:174
+#: app/Core/Admin/Assignments/Index.php:121
+#: app/Core/Admin/DecisionAuthorities/Index.php:112
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: app/Core/Admin/Assignments/Index.php:128
+msgid "Assignment was deleted successfully."
+msgstr ""
+
+#: app/Core/Admin/Assignments/Index.php:135
+msgid "Failed to delete assignment."
+msgstr ""
+
+#: app/Core/Admin/Assignments/Index.php:183
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Core/Admin/Assignments/Index.php:205
-#: app/Core/Admin/DecisionAuthorities/Index.php:196
+#: app/Core/Admin/Assignments/Index.php:214
+#: app/Core/Admin/DecisionAuthorities/Index.php:205
 msgid "All"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:213
-#: app/Core/Admin/DecisionAuthorities/Index.php:204
+#: app/Core/Admin/Assignments/Index.php:222
+#: app/Core/Admin/DecisionAuthorities/Index.php:213
 msgid "Ongoing"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:221
-#: app/Core/Admin/DecisionAuthorities/Index.php:212
+#: app/Core/Admin/Assignments/Index.php:230
+#: app/Core/Admin/DecisionAuthorities/Index.php:221
 msgid "Past"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:236
-#: app/Core/Admin/DecisionAuthorities/Index.php:227
+#: app/Core/Admin/Assignments/Index.php:245
+#: app/Core/Admin/DecisionAuthorities/Index.php:236
 msgid "Delete"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:249
+#: app/Core/Admin/Assignments/Index.php:258
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:32
 #: app/Core/PostTypes/Persons.php:32
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:7
-#: resources/views/assignments/index.blade.php:33
+#: resources/views/assignments/index.blade.php:62
 msgid "Person"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:250
+#: app/Core/Admin/Assignments/Index.php:259
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:41
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Role.php:26
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:25
-#: resources/views/assignments/index.blade.php:34
-#: resources/views/decision-authorities/show.blade.php:66
-#: resources/views/partials/post-types/content-single-person.blade.php:339
+#: resources/views/assignments/index.blade.php:16
+#: resources/views/assignments/index.blade.php:69
+#: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/partials/post-types/content-single-person.blade.php:337
 msgid "Role"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:251
-#: app/Core/Admin/DecisionAuthorities/Index.php:241
+#: app/Core/Admin/Assignments/Index.php:260
+#: app/Core/Admin/DecisionAuthorities/Index.php:250
 #: app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:7
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
-#: resources/views/decision-authorities/show.blade.php:20
-#: resources/views/partials/post-types/content-single-person.blade.php:337
+#: resources/views/decision-authorities/show.blade.php:21
+#: resources/views/partials/post-types/content-single-person.blade.php:338
 msgid "Board"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:252
+#: app/Core/Admin/Assignments/Index.php:261
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:34
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:49
-#: resources/views/assignments/index.blade.php:32
+#: resources/views/assignments/index.blade.php:55
 #: resources/views/assignments/show.blade.php:83
-#: resources/views/partials/post-types/content-single-person.blade.php:338
+#: resources/views/partials/post-types/content-single-person.blade.php:339
 msgid "Decision Authority"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:253
-#: app/Core/Admin/DecisionAuthorities/Index.php:243
-#: resources/views/assignments/index.blade.php:35
+#: app/Core/Admin/Assignments/Index.php:262
+#: app/Core/Admin/DecisionAuthorities/Index.php:252
+#: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:53
 #: resources/views/decision-authorities/index.blade.php:74
-#: resources/views/decision-authorities/show.blade.php:41
-#: resources/views/decision-authorities/show.blade.php:70
+#: resources/views/decision-authorities/show.blade.php:43
+#: resources/views/decision-authorities/show.blade.php:72
 #: resources/views/partials/post-types/content-single-board.blade.php:129
 #: resources/views/partials/post-types/content-single-person.blade.php:340
 msgid "Period"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:350
-#: app/Core/Admin/DecisionAuthorities/Index.php:332
+#: app/Core/Admin/Assignments/Index.php:359
+#: app/Core/Admin/DecisionAuthorities/Index.php:341
 msgid "Edit"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:352
+#: app/Core/Admin/Assignments/Index.php:361
 msgid "Are you sure you want to delete this assignment?"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:353
-#: app/Core/Admin/DecisionAuthorities/Index.php:335
+#: app/Core/Admin/Assignments/Index.php:362
+#: app/Core/Admin/DecisionAuthorities/Index.php:344
 msgid "Remove"
 msgstr ""
 
@@ -286,39 +303,39 @@ msgstr ""
 msgid "Decision Authorities"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:107
+#: app/Core/Admin/DecisionAuthorities/Index.php:119
 msgid "Decision authority was deleted successfully."
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:114
+#: app/Core/Admin/DecisionAuthorities/Index.php:126
 msgid "Failed to delete decision authority."
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:165
+#: app/Core/Admin/DecisionAuthorities/Index.php:174
 #, php-format
 msgid "%s decision authority was deleted."
 msgid_plural "%s decision authorities were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:240
+#: app/Core/Admin/DecisionAuthorities/Index.php:249
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:30
 #: resources/views/decision-authorities/index.blade.php:53
 #: resources/views/partials/post-types/content-single-board.blade.php:121
 msgid "Title"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:242
+#: app/Core/Admin/DecisionAuthorities/Index.php:251
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:37
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:25
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
-#: resources/views/decision-authorities/show.blade.php:29
+#: resources/views/decision-authorities/show.blade.php:30
 #: resources/views/partials/post-types/content-single-board.blade.php:125
 msgid "Type"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:334
+#: app/Core/Admin/DecisionAuthorities/Index.php:343
 msgid "Are you sure you want to delete this decision authority?"
 msgstr ""
 
@@ -335,6 +352,8 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:49
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:51
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
+#: app/Http/Controllers/Admin/AnniversaryController.php:85
+#: resources/views/admin/anniversaries/index.blade.php:83
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:82
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:48
 msgid "Start Date"
@@ -343,6 +362,8 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:56
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:58
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
+#: app/Http/Controllers/Admin/AnniversaryController.php:86
+#: resources/views/admin/anniversaries/index.blade.php:84
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:90
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:63
 msgid "End Date"
@@ -830,7 +851,7 @@ msgid "Search roles"
 msgstr ""
 
 #: app/Core/Taxonomies/Role.php:29
-#: resources/views/assignments/index.blade.php:10
+#: resources/views/assignments/index.blade.php:19
 msgid "All roles"
 msgstr ""
 
@@ -862,6 +883,70 @@ msgstr ""
 msgid "No roles were found"
 msgstr ""
 
+#: app/Http/Controllers/Admin/AnniversaryController.php:84
+#: resources/views/admin/anniversaries/index.blade.php:82
+msgid "Position"
+msgstr ""
+
+#: app/Http/Controllers/Admin/AnniversaryController.php:87
+msgid "Service Time"
+msgstr ""
+
+#: app/Http/Controllers/Admin/AnniversaryController.php:103
+#: resources/views/admin/anniversaries/index.blade.php:92
+msgid "Unknown Role"
+msgstr ""
+
+#: app/Http/Controllers/Admin/AnniversaryController.php:112
+#: resources/views/admin/anniversaries/index.blade.php:102
+msgid "Result:"
+msgstr ""
+
+#: app/Services/AnniversaryService.php:189
+#, php-format
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Services/AnniversaryService.php:190
+#, php-format
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Services/AnniversaryService.php:191
+#, php-format
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Services/ExportService.php:338
+msgid "Downloading..."
+msgstr ""
+
+#: app/Services/ExportService.php:384
+msgid "Downloading File..."
+msgstr ""
+
+#: app/Services/ExportService.php:385
+msgid "Your file download should start automatically."
+msgstr ""
+
+#: app/Services/ExportService.php:387
+msgid "If the download does not start, <a href=\"javascript:downloadFile()\" class=\"button\">click here</a>."
+msgstr ""
+
+#: app/Services/ExportService.php:420
+msgid "Download Complete!"
+msgstr ""
+
+#: app/Services/ExportService.php:421
+msgid "Your file has been downloaded successfully."
+msgstr ""
+
 #: app/View/Composers/Post.php:34
 msgid "Latest Posts"
 msgstr ""
@@ -890,6 +975,61 @@ msgstr ""
 
 #: resources/views/404.blade.php:12
 msgid "Go back home"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:11
+msgid "Choose min years"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:15
+#: resources/views/admin/anniversaries/index.blade.php:26
+#, php-format
+msgid "%d year"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:15
+#: resources/views/admin/anniversaries/index.blade.php:26
+#, php-format
+msgid "%d years"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:22
+msgid "Choose max years"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:34
+msgid "Apply filters"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:37
+msgid "Clear filters"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:48
+msgid "Results"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:48
+#, php-format
+msgid "%d person found"
+msgid_plural "%d persons found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/admin/anniversaries/index.blade.php:53
+msgid "Export Excel"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:58
+msgid "Export CSV"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:67
+msgid "No persons found matching the specified criteria."
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:111
+msgid "Use the filters above to find persons by their years of service."
 msgstr ""
 
 #: resources/views/admin/assignments/index.blade.php:10
@@ -988,47 +1128,38 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:11
-msgid "Chairman"
-msgstr ""
-
 #: resources/views/assignments/index.blade.php:12
-msgid "Vice Chairman"
+#: resources/views/decision-authorities/index.blade.php:12
+msgid "Filters"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:13
-msgid "Member"
+#: resources/views/assignments/index.blade.php:38
+#: resources/views/decision-authorities/index.blade.php:36
+msgid "Clear"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:14
-msgid "Deputy"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:19
-msgid "Active only"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:22
-msgid "Filter"
-msgstr ""
-
-#: resources/views/assignments/index.blade.php:36
+#: resources/views/assignments/index.blade.php:83
 msgid "Show"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:79
-#: resources/views/decision-authorities/show.blade.php:103
+#: resources/views/assignments/index.blade.php:133
+#: resources/views/decision-authorities/show.blade.php:107
 #: resources/views/partials/post-types/content-single-board.blade.php:166
-#: resources/views/partials/post-types/content-single-person.blade.php:378
+#: resources/views/partials/post-types/content-single-person.blade.php:380
 msgid "View"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:95
+#: resources/views/assignments/index.blade.php:142
+#: resources/views/partials/post-types/content-single-person.blade.php:389
+msgid "No assignments found."
+msgstr ""
+
+#: resources/views/assignments/index.blade.php:158
 #: resources/views/decision-authorities/index.blade.php:135
 msgid "Previous"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:118
+#: resources/views/assignments/index.blade.php:181
 #: resources/views/decision-authorities/index.blade.php:158
 msgid "Next"
 msgstr ""
@@ -1042,38 +1173,30 @@ msgstr ""
 msgid "No decision authority assigned"
 msgstr ""
 
-#: resources/views/decision-authorities/index.blade.php:12
-msgid "Filters"
-msgstr ""
-
 #: resources/views/decision-authorities/index.blade.php:19
 msgid "All Types"
-msgstr ""
-
-#: resources/views/decision-authorities/index.blade.php:36
-msgid "Clear"
 msgstr ""
 
 #: resources/views/decision-authorities/index.blade.php:119
 msgid "No decision authorities found."
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:55
+#: resources/views/decision-authorities/show.blade.php:57
 msgid "Active Assignments"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:62
+#: resources/views/decision-authorities/show.blade.php:64
 msgid "Name"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:74
+#: resources/views/decision-authorities/show.blade.php:76
 #: resources/views/partials/post-types/content-single-board.blade.php:133
 #: resources/views/partials/post-types/content-single-person.blade.php:341
 msgid "Actions"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:111
-#: resources/views/decision-authorities/show.blade.php:121
+#: resources/views/decision-authorities/show.blade.php:115
+#: resources/views/decision-authorities/show.blade.php:125
 msgid "No active assignments found."
 msgstr ""
 
@@ -1134,8 +1257,4 @@ msgstr ""
 
 #: resources/views/partials/post-types/content-single-person.blade.php:110
 msgid "Show Additional Information"
-msgstr ""
-
-#: resources/views/partials/post-types/content-single-person.blade.php:387
-msgid "No assignments found."
 msgstr ""

@@ -33,6 +33,7 @@
     "php": ">=8.2",
     "blade-ui-kit/blade-heroicons": "^2.6",
     "log1x/sage-directives": "^2.0",
+    "phpoffice/phpspreadsheet": "^5.1",
     "roots/acorn": "^5.0",
     "roots/acorn-prettify": "^1.0"
   },
