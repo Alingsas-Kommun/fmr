@@ -60,13 +60,10 @@ class DecisionAuthorityController extends Controller
      * @return \Illuminate\View\View
      */
     public function show(DecisionAuthority $decisionAuthority)
-    {
-        $decisionAuthority->load(['board']);
-        
-        // Get active assignments for this decision authority
+    {        
         $today = now()->toDateString();
         $activeAssignments = $decisionAuthority->assignments()
-            ->with('person')
+            ->with('person', 'roleTerm', 'board')
             ->where('period_start', '<=', $today)
             ->where('period_end', '>=', $today)
             ->get();

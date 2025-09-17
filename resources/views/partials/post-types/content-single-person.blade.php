@@ -320,9 +320,9 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 dark:bg-gray-200">
                     <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
                     </tr>
@@ -331,6 +331,12 @@
                 <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
                     @foreach($assignments as $assignment)
                         <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-emerald-700 hover:text-emerald-800">
+                                    {{ $assignment->roleTerm->name }}
+                                </a>
+                            </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->board)
                                     <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800"> 
@@ -345,10 +351,6 @@
                                         {{ $assignment->decisionAuthority->title }}
                                     </a>
                                 @endif
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ $assignment->role }}
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">

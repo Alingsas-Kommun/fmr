@@ -38,7 +38,7 @@ class Post extends Model
     public function personAssignments()
     {
         return $this->hasMany(Assignment::class, 'person_id', 'ID')
-            ->with('board')
+            ->with('board', 'roleTerm')
             ->orderBy('period_start', 'desc');
     }
 
@@ -58,6 +58,7 @@ class Post extends Model
     public function activeAssignments()
     {
         $relation = $this->post_type === 'board' ? 'boardAssignments' : 'personAssignments';
+
         return $this->$relation()
             ->where('period_start', '<=', now())
             ->where('period_end', '>=', now());

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Term;
+use App\Models\TermTaxonomy;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -12,18 +14,17 @@ class AssignmentController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Assignment::with(['board', 'decisionAuthority', 'person']);
+        $query = Assignment::with(['board', 'decisionAuthority', 'person', 'roleTerm']);
+
+        $today = now()->toDateString();
+        $query->where('period_start', '<=', $today)
+                ->where('period_end', '>=', $today);
 
         // Filter by role if provided
         if ($request->filled('role')) {
-            $query->where('role', $request->role);
-        }
-
-        // Filter active/inactive assignments
-        if ($request->boolean('active')) {
-            $today = now()->toDateString();
-            $query->where('period_start', '<=', $today)
-                  ->where('period_end', '>=', $today);
+            $query->whereHas('roleTerm', function($q) use ($request) {
+                $q->where('slug', $request->role);
+            });
         }
 
         // Default sorting by latest
@@ -38,6 +39,10 @@ class AssignmentController extends Controller
                            ->take($perPage)
                            ->get();
 
+        $roleTerms = Term::whereHas('termTaxonomy', function($q) {
+            $q->where('taxonomy', 'role');
+        })->orderBy('name')->get();
+
         return view('assignments.index', [
             'assignments' => $assignments,
             'pagination' => [
@@ -48,8 +53,8 @@ class AssignmentController extends Controller
             ],
             'filters' => [
                 'role' => $request->role,
-                'active' => $request->boolean('active')
-            ]
+            ],
+            'roleTerms' => $roleTerms
         ]);
     }
 

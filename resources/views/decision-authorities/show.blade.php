@@ -17,17 +17,20 @@
                 <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-6 lg:space-y-3 xl:space-y-0 xl:space-x-6">
                     <div class="flex items-center space-x-2">
                         <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                        
                         <span class="sr-only">{{ __('Board', 'fmr') }}:</span>
+                        
                         <a href="{{ get_permalink($decisionAuthority->board->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
                             {{ $decisionAuthority->board->post_title }}
                         </a>
                     </div>
 
-                    <div class="flex items-center space-x-2">
-                        <x-heroicon-o-tag class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <div class="flex items-center space-x-2">                        
                         <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
-                            {{ $decisionAuthority->type }}
+                        
+                        <span class="inline-flex items-center px-3 py-1 gap-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
+                            <x-heroicon-o-tag class="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                            <span>{{ $decisionAuthority->type }}</span>
                         </span>
                     </div>
                 </div>
@@ -80,7 +83,9 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                {{ $assignment->role }}
+                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-emerald-700 hover:text-emerald-800">
+                                    {{ $assignment->roleTerm->name }}
+                                </a>
                             </td>
 
                             <td class="px-6 py-4">
