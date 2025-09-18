@@ -2,22 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Term;
 use App\Models\Assignment;
+use App\Services\AssignmentExportService;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\BoardController;
-use App\Http\Controllers\Admin\PersonController;
 
 class AssignmentController
 {
-    private $boardController;
-    private $personController;
-
-    public function __construct()
-    {
-        $this->boardController = new BoardController();
-        $this->personController = new PersonController();
-    }
     /**
      * Get all assignments.
      */
@@ -161,9 +151,53 @@ class AssignmentController
      */
     public function getPaginatedAssignments($args = [])
     {
+        $query = $this->buildFilteredQuery($args);
+
+        // Get total before pagination
+        $total_items = $query->count();
+
+        // Handle pagination
+        $per_page = $args['per_page'] ?? 15;
+        $current_page = $args['current_page'] ?? 1;
+
+        $items = $query->skip(($current_page - 1) * $per_page)
+            ->take($per_page)
+            ->get();
+
+        return [
+            'items' => $items,
+            'total_items' => $total_items,
+            'per_page' => $per_page,
+            'total_pages' => ceil($total_items / $per_page)
+        ];
+    }
+
+    /**
+     * Build a filtered and sorted query for assignments.
+     * This method is shared between pagination and export.
+     *
+     * @param array $args
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function buildFilteredQuery($args = [])
+    {
         $query = Assignment::with(['person', 'board', 'decisionAuthority', 'roleTerm']);
 
-        // Handle sorting
+        $this->applySorting($query, $args);
+        $this->applyFilters($query, $args);
+
+        return $query;
+    }
+
+    /**
+     * Apply sorting to the query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array $args
+     * @return void
+     */
+    private function applySorting($query, $args)
+    {
         $orderby = $args['orderby'] ?? 'id';
         $order = isset($args['order']) ? strtolower($args['order']) : 'desc';
 
@@ -181,11 +215,30 @@ class AssignmentController
                 $query->join('terms as role_term', 'assignments.role_term_id', '=', 'role_term.term_id')
                     ->orderBy('role_term.name', $order);
                 break;
+            case 'decision_authority':
+                $query->join('decision_authority', 'assignments.decision_authority_id', '=', 'decision_authority.id')
+                    ->orderBy('decision_authority.title', $order);
+                break;
+            case 'period':
+                // Sort by period_start first, then by period_end for same start dates
+                $query->orderBy('period_start', $order)
+                      ->orderBy('period_end', $order);
+                break;
             default:
                 $query->orderBy('id', 'desc');
                 break;
         }
+    }
 
+    /**
+     * Apply filters to the query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array $args
+     * @return void
+     */
+    private function applyFilters($query, $args)
+    {
         // Handle period status filter
         $period_status = $args['period_status'] ?? 'all';
         $today = date('Y-m-d');
@@ -245,55 +298,24 @@ class AssignmentController
                 ->orWhere('period_end', 'like', '%' . $search . '%');
             });
         }
-
-        // Get total before pagination
-        $total_items = $query->count();
-
-        // Handle pagination
-        $per_page = $args['per_page'] ?? 15;
-        $current_page = $args['current_page'] ?? 1;
-
-        $items = $query->skip(($current_page - 1) * $per_page)
-            ->take($per_page)
-            ->get();
-
-        return [
-            'items' => $items,
-            'total_items' => $total_items,
-            'per_page' => $per_page,
-            'total_pages' => ceil($total_items / $per_page)
-        ];
     }
 
-    /**
-     * Get all roles for filter dropdown.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getRoles()
-    {
-        return Term::whereHas('termTaxonomy', function($q) {
-            $q->where('taxonomy', 'role');
-        })->orderBy('name')->get();
-    }
 
     /**
-     * Get all boards for filter dropdown.
+     * Handle export requests for Excel and CSV formats.
+     * Delegates to the dedicated export service.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param string $format
+     * @param array $filters
+     * @return void
      */
-    public function getBoards()
+    public function handleExport(string $format)
     {
-        return $this->boardController->getAll();
-    }
+        $filters = $_REQUEST;
+        unset($filters['export']);
+        unset($filters['_wpnonce']);
 
-    /**
-     * Get all persons for filter dropdown.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getPersons()
-    {
-        return $this->personController->getAll();
+        $exportService = new AssignmentExportService($this);
+        $exportService->handleExport($format, $filters);
     }
 }

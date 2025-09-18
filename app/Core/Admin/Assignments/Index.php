@@ -3,6 +3,9 @@
 namespace App\Core\Admin\Assignments;
 
 use App\Http\Controllers\Admin\AssignmentController;
+use App\Http\Controllers\Admin\BoardController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\RoleController;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -90,18 +93,33 @@ class Index extends \WP_List_Table
      */
     public function render_page()
     {
+        // Handle export requests
+        $export = $_REQUEST['export'] ?? null;
+        if ($export && in_array($export, ['excel', 'csv'])) {
+            if (!current_user_can('manage_options')) {
+                wp_die(__('You do not have permission to perform this action.', 'fmr'));
+            }
+    
+            $this->controller->handleExport($export);
+            
+            return;
+        }
+
         $this->process_bulk_action();
 
-        settings_errors('bulk_action');
-
         set_current_screen('assignments');
+
+        // Initialize controllers
+        $roleController = new RoleController();
+        $boardController = new BoardController();
+        $personController = new PersonController();
 
         echo view('admin.assignments.index', [
             'list' => $this,
             'filter_data' => [
-                'roles' => $this->controller->getRoles(),
-                'boards' => $this->controller->getBoards(),
-                'persons' => $this->controller->getPersons(),
+                'roles' => $roleController->getAll(),
+                'boards' => $boardController->getAll(),
+                'persons' => $personController->getAll(),
             ]
         ])->render();
     }
@@ -128,29 +146,10 @@ class Index extends \WP_List_Table
             wp_die(__('You do not have permission to perform this action.', 'fmr'));
         }
 
-        if ($this->controller->destroy($assignment_id)) {
-            add_settings_error(
-                'bulk_action',
-                'assignment_deleted',
-                __('Assignment was deleted successfully.', 'fmr'),
-                'updated'
-            );
-        } else {
-            add_settings_error(
-                'bulk_action',
-                'assignment_delete_failed',
-                __('Failed to delete assignment.', 'fmr'),
-                'error'
-            );
-        }
+        $this->controller->destroy($assignment_id);
 
-        // Get the referer URL and redirect
-        $redirect_url = wp_get_referer();
-        if (!$redirect_url) {
-            $redirect_url = admin_url('admin.php?page=assignments');
-        }
+        wp_redirect(wp_get_referer());
 
-        wp_redirect($redirect_url);
         exit;
     }
 
@@ -167,6 +166,10 @@ class Index extends \WP_List_Table
             return;
         }
 
+        if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have permission to perform this action.', 'fmr'));
+        }
+
         check_admin_referer('bulk-' . $this->_args['plural']);
 
         $assignments = $_REQUEST['assignments'] ?? [];
@@ -180,23 +183,6 @@ class Index extends \WP_List_Table
             if ($this->controller->destroy($id)) {
                 $deleted++;
             }
-        }
-
-        if ($deleted > 0) {
-            add_settings_error(
-                'bulk_action',
-                'assignments_deleted',
-                sprintf(
-                    _n(
-                        '%s assignment was deleted.',
-                        '%s assignments were deleted.',
-                        $deleted,
-                        'fmr'
-                    ),
-                    number_format_i18n($deleted)
-                ),
-                'updated'
-            );
         }
 
         wp_redirect(wp_get_referer());
@@ -291,7 +277,8 @@ class Index extends \WP_List_Table
             'person'             => ['person', false],
             'role'               => ['role', false],
             'board'              => ['board', false],
-            'decision_authority' => ['decision_authority', false]
+            'decision_authority' => ['decision_authority', false],
+            'period'             => ['period', false]
         ];
     }
 
@@ -304,14 +291,15 @@ class Index extends \WP_List_Table
     protected function extra_tablenav($which)
     {
         if ($which === 'top') {
-            echo '<style>
-                .wp-list-table .row-actions {
-                    visibility: hidden;
-                }
-                .wp-list-table tr:hover .row-actions {
-                    visibility: visible;
-                }
-            </style>';
+            echo '<div class="export-actions">';
+            echo '<a href="' . esc_url(add_query_arg(['export' => 'excel'], $_SERVER['REQUEST_URI'])) . '" class="button button-secondary" title="' . __('Export to Excel', 'fmr') . '">';
+            echo '📊 ' . __('Export Excel', 'fmr');
+            echo '</a>';
+            
+            echo '<a href="' . esc_url(add_query_arg(['export' => 'csv'], $_SERVER['REQUEST_URI'])) . '" class="button button-secondary" title="' . __('Export to CSV', 'fmr') . '">';
+            echo '📄 ' . __('Export CSV', 'fmr');
+            echo '</a>';
+            echo '</div>';
         }
     }
 
@@ -425,8 +413,8 @@ class Index extends \WP_List_Table
      */
     public function column_period($item)
     {
-        $start = $item->period_start ? wp_date('j M Y', strtotime($item->period_start)) : '—';
-        $end = $item->period_end ? wp_date('j M Y', strtotime($item->period_end)) : '—';
+        $start = $item->period_start ? wp_date('Y-m-d', strtotime($item->period_start)) : '—';
+        $end = $item->period_end ? wp_date('Y-m-d', strtotime($item->period_end)) : '—';
         
         return sprintf(
             '%s – %s',

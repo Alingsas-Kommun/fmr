@@ -2,11 +2,12 @@
 
 namespace App\Core\Admin\DecisionAuthorities\MetaBoxes;
 
-use App\Core\Admin\Abstracts\RelationHandler;
-use App\Http\Controllers\Admin\AssignmentController;
-use App\Http\Controllers\Admin\PersonController;
 use App\Models\Term;
 use Illuminate\Http\Request;
+use App\Core\Admin\Abstracts\RelationHandler;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\AssignmentController;
 
 class Assignments extends RelationHandler
 {
@@ -126,9 +127,8 @@ class Assignments extends RelationHandler
 
     private function getRoles()
     {
-        $terms = Term::whereHas('termTaxonomy', function ($query) {
-            $query->where('taxonomy', 'role');
-        })->orderBy('name')->get();
+        $roleController = new RoleController();
+        $terms = $roleController->getAll();
         
         $options = ['' => __('Select Role', 'fmr')];
 

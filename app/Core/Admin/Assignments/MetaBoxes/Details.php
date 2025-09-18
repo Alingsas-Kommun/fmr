@@ -5,16 +5,18 @@ namespace App\Core\Admin\Assignments\MetaBoxes;
 use App\Core\Admin\Abstracts\MetaBox;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
-use App\Models\Term;
+use App\Http\Controllers\Admin\RoleController;
 use function Roots\view;
 
 class Details extends MetaBox
 {
+    protected $roleController;
     protected $personController;
     protected $decisionAuthorityController;
 
     public function __construct($editPage)
     {   
+        $this->roleController = new RoleController();
         $this->personController = new PersonController();
         $this->decisionAuthorityController = new DecisionAuthorityController();
         
@@ -59,9 +61,7 @@ class Details extends MetaBox
      */
     public function getRoles()
     {
-        return Term::whereHas('termTaxonomy', function ($query) {
-            $query->where('taxonomy', 'role');
-        })->orderBy('name')->get();
+        return $this->roleController->getAll();
     }
 
     /**

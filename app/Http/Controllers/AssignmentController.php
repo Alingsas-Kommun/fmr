@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
-use App\Models\Term;
-use App\Models\TermTaxonomy;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -39,9 +38,8 @@ class AssignmentController extends Controller
                            ->take($perPage)
                            ->get();
 
-        $roleTerms = Term::whereHas('termTaxonomy', function($q) {
-            $q->where('taxonomy', 'role');
-        })->orderBy('name')->get();
+        $roleController = new RoleController();
+        $roleTerms = $roleController->getAll();
 
         return view('assignments.index', [
             'assignments' => $assignments,

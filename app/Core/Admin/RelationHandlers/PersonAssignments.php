@@ -5,7 +5,7 @@ namespace App\Core\Admin\RelationHandlers;
 use App\Core\Admin\Abstracts\RelationHandler;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
-use App\Models\Term;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Http\Request;
 
 class PersonAssignments extends RelationHandler
@@ -107,9 +107,8 @@ class PersonAssignments extends RelationHandler
 
     protected function loadRoleTerms()
     {
-        $roleTerms = Term::whereHas('termTaxonomy', function ($query) {
-            $query->where('taxonomy', 'role');
-        })->orderBy('name')->get();
+        $roleController = new RoleController();
+        $roleTerms = $roleController->getAll();
 
         static::$role_terms = $roleTerms->pluck('name', 'term_id')->toArray();
     }

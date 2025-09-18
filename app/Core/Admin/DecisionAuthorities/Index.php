@@ -86,8 +86,6 @@ class Index extends \WP_List_Table
     {
         $this->process_bulk_action();
 
-        settings_errors('bulk_action');
-
         set_current_screen('decision_authorities');
 
         echo view('admin.decision-authorities.index', [
@@ -120,29 +118,10 @@ class Index extends \WP_List_Table
             wp_die(__('You do not have permission to perform this action.', 'fmr'));
         }
 
-        if ($this->controller->destroy($authority_id)) {
-            add_settings_error(
-                'bulk_action',
-                'decision_authority_deleted',
-                __('Decision authority was deleted successfully.', 'fmr'),
-                'updated'
-            );
-        } else {
-            add_settings_error(
-                'bulk_action',
-                'decision_authority_delete_failed',
-                __('Failed to delete decision authority.', 'fmr'),
-                'error'
-            );
-        }
+        $this->controller->destroy($authority_id);
 
-        // Get the referer URL and redirect
-        $redirect_url = wp_get_referer();
-        if (!$redirect_url) {
-            $redirect_url = admin_url('admin.php?page=decision_authorities');
-        }
+        wp_redirect(wp_get_referer());
 
-        wp_redirect($redirect_url);
         exit;
     }
 
@@ -172,23 +151,6 @@ class Index extends \WP_List_Table
             if ($this->controller->destroy($id)) {
                 $deleted++;
             }
-        }
-
-        if ($deleted > 0) {
-            add_settings_error(
-                'bulk_action',
-                'decision_authorities_deleted',
-                sprintf(
-                    _n(
-                        '%s decision authority was deleted.',
-                        '%s decision authorities were deleted.',
-                        $deleted,
-                        'fmr'
-                    ),
-                    number_format_i18n($deleted)
-                ),
-                'updated'
-            );
         }
 
         wp_redirect(wp_get_referer());
@@ -286,26 +248,6 @@ class Index extends \WP_List_Table
     }
 
     /**
-     * Extra controls to be displayed between bulk actions and pagination.
-     *
-     * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
-     * @return void
-     */
-    protected function extra_tablenav($which)
-    {
-        if ($which === 'top') {
-            echo '<style>
-                .wp-list-table .row-actions {
-                    visibility: hidden;
-                }
-                .wp-list-table tr:hover .row-actions {
-                    visibility: visible;
-                }
-            </style>';
-        }
-    }
-
-    /**
      * Render the checkbox column.
      *
      * @param object $item The current decision authority item.
@@ -400,8 +342,8 @@ class Index extends \WP_List_Table
      */
     public function column_period($item)
     {
-        $start = $item->start_date ? wp_date('j M Y', strtotime($item->start_date)) : '—';
-        $end = $item->end_date ? wp_date('j M Y', strtotime($item->end_date)) : '—';
+        $start = $item->start_date ? wp_date('Y-m-d', strtotime($item->start_date)) : '—';
+        $end = $item->end_date ? wp_date('Y-m-d', strtotime($item->end_date)) : '—';
         
         return sprintf(
             '%s – %s',
