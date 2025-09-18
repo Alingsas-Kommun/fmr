@@ -2,9 +2,10 @@
 
 namespace App\Core\PostTypes;
 
-use App\Http\Controllers\Admin\PersonController;
+use App\Models\Post;
 
 use function App\Core\{arraySpliceAssoc};
+use App\Http\Controllers\Admin\PersonController;
 
 class Persons
 {
@@ -38,6 +39,10 @@ class Persons
         add_filter('manage_' . self::$base . '_posts_columns', [__CLASS__, 'addColumns']);
         add_action('manage_' . self::$base . '_posts_custom_column', [__CLASS__, 'addColumnData'], 10, 2);
         add_action('admin_head', [__CLASS__, 'personImageColumnWidth']);
+        
+        // Party filter
+        add_action('restrict_manage_posts', [__CLASS__, 'addPartyFilter']);
+        add_action('pre_get_posts', [__CLASS__, 'filterByParty']);
     }
 
     /**
@@ -174,5 +179,56 @@ class Persons
         echo '<style type="text/css">';
         echo 'td.person-image, td.person-image img, th#person-image { max-width: 70px !important; width: 70px !important; height: auto !important; }';
         echo '</style>';
+    }
+
+    /**
+     * Add party filter dropdown to the persons admin list
+     */
+    public static function addPartyFilter()
+    {
+        global $typenow;
+        
+        if ($typenow === self::$base) {
+            $parties = Post::parties()
+                        ->published()
+                        ->orderBy('post_title')
+                        ->get();
+            
+            if (!empty($parties)) {
+                $selected = isset($_GET['person_party']) ? $_GET['person_party'] : '';
+                
+                echo '<select name="person_party" id="person_party">';
+                echo '<option value="">' . __('All parties', 'fmr') . '</option>';
+                
+                foreach ($parties as $party) {
+                    $selected_attr = selected($selected, $party->ID, false);
+                    echo '<option value="' . esc_attr($party->ID) . '"' . $selected_attr . '>';
+                    echo esc_html($party->post_title);
+                    echo '</option>';
+                }
+                
+                echo '</select>';
+            }
+        }
+    }
+
+    /**
+     * Filter persons by party
+     */
+    public static function filterByParty($query)
+    {
+        global $pagenow, $typenow;
+        
+        if ($pagenow === 'edit.php' && $typenow === self::$base && isset($_GET['person_party']) && !empty($_GET['person_party'])) {
+            $party_id = intval($_GET['person_party']);
+            
+            $query->set('meta_query', [
+                [
+                    'key' => 'person_party',
+                    'value' => $party_id,
+                    'compare' => '='
+                ]
+            ]);
+        }
     }
 }

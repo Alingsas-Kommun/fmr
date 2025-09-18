@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap anniversary-page">
     <h1>{{ __('Anniversaries', 'fmr') }}</h1>
 
     <div class="anniversary-filters">

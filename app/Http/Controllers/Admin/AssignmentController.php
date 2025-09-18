@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Term;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\BoardController;
+use App\Http\Controllers\Admin\PersonController;
 
 class AssignmentController
 {
+    private $boardController;
+    private $personController;
+
+    public function __construct()
+    {
+        $this->boardController = new BoardController();
+        $this->personController = new PersonController();
+    }
     /**
      * Get all assignments.
      */
@@ -191,6 +202,29 @@ class AssignmentController
             $query->where('period_end', '<', $today);
         }
 
+        // Handle additional filters
+        if (!empty($args['role_filter'])) {
+            $query->where('role_term_id', $args['role_filter']);
+        }
+
+        if (!empty($args['board_filter'])) {
+            $query->whereHas('decisionAuthority', function($q) use ($args) {
+                $q->where('board_id', $args['board_filter']);
+            });
+        }
+
+        if (!empty($args['person_filter'])) {
+            $query->where('person_id', $args['person_filter']);
+        }
+
+        if (!empty($args['period_start'])) {
+            $query->where('period_start', '>=', $args['period_start']);
+        }
+
+        if (!empty($args['period_end'])) {
+            $query->where('period_end', '<=', $args['period_end']);
+        }
+
         // Handle search
         $search = $args['search'] ?? '';
         if (!empty($search)) {
@@ -203,8 +237,6 @@ class AssignmentController
                 })
                 ->orWhereHas('decisionAuthority', function($q) use ($search) {
                     $q->where('title', 'like', '%' . $search . '%');
-                    // $q->orWhere('start_date', 'like', '%' . $search . '%');
-                    // $q->orWhere('end_date', 'like', '%' . $search . '%');
                 })
                 ->orWhereHas('roleTerm', function($q) use ($search) {
                     $q->where('name', 'like', '%' . $search . '%');
@@ -231,5 +263,37 @@ class AssignmentController
             'per_page' => $per_page,
             'total_pages' => ceil($total_items / $per_page)
         ];
+    }
+
+    /**
+     * Get all roles for filter dropdown.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getRoles()
+    {
+        return Term::whereHas('termTaxonomy', function($q) {
+            $q->where('taxonomy', 'role');
+        })->orderBy('name')->get();
+    }
+
+    /**
+     * Get all boards for filter dropdown.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getBoards()
+    {
+        return $this->boardController->getAll();
+    }
+
+    /**
+     * Get all persons for filter dropdown.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPersons()
+    {
+        return $this->personController->getAll();
     }
 }

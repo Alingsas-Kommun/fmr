@@ -1,5 +1,4 @@
 <button {!! $attributes->merge($attr) !!} @click="visible = !visible" :class="{ 'is-visible': visible, 'is-hidden': !visible }" x-data="{ visible: {{ $isVisible ? 'true' : 'false' }}}">
-    
     <input type="hidden" name="{{ $name }}" :value="visible ? 1 : 0">
     
     <svg class="visibility-icon" viewBox="0 0 24 24" x-cloak x-show="visible">
@@ -12,7 +11,7 @@
 
     @if($size == 'lg')
         <span class="toggle-label" 
-            x-text="visible ? @js(__('Public', 'fmr')) : @js(__('Private', 'fmr'))">
+            x-text="visible ? {{ __('Public', 'fmr') }} : {{ __('Private', 'fmr') }}">
         </span>
     @endif
 </button>

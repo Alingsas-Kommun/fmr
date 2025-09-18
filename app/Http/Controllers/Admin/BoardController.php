@@ -14,6 +14,7 @@ class BoardController
     public function getAll()
     {
         return Post::boards()
+            ->published()
             ->orderBy('post_title')
             ->get();
     }

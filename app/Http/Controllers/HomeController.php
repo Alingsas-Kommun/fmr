@@ -12,17 +12,17 @@ class HomeController extends Controller
     public function index()
     {
         $parties = Post::parties()
+            ->published()
             ->orderBy('post_title')
             ->get();
 
         $groupLeaders = Post::persons()
-            ->whereHas('meta', function($query) {
-                $query->where('meta_key', 'person_group_leader')
-                      ->where('meta_value', '1');
-            })
+            ->published()
+            ->withMeta('person_group_leader', '1')
             ->get();
 
         $boards = Post::boards()
+            ->published()
             ->get();
 
         return view('homepage', compact('parties', 'groupLeaders', 'boards'));

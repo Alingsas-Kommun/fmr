@@ -146,7 +146,6 @@ class DecisionAuthorityController
                 break;
         }
 
-        // Handle period status filter
         $period_status = $args['period_status'] ?? 'all';
         $today = date('Y-m-d');
 
@@ -160,6 +159,18 @@ class DecisionAuthorityController
             });
         } elseif ($period_status === 'past') {
             $query->where('end_date', '<', $today);
+        }
+
+        if (!empty($args['board_filter'])) {
+            $query->where('board_id', $args['board_filter']);
+        }
+
+        if (!empty($args['start_date'])) {
+            $query->where('start_date', '>=', $args['start_date']);
+        }
+
+        if (!empty($args['end_date'])) {
+            $query->where('end_date', '<=', $args['end_date']);
         }
 
         // Handle search

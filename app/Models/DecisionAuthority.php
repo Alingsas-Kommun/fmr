@@ -43,7 +43,7 @@ class DecisionAuthority extends Model
      */
     public function board()
     {
-        return $this->belongsTo(Post::class, 'board_id', 'ID')->where('post_type', 'board');
+        return $this->belongsTo(Post::class, 'board_id', 'ID')->type('board');
     }
 
     /**

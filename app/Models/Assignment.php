@@ -66,7 +66,7 @@ class Assignment extends Model
      */
     public function person()
     {
-        return $this->belongsTo(Post::class, 'person_id', 'ID')->where('post_type', 'person');
+        return $this->belongsTo(Post::class, 'person_id', 'ID')->type('person');
     }
 
     /**

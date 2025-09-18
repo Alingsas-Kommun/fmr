@@ -3,6 +3,7 @@
 namespace App\Core\Admin\DecisionAuthorities;
 
 use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Http\Controllers\Admin\BoardController;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -22,6 +23,7 @@ class Index extends \WP_List_Table
 {
     private static $instance = null;
     protected $controller;
+    protected $boardController;
 
     /**
      * Initialize the singleton instance.
@@ -49,6 +51,7 @@ class Index extends \WP_List_Table
         ]);
 
         $this->controller = new DecisionAuthorityController();
+        $this->boardController = new BoardController();
     }
 
     /**
@@ -87,7 +90,12 @@ class Index extends \WP_List_Table
 
         set_current_screen('decision_authorities');
 
-        echo view('admin.decision-authorities.index', ['list' => $this])->render();
+        echo view('admin.decision-authorities.index', [
+            'list' => $this,
+            'filter_data' => [
+                'boards' => $this->boardController->getAll(),
+            ]
+        ])->render();
     }
 
     /**
@@ -436,7 +444,10 @@ class Index extends \WP_List_Table
             'orderby' => $_REQUEST['orderby'] ?? 'id',
             'order' => $_REQUEST['order'] ?? 'desc',
             'period_status' => $_REQUEST['period_status'] ?? 'all',
-            'search' => isset($_REQUEST['s']) ? trim($_REQUEST['s']) : ''
+            'search' => isset($_REQUEST['s']) ? trim($_REQUEST['s']) : '',
+            'board_filter' => $_REQUEST['board_filter'] ?? '',
+            'start_date' => $_REQUEST['start_date'] ?? '',
+            'end_date' => $_REQUEST['end_date'] ?? ''
         ]);
 
         $this->items = $result['items'];

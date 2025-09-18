@@ -14,6 +14,7 @@ class PersonController
     public function getAll()
     {
         return Post::persons()
+            ->published()
             ->orderBy('post_title')
             ->get();
     }
@@ -29,7 +30,8 @@ class PersonController
         $now = now();
         
         return Post::where('ID', $person_id)
-            ->where('post_type', 'person')
+            ->published()
+            ->type('person')
             ->whereHas('personAssignments', function($query) use ($now) {
                 $query->where('period_start', '<=', $now)
                       ->where('period_end', '>=', $now);

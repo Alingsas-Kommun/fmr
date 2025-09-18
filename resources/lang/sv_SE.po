@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-17T22:42:37+00:00\n"
-"PO-Revision-Date: 2025-09-18 00:42+0200\n"
+"POT-Creation-Date: 2025-09-18T00:15:16+00:00\n"
+"PO-Revision-Date: 2025-09-18 02:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -146,68 +146,70 @@ msgstr "Uppdrag"
 msgid "Roles"
 msgstr "Roller"
 
-#: app/Core/Admin/Assignments/Index.php:110
+#: app/Core/Admin/Assignments/Index.php:117
 #: app/Core/Admin/DecisionAuthorities/Index.php:101
 msgid "Invalid request."
 msgstr "Ogiltig begäran."
 
-#: app/Core/Admin/Assignments/Index.php:117
+#: app/Core/Admin/Assignments/Index.php:124
 #: app/Core/Admin/DecisionAuthorities/Index.php:108
 msgid "Security check failed. Please try again."
 msgstr "Säkerhetskontrollen misslyckades. Försök igen."
 
-#: app/Core/Admin/Assignments/Index.php:121
+#: app/Core/Admin/Assignments/Index.php:128
 #: app/Core/Admin/DecisionAuthorities/Index.php:112
 msgid "You do not have permission to perform this action."
 msgstr "Du har inte behörighet att utföra den här åtgärden."
 
-#: app/Core/Admin/Assignments/Index.php:128
+#: app/Core/Admin/Assignments/Index.php:135
 msgid "Assignment was deleted successfully."
 msgstr "Uppdraget har raderats framgångsrikt."
 
-#: app/Core/Admin/Assignments/Index.php:135
+#: app/Core/Admin/Assignments/Index.php:142
 msgid "Failed to delete assignment."
 msgstr "Det gick inte att ta bort uppgiften."
 
-#: app/Core/Admin/Assignments/Index.php:183
+#: app/Core/Admin/Assignments/Index.php:190
 #, php-format
 msgid "%s assignment was deleted."
 msgid_plural "%s assignments were deleted."
 msgstr[0] "%s uppdrag raderades."
 msgstr[1] "%s uppdrag raderades."
 
-#: app/Core/Admin/Assignments/Index.php:214
+#: app/Core/Admin/Assignments/Index.php:221
 #: app/Core/Admin/DecisionAuthorities/Index.php:205
 msgid "All"
 msgstr "Alla"
 
-#: app/Core/Admin/Assignments/Index.php:222
+#: app/Core/Admin/Assignments/Index.php:229
 #: app/Core/Admin/DecisionAuthorities/Index.php:213
 msgid "Ongoing"
 msgstr "Pågående"
 
-#: app/Core/Admin/Assignments/Index.php:230
+#: app/Core/Admin/Assignments/Index.php:237
 #: app/Core/Admin/DecisionAuthorities/Index.php:221
 msgid "Past"
 msgstr "Historiska"
 
-#: app/Core/Admin/Assignments/Index.php:245
+#: app/Core/Admin/Assignments/Index.php:252
 #: app/Core/Admin/DecisionAuthorities/Index.php:236
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/Assignments/Index.php:258
+#: app/Core/Admin/Assignments/Index.php:265
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:32
 #: app/Core/PostTypes/Persons.php:32
+#: resources/views/admin/assignments/index.blade.php:46
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:7
 #: resources/views/assignments/index.blade.php:62
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/Assignments/Index.php:259
+#: app/Core/Admin/Assignments/Index.php:266
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:41
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Role.php:26
+#: resources/views/admin/assignments/index.blade.php:18
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:25
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
@@ -216,9 +218,10 @@ msgstr "Person"
 msgid "Role"
 msgstr "Roll"
 
-#: app/Core/Admin/Assignments/Index.php:260
+#: app/Core/Admin/Assignments/Index.php:267
 #: app/Core/Admin/DecisionAuthorities/Index.php:250
 #: app/Core/PostTypes/Boards.php:29
+#: resources/views/admin/assignments/index.blade.php:32
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:7
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
@@ -227,7 +230,7 @@ msgstr "Roll"
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
-#: app/Core/Admin/Assignments/Index.php:261
+#: app/Core/Admin/Assignments/Index.php:268
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:34
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:49
 #: resources/views/assignments/index.blade.php:55
@@ -236,7 +239,7 @@ msgstr "Nämnd/Styrelse"
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
-#: app/Core/Admin/Assignments/Index.php:262
+#: app/Core/Admin/Assignments/Index.php:269
 #: app/Core/Admin/DecisionAuthorities/Index.php:252
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:53
@@ -248,16 +251,16 @@ msgstr "Beslutsinstans"
 msgid "Period"
 msgstr "Period"
 
-#: app/Core/Admin/Assignments/Index.php:359
+#: app/Core/Admin/Assignments/Index.php:366
 #: app/Core/Admin/DecisionAuthorities/Index.php:341
 msgid "Edit"
 msgstr "Redigera"
 
-#: app/Core/Admin/Assignments/Index.php:361
+#: app/Core/Admin/Assignments/Index.php:368
 msgid "Are you sure you want to delete this assignment?"
 msgstr "Är du säker på att du vill ta bort det här uppdraget?"
 
-#: app/Core/Admin/Assignments/Index.php:362
+#: app/Core/Admin/Assignments/Index.php:369
 #: app/Core/Admin/DecisionAuthorities/Index.php:344
 msgid "Remove"
 msgstr "Ta bort"
@@ -359,6 +362,7 @@ msgstr "uppdrag"
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
 #: app/Http/Controllers/Admin/AnniversaryController.php:93
 #: resources/views/admin/anniversaries/index.blade.php:78
+#: resources/views/admin/assignments/index.blade.php:60
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:82
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:48
 msgid "Start Date"
@@ -369,6 +373,7 @@ msgstr "Startdatum"
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
 #: app/Http/Controllers/Admin/AnniversaryController.php:94
 #: resources/views/admin/anniversaries/index.blade.php:79
+#: resources/views/admin/assignments/index.blade.php:65
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:90
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:63
 msgid "End Date"
@@ -793,6 +798,7 @@ msgid "View person"
 msgstr "Visa person"
 
 #: app/Core/PostTypes/Persons.php:60
+#: resources/views/admin/assignments/index.blade.php:48
 msgid "All persons"
 msgstr "Alla personer"
 
@@ -853,6 +859,7 @@ msgid "Search roles"
 msgstr "Sök roller"
 
 #: app/Core/Taxonomies/Role.php:29
+#: resources/views/admin/assignments/index.blade.php:20
 #: resources/views/assignments/index.blade.php:19
 msgid "All roles"
 msgstr "Alla roller"
@@ -976,10 +983,12 @@ msgid "Choose max years"
 msgstr "Välj max år"
 
 #: resources/views/admin/anniversaries/index.blade.php:34
+#: resources/views/admin/assignments/index.blade.php:70
 msgid "Apply filters"
 msgstr "Applicera filter"
 
 #: resources/views/admin/anniversaries/index.blade.php:37
+#: resources/views/admin/assignments/index.blade.php:71
 msgid "Clear filters"
 msgstr "Töm filter"
 
@@ -1014,6 +1023,10 @@ msgstr ""
 #: resources/views/admin/assignments/index.blade.php:10
 msgid "Search Assignments"
 msgstr "Sök uppdrag"
+
+#: resources/views/admin/assignments/index.blade.php:34
+msgid "All boards"
+msgstr "Alla nämnder/styrelser"
 
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:51
 msgid "Select Decision Authority"
@@ -1238,6 +1251,14 @@ msgstr "Dölj ytterligare information"
 #: resources/views/partials/post-types/content-single-person.blade.php:110
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
+
+#~ msgid "Apply Filters"
+#~ msgstr "Applicera filter"
+
+#, fuzzy
+#~| msgid "Clear"
+#~ msgid "Clear All"
+#~ msgstr "Töm"
 
 #~ msgid "Downloading..."
 #~ msgstr "Laddar ner…"

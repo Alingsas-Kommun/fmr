@@ -69,8 +69,7 @@ class Post extends Model
      */
     public static function type($type)
     {
-        return static::where('post_type', $type)
-            ->where('post_status', 'publish');
+        return static::where('post_type', $type);
     }
 
     /**
@@ -205,7 +204,7 @@ class Post extends Model
     /**
      * Scope a query to only include posts of a specific type
      */
-    public function scopeOfType($query, $type)
+    public function scopeType($query, $type)
     {
         return $query->where('post_type', $type);
     }
@@ -217,7 +216,7 @@ class Post extends Model
     {
         return $query->whereHas('meta', function ($query) use ($key, $value) {
             $query->where('meta_key', $key)
-                  ->where('meta_value', $value);
+                ->where('meta_value', $value);
         });
     }
 }

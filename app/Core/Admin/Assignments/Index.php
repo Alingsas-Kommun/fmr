@@ -96,7 +96,14 @@ class Index extends \WP_List_Table
 
         set_current_screen('assignments');
 
-        echo view('admin.assignments.index', ['list' => $this])->render();
+        echo view('admin.assignments.index', [
+            'list' => $this,
+            'filter_data' => [
+                'roles' => $this->controller->getRoles(),
+                'boards' => $this->controller->getBoards(),
+                'persons' => $this->controller->getPersons(),
+            ]
+        ])->render();
     }
 
     /**
@@ -487,7 +494,12 @@ class Index extends \WP_List_Table
             'orderby' => $_REQUEST['orderby'] ?? 'id',
             'order' => $_REQUEST['order'] ?? 'desc',
             'period_status' => $_REQUEST['period_status'] ?? 'all',
-            'search' => isset($_REQUEST['s']) ? trim($_REQUEST['s']) : ''
+            'search' => isset($_REQUEST['s']) ? trim($_REQUEST['s']) : '',
+            'role_filter' => $_REQUEST['role_filter'] ?? '',
+            'board_filter' => $_REQUEST['board_filter'] ?? '',
+            'person_filter' => $_REQUEST['person_filter'] ?? '',
+            'period_start' => $_REQUEST['period_start'] ?? '',
+            'period_end' => $_REQUEST['period_end'] ?? ''
         ]);
 
         $this->items = $result['items'];

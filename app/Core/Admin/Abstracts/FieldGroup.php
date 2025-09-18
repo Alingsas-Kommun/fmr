@@ -2,6 +2,7 @@
 
 namespace App\Core\Admin\Abstracts;
 
+use App\Models\Post;
 use function Roots\view;
 
 abstract class FieldGroup
@@ -188,13 +189,10 @@ abstract class FieldGroup
      */
     protected function getPostRelationOptions($post_type, $display_field = 'post_title')
     {
-        $posts = get_posts([
-            'post_type' => $post_type,
-            'post_status' => 'publish',
-            'numberposts' => -1,
-            'orderby' => 'title',
-            'order' => 'ASC'
-        ]);
+        $posts = Post::type($post_type)
+            ->published()
+            ->orderBy('post_title')
+            ->get();
 
         $options = [];
         foreach ($posts as $post) {
@@ -202,7 +200,7 @@ abstract class FieldGroup
             
             // If display_field is a meta field, get it
             if ($display_field !== 'post_title' && $display_field !== 'post_content') {
-                $display_value = get_post_meta($post->ID, $display_field, true);
+                $display_value = $post->getMeta($display_field);
             }
             
             // Fallback to post title if display value is empty

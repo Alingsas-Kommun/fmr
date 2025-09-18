@@ -18,6 +18,7 @@ class AnniversaryService
     public function getPersonsByServiceYears(?float $minYears = null, ?float $maxYears = null): Collection
     {
         return Post::persons()
+            ->published()
             ->with(['personAssignments' => function ($query) {
                 $query->with(['roleTerm', 'decisionAuthority'])
                       ->orderBy('period_start', 'asc');

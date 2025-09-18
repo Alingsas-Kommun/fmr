@@ -199,12 +199,9 @@ class Parties
     {
         $now = now();
         
-        $query = Post::where('post_type', 'person')
-            ->where('post_status', 'publish')
-            ->whereHas('meta', function($query) use ($party_id) {
-                $query->where('meta_key', 'person_party')
-                      ->where('meta_value', $party_id);
-            });
+        $query = Post::persons()
+            ->published()
+            ->withMeta('person_party', $party_id);
 
         if ($has_active_assignments) {
             $query->whereHas('personAssignments', function($query) use ($now) {

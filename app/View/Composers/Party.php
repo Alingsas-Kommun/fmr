@@ -123,12 +123,9 @@ class Party extends Composer
             return collect();
         }
 
-        $persons = Post::ofType('person')
+        $persons = Post::persons()
             ->published()
-            ->whereHas('meta', function($query) use ($party) {
-                $query->where('meta_key', 'person_party')
-                      ->where('meta_value', $party->ID);
-            })
+            ->withMeta('person_party', $party->ID)
             ->orderBy('post_title')
             ->get();
 
