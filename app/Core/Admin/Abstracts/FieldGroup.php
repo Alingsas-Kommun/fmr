@@ -5,12 +5,17 @@ namespace App\Core\Admin\Abstracts;
 use App\Models\Post;
 use function Roots\view;
 
+/**
+ * Abstract FieldGroup class for creating custom meta boxes
+ * 
+ * Supports both single and multiple post types by setting the $post_types property:
+ */
 abstract class FieldGroup
 {
-    protected static $post_type;
+    protected static $post_types = [];
     protected static $id;
     protected static $context = 'normal';
-    protected static $priority = 'high';
+    protected static $priority = 'low';
     
     protected $title;
 
@@ -21,19 +26,26 @@ abstract class FieldGroup
         $this->title = $this->getTitle();
         
         add_action('add_meta_boxes', [$this, 'register']);
-        add_action('save_post_' . static::$post_type, [$this, 'save'], 10, 2);
+        
+        // Register save action for each post type
+        foreach (static::$post_types as $post_type) {
+            add_action('save_post_' . $post_type, [$this, 'save'], 10, 2);
+        }
     }
 
     public function register()
     {
-        add_meta_box(
-            static::$id,
-            $this->title,
-            [$this, 'render'],
-            static::$post_type,
-            static::$context,
-            static::$priority
-        );
+        // Register meta box for each post type
+        foreach (static::$post_types as $post_type) {
+            add_meta_box(
+                static::$id,
+                $this->title,
+                [$this, 'render'],
+                $post_type,
+                static::$context,
+                static::$priority
+            );
+        }
     }
 
     public function render($post)

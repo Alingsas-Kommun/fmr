@@ -53,10 +53,10 @@ class Parties
     public function getLabels()
     {
         return [
-            'name'               => \_x('Parties', 'Post type general name', 'fmr'),
-            'singular_name'      => \_x('Party', 'Post type singular name', 'fmr'),
-            'menu_name'          => \_x('Parties', 'Admin Menu text', 'fmr'),
-            'name_admin_bar'     => \_x('Party', 'Add New on Toolbar', 'fmr'),
+            'name'               => _x('Parties', 'Post type general name', 'fmr'),
+            'singular_name'      => _x('Party', 'Post type singular name', 'fmr'),
+            'menu_name'          => _x('Parties', 'Admin Menu text', 'fmr'),
+            'name_admin_bar'     => _x('Party', 'Add New on Toolbar', 'fmr'),
             'add_new'            => __('Add new', 'fmr'),
             'add_new_item'       => __('Add new party', 'fmr'),
             'new_item'           => __('New party', 'fmr'),

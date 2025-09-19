@@ -6,7 +6,7 @@ use App\Core\Admin\Abstracts\FieldGroup;
 
 class PartyDetails extends FieldGroup
 {
-    protected static $post_type = 'party';
+    protected static $post_types = ['party'];
     protected static $id = 'party_details';
 
     protected function getTitle()
