@@ -61,9 +61,28 @@ abstract class FieldGroup
         echo view('admin.field-groups.fields', $data)->render();
     }
 
-    protected function getTabs()
+    /**
+     * Extract tabs from field configuration automatically
+     */
+    protected function extractTabs()
     {
-        return [];
+        $tabs = [];
+        $fields = $this->getFields();
+        
+        foreach ($fields as $group) {
+            if (isset($group['tab']) && !empty($group['tab'])) {
+                $tab_id = $group['tab'];
+                if (!isset($tabs[$tab_id])) {
+                    // Check if group has a custom tab label
+                    $label = $group['tab_label'] ?? ucfirst(str_replace('_', ' ', $tab_id));
+                    $tabs[$tab_id] = [
+                        'label' => $label,
+                    ];
+                }
+            }
+        }
+        
+        return $tabs;
     }
 
     protected function getFields()
@@ -71,19 +90,52 @@ abstract class FieldGroup
         return [];
     }
 
+
+    /**
+     * Flatten the field configuration into a simple array for easy processing
+     */
+    protected function getFlattenedFields()
+    {
+        $flattened = [];
+        $fields = $this->getFields();
+        
+        foreach ($fields as $group) {
+            if (isset($group['fields']) && is_array($group['fields'])) {
+                foreach ($group['fields'] as $row) {
+                    if (isset($row['fields']) && is_array($row['fields'])) {
+                        // Complex configuration with rows
+                        foreach ($row['fields'] as $field) {
+                            $flattened[$field['id']] = $field;
+                        }
+                    } elseif (isset($row['id'])) {
+                        // Simple configuration with direct fields
+                        $flattened[$row['id']] = $row;
+                    }
+                }
+            }
+        }
+        
+        return $flattened;
+    }
+
     protected function prepareTabs($post)
     {
-        $tabs = $this->getTabs();
+        $tabs = $this->extractTabs();
         if (empty($tabs)) {
             return [];
         }
 
         $prepared_tabs = [];
         foreach ($tabs as $tab_id => $tab) {
-            $prepared_tabs[$tab_id] = [
-                'label' => $tab['label'],
-                'groups' => $this->prepareGroups($post, $tab_id),
-            ];
+            $groups = $this->prepareGroups($post, $tab_id);
+            
+            // Only include tabs that have groups assigned to them
+            if (!empty($groups)) {
+                $prepared_tabs[$tab_id] = [
+                    'label' => $tab['label'],
+                    'groups' => $groups,
+                ];
+            }
         }
 
         return $prepared_tabs;
@@ -101,27 +153,55 @@ abstract class FieldGroup
                 continue;
             }
 
+            // Add type marker to group
+            $group['_type'] = 'group';
+            
             $rows = [];
-            foreach ($group['fields'] as $row) {
-                foreach ($row['fields'] as &$field) {
-                    $field['value'] = get_post_meta($post->ID, $field['id'], true);
-                    
-                    if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
-                        $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title');
-                    }
-                    
-                    if (isset($field['visibility'])) {
-                        $visibility_id = $field['id'] . '_visibility';
-                        $field['visibility']['id'] = $visibility_id;
-                        $field['visibility']['value'] = get_post_meta($post->ID, $visibility_id, true);
+            if (isset($group['fields']) && is_array($group['fields'])) {
+                foreach ($group['fields'] as $row) {
+                    if (isset($row['fields']) && is_array($row['fields'])) {
+                        // Complex configuration with rows
+                        $row['_type'] = 'row';
+                        foreach ($row['fields'] as &$field) {
+                            $field['_type'] = 'field';
+                            $field['value'] = get_post_meta($post->ID, $field['id'], true);
+                            
+                            if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
+                                $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title');
+                            }
+                            
+                            if (isset($field['visibility'])) {
+                                $visibility_id = $field['id'] . '_visibility';
+                                $field['visibility']['id'] = $visibility_id;
+                                $field['visibility']['value'] = get_post_meta($post->ID, $visibility_id, true);
+                                
+                                if ($field['visibility']['value'] === '') {
+                                    $field['visibility']['value'] = $field['visibility']['default'] ?? true;
+                                }
+                            }
+                        }
+                    } elseif (isset($row['id'])) {
+                        // Simple configuration - this row is actually a field
+                        $row['_type'] = 'field';
+                        $row['value'] = get_post_meta($post->ID, $row['id'], true);
                         
-                        if ($field['visibility']['value'] === '') {
-                            $field['visibility']['value'] = $field['visibility']['default'] ?? true;
+                        if ($row['type'] === 'post_relation' && isset($row['post_type'])) {
+                            $row['options'] = $this->getPostRelationOptions($row['post_type'], $row['display_field'] ?? 'post_title');
+                        }
+                        
+                        if (isset($row['visibility'])) {
+                            $visibility_id = $row['id'] . '_visibility';
+                            $row['visibility']['id'] = $visibility_id;
+                            $row['visibility']['value'] = get_post_meta($post->ID, $visibility_id, true);
+                            
+                            if ($row['visibility']['value'] === '') {
+                                $row['visibility']['value'] = $row['visibility']['default'] ?? true;
+                            }
                         }
                     }
-                }
 
-                $rows[] = $row;
+                    $rows[] = $row;
+                }
             }
 
             $group['rows'] = $rows;
@@ -146,48 +226,47 @@ abstract class FieldGroup
             return;
         }
 
-        foreach ($this->getFields() as $group) {
-            foreach ($group['fields'] as $row) {
-                foreach ($row['fields'] as $field) {
-                    $has_value = false;
+        // Use flattened fields for efficient processing
+        $fields = $this->getFlattenedFields();
+        
+        foreach ($fields as $field) {
+            $has_value = false;
 
-                    if (isset($_POST[$field['id']])) {
-                        $value = $_POST[$field['id']];
-                        
-                        switch ($field['type']) {
-                            case 'textarea':
-                                $value = sanitize_textarea_field($value);
-                                break;
-                            case 'checkbox':
-                                $value = (bool) $value;
-                                break;
-                            default:
-                                $value = sanitize_text_field($value);
-                        }
-
-                        if ($value === '' || $value === null) {
-                            delete_post_meta($post_id, $field['id']);
-                        } else {
-                            update_post_meta($post_id, $field['id'], $value);
-                            $has_value = true;
-                        }
-                    } else if ($field['type'] === 'checkbox') {
-                        delete_post_meta($post_id, $field['id']);
-                    }
-
-                    $visibility_id = $field['id'] . '_visibility';
-                    
-                    if (isset($field['visibility'])) {
-                        if ($has_value) {
-                            $visibility = isset($_POST[$visibility_id]) && $_POST[$visibility_id] == '1' ? 1 : 0;
-                            update_post_meta($post_id, $visibility_id, $visibility);
-                        } else {
-                            delete_post_meta($post_id, $visibility_id);
-                        }
-                    } else {
-                        delete_post_meta($post_id, $visibility_id);
-                    }
+            if (isset($_POST[$field['id']])) {
+                $value = $_POST[$field['id']];
+                
+                switch ($field['type']) {
+                    case 'textarea':
+                        $value = sanitize_textarea_field($value);
+                        break;
+                    case 'checkbox':
+                        $value = (bool) $value;
+                        break;
+                    default:
+                        $value = sanitize_text_field($value);
                 }
+
+                if ($value === '' || $value === null) {
+                    delete_post_meta($post_id, $field['id']);
+                } else {
+                    update_post_meta($post_id, $field['id'], $value);
+                    $has_value = true;
+                }
+            } else if ($field['type'] === 'checkbox') {
+                delete_post_meta($post_id, $field['id']);
+            }
+
+            $visibility_id = $field['id'] . '_visibility';
+            
+            if (isset($field['visibility'])) {
+                if ($has_value) {
+                    $visibility = isset($_POST[$visibility_id]) && $_POST[$visibility_id] == '1' ? 1 : 0;
+                    update_post_meta($post_id, $visibility_id, $visibility);
+                } else {
+                    delete_post_meta($post_id, $visibility_id);
+                }
+            } else {
+                delete_post_meta($post_id, $visibility_id);
             }
         }
     }

@@ -1,5 +1,5 @@
-<div class="meta-box-field-group">
-    <div class="meta-box-field">
+<div class="fields-field-group">
+    <div class="fields-field">
         <label for="{{ $field['id'] }}">
             {{ $field['label'] }}
             @if($field['optional'] ?? false)
@@ -9,20 +9,24 @@
 
         @switch($field['type'])
             @case('text')
-                <input type="text" 
-                       id="{{ $field['id'] }}" 
-                       name="{{ $field['id'] }}" 
-                       value="{{ esc_attr($value) }}"
-                       class="widefat"
-                       {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                <input 
+                    type="text" 
+                    id="{{ $field['id'] }}" 
+                    name="{{ $field['id'] }}" 
+                    value="{{ esc_attr($value) }}"
+                    class="widefat"
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
+                >
                 @break
 
             @case('textarea')
-                <textarea id="{{ $field['id'] }}" 
-                          name="{{ $field['id'] }}" 
-                          class="widefat" 
-                          rows="4"
-                          {{ !($field['optional'] ?? false) ? 'required' : '' }}>{{ esc_textarea($value) }}</textarea>
+                <textarea 
+                    id="{{ $field['id'] }}" 
+                    name="{{ $field['id'] }}" 
+                    class="widefat" 
+                    rows="4"
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}>{{ esc_textarea($value) }}
+                </textarea>
                 @break
 
             @case('select')
@@ -50,18 +54,18 @@
                 @break
 
             @case('radio')
-            <div class="radio-group">
-                @foreach($field['options'] as $option_value => $option_label)
-                    <label class="radio-label">
-                        <input type="radio" 
-                               name="{{ $field['id'] }}" 
-                               value="{{ esc_attr($option_value) }}"
-                               {{ $value == $option_value ? 'checked' : '' }}
-                               {{ !($field['optional'] ?? false) ? 'required' : '' }}>
-                        <span class="radio-text">{{ esc_html($option_label) }}</span>
-                    </label>
-                @endforeach
-            </div>
+                <div class="radio-group">
+                    @foreach($field['options'] as $option_value => $option_label)
+                        <label class="radio-label">
+                            <input type="radio" 
+                                name="{{ $field['id'] }}" 
+                                value="{{ esc_attr($option_value) }}"
+                                {{ $value == $option_value ? 'checked' : '' }}
+                                {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                            <span class="radio-text">{{ esc_html($option_label) }}</span>
+                        </label>
+                    @endforeach
+                </div>
             @break
 
             @case('url')
@@ -74,7 +78,8 @@
                 @break
 
             @case('number')
-                <input type="number" 
+                <input 
+                    type="number" 
                     id="{{ $field['id'] }}" 
                     name="{{ $field['id'] }}" 
                     value="{{ esc_attr($value) }}"
@@ -82,34 +87,40 @@
                     max="{{ $field['max'] ?? '' }}"
                     step="{{ $field['step'] ?? '1' }}"
                     class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
+                >
                 @break
 
             @case('date')
-                <input type="date" 
+                <input 
+                    type="date" 
                     id="{{ $field['id'] }}" 
                     name="{{ $field['id'] }}" 
                     value="{{ esc_attr($value) }}"
                     class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
+                >
                 @break
 
             @case('email')
-                <input type="email" 
-                       id="{{ $field['id'] }}" 
-                       name="{{ $field['id'] }}" 
-                       value="{{ esc_attr($value) }}"
-                       class="widefat"
-                       {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                <input 
+                    type="email" 
+                    id="{{ $field['id'] }}" 
+                    name="{{ $field['id'] }}" 
+                    value="{{ esc_attr($value) }}"
+                    class="widefat"
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
+                >
                 @break
 
             @case('tel')
                 <input type="tel" 
-                       id="{{ $field['id'] }}" 
-                       name="{{ $field['id'] }}" 
-                       value="{{ esc_attr($value) }}"
-                       class="widefat"
-                       {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                    id="{{ $field['id'] }}" 
+                    name="{{ $field['id'] }}" 
+                    value="{{ esc_attr($value) }}"
+                    class="widefat"
+                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
+                >
                 @break
 
             @case('post_relation')
@@ -133,7 +144,7 @@
 
     @if(isset($field['visibility']))
         <x-admin.visibility-toggle
-            class="meta-box-field-visibility"
+            class="fields-field-visibility"
             :name="$field['visibility']['id']"
             :is-visible="$field['visibility']['value'] ?? $field['visibility']['default'] ?? true" 
         />

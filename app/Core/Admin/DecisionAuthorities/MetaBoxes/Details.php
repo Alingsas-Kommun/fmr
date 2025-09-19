@@ -32,12 +32,10 @@ class Details extends MetaBox
      * Render the meta box content.
      */
     public function render($object, $box)
-    {
-        $boards = $this->boardController->getAll();
-        
+    {        
         echo view('admin.decision-authorities.meta-boxes.details', [
             'object' => $object,
-            'boards' => $boards,
+            'boards' => $this->boardController->getAll(),
             'getFieldValue' => function($field, $default = '') {
                 return $this->getFieldValue($field, $default);
             }

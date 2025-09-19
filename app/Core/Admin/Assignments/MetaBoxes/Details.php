@@ -43,9 +43,9 @@ class Details extends MetaBox
             'getFieldValue' => function($field, $default = '') {
                 return $this->getFieldValue($field, $default);
             },
-            'persons' => $this->getPersons(),
-            'decisionAuthorities' => $this->getDecisionAuthorities(),
-            'roles' => $this->getRoles()
+            'persons' => $this->personController->getAll(),
+            'decisionAuthorities' => $this->decisionAuthorityController->getAll(),
+            'roles' => $this->roleController->getAll()
         ])->render();
     }
 
@@ -53,34 +53,4 @@ class Details extends MetaBox
      * Handle saving the meta box data.
      */
     public function save($data, $object) {}
-
-    /**
-     * Get all roles from the role taxonomy.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getRoles()
-    {
-        return $this->roleController->getAll();
-    }
-
-    /**
-     * Get all persons for the meta box.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getPersons()
-    {
-        return $this->personController->getAll();
-    }
-
-    /**
-     * Get all decision authorities for the meta box.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getDecisionAuthorities()
-    {
-        return $this->decisionAuthorityController->getAll();
-    }
 }

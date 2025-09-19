@@ -1,4 +1,4 @@
-.meta-box {
+.fields {
     $parent: &;
     
     &-tabs {
@@ -29,7 +29,7 @@
     }
 
     &-group {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
         &:last-of-type {
             margin-bottom: 0;
@@ -37,7 +37,7 @@
 
         &-title {
             margin-bottom: 1rem;
-            font-size: 1.3em;
+            font-size: 1.15em;
         }
 
         &-header {
@@ -47,6 +47,12 @@
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #eee;
+        }
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
         }
 
         & #{$parent}-row {
@@ -67,7 +73,6 @@
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 1rem;
-            margin-bottom: 1rem;
 
             &:last-of-type {
                 margin-bottom: 0;
@@ -86,6 +91,7 @@
         &-group {
             display: flex;
             align-items: flex-start;
+            flex: 1;
             gap: 0.5rem;
         }
 

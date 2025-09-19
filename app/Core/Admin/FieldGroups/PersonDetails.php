@@ -14,18 +14,6 @@ class PersonDetails extends FieldGroup
         return __('Person Details', 'fmr');
     }
 
-    protected function getTabs()
-    {
-        return [
-            'basic' => [
-                'label' => __('Basic Information', 'fmr'),
-            ],
-            'addresses' => [
-                'label' => __('Addresses', 'fmr'),
-            ],
-        ];
-    }
-
     protected function getFields()
     {
         return [
@@ -33,6 +21,7 @@ class PersonDetails extends FieldGroup
                 'id' => 'personal_info',
                 'label' => __('Personal Information', 'fmr'),
                 'tab' => 'basic',
+                'tab_label' => __('Basic Information', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [
@@ -127,6 +116,7 @@ class PersonDetails extends FieldGroup
                 'id' => 'home_info',
                 'label' => __('Home Information', 'fmr'),
                 'tab' => 'addresses',
+                'tab_label' => __('Addresses', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [

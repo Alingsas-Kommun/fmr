@@ -14,18 +14,6 @@ class PartyDetails extends FieldGroup
         return __('Party Details', 'fmr');
     }
 
-    protected function getTabs()
-    {
-        return [
-            'general' => [
-                'label' => __('General', 'fmr'),
-            ],
-            'contact' => [
-                'label' => __('Contact Details', 'fmr'),
-            ],
-        ];
-    }
-
     protected function getFields()
     {
         return [
@@ -33,6 +21,7 @@ class PartyDetails extends FieldGroup
                 'id' => 'basic_info',
                 'label' => __('Basic Information', 'fmr'),
                 'tab' => 'general',
+                'tab_label' => __('General', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [
@@ -70,6 +59,7 @@ class PartyDetails extends FieldGroup
                 'id' => 'contact_details',
                 'label' => __('Contact Details', 'fmr'),
                 'tab' => 'contact',
+                'tab_label' => __('Contact Details', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [

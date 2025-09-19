@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Utilities\AttributeFactory;
+
 class Filters
 {
     public function __construct()

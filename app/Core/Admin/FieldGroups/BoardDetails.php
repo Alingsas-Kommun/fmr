@@ -14,18 +14,6 @@ class BoardDetails extends FieldGroup
         return __('Board Details', 'fmr');
     }
 
-    protected function getTabs()
-    {
-        return [
-            'general' => [
-                'label' => __('General', 'fmr'),
-            ],
-            'contact' => [
-                'label' => __('Contact Details', 'fmr'),
-            ],
-        ];
-    }
-
     protected function getFields()
     {
         return [
@@ -33,6 +21,7 @@ class BoardDetails extends FieldGroup
                 'id' => 'basic_info',
                 'label' => __('Basic Information', 'fmr'),
                 'tab' => 'general',
+                'tab_label' => __('General', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [
@@ -68,6 +57,7 @@ class BoardDetails extends FieldGroup
                 'id' => 'contact_details',
                 'label' => __('Contact Details', 'fmr'),
                 'tab' => 'contact',
+                'tab_label' => __('Contact Details', 'fmr'),
                 'fields' => [
                     [
                         'fields' => [
