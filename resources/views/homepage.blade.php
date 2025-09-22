@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-emerald-50 rounded-xl mt-3">
+    <div class="bg-emerald-50 dark:bg-gray-100 rounded-xl mt-3">
         <div class="mx-auto max-w-3xl py-15 px-4">
             <div class="text-center">
                 <h1 class="text-3xl font-bold tracking-tight text-emerald-700 sm:text-4xl text-balance">
@@ -11,27 +11,10 @@
                 <p class="mt-3 text-lg leading-8 text-gray-800">
                     {!! __('Search through assignments, parties and politicians in the municipality of Alingsås.', 'fmr') !!}
                 </p>
+            </div>
                 
-                <div class="mt-7">
-                    <form action="#" method="GET" class="max-w-lg mx-auto">
-                        <div class="flex gap-x-4">
-                            <label for="search" class="sr-only">{!! __('Search', 'fmr') !!}</label>
-                            <div class="flex-auto">
-                                <input 
-                                    type="text" 
-                                    name="search" 
-                                    id="search" 
-                                    class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
-                                    placeholder="{!! __('Enter name, party or role...', 'fmr') !!}"
-                                >
-                            </div>
-
-                            <button type="submit" class="flex-none rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
-                                {!! __('Search', 'fmr') !!}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="mt-7">
+                <livewire:search />
             </div>
         </div>
     </div>

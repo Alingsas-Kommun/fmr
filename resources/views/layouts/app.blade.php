@@ -13,10 +13,11 @@
             })();
         </script>
         
-        @php(do_action('get_header'))
+        @action('get_header')
         @php(wp_head())
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
 
     <body @php(body_class('h-full bg-white dark:bg-gray-50 text-gray-900'))>
@@ -36,7 +37,8 @@
             </div>
         </div>
 
-        @php(do_action('get_footer'))
+        @action('get_footer')
         @php(wp_footer())
+        @livewireScripts
     </body>
 </html>
