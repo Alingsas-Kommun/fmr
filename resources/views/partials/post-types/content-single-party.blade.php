@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
+<div class="bg-gray-50 dark:bg-gray-100 rounded-lg overflow-hidden">
     <div class="p-8">
         <div class="flex items-center space-x-6">
             @if($thumbnail)
@@ -102,7 +102,7 @@
     @if($members->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($members as $member)
-                <a href="{{ get_permalink($member->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
+                <a href="{{ get_permalink($member->ID) }}" class="group bg-gray-50 dark:bg-gray-100 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
                         @if($member->thumbnail())
                             <div class="flex-shrink-0">

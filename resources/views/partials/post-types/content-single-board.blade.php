@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden p-8">
+<div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8">
     <div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
             {{ $board->post_title }}
@@ -108,7 +108,7 @@
 @if($decisionAuthorities->isNotEmpty())
     <div class="mt-6">
         <h2 class="text-2xl font-semibold mb-4">{!! __('Decision Authorities', 'fmr') !!}</h2>
-        <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
+        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 dark:bg-gray-200">
                     <tr>

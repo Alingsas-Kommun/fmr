@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg md:shadow overflow-hidden md:p-8 mt-8">
+    <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg overflow-hidden md:p-8 mt-8">
         <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 mb-8">
             <div class="flex items-center space-x-6 flex-1">
                 <div class="flex-shrink-0">

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-22T12:46:29+00:00\n"
+"POT-Creation-Date: 2025-09-22T20:43:53+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -168,6 +168,7 @@ msgstr "Person"
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
 #: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/livewire/advanced-search.blade.php:112
 #: resources/views/partials/post-types/content-single-person.blade.php:337
 msgid "Role"
 msgstr "Roll"
@@ -181,6 +182,7 @@ msgstr "Roll"
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:21
+#: resources/views/livewire/advanced-search.blade.php:54
 #: resources/views/partials/post-types/content-single-person.blade.php:338
 msgid "Board"
 msgstr "Nämnd/Styrelse"
@@ -505,6 +507,9 @@ msgstr "Politikinformation"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:75
 #: app/Core/PostTypes/Parties.php:33 app/Core/PostTypes/Persons.php:110
+#: resources/views/livewire/advanced-search.blade.php:83
+#: resources/views/livewire/advanced-search.blade.php:163
+#: resources/views/livewire/advanced-search.blade.php:218
 msgid "Party"
 msgstr "Parti"
 
@@ -1164,6 +1169,7 @@ msgstr "Filter"
 
 #: resources/views/assignments/index.blade.php:38
 #: resources/views/decision-authorities/index.blade.php:36
+#: resources/views/livewire/advanced-search.blade.php:44
 msgid "Clear"
 msgstr "Töm"
 
@@ -1255,23 +1261,85 @@ msgstr "Tyvärr, inga resultat hittades."
 msgid "Skip to content"
 msgstr "Hoppa till innehåll"
 
-#: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:66
-msgid "Search"
-msgstr "Sök"
+#: resources/views/livewire/advanced-search.blade.php:5
+msgid "Advanced search"
+msgstr "Avancerad sökning"
 
+#: resources/views/livewire/advanced-search.blade.php:6
+msgid "Enter a search term or select filters to find elected officials"
+msgstr "Ange ett sökord eller välj filter för att hitta valda tjänstemän"
+
+#: resources/views/livewire/advanced-search.blade.php:12
+msgid "Search Term"
+msgstr "Sökterm"
+
+#: resources/views/livewire/advanced-search.blade.php:22
 #: resources/views/livewire/search.blade.php:10
 msgid "Search elected officials..."
 msgstr "Sök förtroendevalda…"
 
-#: resources/views/livewire/search.blade.php:57
+#: resources/views/livewire/advanced-search.blade.php:33
+#: resources/views/livewire/search.blade.php:3
+#: resources/views/livewire/search.blade.php:80
+msgid "Search"
+msgstr "Sök"
+
+#: resources/views/livewire/advanced-search.blade.php:64
+msgid "All Boards"
+msgstr "Alla nämnder/styrelser"
+
+#: resources/views/livewire/advanced-search.blade.php:93
+msgid "All Parties"
+msgstr "Alla partier"
+
+#: resources/views/livewire/advanced-search.blade.php:122
+msgid "All Roles"
+msgstr "Alla roller"
+
+#: resources/views/livewire/advanced-search.blade.php:155
+#: resources/views/livewire/advanced-search.blade.php:208
+msgid "First Name"
+msgstr "Förnamn"
+
+#: resources/views/livewire/advanced-search.blade.php:159
+#: resources/views/livewire/advanced-search.blade.php:213
+msgid "Last Name"
+msgstr "Efternamn"
+
+#: resources/views/livewire/advanced-search.blade.php:194
+#, php-format
+msgid "%d results found for \"%s\""
+msgstr "%d resultat hittades för \"%s\""
+
+#: resources/views/livewire/advanced-search.blade.php:197
+#, php-format
+msgid "%d results found"
+msgstr "%d resultat hittades"
+
+#: resources/views/livewire/advanced-search.blade.php:259
+msgid "No party"
+msgstr "Inget parti"
+
+#: resources/views/livewire/advanced-search.blade.php:271
+msgid "No elected officials found"
+msgstr "Inga förtroendevalda hittades"
+
+#: resources/views/livewire/advanced-search.blade.php:272
+msgid "Try adjusting your search criteria or filters"
+msgstr "Försök att justera dina sökkriterier eller filter"
+
+#: resources/views/livewire/search.blade.php:71
 #, php-format
 msgid "No elected officials found for \"%s\""
 msgstr "Inga förtroendevalda hittades för \"%s\""
 
-#: resources/views/livewire/search.blade.php:58
+#: resources/views/livewire/search.blade.php:72
 msgid "Try a different name"
 msgstr "Testa ett annat namn"
+
+#: resources/views/livewire/search.blade.php:91
+msgid "Search with more advanced search criteria"
+msgstr "Sök med mer avancerade sökkriterier"
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104
 #: resources/views/partials/post-types/content-single-person.blade.php:216
@@ -1298,6 +1366,9 @@ msgstr "Dölj ytterligare information"
 #: resources/views/partials/post-types/content-single-person.blade.php:110
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
+
+#~ msgid "Start your search"
+#~ msgstr "Börja din sökning"
 
 #~ msgid "You must be using PHP 8.2 or greater."
 #~ msgstr "Du måste använda PHP 8.2 eller senare."

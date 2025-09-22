@@ -16,11 +16,13 @@ return [
             'assignments' => 'assignments',
             'decision-authorities' => 'decision-authorities',
             'style-guide' => 'style-guide',
+            'search' => 'search',
         ],
         'sv' => [
             'assignments' => 'uppdrag',
             'decision-authorities' => 'beslutsinstanser',
             'style-guide' => 'stilguide',
+            'search' => 'sok',
         ],
     ],
 

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-22T12:46:29+00:00\n"
+"POT-Creation-Date: 2025-09-22T20:43:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -164,6 +164,7 @@ msgstr ""
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
 #: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/livewire/advanced-search.blade.php:112
 #: resources/views/partials/post-types/content-single-person.blade.php:337
 msgid "Role"
 msgstr ""
@@ -177,6 +178,7 @@ msgstr ""
 #: resources/views/assignments/show.blade.php:66
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:21
+#: resources/views/livewire/advanced-search.blade.php:54
 #: resources/views/partials/post-types/content-single-person.blade.php:338
 msgid "Board"
 msgstr ""
@@ -503,6 +505,9 @@ msgstr ""
 #: app/Core/Admin/FieldGroups/PersonDetails.php:75
 #: app/Core/PostTypes/Parties.php:33
 #: app/Core/PostTypes/Persons.php:110
+#: resources/views/livewire/advanced-search.blade.php:83
+#: resources/views/livewire/advanced-search.blade.php:163
+#: resources/views/livewire/advanced-search.blade.php:218
 msgid "Party"
 msgstr ""
 
@@ -1151,6 +1156,7 @@ msgstr ""
 
 #: resources/views/assignments/index.blade.php:38
 #: resources/views/decision-authorities/index.blade.php:36
+#: resources/views/livewire/advanced-search.blade.php:44
 msgid "Clear"
 msgstr ""
 
@@ -1240,22 +1246,84 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:66
-msgid "Search"
+#: resources/views/livewire/advanced-search.blade.php:5
+msgid "Advanced search"
 msgstr ""
 
+#: resources/views/livewire/advanced-search.blade.php:6
+msgid "Enter a search term or select filters to find elected officials"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:12
+msgid "Search Term"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:22
 #: resources/views/livewire/search.blade.php:10
 msgid "Search elected officials..."
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:57
+#: resources/views/livewire/advanced-search.blade.php:33
+#: resources/views/livewire/search.blade.php:3
+#: resources/views/livewire/search.blade.php:80
+msgid "Search"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:64
+msgid "All Boards"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:93
+msgid "All Parties"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:122
+msgid "All Roles"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:155
+#: resources/views/livewire/advanced-search.blade.php:208
+msgid "First Name"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:159
+#: resources/views/livewire/advanced-search.blade.php:213
+msgid "Last Name"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:194
+#, php-format
+msgid "%d results found for \"%s\""
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:197
+#, php-format
+msgid "%d results found"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:259
+msgid "No party"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:271
+msgid "No elected officials found"
+msgstr ""
+
+#: resources/views/livewire/advanced-search.blade.php:272
+msgid "Try adjusting your search criteria or filters"
+msgstr ""
+
+#: resources/views/livewire/search.blade.php:71
 #, php-format
 msgid "No elected officials found for \"%s\""
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:58
+#: resources/views/livewire/search.blade.php:72
 msgid "Try a different name"
+msgstr ""
+
+#: resources/views/livewire/search.blade.php:91
+msgid "Search with more advanced search criteria"
 msgstr ""
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104

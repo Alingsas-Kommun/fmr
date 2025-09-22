@@ -1,4 +1,4 @@
-<div class="md:bg-white dark:md:bg-gray-100 rounded-lg md:shadow overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
+<div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
     <div class="flex items-center space-x-6">
         @if($thumbnail)
             <div class="flex-shrink-0">
@@ -121,7 +121,7 @@
         >
             
             @if($hasHomeInfo)
-                <div class="bg-gray-50 dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                         <x-heroicon-o-home class="h-5 w-5 text-emerald-600 mr-3" />
                         {!! __('Home Information', 'fmr') !!}
@@ -214,7 +214,7 @@
             @endif
 
             @if($hasWorkInfo)
-                <div class="bg-gray-50 dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                         <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mr-3" />
                         {!! __('Work Information', 'fmr') !!}
@@ -316,7 +316,7 @@
     <h2 class="text-2xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
     
     @if($assignments->isNotEmpty())
-        <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
+        <div class="bg-gray-50 dark:bg-gray-100 rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 dark:bg-gray-200">
                     <tr>

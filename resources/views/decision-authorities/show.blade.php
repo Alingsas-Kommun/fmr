@@ -9,7 +9,7 @@
         <span class="text-gray-600">{{ $decisionAuthority->title }}</span>
     </div>
 
-    <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden p-8 mb-8">
+    <div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8 mb-8">
         <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div class="flex-1">
                 <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $decisionAuthority->title }}</h1>
@@ -50,7 +50,7 @@
     </div>
 
     @if($activeAssignments->count() > 0)
-        <div class="bg-white dark:bg-gray-100 rounded-lg shadow overflow-hidden">
+        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200">
                 <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
             </div>

@@ -2,10 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Assignment;
-use App\Models\DecisionAuthority;
-use App\Models\Post;
-use App\Models\Term;
+use App\Http\Controllers\SearchController;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -18,32 +15,52 @@ class Search extends Component
     public string $query = '';
 
     /**
+     * Search results.
+     */
+    public $results;
+
+    /**
+     * Handle form submission - redirect to advanced search.
+     */
+    public function search()
+    {
+        if (empty($this->query)) {
+            return;
+        }
+
+        return redirect()->route('search.show', ['q' => $this->query]);
+    }
+
+    /**
+     * Updated query - perform search when query changes.
+     */
+    public function updatedQuery()
+    {
+        $this->performSearch();
+    }
+
+    /**
+     * Perform the search using SearchController.
+     */
+    public function performSearch()
+    {
+        if (empty($this->query)) {
+            $this->results = collect();
+            
+            return;
+        }
+
+        $searchController = new SearchController();
+        $this->results = $searchController->simpleSearch($this->query);
+    }
+
+    /**
      * Render the component.
      *
      * @return \Illuminate\View\View
      */
     public function render()
     {
-        $results = collect();
-        
-        if ($this->query) {
-            $personsQuery = Post::persons()
-                ->published()
-                ->where('post_title', 'like', '%' . $this->query . '%')
-                ->limit(10);
-
-            $persons = $personsQuery->get();
-            
-            foreach ($persons as $person) {
-                $results->push([
-                    'id' => $person->ID,
-                    'title' => $person->post_title,
-                    'thumbnail' => $person->thumbnail(),
-                    'url' => get_permalink($person->ID),
-                ]);
-            }
-        }
-
-        return view('livewire.search', compact('results'));
+        return view('livewire.search');
     }
 }

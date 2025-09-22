@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DecisionAuthorityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 use App\Utilities\General;
 
 /*
@@ -28,3 +29,6 @@ Route::get(General::getRouteSlug('assignments').'/{assignment}', [AssignmentCont
 // Decision authority routes
 Route::get(General::getRouteSlug('decision-authorities'), [DecisionAuthorityController::class, 'index'])->name('decision-authorities.index');
 Route::get(General::getRouteSlug('decision-authorities').'/{decisionAuthority}', [DecisionAuthorityController::class, 'show'])->name('decision-authorities.show');
+
+// Search routes
+Route::get(General::getRouteSlug('search'), [SearchController::class, 'search'])->name('search.show');

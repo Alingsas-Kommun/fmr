@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-emerald-50 dark:bg-gray-100 rounded-xl mt-3">
+    <div class="bg-gray-50 dark:bg-gray-100 rounded-xl mt-3">
         <div class="mx-auto max-w-3xl py-15 px-4">
             <div class="text-center">
                 <h1 class="text-3xl font-bold tracking-tight text-emerald-700 sm:text-4xl text-balance">
@@ -43,7 +43,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($groupLeaders as $leader)
-                    <a href="{{ get_permalink($leader->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
+                    <a href="{{ get_permalink($leader->ID) }}" class="group bg-gray-50 dark:bg-gray-100 rounded-lg duration-200 p-4">
                         <div class="flex items-center space-x-4">
                             @if($leader->thumbnail())
                                 <div class="flex-shrink-0">
@@ -81,7 +81,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($boards as $board)
-                    <a href="{{ get_permalink($board->ID) }}" class="group bg-white dark:bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-4">
+                    <a href="{{ get_permalink($board->ID) }}" class="group bg-gray-50 dark:bg-gray-100 rounded-lg duration-200 p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-lg font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors duration-200 mb-2">

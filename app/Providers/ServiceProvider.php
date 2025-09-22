@@ -9,6 +9,7 @@ use App\Services\AssignmentExportService;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DecisionAuthorityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Api\AssignmentController as ApiAssignmentController;
 
 class ServiceProvider extends SageServiceProvider
@@ -27,6 +28,7 @@ class ServiceProvider extends SageServiceProvider
         $this->app->singleton(AssignmentController::class);
         $this->app->singleton(DecisionAuthorityController::class);
         $this->app->singleton(HomeController::class);
+        $this->app->singleton(SearchController::class);
         $this->app->singleton(ApiAssignmentController::class);
     }
 

@@ -39,8 +39,9 @@ $config = match ($type) {
 <div {{ $attributes->merge(['class' => "rounded-lg border {$config['bg']} {$config['border']} p-4"]) }}>
     <div class="flex items-start">
         <div class="flex-shrink-0">
-            <x-dynamic-component :component="$config['icon']" class="h-5 w-5 {{ $config['iconColor'] }}" />
+            <x-dynamic-component :component="$config['icon']" class="h-6 w-6 {{ $config['iconColor'] }}" />
         </div>
+
         <div class="ml-3">
             <div class="{{ $config['text'] }}">
                 {!! $message ?? $slot !!}
