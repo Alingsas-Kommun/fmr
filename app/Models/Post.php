@@ -115,7 +115,8 @@ class Post extends Model
     {
         $visibility = $this->getMetaVisibility($key);
         
-        if (!$visibility) {
+        // If not admin, return default if visibility is false
+        if (!$visibility && !is_admin()) {
             return $default;
         }
 
