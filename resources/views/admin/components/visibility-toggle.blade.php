@@ -11,7 +11,7 @@
 
     @if($size == 'lg')
         <span class="toggle-label" 
-            x-text="visible ? {{ __('Public', 'fmr') }} : {{ __('Private', 'fmr') }}">
+            x-text="visible ? '{{ __('Public', 'fmr') }}' : '{{ __('Private', 'fmr') }}'">
         </span>
     @endif
 </button>

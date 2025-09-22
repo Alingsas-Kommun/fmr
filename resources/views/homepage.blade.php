@@ -51,6 +51,10 @@
                                         {!! $leader->thumbnail() !!}
                                     </div>
                                 </div>
+                            @else
+                                <div class="w-16 h-16 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                                    <x-heroicon-o-user class="h-8 w-8 text-emerald-600" />
+                                </div>
                             @endif
 
                             <div class="flex-1 min-w-0">

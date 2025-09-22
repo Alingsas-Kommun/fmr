@@ -6,6 +6,10 @@
                     {!! $thumbnail !!}
                 </div>
             </div>
+        @else
+            <div class="w-30 h-30 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <x-heroicon-o-user class="h-15 w-15 text-emerald-600" />
+            </div>
         @endif
         
         <div class="flex-1">

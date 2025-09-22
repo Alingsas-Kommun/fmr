@@ -43,6 +43,10 @@ class Persons
         // Party filter
         add_action('restrict_manage_posts', [__CLASS__, 'addPartyFilter']);
         add_action('pre_get_posts', [__CLASS__, 'filterByParty']);
+        
+        // Thumbnail visibility toggle
+        add_filter('admin_post_thumbnail_html', [__CLASS__, 'addThumbnailVisibilityToggle'], 10, 2);
+        add_action('save_post', [__CLASS__, 'saveThumbnailVisibility']);
     }
 
     /**
@@ -230,5 +234,56 @@ class Persons
                 ]
             ]);
         }
+    }
+
+    /**
+     * Add thumbnail visibility toggle to the featured image meta box
+     *
+     * @param string $content
+     * @param int $post_id
+     * @return string
+     */
+    public static function addThumbnailVisibilityToggle($content, $post_id)
+    {
+        if (get_post_type($post_id) !== self::$base) {
+            return $content;
+        }
+
+        $visibility_value = get_post_meta($post_id, '_thumbnail_id_visibility', true);
+        $is_visible = $visibility_value === '' ? true : (bool) $visibility_value;
+
+        $visibility_toggle = view('admin.partials.thumbnail-visibility-toggle', [
+            'is_visible' => $is_visible,
+            'post_id' => $post_id,
+            'size' => 'lg'
+        ])->render();
+        
+        $content .= $visibility_toggle;
+
+        return $content;
+    }
+
+    /**
+     * Save thumbnail visibility meta
+     *
+     * @param int $post_id
+     * @return void
+     */
+    public static function saveThumbnailVisibility($post_id)
+    {
+        if (get_post_type($post_id) !== self::$base) {
+            return;
+        }
+
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+        
+        $visibility = isset($_POST['_thumbnail_id_visibility']) && $_POST['_thumbnail_id_visibility'] == '1' ? 1 : 0;
+        update_post_meta($post_id, '_thumbnail_id_visibility', $visibility);
     }
 }

@@ -20,20 +20,8 @@
                                     {!! $assignment->person->thumbnail() !!}
                                 </div>
                             @else
-                                <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        @php
-                                            $name = $assignment->person->post_title;
-                                            $initials = '';
-                                            $words = explode(' ', $name);
-                                            foreach($words as $word) {
-                                                if(!empty($word)) {
-                                                    $initials .= strtoupper(substr($word, 0, 1));
-                                                }
-                                            }
-                                            echo substr($initials, 0, 2);
-                                        @endphp
-                                    </span>
+                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <x-heroicon-o-user class="w-4 h-4 text-emerald-600" />
                                 </div>
                             @endif
                             
