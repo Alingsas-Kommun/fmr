@@ -25,7 +25,6 @@
       "Database\\": "database/"
     },
     "files": [
-      "app/App.php",
       "helpers.php"
     ]
   },

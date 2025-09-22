@@ -2,9 +2,10 @@
 
 namespace App\Core\Admin\Anniversaries;
 
-use App\Http\Controllers\Admin\AnniversaryController;
-use App\Services\AnniversaryService;
 use Illuminate\Http\Request;
+use App\Services\AnniversaryService;
+use App\Services\AssignmentExportService;
+use App\Http\Controllers\Admin\AnniversaryController;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -64,8 +65,8 @@ class Index
     public function render()
     {
         // Create controller instance and handle the request
-        $anniversaryService = new AnniversaryService();
-        $controller = new AnniversaryController($anniversaryService);
+        $anniversaryService = app(AnniversaryService::class);
+        $controller = app(AnniversaryController::class, [$anniversaryService]);
         
         // Create a request object from WordPress globals
         $request = Request::capture();

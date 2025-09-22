@@ -16,9 +16,9 @@ class Details extends MetaBox
 
     public function __construct($editPage)
     {   
-        $this->roleController = new RoleController();
-        $this->personController = new PersonController();
-        $this->decisionAuthorityController = new DecisionAuthorityController();
+        $this->roleController = app(RoleController::class);
+        $this->personController = app(PersonController::class);
+        $this->decisionAuthorityController = app(DecisionAuthorityController::class);
         
         parent::__construct($editPage);
     }

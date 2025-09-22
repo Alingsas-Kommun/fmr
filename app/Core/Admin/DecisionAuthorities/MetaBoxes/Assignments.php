@@ -69,7 +69,7 @@ class Assignments extends RelationHandler
             return [];
         }
 
-        $controller = new AssignmentController();
+        $controller = app(AssignmentController::class);
 
         return $controller->getByDecisionAuthority($decision_authority_id);
     }
@@ -82,7 +82,7 @@ class Assignments extends RelationHandler
             return;
         }
 
-        $controller = new AssignmentController();
+        $controller = app(AssignmentController::class);
         
         $existing_assignments = $this->loadExistingData($decision_authority_id);
         $existing_ids = array_column($existing_assignments->toArray(), 'id');
@@ -113,7 +113,7 @@ class Assignments extends RelationHandler
 
     private function getPersons()
     {
-        $personController = new PersonController();
+        $personController = app(PersonController::class);
         $persons = $personController->getAll();
         
         $options = ['' => __('Select Person', 'fmr')];
@@ -127,7 +127,7 @@ class Assignments extends RelationHandler
 
     private function getRoles()
     {
-        $roleController = new RoleController();
+        $roleController = app(RoleController::class);
         $terms = $roleController->getAll();
         
         $options = ['' => __('Select Role', 'fmr')];

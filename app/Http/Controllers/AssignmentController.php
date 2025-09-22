@@ -38,7 +38,7 @@ class AssignmentController extends Controller
                            ->take($perPage)
                            ->get();
 
-        $roleController = new RoleController();
+        $roleController = app(RoleController::class);
         $roleTerms = $roleController->getAll();
 
         return view('assignments.index', [

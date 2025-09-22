@@ -22,6 +22,24 @@ require $composer;
 
 /*
 |--------------------------------------------------------------------------
+| System Requirements Check
+|--------------------------------------------------------------------------
+|
+| Check for minimum PHP and WordPress version requirements before
+| initializing the application.
+|
+*/
+
+if (version_compare('8.2', phpversion(), '>=') === -1) {
+    wp_die(__('You must be using PHP 8.2 or greater.', 'fmr'));
+}
+
+if (version_compare('6.8.0', get_bloginfo('version'), '>=') === -1) {
+    wp_die(__('You must be using WordPress 6.8.0 or greater.', 'fmr'));
+}
+
+/*
+|--------------------------------------------------------------------------
 | Register The Bootloader
 |--------------------------------------------------------------------------
 |

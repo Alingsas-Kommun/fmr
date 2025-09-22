@@ -2,8 +2,6 @@
 
 namespace App\Core;
 
-use App\Utilities\Dir;
-
 class Theme
 {
     public function __construct()
@@ -12,18 +10,9 @@ class Theme
             return;
         }
 
-        include_once 'Functions.php';
-
         add_action('init', [$this, 'loadTextDomain']);
         add_action('after_setup_theme', [$this, 'addThemeSupport'], 20);
         add_action('after_setup_theme', [$this, 'removeThemeSupport'], 20);
-
-        add_action('switch_theme', function () {
-            delete_option('theme_migrations_ran');
-        });
-
-        add_action('init', [$this, 'loadPostTypes']);
-        add_action('init', [$this, 'loadTaxonomies']);
     }
 
     /**
@@ -91,45 +80,5 @@ class Theme
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
          */
         remove_theme_support('core-block-patterns');
-    }
-
-    /**
-     * Load post types
-     */
-    public function loadPostTypes()
-    {
-        $dir = __DIR__ . '/PostTypes';
-        $post_types = Dir::list($dir, 'files');
-        $namespace = 'App\\Core\\PostTypes\\';
-
-        if (! empty($post_types)) {
-            foreach ($post_types as $type) {
-                $post_type = $namespace . basename($type, '.php');
-
-                if (class_exists($post_type)) {
-                    new $post_type();
-                }
-            }
-        }
-    }
-
-    /**
-     * Load taxonomies
-     */
-    public function loadTaxonomies()
-    {
-        $dir = __DIR__ . '/Taxonomies';
-        $taxonomies = Dir::list($dir, 'files');
-        $namespace = 'App\\Core\\Taxonomies\\';
-
-        if (!empty($taxonomies)) {
-            foreach ($taxonomies as $taxonomy) {
-                $taxonomy = $namespace . basename($taxonomy, '.php');
-
-                if (class_exists($taxonomy)) {
-                    new $taxonomy();
-                }
-            }
-        }
     }
 }

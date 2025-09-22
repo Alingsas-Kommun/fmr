@@ -315,7 +315,7 @@ class AssignmentController
         unset($filters['export']);
         unset($filters['_wpnonce']);
 
-        $exportService = new AssignmentExportService($this);
+        $exportService = app(AssignmentExportService::class, [$this]);
         $exportService->handleExport($format, $filters);
     }
 }

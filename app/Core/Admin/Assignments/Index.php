@@ -51,7 +51,7 @@ class Index extends \WP_List_Table
             'ajax'     => false
         ]);
 
-        $this->controller = new AssignmentController();
+        $this->controller = app(AssignmentController::class);
     }
 
     /**
@@ -110,9 +110,9 @@ class Index extends \WP_List_Table
         set_current_screen('assignments');
 
         // Initialize controllers
-        $roleController = new RoleController();
-        $boardController = new BoardController();
-        $personController = new PersonController();
+        $roleController = app(RoleController::class);
+        $boardController = app(BoardController::class);
+        $personController = app(PersonController::class);
 
         echo view('admin.assignments.index', [
             'list' => $this,

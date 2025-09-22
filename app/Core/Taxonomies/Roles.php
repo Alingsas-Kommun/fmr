@@ -2,7 +2,7 @@
 
 namespace App\Core\Taxonomies;
 
-class Role
+class Roles
 {
     public static $base = 'role';
 

@@ -3,45 +3,28 @@
 namespace App\Providers;
 
 use Roots\Acorn\Sage\SageServiceProvider;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 
 class ThemeServiceProvider extends SageServiceProvider
 {
-    public function register()
+    /**
+     * Register services.
+     */
+    public function register(): void
     {
         parent::register();
-    }
-
-    public function boot()
-    {
-        parent::boot();
-
-        // DB::listen(function ($query) {
-        //     logger()->info('Query executed', [
-        //         'sql' => $query->sql,
-        //         'bindings' => $query->bindings,
-        //         'time' => $query->time,
-        //     ]);
-        // });
-
-        $this->runMigrationsOnce();
+        
+        // Register other service providers
+        $this->app->register(DatabaseServiceProvider::class);
+        $this->app->register(CoreServiceProvider::class);
+        $this->app->register(AdminServiceProvider::class);
+        $this->app->register(ServiceProvider::class);
     }
 
     /**
-     * Run migrations only once per theme activation
+     * Bootstrap services.
      */
-    protected function runMigrationsOnce()
+    public function boot(): void
     {
-        if (! get_option('theme_migrations_ran')) {
-            try {
-                Artisan::call('migrate', ['--force' => true]);
-
-                update_option('theme_migrations_ran', true);
-
-            } catch (\Exception $e) {
-                error_log('Theme migration error: ' . $e->getMessage());
-            }
-        }
+        parent::boot();
     }
 }

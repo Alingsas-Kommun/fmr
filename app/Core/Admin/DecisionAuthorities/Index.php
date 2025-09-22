@@ -50,8 +50,8 @@ class Index extends \WP_List_Table
             'ajax'     => false
         ]);
 
-        $this->controller = new DecisionAuthorityController();
-        $this->boardController = new BoardController();
+        $this->controller = app(DecisionAuthorityController::class);
+        $this->boardController = app(BoardController::class);
     }
 
     /**

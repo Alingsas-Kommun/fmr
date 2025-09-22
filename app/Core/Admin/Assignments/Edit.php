@@ -13,7 +13,7 @@ class Edit extends EditPage
 
     public function __construct()
     {
-        $this->controller = new AssignmentController();
+        $this->controller = app(AssignmentController::class);
 
         parent::__construct();
     }

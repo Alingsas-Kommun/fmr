@@ -12,7 +12,7 @@ class Details extends MetaBox
 
     public function __construct($editPage)
     {
-        $this->boardController = new BoardController();
+        $this->boardController = app(BoardController::class);
         
         parent::__construct($editPage);
     }

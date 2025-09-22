@@ -66,7 +66,7 @@ class BoardDecisionAuthorities extends RelationHandler
 
     protected function loadExistingData($post_id)
     {
-        $controller = new DecisionAuthorityController();
+        $controller = app(DecisionAuthorityController::class);
         $decision_authorities = $controller->getDecisionAuthoritiesForBoard($post_id)->toArray();
             
         return $decision_authorities;
@@ -80,7 +80,7 @@ class BoardDecisionAuthorities extends RelationHandler
             return;
         }
 
-        $controller = new DecisionAuthorityController();
+        $controller = app(DecisionAuthorityController::class);
         
         // Get existing decision authorities for this board
         $existing_decision_authorities = $this->loadExistingData($post_id);

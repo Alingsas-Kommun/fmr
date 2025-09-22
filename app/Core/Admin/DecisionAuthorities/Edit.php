@@ -16,8 +16,8 @@ class Edit extends EditPage
 
     public function __construct()
     {
-        $this->controller = new DecisionAuthorityController();
-        $this->boardController = new BoardController();
+        $this->controller = app(DecisionAuthorityController::class);
+        $this->boardController = app(BoardController::class);
 
         parent::__construct();
     }

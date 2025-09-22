@@ -166,7 +166,7 @@ class Persons
 
                 break;
             case 'person-status':
-                $personController = new PersonController();
+                $personController = app(PersonController::class);
                 $status = $personController->isActive($post_id);
                 echo $status ? __('Active', 'fmr') : __('Inactive', 'fmr');
 

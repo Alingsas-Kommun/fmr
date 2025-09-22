@@ -8,6 +8,7 @@ class PartyDetails extends FieldGroup
 {
     protected static $post_types = ['party'];
     protected static $id = 'party_details';
+    protected static $priority = 'high';
 
     protected function getTitle()
     {

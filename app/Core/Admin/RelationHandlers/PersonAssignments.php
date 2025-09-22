@@ -69,7 +69,7 @@ class PersonAssignments extends RelationHandler
         $this->loadDecisionAuthorities();
         $this->loadRoleTerms();
         
-        $controller = new AssignmentController();
+        $controller = app(AssignmentController::class);
         $assignments = $controller->getPersonsAssignments($post_id)->toArray();
             
         return $assignments;
@@ -77,7 +77,7 @@ class PersonAssignments extends RelationHandler
 
     protected function loadDecisionAuthorities()
     {
-        $controller = new DecisionAuthorityController();
+        $controller = app(DecisionAuthorityController::class);
         $authorities = $controller->getAll();
         
         $groupedAuthorities = [];
@@ -107,7 +107,7 @@ class PersonAssignments extends RelationHandler
 
     protected function loadRoleTerms()
     {
-        $roleController = new RoleController();
+        $roleController = app(RoleController::class);
         $roleTerms = $roleController->getAll();
 
         static::$role_terms = $roleTerms->pluck('name', 'term_id')->toArray();
@@ -121,7 +121,7 @@ class PersonAssignments extends RelationHandler
             return;
         }
 
-        $controller = new AssignmentController();
+        $controller = app(AssignmentController::class);
         
         // Get existing assignments for this person
         $existing_assignments = $this->loadExistingData($post_id);
