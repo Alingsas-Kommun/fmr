@@ -1,0 +1,93 @@
+// Color Field Component
+.color-field-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 4px;
+    background: #fff;
+    width: fit-content;
+    
+    &:focus-within {
+        border-color: var(--wp-admin-color-primary);
+        box-shadow: 0 0 0 1px var(--wp-admin-color-primary);
+    }
+
+    .color-picker {
+        width: 36px;
+        height: 32px;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        flex-shrink: 0;
+        border-radius: 2px;
+        
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        
+        &::-webkit-color-swatch {
+            border: none;
+            border-radius: 2px;
+        }
+        
+        &::-moz-color-swatch {
+            border: none;
+            border-radius: 2px;
+        }
+    }
+    
+    .color-text-input {
+        width: 80px !important;
+        padding: 4px 8px;
+        margin-bottom: 0 !important;
+        border: none;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 12px;
+        background: transparent;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+        
+        &:focus,
+        &:hover {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        &:invalid {
+            color: #dc3232;
+        }
+    }
+    
+    .color-reset {
+        padding: 4px 6px;
+        min-width: 28px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+        
+        .dashicons {
+            font-size: 14px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        &:hover {
+            background: #f0f0f1;
+            border-color: #8c8f94;
+        }
+        
+        &:focus {
+            box-shadow: 0 0 0 1px var(--wp-admin-color-primary);
+            border-color: var(--wp-admin-color-primary);
+        }
+    }
+}

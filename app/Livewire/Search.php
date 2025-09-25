@@ -6,6 +6,8 @@ use App\Http\Controllers\SearchController;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
+use function App\Core\setting;
+
 class Search extends Component
 {
     /**
@@ -25,6 +27,10 @@ class Search extends Component
     public function search()
     {
         if (empty($this->query)) {
+            return;
+        }
+
+        if (! setting('show_advanced_search', true)) {
             return;
         }
 

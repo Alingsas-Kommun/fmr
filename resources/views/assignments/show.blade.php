@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg overflow-hidden md:p-8 mt-8">
+    <div class="md:bg-gray-50 dark:md:bg-gray-100 md:rounded-lg overflow-hidden md:p-8 mt-8">
         <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 mb-8">
             <div class="flex items-center space-x-6 flex-1">
                 <div class="flex-shrink-0">
-                    <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-200 rounded-lg flex items-center justify-center">
-                        <x-heroicon-o-briefcase class="h-8 w-8 text-emerald-600" />
+                    <div class="w-20 h-20 bg-primary-100 dark:bg-primary-200 rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-briefcase class="h-8 w-8 text-primary-600" />
                     </div>
                 </div>
                 
@@ -21,11 +21,11 @@
                                 </div>
                             @else
                                 <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <x-heroicon-o-user class="w-4 h-4 text-emerald-600" />
+                                    <x-heroicon-o-user class="w-4 h-4 text-primary-600" />
                                 </div>
                             @endif
                             
-                            <a href="{{ get_permalink($assignment->person->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                            <a href="{{ get_permalink($assignment->person->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
                                 {{ $assignment->person->post_title }}
                             </a>
                         </div>
@@ -35,7 +35,7 @@
 
             <div class="flex-shrink-0 md:ml-auto border-t md:border-t-0 border-gray-200 dark:border-gray-300 pt-6 md:pt-0 mt-3 md:mt-0">
                 <div class="flex items-center space-x-2 mb-2">
-                    <x-heroicon-o-calendar class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-calendar class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     <span class="text-sm font-medium text-gray-700">{{ __('Period', 'fmr') }}</span>
                 </div>
                 <div class="text-lg font-semibold text-gray-900">
@@ -45,14 +45,14 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="md:bg-gray-50 dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+            <div class="md:bg-white dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                    <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mr-3" />
+                    <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
                     {!! __('Board', 'fmr') !!}
                 </h3>
                 
                 @if($assignment->board)
-                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
                         {{ $assignment->board->post_title }}
                     </a>
                 @else
@@ -60,14 +60,14 @@
                 @endif
             </div>
 
-            <div class="md:bg-gray-50 dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+            <div class="md:bg-white dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                    <x-heroicon-o-scale class="h-5 w-5 text-emerald-600 mr-3" />
+                    <x-heroicon-o-scale class="h-5 w-5 text-primary-600 mr-3" />
                     {!! __('Decision Authority', 'fmr') !!}
                 </h3>
                 
                 @if($assignment->decisionAuthority)
-                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-primary-600 hover:text-primary-700 font-medium">
                         {{ $assignment->decisionAuthority->title }}
                     </a>
                 @else

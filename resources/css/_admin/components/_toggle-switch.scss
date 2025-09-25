@@ -74,7 +74,7 @@
     .toggle-switch-checkbox:checked {
         & + .toggle-switch-label {
             .toggle-switch-track {
-                background: #236151;
+                background: var(--wp-admin-color-primary);
             }
 
             .toggle-switch-text {
@@ -95,7 +95,7 @@
     // Focus state
     .toggle-switch-checkbox:focus + .toggle-switch-label {
         .toggle-switch-track {
-            outline: 2px solid #236151;
+            outline: 2px solid var(--wp-admin-color-primary);
             outline-offset: 1px;
         }
     }

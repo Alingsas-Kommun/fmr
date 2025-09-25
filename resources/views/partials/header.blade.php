@@ -2,15 +2,19 @@
     <div class="py-4">
         <div class="flex items-center justify-between">
             <a href="{{ route('homepage') }}" class="flex-shrink-0">
-                <img src="{{ Vite::asset('resources/images/fmr-logotype.png') }}" alt="Logo" class="h-12">
+                @if($logotype)
+                    {!! $logotype !!}
+                @else
+                    <span class="text-2xl font-bold">{{ $siteName }}</span>
+                @endif
             </a>
 
             <nav class="flex items-center space-x-8">
-                <a href="{{ route('assignments.index') }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                <a href="{{ route('assignments.index') }}" class="text-primary-600 hover:text-primary-700 font-medium">
                     {!! __('Assignments', 'fmr') !!}
                 </a>
 
-                <a href="{{ route('decision-authorities.index') }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                <a href="{{ route('decision-authorities.index') }}" class="text-primary-600 hover:text-primary-700 font-medium">
                     {!! __('Decision Authorities', 'fmr') !!}
                 </a>
             </nav>

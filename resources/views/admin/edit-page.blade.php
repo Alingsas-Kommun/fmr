@@ -47,7 +47,7 @@
                                 <strong>{!! __('Permalink:', 'fmr') !!}</strong>
 
                                 <span id="sample-permalink">
-                                    <a href="{!! $permalink !!}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="{!! $permalink !!}" class="text-primary-600 hover:text-primary-700">
                                         {!! $permalink !!}/
                                     </a>
                                 </span>

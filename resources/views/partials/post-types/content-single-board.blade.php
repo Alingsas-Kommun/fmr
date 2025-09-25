@@ -12,7 +12,7 @@
 
         @if($board->category)
             <div class="flex items-center space-x-2">
-                <x-heroicon-o-tag class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                <x-heroicon-o-tag class="h-5 w-5 text-primary-600 flex-shrink-0" />
                 
                 <div class="text-gray-700">
                     {{ $board->category }}
@@ -25,12 +25,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 py-5 mt-5">
             @if($board->website)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-globe-alt class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
                         
-                        <a href="{{ $board->website }}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800">
+                        <a href="{{ $board->website }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
                             {{ $board->website }}
                         </a>
                     </div>
@@ -39,12 +39,12 @@
 
             @if($board->email)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
                         
-                        <a href="mailto:{{ $board->email }}" class="text-emerald-700 hover:text-emerald-800">
+                        <a href="mailto:{{ $board->email }}" class="text-primary-600 hover:text-primary-700">
                             {{ $board->email }}
                         </a>
                     </div>
@@ -53,12 +53,12 @@
 
             @if($board->phone)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-phone class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
                         
-                        <a href="tel:{{ $board->phone }}" class="text-emerald-700 hover:text-emerald-800">
+                        <a href="tel:{{ $board->phone }}" class="text-primary-600 hover:text-primary-700">
                             {{ $board->phone }}
                         </a>
                     </div>
@@ -71,7 +71,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 pt-5">
             @if($board->address || $board->zip || $board->city)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-map-pin class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                    <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
@@ -93,7 +93,7 @@
 
             @if($board->visitingAddress)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-building-office class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                    <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
@@ -131,13 +131,13 @@
                     @foreach($decisionAuthorities as $authority)
                         <tr>
                             <td class="px-6 py-4">
-                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-emerald-700 hover:text-emerald-800">
+                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-primary-600 hover:text-primary-700">
                                     {{ $authority->title }}
                                 </a>
                             </td>
                             
                             <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-600">
                                     {{ $authority->type }}
                                 </span>
                             </td>
@@ -149,7 +149,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-emerald-700 hover:text-emerald-800">
+                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-primary-600 hover:text-primary-700">
                                     {!! __('View', 'fmr') !!}
                                 </a>
                             </td>

@@ -426,6 +426,3 @@ export function relationHandler(config, existingData = []) {
         },
     }
 }
-
-// Make relationHandler available globally
-window.relationHandler = relationHandler

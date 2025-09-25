@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-22T20:43:53+00:00\n"
+"POT-Creation-Date: 2025-09-25T16:12:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -47,15 +47,22 @@ msgid "Publish"
 msgstr ""
 
 #: app/Core/Admin/Abstracts/EditPage.php:307
+#: app/Core/Admin/Abstracts/OptionsPage.php:256
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
 #: app/Core/Admin/Abstracts/EditPage.php:311
+#: app/Core/Admin/Abstracts/OptionsPage.php:260
 msgid "Security check failed."
 msgstr ""
 
 #: app/Core/Admin/Abstracts/EditPage.php:326
 msgid "Failed to save the object."
+msgstr ""
+
+#: app/Core/Admin/Abstracts/OptionsPage.php:112
+#: app/Core/Admin/Abstracts/OptionsPage.php:151
+msgid "Save Configuration"
 msgstr ""
 
 #: app/Core/Admin/Anniversaries/Index.php:50
@@ -98,7 +105,7 @@ msgstr ""
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
 #: resources/views/partials/header.blade.php:10
-#: resources/views/partials/post-types/content-single-person.blade.php:330
+#: resources/views/partials/post-types/content-single-person.blade.php:334
 msgid "Assignments"
 msgstr ""
 
@@ -165,7 +172,7 @@ msgstr ""
 #: resources/views/assignments/index.blade.php:69
 #: resources/views/decision-authorities/show.blade.php:68
 #: resources/views/livewire/advanced-search.blade.php:112
-#: resources/views/partials/post-types/content-single-person.blade.php:337
+#: resources/views/partials/post-types/content-single-person.blade.php:341
 msgid "Role"
 msgstr ""
 
@@ -175,11 +182,11 @@ msgstr ""
 #: resources/views/admin/assignments/index.blade.php:33
 #: resources/views/admin/decision-authorities/index.blade.php:19
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:6
-#: resources/views/assignments/show.blade.php:66
+#: resources/views/assignments/show.blade.php:54
 #: resources/views/decision-authorities/index.blade.php:60
 #: resources/views/decision-authorities/show.blade.php:21
 #: resources/views/livewire/advanced-search.blade.php:54
-#: resources/views/partials/post-types/content-single-person.blade.php:338
+#: resources/views/partials/post-types/content-single-person.blade.php:342
 msgid "Board"
 msgstr ""
 
@@ -188,8 +195,8 @@ msgstr ""
 #: app/Services/AssignmentExportService.php:102
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:43
 #: resources/views/assignments/index.blade.php:55
-#: resources/views/assignments/show.blade.php:83
-#: resources/views/partials/post-types/content-single-person.blade.php:339
+#: resources/views/assignments/show.blade.php:71
+#: resources/views/partials/post-types/content-single-person.blade.php:343
 msgid "Decision Authority"
 msgstr ""
 
@@ -197,12 +204,12 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities/Index.php:222
 #: app/Services/AssignmentExportService.php:103
 #: resources/views/assignments/index.blade.php:76
-#: resources/views/assignments/show.blade.php:53
+#: resources/views/assignments/show.blade.php:41
 #: resources/views/decision-authorities/index.blade.php:74
 #: resources/views/decision-authorities/show.blade.php:43
 #: resources/views/decision-authorities/show.blade.php:72
 #: resources/views/partials/post-types/content-single-board.blade.php:129
-#: resources/views/partials/post-types/content-single-person.blade.php:340
+#: resources/views/partials/post-types/content-single-person.blade.php:344
 msgid "Period"
 msgstr ""
 
@@ -245,6 +252,11 @@ msgstr ""
 
 #: app/Core/Admin/Cleanup.php:35
 msgid "Images"
+msgstr ""
+
+#: app/Core/Admin/ConfigurationPage.php:13
+#: app/Core/Admin/ConfigurationPage.php:15
+msgid "Configuration"
 msgstr ""
 
 #: app/Core/Admin/DecisionAuthorities/Edit.php:31
@@ -360,6 +372,8 @@ msgid "Basic Information"
 msgstr ""
 
 #: app/Core/Admin/FieldGroups/BoardDetails.php:24
+#: app/Core/Admin/FieldGroups/General.php:13
+#: app/Core/Admin/FieldGroups/General.php:23
 #: app/Core/Admin/FieldGroups/PartyDetails.php:25
 msgid "General"
 msgstr ""
@@ -418,8 +432,8 @@ msgstr ""
 #: app/Core/Admin/FieldGroups/PersonDetails.php:135
 #: app/Core/Admin/FieldGroups/PersonDetails.php:242
 #: resources/views/partials/post-types/content-single-board.blade.php:82
-#: resources/views/partials/post-types/content-single-person.blade.php:197
-#: resources/views/partials/post-types/content-single-person.blade.php:295
+#: resources/views/partials/post-types/content-single-person.blade.php:201
+#: resources/views/partials/post-types/content-single-person.blade.php:299
 msgid "Address"
 msgstr ""
 
@@ -438,8 +452,8 @@ msgstr ""
 #: app/Core/Admin/FieldGroups/BoardDetails.php:102
 #: app/Core/Admin/FieldGroups/PartyDetails.php:98
 #: resources/views/partials/post-types/content-single-board.blade.php:33
-#: resources/views/partials/post-types/content-single-person.blade.php:183
-#: resources/views/partials/post-types/content-single-person.blade.php:281
+#: resources/views/partials/post-types/content-single-person.blade.php:187
+#: resources/views/partials/post-types/content-single-person.blade.php:285
 msgid "Website"
 msgstr ""
 
@@ -453,9 +467,125 @@ msgstr ""
 #: app/Core/Admin/FieldGroups/PersonDetails.php:201
 #: app/Core/Admin/FieldGroups/PersonDetails.php:308
 #: resources/views/partials/post-types/content-single-board.blade.php:63
-#: resources/views/partials/post-types/content-single-person.blade.php:155
-#: resources/views/partials/post-types/content-single-person.blade.php:253
+#: resources/views/partials/post-types/content-single-person.blade.php:159
+#: resources/views/partials/post-types/content-single-person.blade.php:257
 msgid "Phone"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:21
+msgid "Branding"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:29
+msgid "Logotype (Default)"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:32
+msgid "Logo for light mode"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:36
+msgid "Logotype (Dark Mode)"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:39
+msgid "Logo for dark mode"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:48
+msgid "Primary Color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:52
+msgid "Main brand color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:56
+msgid "Secondary Color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:60
+msgid "Secondary brand color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:64
+msgid "Tertiary Color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:68
+msgid "Tertiary brand color"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:76
+msgid "Display Settings"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:83
+msgid "Show Breadcrumbs"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:86
+#: app/Core/Admin/FieldGroups/General.php:95
+#: app/Core/Admin/FieldGroups/General.php:104
+#: app/Core/Admin/FieldGroups/General.php:123
+#: app/Core/Admin/FieldGroups/PersonDetails.php:98
+#: app/Core/PostTypes/Persons.php:169
+#: resources/views/admin/relation-handler/form.blade.php:134
+msgid "Yes"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:87
+#: app/Core/Admin/FieldGroups/General.php:96
+#: app/Core/Admin/FieldGroups/General.php:105
+#: app/Core/Admin/FieldGroups/General.php:124
+#: app/Core/Admin/FieldGroups/PersonDetails.php:99
+#: app/Core/PostTypes/Persons.php:169
+#: resources/views/admin/relation-handler/form.blade.php:134
+msgid "No"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:88
+msgid "Display breadcrumb navigation"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:92
+msgid "Show Search"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:97
+msgid "Display search functionality"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:101
+msgid "Show Advanced Search"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:106
+msgid "Display advanced search link"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:114
+msgid "API Settings"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:116
+msgid "API"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:120
+msgid "Enable API"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:125
+msgid "Enable API access for external integrations"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:129
+msgid "API Key"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/General.php:132
+msgid "API key for external access"
 msgstr ""
 
 #: app/Core/Admin/FieldGroups/PartyDetails.php:15
@@ -504,7 +634,7 @@ msgstr ""
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:75
 #: app/Core/PostTypes/Parties.php:33
-#: app/Core/PostTypes/Persons.php:110
+#: app/Core/PostTypes/Persons.php:114
 #: resources/views/livewire/advanced-search.blade.php:83
 #: resources/views/livewire/advanced-search.blade.php:163
 #: resources/views/livewire/advanced-search.blade.php:218
@@ -519,25 +649,13 @@ msgstr ""
 msgid "Group leader"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:98
-#: app/Core/PostTypes/Persons.php:165
-#: resources/views/admin/relation-handler/form.blade.php:134
-msgid "Yes"
-msgstr ""
-
-#: app/Core/Admin/FieldGroups/PersonDetails.php:99
-#: app/Core/PostTypes/Persons.php:165
-#: resources/views/admin/relation-handler/form.blade.php:134
-msgid "No"
-msgstr ""
-
 #: app/Core/Admin/FieldGroups/PersonDetails.php:103
-#: resources/views/partials/post-types/content-single-person.blade.php:93
+#: resources/views/partials/post-types/content-single-person.blade.php:97
 msgid "Listing"
 msgstr ""
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:117
-#: resources/views/partials/post-types/content-single-person.blade.php:131
+#: resources/views/partials/post-types/content-single-person.blade.php:135
 msgid "Home Information"
 msgstr ""
 
@@ -558,20 +676,20 @@ msgstr ""
 #: app/Core/Admin/FieldGroups/PersonDetails.php:187
 #: app/Core/Admin/FieldGroups/PersonDetails.php:294
 #: resources/views/partials/post-types/content-single-board.blade.php:48
-#: resources/views/partials/post-types/content-single-person.blade.php:141
-#: resources/views/partials/post-types/content-single-person.blade.php:239
+#: resources/views/partials/post-types/content-single-person.blade.php:145
+#: resources/views/partials/post-types/content-single-person.blade.php:243
 msgid "Email"
 msgstr ""
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:211
 #: app/Core/Admin/FieldGroups/PersonDetails.php:318
-#: resources/views/partials/post-types/content-single-person.blade.php:169
-#: resources/views/partials/post-types/content-single-person.blade.php:267
+#: resources/views/partials/post-types/content-single-person.blade.php:173
+#: resources/views/partials/post-types/content-single-person.blade.php:271
 msgid "Mobile"
 msgstr ""
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:225
-#: resources/views/partials/post-types/content-single-person.blade.php:229
+#: resources/views/partials/post-types/content-single-person.blade.php:233
 msgid "Work Information"
 msgstr ""
 
@@ -613,7 +731,7 @@ msgstr ""
 
 #: app/Core/PostTypes/Boards.php:51
 #: app/Core/PostTypes/Parties.php:60
-#: app/Core/PostTypes/Persons.php:60
+#: app/Core/PostTypes/Persons.php:64
 msgid "Add new"
 msgstr ""
 
@@ -698,7 +816,7 @@ msgid "View party"
 msgstr ""
 
 #: app/Core/PostTypes/Parties.php:65
-#: app/Core/PostTypes/Persons.php:201
+#: app/Core/PostTypes/Persons.php:205
 msgid "All parties"
 msgstr ""
 
@@ -731,90 +849,90 @@ msgstr ""
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:56
+#: app/Core/PostTypes/Persons.php:60
 msgctxt "Post type general name"
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:57
+#: app/Core/PostTypes/Persons.php:61
 msgctxt "Post type singular name"
 msgid "Person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:58
+#: app/Core/PostTypes/Persons.php:62
 msgctxt "Admin Menu text"
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:59
+#: app/Core/PostTypes/Persons.php:63
 msgctxt "Add New on Toolbar"
 msgid "Person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:61
+#: app/Core/PostTypes/Persons.php:65
 msgid "Add new person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:62
+#: app/Core/PostTypes/Persons.php:66
 msgid "New person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:63
+#: app/Core/PostTypes/Persons.php:67
 msgid "Edit person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:64
+#: app/Core/PostTypes/Persons.php:68
 msgid "View person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:65
+#: app/Core/PostTypes/Persons.php:69
 #: resources/views/admin/assignments/index.blade.php:50
 msgid "All persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:66
+#: app/Core/PostTypes/Persons.php:70
 msgid "Search persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:67
+#: app/Core/PostTypes/Persons.php:71
 msgid "Parent persons:"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:68
+#: app/Core/PostTypes/Persons.php:72
 msgid "No persons found."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:69
+#: app/Core/PostTypes/Persons.php:73
 msgid "No persons found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:85
+#: app/Core/PostTypes/Persons.php:89
 msgid "persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:105
+#: app/Core/PostTypes/Persons.php:109
 msgid "Thumbnail"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:115
+#: app/Core/PostTypes/Persons.php:119
 msgid "Birthday"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:120
-#: resources/views/partials/post-types/content-single-person.blade.php:54
+#: app/Core/PostTypes/Persons.php:124
+#: resources/views/partials/post-types/content-single-person.blade.php:58
 msgid "Group Leader"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:125
+#: app/Core/PostTypes/Persons.php:129
 msgid "Status"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:171
+#: app/Core/PostTypes/Persons.php:175
 #: resources/views/admin/parties/party-members.blade.php:7
 msgid "Active"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:171
+#: app/Core/PostTypes/Persons.php:175
 #: resources/views/admin/parties/party-members.blade.php:13
 msgid "Inactive"
 msgstr ""
@@ -908,51 +1026,51 @@ msgid "SSN"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:104
-msgid "Email (arbete)"
+msgid "Email (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:105
-msgid "Mobile (arbete)"
+msgid "Mobile (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:106
-msgid "Phone (arbete)"
+msgid "Phone (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:107
-msgid "Address (arbete)"
+msgid "Address (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:108
-msgid "Zip Code (arbete)"
+msgid "Zip Code (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:109
-msgid "City (arbete)"
+msgid "City (work)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:110
-msgid "Email (hem)"
+msgid "Email (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:111
-msgid "Mobile (hem)"
+msgid "Mobile (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:112
-msgid "Phone (hem)"
+msgid "Phone (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:113
-msgid "Address (hem)"
+msgid "Address (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:114
-msgid "Zip Code (hem)"
+msgid "Zip Code (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:115
-msgid "City (hem)"
+msgid "City (home)"
 msgstr ""
 
 #: app/Services/AssignmentExportService.php:175
@@ -1053,6 +1171,43 @@ msgstr ""
 msgid "Select Decision Authority"
 msgstr ""
 
+#: resources/views/admin/components/image-field.blade.php:12
+msgid "Change Image"
+msgstr ""
+
+#: resources/views/admin/components/image-field.blade.php:12
+#: resources/views/admin/components/image-field.blade.php:29
+msgid "Select Image"
+msgstr ""
+
+#: resources/views/admin/components/image-field.blade.php:17
+msgid "Remove Image"
+msgstr ""
+
+#: resources/views/admin/components/key-generation-field.blade.php:7
+#: resources/views/assignments/index.blade.php:83
+msgid "Show"
+msgstr ""
+
+#: resources/views/admin/components/key-generation-field.blade.php:13
+msgid "Copy Key"
+msgstr ""
+
+#: resources/views/admin/components/key-generation-field.blade.php:18
+msgid "Generate New Key"
+msgstr ""
+
+#: resources/views/admin/components/key-generation-field.blade.php:28
+msgid "Generate Key"
+msgstr ""
+
+#: resources/views/admin/components/post-relation-field.blade.php:2
+#: resources/views/admin/relation-handler/form.blade.php:71
+#: resources/views/admin/relation-handler/form.blade.php:100
+#, php-format
+msgid "Select %s"
+msgstr ""
+
 #: resources/views/admin/components/visibility-toggle.blade.php:14
 msgid "Public"
 msgstr ""
@@ -1085,16 +1240,9 @@ msgstr ""
 msgid "Permalink:"
 msgstr ""
 
-#: resources/views/admin/field-groups/field.blade.php:7
+#: resources/views/admin/field-groups/field.blade.php:8
 #: resources/views/admin/relation-handler/form.blade.php:20
 msgid "Optional"
-msgstr ""
-
-#: resources/views/admin/field-groups/field.blade.php:139
-#: resources/views/admin/relation-handler/form.blade.php:71
-#: resources/views/admin/relation-handler/form.blade.php:100
-#, php-format
-msgid "Select %s"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:5
@@ -1109,7 +1257,7 @@ msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:44
 #: resources/views/admin/party-members.blade.php:33
-#: resources/views/partials/post-types/content-single-party.blade.php:145
+#: resources/views/partials/post-types/content-single-party.blade.php:149
 msgid "No members found for this party."
 msgstr ""
 
@@ -1160,19 +1308,15 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:83
-msgid "Show"
-msgstr ""
-
 #: resources/views/assignments/index.blade.php:133
 #: resources/views/decision-authorities/show.blade.php:107
 #: resources/views/partials/post-types/content-single-board.blade.php:166
-#: resources/views/partials/post-types/content-single-person.blade.php:380
+#: resources/views/partials/post-types/content-single-person.blade.php:384
 msgid "View"
 msgstr ""
 
 #: resources/views/assignments/index.blade.php:142
-#: resources/views/partials/post-types/content-single-person.blade.php:389
+#: resources/views/partials/post-types/content-single-person.blade.php:393
 msgid "No assignments found."
 msgstr ""
 
@@ -1186,12 +1330,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: resources/views/assignments/show.blade.php:76
+#: resources/views/assignments/show.blade.php:64
 #: resources/views/decision-authorities/index.blade.php:97
 msgid "No board assigned"
 msgstr ""
 
-#: resources/views/assignments/show.blade.php:93
+#: resources/views/assignments/show.blade.php:81
 msgid "No decision authority assigned"
 msgstr ""
 
@@ -1213,7 +1357,7 @@ msgstr ""
 
 #: resources/views/decision-authorities/show.blade.php:76
 #: resources/views/partials/post-types/content-single-board.blade.php:133
-#: resources/views/partials/post-types/content-single-person.blade.php:341
+#: resources/views/partials/post-types/content-single-person.blade.php:345
 msgid "Actions"
 msgstr ""
 
@@ -1234,7 +1378,7 @@ msgstr ""
 msgid "Group Leaders"
 msgstr ""
 
-#: resources/views/homepage.blade.php:87
+#: resources/views/homepage.blade.php:91
 msgid "Boards & Committees"
 msgstr ""
 
@@ -1265,7 +1409,7 @@ msgstr ""
 
 #: resources/views/livewire/advanced-search.blade.php:33
 #: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:80
+#: resources/views/livewire/search.blade.php:78
 msgid "Search"
 msgstr ""
 
@@ -1309,26 +1453,22 @@ msgstr ""
 msgid "No elected officials found"
 msgstr ""
 
-#: resources/views/livewire/advanced-search.blade.php:272
-msgid "Try adjusting your search criteria or filters"
-msgstr ""
-
-#: resources/views/livewire/search.blade.php:71
+#: resources/views/livewire/search.blade.php:69
 #, php-format
 msgid "No elected officials found for \"%s\""
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:72
+#: resources/views/livewire/search.blade.php:70
 msgid "Try a different name"
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:91
+#: resources/views/livewire/search.blade.php:89
 msgid "Search with more advanced search criteria"
 msgstr ""
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104
-#: resources/views/partials/post-types/content-single-person.blade.php:216
-#: resources/views/partials/post-types/content-single-person.blade.php:316
+#: resources/views/partials/post-types/content-single-person.blade.php:220
+#: resources/views/partials/post-types/content-single-person.blade.php:320
 msgid "Visiting Address"
 msgstr ""
 
@@ -1336,18 +1476,18 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:71
+#: resources/views/partials/post-types/content-single-person.blade.php:75
 msgid "Birth Date"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:82
+#: resources/views/partials/post-types/content-single-person.blade.php:86
 msgid "Social Security Number"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:110
+#: resources/views/partials/post-types/content-single-person.blade.php:114
 msgid "Hide Additional Information"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:110
+#: resources/views/partials/post-types/content-single-person.blade.php:114
 msgid "Show Additional Information"
 msgstr ""

@@ -2,6 +2,7 @@
     <div class="fields-field">
         <label for="{{ $field['id'] }}">
             {{ $field['label'] }}
+            
             @if($field['optional'] ?? false)
                 <span class="optional-label">({{ __('Optional', 'fmr') }})</span>
             @endif
@@ -9,38 +10,39 @@
 
         @switch($field['type'])
             @case('text')
-                <input 
-                    type="text" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
-                >
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="text"
+                />
                 @break
 
             @case('textarea')
-                <textarea 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    class="widefat" 
-                    rows="4"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}>{{ esc_textarea($value) }}
-                </textarea>
+                <x-admin.textarea-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    :rows="$field['rows'] ?? 4"
+                />
                 @break
 
             @case('select')
-                <select id="{{ $field['id'] }}" 
-                        name="{{ $field['id'] }}" 
-                        class="widefat"
-                        {{ !($field['optional'] ?? false) ? 'required' : '' }}>
-                    @foreach($field['options'] as $option_value => $option_label)
-                        <option value="{{ esc_attr($option_value) }}" 
-                                {{ $value == $option_value ? 'selected' : '' }}>
-                            {{ esc_html($option_label) }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-admin.select-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    :options="$field['options'] ?? []"
+                />
                 @break
 
             @case('checkbox')
@@ -54,86 +56,125 @@
                 @break
 
             @case('radio')
-                <div class="radio-group">
-                    @foreach($field['options'] as $option_value => $option_label)
-                        <label class="radio-label">
-                            <input type="radio" 
-                                name="{{ $field['id'] }}" 
-                                value="{{ esc_attr($option_value) }}"
-                                {{ $value == $option_value ? 'checked' : '' }}
-                                {{ !($field['optional'] ?? false) ? 'required' : '' }}>
-                            <span class="radio-text">{{ esc_html($option_label) }}</span>
-                        </label>
-                    @endforeach
-                </div>
-            @break
+                <x-admin.radio-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    :options="$field['options'] ?? []"
+                />
+                @break
 
             @case('url')
-                <input type="url" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}>
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="url"
+                />
                 @break
 
             @case('number')
-                <input 
-                    type="number" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    min="{{ $field['min'] ?? '' }}"
-                    max="{{ $field['max'] ?? '' }}"
-                    step="{{ $field['step'] ?? '1' }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
-                >
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="number"
+                    :min="$field['min'] ?? null"
+                    :max="$field['max'] ?? null"
+                    :step="$field['step'] ?? '1'"
+                />
                 @break
 
             @case('date')
-                <input 
-                    type="date" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
-                >
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="date"
+                />
                 @break
 
             @case('email')
-                <input 
-                    type="email" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
-                >
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="email"
+                />
                 @break
 
             @case('tel')
-                <input type="tel" 
-                    id="{{ $field['id'] }}" 
-                    name="{{ $field['id'] }}" 
-                    value="{{ esc_attr($value) }}"
-                    class="widefat"
-                    {{ !($field['optional'] ?? false) ? 'required' : '' }}
-                >
+                <x-admin.input-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    type="tel"
+                />
                 @break
 
             @case('post_relation')
-                <select id="{{ $field['id'] }}" name="{{ $field['id'] }}" class="widefat" {{ !($field['optional'] ?? false) ? 'required' : '' }}>
-                    <option value="">{{ sprintf(__('Select %s', 'fmr'), $field['label']) }}</option>
-                    
-                    @foreach($field['options'] as $option_value => $option_label)
-                        <option value="{{ esc_attr($option_value) }}" 
-                                {{ $value == $option_value ? 'selected' : '' }}>
-                            {{ esc_html($option_label) }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-admin.post-relation-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    :options="$field['options'] ?? []"
+                />
+                @break
+
+            @case('image')
+                <x-admin.image-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                />
+                @break
+
+            @case('color')
+                <x-admin.color-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :default="$field['default'] ?? '#000000'"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                    :css-var="$field['css_var'] ?? ''"
+                />
+                @break
+
+            @case('key_generation')
+                <x-admin.key-generation-field
+                    :id="$field['id']"
+                    :name="$field['id']"
+                    :value="$value"
+                    :optional="$field['optional'] ?? false"
+                    :label="$field['label']"
+                    :description="$field['description'] ?? ''"
+                />
                 @break
         @endswitch
 

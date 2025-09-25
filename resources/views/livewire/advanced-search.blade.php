@@ -17,7 +17,7 @@
                         name="q"
                         wire:model.live="query"
                         value="{{ $query }}"
-                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
                         placeholder="{{ __('Search elected officials...', 'fmr') }}"
                     >
                 </div>
@@ -26,7 +26,7 @@
                     <button 
                         type="submit"
                         :disabled="!$wire.query"
-                        class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 cursor-pointer"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-primary-500 hover:bg-primary-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
                     >
                         <x-heroicon-o-magnifying-glass class="h-4 w-4 mr-2" />
                         {{ __('Search', 'fmr') }}
@@ -36,7 +36,7 @@
                         <button 
                             type="button"
                             wire:click="clearFilters"
-                            class="inline-flex items-center px-4 py-3 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 cursor-pointer"
+                            class="inline-flex items-center px-4 py-3 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
                         >
                             <x-heroicon-o-x-mark class="h-4 w-4 mr-1" />
                             {{ __('Clear', 'fmr') }}
@@ -55,7 +55,7 @@
                         <select 
                             name="boardId"
                             wire:model.live="boardId"
-                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm bg-white"
+                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Boards', 'fmr') }}</option>
                             
@@ -81,7 +81,7 @@
                         <select 
                             name="partyId"
                             wire:model.live="partyId"
-                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm bg-white"
+                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Parties', 'fmr') }}</option>
                             
@@ -107,7 +107,7 @@
                         <select 
                             name="roleId"
                             wire:model.live="roleId"
-                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm bg-white"
+                            class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Roles', 'fmr') }}</option>
                             
@@ -206,7 +206,7 @@
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <a href="{{ $result->url }}" class="hover:text-emerald-600 transition-colors duration-200">
+                                                    <a href="{{ $result->url }}" class="hover:text-primary-700 transition-colors duration-200">
                                                         {{ $result->firstname ?? '' }}
                                                     </a>
                                                 </div>
@@ -214,7 +214,7 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <a href="{{ $result->url }}" class="hover:text-emerald-600 transition-colors duration-200">
+                                                    <a href="{{ $result->url }}" class="hover:text-primary-700 transition-colors duration-200">
                                                         {{ $result->lastname ?? '' }}
                                                     </a>
                                                 </div>
@@ -223,7 +223,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">
                                                     @if($result->party)
-                                                        <a href="{{ $result->party->url }}" class="flex items-center space-x-2 hover:text-emerald-600 transition-colors duration-200">
+                                                        <a href="{{ $result->party->url }}" class="flex items-center space-x-2 hover:text-primary-700 transition-colors duration-200">
                                                             @if($result->party->thumbnail)
                                                                 <div class="flex-shrink-0">
                                                                     {!! $result->party->thumbnail !!}

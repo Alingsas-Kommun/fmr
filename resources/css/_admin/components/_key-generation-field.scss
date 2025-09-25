@@ -1,0 +1,63 @@
+// Key Generation Field Component
+.key-generation-field {
+    .key-display {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .key-value {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        code {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: monospace;
+            font-size: 12px;
+            flex: 1;
+            word-break: break-all;
+
+            @media (max-width: 768px) {
+                margin-bottom: 8px;
+            }
+        }
+    }
+    
+    .key-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+    
+    .api-info {
+        background: #e7f3ff;
+        border: 1px solid #b3d9ff;
+        border-radius: 4px;
+        padding: 10px;
+        
+        code {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 4px 8px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+    }
+}

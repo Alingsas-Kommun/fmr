@@ -1,0 +1,74 @@
+// Image Field Component
+.image-field-wrapper {
+    max-width: 300px;
+
+    .image-preview {
+        position: relative;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        background: #f9f9f9;
+        text-align: center;
+
+        &[id*="darkmode"] {
+            background: #111;
+        }
+        
+        img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
+        }
+    }
+    
+    .image-overlay-actions {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        
+        .button {
+            padding: 4px 6px;
+            min-width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .dashicons {
+                font-size: 14px;
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+    
+    .image-preview:hover .image-overlay-actions {
+        opacity: 1;
+    }
+    
+    .image-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 10px;
+        
+        .button {
+            .dashicons {
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .image-field-wrapper .image-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

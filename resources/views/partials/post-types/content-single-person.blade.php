@@ -8,7 +8,7 @@
             </div>
         @else
             <div class="w-30 h-30 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                <x-heroicon-o-user class="h-15 w-15 text-emerald-600" />
+                <x-heroicon-o-user class="h-15 w-15 text-primary-600" />
             </div>
         @endif
         
@@ -20,7 +20,7 @@
                             {!! $party->thumbnail('w-5 h-5') !!}
                         </div>
                     @else
-                        <x-heroicon-o-user-group class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                        <x-heroicon-o-user-group class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     @endif
 
                     <span>{{ $party->post_title }}</span>
@@ -39,7 +39,7 @@
                 <div class="flex items-center space-x-4 mt-2">
                     @if($person->workEmail)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-envelope class="h-6 w-6 text-emerald-600 flex-shrink-0" />
+                            <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
                             <a href="mailto:{{ $person->workEmail }}" class="text-gray-800 hover:text-gray-900">
                                 {{ $person->workEmail }}
@@ -49,7 +49,7 @@
 
                     @if($person->groupLeader)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-user-circle class="h-6 w-6 text-emerald-600 flex-shrink-0" />
+                            <x-heroicon-o-user-circle class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
                             <span class="text-gray-700">{!! __('Group Leader', 'fmr') !!}</span>
                         </div>
@@ -65,7 +65,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-200 pt-6 mt-8">
             @if($person->birthDate)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-calendar class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-calendar class="h-5 w-5 text-primary-600 flex-shrink-0" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
@@ -76,7 +76,7 @@
 
             @if($person->ssn)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-identification class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-identification class="h-5 w-5 text-primary-600 flex-shrink-0" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
@@ -87,7 +87,7 @@
 
             @if($person->listing)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-list-bullet class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-list-bullet class="h-5 w-5 text-primary-600 flex-shrink-0" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
@@ -106,7 +106,7 @@
         <div class="flex items-center justify-between mt-6">
             <div class="flex-1 border-t border-gray-200"></div>
 
-             <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors duration-200 focus:outline-none">
+             <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 focus:outline-none">
                 <span x-text="showMoreInfo ? '{!! __('Hide Additional Information', 'fmr') !!}' : '{!! __('Show Additional Information', 'fmr') !!}'"></span>
                 <x-heroicon-o-chevron-down class="ml-2 h-4 w-4 transition-transform duration-200" ::class="{ 'rotate-180': showMoreInfo }" />
              </button>
@@ -127,18 +127,18 @@
             @if($hasHomeInfo)
                 <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                        <x-heroicon-o-home class="h-5 w-5 text-emerald-600 mr-3" />
+                        <x-heroicon-o-home class="h-5 w-5 text-primary-600 mr-3" />
                         {!! __('Home Information', 'fmr') !!}
                     </h3>
 
                     <div class="space-y-5">
                         @if($person->homeEmail)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <a href="mailto:{{ $person->homeEmail }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="mailto:{{ $person->homeEmail }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->homeEmail }}
                                     </a>
                                 </div>
@@ -147,11 +147,11 @@
 
                         @if($person->homePhone)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->homePhone }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="tel:{{ $person->homePhone }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->homePhone }}
                                     </a>
                                 </div>
@@ -160,11 +160,11 @@
 
                         @if($person->homeMobile)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->homeMobile }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="tel:{{ $person->homeMobile }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->homeMobile }}
                                     </a>
                                 </div>
@@ -173,11 +173,11 @@
 
                         @if($person->homeWebpage)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <a href="{{ $person->homeWebpage }}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="{{ $person->homeWebpage }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->homeWebpage }}
                                     </a>
                                 </div>
@@ -186,7 +186,7 @@
 
                         @if($person->homeAddress || $person->homeZip || $person->homeCity)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-map-pin class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
@@ -206,7 +206,7 @@
 
                         @if($person->homeVisitingAddress)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-building-office class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
                                     <div>{{ $person->homeVisitingAddress }}</div>
@@ -220,18 +220,18 @@
             @if($hasWorkInfo)
                 <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                        <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mr-3" />
+                        <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
                         {!! __('Work Information', 'fmr') !!}
                     </h3>
 
                     <div class="space-y-5">
                         @if($person->workEmail)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <a href="mailto:{{ $person->workEmail }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="mailto:{{ $person->workEmail }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->workEmail }}
                                     </a>
                                 </div>
@@ -240,11 +240,11 @@
 
                         @if($person->workPhone)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->workPhone }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="tel:{{ $person->workPhone }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->workPhone }}
                                     </a>
                                 </div>
@@ -253,11 +253,11 @@
 
                         @if($person->workMobile)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->workMobile }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="tel:{{ $person->workMobile }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->workMobile }}
                                     </a>
                                 </div>
@@ -266,11 +266,11 @@
 
                         @if($person->workWebpage)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                                <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <a href="{{ $person->workWebpage }}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="{{ $person->workWebpage }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
                                         {{ $person->workWebpage }}
                                     </a>
                                 </div>
@@ -279,7 +279,7 @@
 
                         @if($person->workAddress || $person->workZip || $person->workCity)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-map-pin class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
@@ -300,7 +300,7 @@
 
                         @if($person->workVisitingAddress)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
@@ -336,14 +336,14 @@
                     @foreach($assignments as $assignment)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-emerald-700 hover:text-emerald-800">
+                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-primary-600 hover:text-primary-700">
                                     {{ $assignment->roleTerm->name }}
                                 </a>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->board)
-                                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-emerald-700 hover:text-emerald-800"> 
+                                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-600 hover:text-primary-700"> 
                                         {{ $assignment->board->post_title }}
                                     </a>
                                 @endif
@@ -351,7 +351,7 @@
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->decisionAuthority)
-                                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-emerald-700 hover:text-emerald-800">
+                                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-primary-600 hover:text-primary-700">
                                         {{ $assignment->decisionAuthority->title }}
                                     </a>
                                 @endif
@@ -362,7 +362,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-700 hover:text-emerald-800">{!! __('View', 'fmr') !!}</a>
+                                <a href="{{ route('assignments.show', $assignment) }}" class="text-primary-600 hover:text-primary-700">{!! __('View', 'fmr') !!}</a>
                             </td>
                         </tr>
                     @endforeach

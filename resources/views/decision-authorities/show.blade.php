@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="my-8">
-        <a href="{{ route('decision-authorities.index') }}" class="text-emerald-600 hover:text-emerald-800">{{ __('Decision Authorities', 'fmr') }}</a>
+        <a href="{{ route('decision-authorities.index') }}" class="text-primary-600 hover:text-primary-700">{{ __('Decision Authorities', 'fmr') }}</a>
 
         <span class="mx-2">/</span>
 
@@ -16,11 +16,11 @@
                 
                 <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-6 lg:space-y-3 xl:space-y-0 xl:space-x-6">
                     <div class="flex items-center space-x-2">
-                        <x-heroicon-o-building-office-2 class="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                        <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 flex-shrink-0" />
                         
                         <span class="sr-only">{{ __('Board', 'fmr') }}:</span>
                         
-                        <a href="{{ get_permalink($decisionAuthority->board->ID) }}" class="text-emerald-700 hover:text-emerald-800 font-medium">
+                        <a href="{{ get_permalink($decisionAuthority->board->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
                             {{ $decisionAuthority->board->post_title }}
                         </a>
                     </div>
@@ -28,8 +28,8 @@
                     <div class="flex items-center space-x-2">                        
                         <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
                         
-                        <span class="inline-flex items-center px-3 py-1 gap-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
-                            <x-heroicon-o-tag class="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                        <span class="inline-flex items-center px-3 py-1 gap-1 rounded-full text-sm font-medium bg-primary-100 text-primary-600">
+                            <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
                             <span>{{ $decisionAuthority->type }}</span>
                         </span>
                     </div>
@@ -38,7 +38,7 @@
 
             <div class="flex-shrink-0">
                 <div class="flex items-center space-x-2 mb-2">
-                    <x-heroicon-o-calendar class="h-6 w-6 text-emerald-600 flex-shrink-0" />
+                    <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0" />
                     <span class="sr-only">{{ __('Period', 'fmr') }}</span>
                     <div class="text-lg font-semibold text-gray-900">
                         {{ date('j M Y', strtotime($decisionAuthority->start_date)) }} –
@@ -77,13 +77,13 @@
                     @forelse($activeAssignments as $assignment)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4">
-                                <a href="{{ get_permalink($assignment->person->ID) }}" class="text-emerald-600 hover:text-emerald-900">
+                                <a href="{{ get_permalink($assignment->person->ID) }}" class="text-primary-600 hover:text-primary-700">
                                     {{ $assignment->person->post_title }}
                                 </a>
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-emerald-700 hover:text-emerald-800">
+                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-primary-600 hover:text-primary-700">
                                     {{ $assignment->roleTerm->name }}
                                 </a>
                             </td>
@@ -94,7 +94,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('assignments.show', $assignment) }}" class="text-emerald-600 hover:text-emerald-900">
+                                <a href="{{ route('assignments.show', $assignment) }}" class="text-primary-600 hover:text-primary-700">
                                     {{ __('View', 'fmr') }}
                                 </a>
                             </td>

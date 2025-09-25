@@ -165,3 +165,50 @@ function isTailwindClass($class)
 
     return false;
 }
+
+/**
+ * Get a setting value from WordPress options.
+ *
+ * @param string $name
+ * @param mixed $default
+ * @return mixed
+ */
+function setting($name, $default = null)
+{
+    return get_option($name, $default);
+}
+
+/**
+ * Set a setting value in WordPress options.
+ *
+ * @param string $name
+ * @param mixed $value
+ * @param string|bool $autoload
+ * @return bool
+ */
+function setSetting($name, $value, $autoload = 'yes')
+{
+    return update_option($name, $value, $autoload);
+}
+
+/**
+ * Delete a setting from WordPress options.
+ *
+ * @param string $name
+ * @return bool
+ */
+function deleteSetting($name)
+{
+    return delete_option($name);
+}
+
+/**
+ * Check if a setting exists.
+ *
+ * @param string $name
+ * @return bool
+ */
+function hasSetting($name)
+{
+    return get_option($name) !== false;
+}

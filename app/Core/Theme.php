@@ -2,6 +2,10 @@
 
 namespace App\Core;
 
+use App\Utilities\Color;
+
+use function App\Core\setting;
+
 class Theme
 {
     public function __construct()
@@ -13,6 +17,7 @@ class Theme
         add_action('init', [$this, 'loadTextDomain']);
         add_action('after_setup_theme', [$this, 'addThemeSupport'], 20);
         add_action('after_setup_theme', [$this, 'removeThemeSupport'], 20);
+        add_action('wp_head', [$this, 'enqueueFrontendColorVariables']);
     }
 
     /**
@@ -80,5 +85,65 @@ class Theme
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
          */
         remove_theme_support('core-block-patterns');
+    }
+
+    /**
+     * Enqueue frontend assets with CSS variables for primary hue.
+     *
+     * @return void
+     */
+    public function enqueueFrontendColorVariables():void
+    {
+        // Skip asset loading in CLI context
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
+
+        // Get primary color from settings
+        $primary_color = setting('primary_color', '#236151');
+        $secondary_color = setting('secondary_color', '#bd2b30');
+        $tertiary_color = setting('tertiary_color', '#fab526');
+
+        // Convert colors to hue and chroma for frontend
+        $primary_hue = Color::hexToHue($primary_color);
+        $secondary_hue = Color::hexToHue($secondary_color);
+        $tertiary_hue = Color::hexToHue($tertiary_color);
+        
+        // Calculate chroma values from the colors
+        $primary_chroma = Color::hexToChroma($primary_color);
+        $secondary_chroma = Color::hexToChroma($secondary_color);
+        $tertiary_chroma = Color::hexToChroma($tertiary_color);
+
+        // Build CSS variables for frontend
+        $css_vars = array();
+        array_push($css_vars, sprintf(
+            '--primary-hue: %s',
+            esc_attr($primary_hue). ' !important'
+        ));
+        array_push($css_vars, sprintf(
+            '--primary-chroma: %s',
+            esc_attr($primary_chroma). ' !important'
+        ));
+
+        array_push($css_vars, sprintf(
+            '--secondary-hue: %s',
+            esc_attr($secondary_hue). ' !important'
+        ));
+        array_push($css_vars, sprintf(
+            '--secondary-chroma: %s',
+            esc_attr($secondary_chroma). ' !important'
+        ));
+        
+        array_push($css_vars, sprintf(
+            '--tertiary-hue: %s',
+            esc_attr($tertiary_hue). ' !important'
+        ));
+        array_push($css_vars, sprintf(
+            '--tertiary-chroma: %s',
+            esc_attr($tertiary_chroma). ' !important'
+        ));
+
+        $css_output = ':root {' . implode(';', array_map('esc_html', $css_vars)) . '}';
+        echo '<style id="fmr-color-hues">' . $css_output . '</style>';
     }
 }

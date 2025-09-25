@@ -11,6 +11,7 @@ use App\Core\Admin\Assignments\Edit as AssignmentsEdit;
 use App\Core\Admin\DecisionAuthorities\Index as DecisionAuthoritiesIndex;
 use App\Core\Admin\DecisionAuthorities\Edit as DecisionAuthoritiesEdit;
 use App\Core\Admin\Anniversaries\Index as AnniversariesIndex;
+use App\Core\Admin\ConfigurationPage;
 use App\Http\Controllers\Admin\AnniversaryController;
 use App\Http\Controllers\Admin\AssignmentController as AdminAssignmentController;
 use App\Http\Controllers\Admin\BoardController;
@@ -42,6 +43,7 @@ class AdminServiceProvider extends SageServiceProvider
         $this->app->singleton(AnniversariesIndex::class, function () {
             return AnniversariesIndex::init();
         });
+        $this->app->singleton(ConfigurationPage::class);
 
         // Register admin controllers
         $this->app->singleton(AdminAssignmentController::class);
@@ -73,6 +75,7 @@ class AdminServiceProvider extends SageServiceProvider
         add_action('init', function () {
             $this->app->make(AssignmentsEdit::class);
             $this->app->make(DecisionAuthoritiesEdit::class);
+            $this->app->make(ConfigurationPage::class);
         });
 
         add_action('after_setup_theme', function () {
@@ -136,11 +139,14 @@ class AdminServiceProvider extends SageServiceProvider
             return;
         }
 
+        // Enqueue WordPress media library for image fields
+        wp_enqueue_media();
+
         $style = Vite::asset('resources/css/admin.scss');
         wp_enqueue_style('admin-css', $style, false, '');
 
         $script = Vite::asset('resources/js/admin.js');
-        wp_enqueue_script('admin-js', $script, [], null, true);
+        wp_enqueue_script('admin-js', $script, ['jquery', 'underscore', 'wp-util'], null, true);
 
         wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
 
