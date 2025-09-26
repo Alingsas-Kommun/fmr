@@ -2,6 +2,8 @@
 @source "../views/";
 @source "../../app/";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Primary Colors */
   --color-primary-50: var(--color-primary-50);
@@ -220,6 +222,11 @@
   --text-shadow-sm: 0px 1px 0px rgb(255 255 255 / 0.075), 0px 1px 1px rgb(255 255 255 / 0.075), 0px 2px 2px rgb(255 255 255 / 0.075);
   --text-shadow-md: 0px 1px 1px rgb(255 255 255 / 0.1), 0px 1px 2px rgb(255 255 255 / 0.1), 0px 2px 4px rgb(255 255 255 / 0.1);
   --text-shadow-lg: 0px 1px 2px rgb(255 255 255 / 0.1), 0px 3px 2px rgb(255 255 255 / 0.1), 0px 4px 8px rgb(255 255 255 / 0.1);
+}
+
+/* Alpine.js compatibility */
+[x-cloak] {
+  display: none !important;
 }
 
 /* Shame */

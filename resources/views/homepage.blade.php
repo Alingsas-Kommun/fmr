@@ -39,9 +39,7 @@
 
     @if($groupLeaders->isNotEmpty())
         <div class="py-8">
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Group Leaders', 'fmr') !!}</h2>
-            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Group Leaders', 'fmr') !!}</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($groupLeaders as $leader)
@@ -93,9 +91,7 @@
 
     @if($boards->isNotEmpty())
         <div class="py-8">
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Boards & Committees', 'fmr') !!}</h2>
-            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Boards & Committees', 'fmr') !!}</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($boards as $board)

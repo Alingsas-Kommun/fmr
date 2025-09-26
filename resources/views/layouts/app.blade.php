@@ -6,9 +6,18 @@
         
         <script type="text/javascript">
             (function() {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) {
+                const storedTheme = localStorage.getItem('theme') || 'auto';
+                
+                if (storedTheme === 'dark') {
                     document.documentElement.classList.add('dark');
+                } else if (storedTheme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                } else {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                    if (prefersDark) {
+                        document.documentElement.classList.add('dark');
+                    }
                 }
             })();
         </script>
@@ -24,17 +33,11 @@
         @php(wp_body_open())
 
         <div id="app">
-            <div class="max-w-5xl px-4 mx-auto">
-                <a class="sr-only focus:not-sr-only" href="#main">
-                    {{ __('Skip to content', 'fmr') }}
-                </a>
+            @include('partials.header')
 
-                @include('partials.header')
-
-                <main id="main" class="pb-8">
-                    @yield('content')
-                </main>
-            </div>
+            <main id="main" class="max-w-5xl px-4 mx-auto pb-8">
+                @yield('content')
+            </main>
         </div>
 
         @action('get_footer')

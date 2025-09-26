@@ -7,3 +7,5 @@ import.meta.glob([
 // Initialize theme manager
 const themeManager = new ThemeManager();
 window.themeManager = themeManager;
+
+// Alpine.js is added via Livewire
