@@ -41,7 +41,7 @@ $widthClasses = match ($width) {
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-10"
         @click.outside="open = false"
-        class="absolute {{ $alignmentClasses }} z-50 mt-2 {{ $widthClasses }} rounded-md shadow-lg ring-1 ring-black/5"
+        class="absolute {{ $alignmentClasses }} z-50 mt-2 {{ $widthClasses }} rounded-lg shadow-lg ring-1 ring-black/5"
     >
         <div class="rounded-lg {{ $contentClasses }}">
             {{ $content }}

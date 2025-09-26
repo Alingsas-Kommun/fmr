@@ -70,7 +70,7 @@
                             $avatar_url = get_avatar_url($current_user->ID, ['size' => 100]);
                         @endphp
 
-                        <x-dropdown align="right" width="48" contentClasses="divide-y divide-gray-300 bg-white dark:bg-gray-100">
+                        <x-dropdown align="right" width="48" contentClasses="divide-y divide-gray-100 dark:divide-gray-300 bg-white dark:bg-gray-100">
                             <x-slot name="trigger">
                                 <button class="flex items-center space-x-2 text-sm px-4 py-2 bg-gray-100/50 dark:bg-gray-200/50 backdrop-blur-xl backdrop-saturate-200 rounded-md transition-colors duration-200">
                                     <img src="{{ $avatar_url }}" alt="{{ $current_user->display_name }}" class="w-7 h-7 rounded-full">

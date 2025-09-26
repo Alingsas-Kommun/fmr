@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-25T16:12:38+00:00\n"
+"POT-Creation-Date: 2025-09-26T16:27:45+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -109,7 +109,7 @@ msgstr "Uppgiften har uppdaterats."
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
-#: resources/views/partials/header.blade.php:10
+#: resources/views/partials/header.blade.php:62
 #: resources/views/partials/post-types/content-single-person.blade.php:334
 msgid "Assignments"
 msgstr "Uppdrag"
@@ -174,7 +174,7 @@ msgstr "Person"
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:22
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
-#: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/decision-authorities/show.blade.php:62
 #: resources/views/livewire/advanced-search.blade.php:112
 #: resources/views/partials/post-types/content-single-person.blade.php:341
 msgid "Role"
@@ -188,7 +188,7 @@ msgstr "Roll"
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:6
 #: resources/views/assignments/show.blade.php:54
 #: resources/views/decision-authorities/index.blade.php:60
-#: resources/views/decision-authorities/show.blade.php:21
+#: resources/views/decision-authorities/show.blade.php:15
 #: resources/views/livewire/advanced-search.blade.php:54
 #: resources/views/partials/post-types/content-single-person.blade.php:342
 msgid "Board"
@@ -210,8 +210,8 @@ msgstr "Beslutsinstans"
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:41
 #: resources/views/decision-authorities/index.blade.php:74
-#: resources/views/decision-authorities/show.blade.php:43
-#: resources/views/decision-authorities/show.blade.php:72
+#: resources/views/decision-authorities/show.blade.php:37
+#: resources/views/decision-authorities/show.blade.php:66
 #: resources/views/partials/post-types/content-single-board.blade.php:129
 #: resources/views/partials/post-types/content-single-person.blade.php:344
 msgid "Period"
@@ -294,8 +294,7 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:17
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
-#: resources/views/decision-authorities/show.blade.php:5
-#: resources/views/partials/header.blade.php:15
+#: resources/views/partials/header.blade.php:67
 #: resources/views/partials/post-types/content-single-board.blade.php:115
 msgid "Decision Authorities"
 msgstr "Beslutsinstanser"
@@ -312,7 +311,7 @@ msgstr "Titel"
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
-#: resources/views/decision-authorities/show.blade.php:30
+#: resources/views/decision-authorities/show.blade.php:24
 #: resources/views/partials/post-types/content-single-board.blade.php:125
 msgid "Type"
 msgstr "Typ"
@@ -499,25 +498,13 @@ msgstr "Logotyp för mörkt läge"
 msgid "Primary Color"
 msgstr "Primärfärg"
 
-#: app/Core/Admin/FieldGroups/General.php:52
-msgid "Main brand color"
-msgstr "Huvudmärkesfärg"
-
 #: app/Core/Admin/FieldGroups/General.php:56
 msgid "Secondary Color"
 msgstr "Sekundärfärg"
 
-#: app/Core/Admin/FieldGroups/General.php:60
-msgid "Secondary brand color"
-msgstr ""
-
 #: app/Core/Admin/FieldGroups/General.php:64
 msgid "Tertiary Color"
 msgstr "Tertiär färg"
-
-#: app/Core/Admin/FieldGroups/General.php:68
-msgid "Tertiary brand color"
-msgstr ""
 
 #: app/Core/Admin/FieldGroups/General.php:76
 msgid "Display Settings"
@@ -1172,6 +1159,10 @@ msgstr "Alla nämnder/styrelser"
 msgid "Select Decision Authority"
 msgstr "Välj beslutsinstans"
 
+#: resources/views/admin/components/color-field.blade.php:26
+msgid "Reset to default"
+msgstr "Återställ till standard"
+
 #: resources/views/admin/components/image-field.blade.php:12
 msgid "Change Image"
 msgstr "Ändra bild"
@@ -1309,24 +1300,24 @@ msgstr "Filter"
 msgid "Clear"
 msgstr "Töm"
 
-#: resources/views/assignments/index.blade.php:133
-#: resources/views/decision-authorities/show.blade.php:107
+#: resources/views/assignments/index.blade.php:132
+#: resources/views/decision-authorities/show.blade.php:101
 #: resources/views/partials/post-types/content-single-board.blade.php:166
 #: resources/views/partials/post-types/content-single-person.blade.php:384
 msgid "View"
 msgstr "Visa"
 
-#: resources/views/assignments/index.blade.php:142
+#: resources/views/assignments/index.blade.php:141
 #: resources/views/partials/post-types/content-single-person.blade.php:393
 msgid "No assignments found."
 msgstr "Inga uppdrag hittades."
 
-#: resources/views/assignments/index.blade.php:158
+#: resources/views/assignments/index.blade.php:157
 #: resources/views/decision-authorities/index.blade.php:135
 msgid "Previous"
 msgstr "Föregående"
 
-#: resources/views/assignments/index.blade.php:181
+#: resources/views/assignments/index.blade.php:180
 #: resources/views/decision-authorities/index.blade.php:158
 msgid "Next"
 msgstr "Nästa"
@@ -1340,6 +1331,30 @@ msgstr "Ingen nämnd/styrelse tilldelad"
 msgid "No decision authority assigned"
 msgstr "Ingen beslutsinstans tilldelad"
 
+#: resources/views/components/theme-switcher.blade.php:62
+msgid "Light theme"
+msgstr "Ljust tema"
+
+#: resources/views/components/theme-switcher.blade.php:63
+msgid "Dark theme"
+msgstr "Mörkt tema"
+
+#: resources/views/components/theme-switcher.blade.php:64
+msgid "Auto theme"
+msgstr "Automatiskt tema"
+
+#: resources/views/components/theme-switcher.blade.php:72
+msgid "Switch to dark theme"
+msgstr "Växla till mörkt tema"
+
+#: resources/views/components/theme-switcher.blade.php:73
+msgid "Switch to auto theme"
+msgstr "Växla till automatiskt tema"
+
+#: resources/views/components/theme-switcher.blade.php:74
+msgid "Switch to light theme"
+msgstr "Växla till ljust tema"
+
 #: resources/views/decision-authorities/index.blade.php:19
 msgid "All Types"
 msgstr "Alla typer"
@@ -1348,50 +1363,46 @@ msgstr "Alla typer"
 msgid "No decision authorities found."
 msgstr "Inga beslutsinstanser hittades."
 
-#: resources/views/decision-authorities/show.blade.php:57
+#: resources/views/decision-authorities/show.blade.php:50
 msgid "Active Assignments"
 msgstr "Aktiva uppdrag"
 
-#: resources/views/decision-authorities/show.blade.php:64
+#: resources/views/decision-authorities/show.blade.php:58
 msgid "Name"
 msgstr "Namn"
 
-#: resources/views/decision-authorities/show.blade.php:76
+#: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/post-types/content-single-board.blade.php:133
 #: resources/views/partials/post-types/content-single-person.blade.php:345
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: resources/views/decision-authorities/show.blade.php:115
-#: resources/views/decision-authorities/show.blade.php:125
+#: resources/views/decision-authorities/show.blade.php:109
+#: resources/views/decision-authorities/show.blade.php:119
 msgid "No active assignments found."
 msgstr "Inga aktiva uppdrag hittades."
 
-#: resources/views/homepage.blade.php:8
+#: resources/views/homepage.blade.php:9
 msgid "Find your politician in Alingsås"
 msgstr "Hitta din politiker i Alingsås"
 
-#: resources/views/homepage.blade.php:13
+#: resources/views/homepage.blade.php:14
 msgid ""
 "Search through assignments, parties and politicians in the municipality of "
 "Alingsås."
 msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
 
-#: resources/views/homepage.blade.php:45
+#: resources/views/homepage.blade.php:46
 msgid "Group Leaders"
 msgstr "Gruppledare"
 
-#: resources/views/homepage.blade.php:91
+#: resources/views/homepage.blade.php:103
 msgid "Boards & Committees"
 msgstr "Nämnder & Styrelser"
 
 #: resources/views/index.blade.php:6
 msgid "Sorry, no results were found."
 msgstr "Tyvärr, inga resultat hittades."
-
-#: resources/views/layouts/app.blade.php:29
-msgid "Skip to content"
-msgstr "Hoppa till innehåll"
 
 #: resources/views/livewire/advanced-search.blade.php:5
 msgid "Advanced search"
@@ -1412,7 +1423,7 @@ msgstr "Sök förtroendevalda…"
 
 #: resources/views/livewire/advanced-search.blade.php:33
 #: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:78
+#: resources/views/livewire/search.blade.php:113
 msgid "Search"
 msgstr "Sök"
 
@@ -1456,18 +1467,38 @@ msgstr "Inget parti"
 msgid "No elected officials found"
 msgstr "Inga förtroendevalda hittades"
 
-#: resources/views/livewire/search.blade.php:69
+#: resources/views/livewire/search.blade.php:103
 #, php-format
 msgid "No elected officials found for \"%s\""
 msgstr "Inga förtroendevalda hittades för \"%s\""
 
-#: resources/views/livewire/search.blade.php:70
+#: resources/views/livewire/search.blade.php:104
 msgid "Try a different name"
 msgstr "Testa ett annat namn"
 
-#: resources/views/livewire/search.blade.php:89
+#: resources/views/livewire/search.blade.php:122
 msgid "Search with more advanced search criteria"
 msgstr "Sök med mer avancerade sökkriterier"
+
+#: resources/views/partials/header.blade.php:54
+msgid "Skip to content"
+msgstr "Hoppa till innehåll"
+
+#: resources/views/partials/header.blade.php:98
+msgid "Profile"
+msgstr "Profil"
+
+#: resources/views/partials/header.blade.php:107
+msgid "Settings"
+msgstr "Inställningar"
+
+#: resources/views/partials/header.blade.php:116
+msgid "Dashboard"
+msgstr "Instrumentpanel"
+
+#: resources/views/partials/header.blade.php:127
+msgid "Logout"
+msgstr "Logga ut"
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104
 #: resources/views/partials/post-types/content-single-person.blade.php:220
@@ -1494,6 +1525,9 @@ msgstr "Dölj ytterligare information"
 #: resources/views/partials/post-types/content-single-person.blade.php:114
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
+
+#~ msgid "Main brand color"
+#~ msgstr "Huvudmärkesfärg"
 
 #, fuzzy
 #~| msgid "Addresses"
