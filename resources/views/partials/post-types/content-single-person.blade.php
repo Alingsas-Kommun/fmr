@@ -1,4 +1,4 @@
-<div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
+<div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
     <div class="flex items-center space-x-6">
         @if($thumbnail)
             <div class="flex-shrink-0">
@@ -14,7 +14,7 @@
         
         <div class="flex-1">
             @if($party)
-                <a href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1 text-gray-800 hover:text-gray-900">
+                <x-link href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1" :underline="false">
                     @if($party->thumbnail())
                         <div class="w-5 h-5 flex-shrink-0">
                             {!! $party->thumbnail('w-5 h-5') !!}
@@ -24,7 +24,7 @@
                     @endif
 
                     <span>{{ $party->post_title }}</span>
-                </a>
+                </x-link>
             @endif
 
             @if($person->firstname && $person->lastname)
@@ -41,9 +41,9 @@
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
-                            <a href="mailto:{{ $person->workEmail }}" class="text-gray-800 hover:text-gray-900">
+                            <x-link href="mailto:{{ $person->workEmail }}" :underline="false">
                                 {{ $person->workEmail }}
-                            </a>
+                            </x-link>
                         </div>
                     @endif
 
@@ -106,7 +106,7 @@
         <div class="flex items-center justify-between mt-6">
             <div class="flex-1 border-t border-gray-200"></div>
 
-             <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 focus:outline-none">
+             <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors duration-200 focus:outline-none">
                 <span x-text="showMoreInfo ? '{!! __('Hide Additional Information', 'fmr') !!}' : '{!! __('Show Additional Information', 'fmr') !!}'"></span>
                 <x-heroicon-o-chevron-down class="ml-2 h-4 w-4 transition-transform duration-200" ::class="{ 'rotate-180': showMoreInfo }" />
              </button>
@@ -138,9 +138,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <a href="mailto:{{ $person->homeEmail }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="mailto:{{ $person->homeEmail }}">
                                         {{ $person->homeEmail }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -151,9 +151,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->homePhone }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="tel:{{ $person->homePhone }}">
                                         {{ $person->homePhone }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -164,9 +164,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->homeMobile }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="tel:{{ $person->homeMobile }}">
                                         {{ $person->homeMobile }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -177,9 +177,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <a href="{{ $person->homeWebpage }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="{{ $person->homeWebpage }}" target="_blank">
                                         {{ $person->homeWebpage }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -231,9 +231,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <a href="mailto:{{ $person->workEmail }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="mailto:{{ $person->workEmail }}">
                                         {{ $person->workEmail }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -244,9 +244,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->workPhone }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="tel:{{ $person->workPhone }}">
                                         {{ $person->workPhone }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -257,9 +257,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <a href="tel:{{ $person->workMobile }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="tel:{{ $person->workMobile }}">
                                         {{ $person->workMobile }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -270,9 +270,9 @@
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <a href="{{ $person->workWebpage }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="{{ $person->workWebpage }}" target="_blank">
                                         {{ $person->workWebpage }}
-                                    </a>
+                                    </x-link>
                                 </div>
                             </div>
                         @endif
@@ -320,40 +320,40 @@
     <h2 class="text-2xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
     
     @if($assignments->isNotEmpty())
-        <div class="bg-gray-50 dark:bg-gray-100 rounded-lg overflow-hidden">
+        <div class="bg-primary-50 rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50 dark:bg-gray-200">
+                <thead class="bg-gray-100 dark:bg-gray-200">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
                     </tr>
                 </thead>
 
-                <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
+                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
                     @foreach($assignments as $assignment)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}">
                                     {{ $assignment->roleTerm->name }}
-                                </a>
+                                </x-link>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->board)
-                                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-600 hover:text-primary-700"> 
+                                    <x-link href="{{ get_permalink($assignment->board->ID) }}">
                                         {{ $assignment->board->post_title }}
-                                    </a>
+                                    </x-link>
                                 @endif
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->decisionAuthority)
-                                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-primary-600 hover:text-primary-700">
+                                    <x-link href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}">
                                         {{ $assignment->decisionAuthority->title }}
-                                    </a>
+                                    </x-link>
                                 @endif
                             </td>
 
@@ -362,7 +362,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('assignments.show', $assignment) }}" class="text-primary-600 hover:text-primary-700">{!! __('View', 'fmr') !!}</a>
+                                <x-link href="{{ route('assignments.show', $assignment) }}">{!! __('View', 'fmr') !!}</x-link>
                             </td>
                         </tr>
                     @endforeach

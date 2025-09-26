@@ -104,6 +104,11 @@ class Theme
         $secondary_color = setting('secondary_color', '#bd2b30');
         $tertiary_color = setting('tertiary_color', '#fab526');
 
+        // Calculate lightness values from the colors
+        $primary_lightness = Color::hexToLightness($primary_color);
+        $secondary_lightness = Color::hexToLightness($secondary_color);
+        $tertiary_lightness = Color::hexToLightness($tertiary_color);
+
         // Convert colors to hue and chroma for frontend
         $primary_hue = Color::hexToHue($primary_color);
         $secondary_hue = Color::hexToHue($secondary_color);
@@ -116,6 +121,19 @@ class Theme
 
         // Build CSS variables for frontend
         $css_vars = array();
+        array_push($css_vars, sprintf(
+            '--primary-lightness: %s',
+            esc_attr($primary_lightness). ' !important'
+        ));
+        array_push($css_vars, sprintf(
+            '--secondary-lightness: %s',
+            esc_attr($secondary_lightness). ' !important'
+        ));
+        array_push($css_vars, sprintf(
+            '--tertiary-lightness: %s',
+            esc_attr($tertiary_lightness). ' !important'
+        ));
+        
         array_push($css_vars, sprintf(
             '--primary-hue: %s',
             esc_attr($primary_hue). ' !important'

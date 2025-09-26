@@ -15,7 +15,7 @@
                     <div class="flex-1 min-w-0">
                         <label for="role" class="sr-only">{{ __('Role', 'fmr') }}</label>
                         <div class="relative">
-                            <select name="role" id="role" class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-gray-100" onchange="this.form.submit()">
+                            <select name="role" id="role" class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-100" onchange="this.form.submit()">
                                 <option value="">{{ __('All roles', 'fmr') }}</option>
                                 @foreach($roleTerms as $roleTerm)
                                     <option value="{{ $roleTerm->slug }}" {{ $filters['role'] === $roleTerm->slug ? 'selected' : '' }}>
@@ -31,10 +31,10 @@
 
                     @if($filters['role'])
                         <div class="flex-shrink-0">
-                            <a href="{{ url()->current() }}" class="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200">
+                            <x-link href="{{ url()->current() }}" class="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200" :underline="false">
                                 <x-heroicon-o-x-mark class="h-4 w-4 mr-1" />
                                 {{ __('Clear', 'fmr') }}
-                            </a>
+                            </x-link>
                         </div>
                     @endif
                 </form>
@@ -44,37 +44,37 @@
 
     <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50 dark:bg-gray-200">
+            <thead class="bg-gray-100 dark:bg-gray-200">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-document-text class="h-4 w-4" />
                             <span>{{ __('Decision Authority', 'fmr') }}</span>
                         </div>
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-user class="h-4 w-4" />
                             <span>{{ __('Person', 'fmr') }}</span>
                         </div>
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-tag class="h-4 w-4" />
                             <span>{{ __('Role', 'fmr') }}</span>
                         </div>
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-calendar class="h-4 w-4" />
                             <span>{{ __('Period', 'fmr') }}</span>
                         </div>
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sr-only">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider sr-only">
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-eye class="h-4 w-4" />
                             <span>{{ __('Show', 'fmr') }}</span>
@@ -83,35 +83,34 @@
                 </tr>
             </thead>
 
-            <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
+            <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
                 @forelse($assignments as $assignment)
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-200 transition-colors duration-150">
                         {{-- <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->board)
-                                <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-600 hover:text-primary-700"> 
+                                <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-500 hover:text-primary-600"> 
                                     {{ $assignment->board->post_title }}
                                 </a>
                             @endif
                         </td> --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->decisionAuthority)
-                                <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}">
                                     {{ $assignment->decisionAuthority->title }}
-                                </a>
+                                </x-link>
                             @endif
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->person)
-                                <a href="{{ get_permalink($assignment->person->ID) }}" 
-                                    class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ get_permalink($assignment->person->ID) }}">
                                     {{ $assignment->person->post_title }}
-                                </a>
+                                </x-link>
                             @endif
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-primary-600">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
                                 {{ $assignment->role }}
                             </span>
                         </td>
@@ -121,10 +120,10 @@
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('assignments.show', $assignment) }}" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200 flex space-x-1">
+                            <x-link href="{{ route('assignments.show', $assignment) }}" class="inline-flex items-center font-medium flex space-x-1">
                                 <span>{!! __('View', 'fmr') !!}</span>
                                 <x-heroicon-o-arrow-right class="h-4 w-4 mr-1" />
-                            </a>
+                            </x-link>
                         </td>
                     </tr>
                 @empty
@@ -144,10 +143,10 @@
         <div class="mt-6 flex justify-center">
             <nav class="flex space-x-2">
                 @if($pagination['current_page'] > 1)
-                    <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] - 1]) }}" 
-                        class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    <x-link href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] - 1]) }}" 
+                        class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50" :underline="false">
                         {{ __('Previous', 'fmr') }}
-                    </a>
+                    </x-link>
                 @endif
 
                 @for($i = 1; $i <= $pagination['last_page']; $i++)
@@ -156,18 +155,18 @@
                             {{ $i }}
                         </span>
                     @else
-                        <a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}" 
-                            class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        <x-link href="{{ request()->fullUrlWithQuery(['page' => $i]) }}" 
+                            class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50" :underline="false">
                             {{ $i }}
-                        </a>
+                        </x-link>
                     @endif
                 @endfor
 
                 @if($pagination['current_page'] < $pagination['last_page'])
-                    <a href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] + 1]) }}" 
-                        class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    <x-link href="{{ request()->fullUrlWithQuery(['page' => $pagination['current_page'] + 1]) }}" 
+                        class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50" :underline="false">
                         {{ __('Next', 'fmr') }}
-                    </a>
+                    </x-link>
                 @endif
             </nav>
         </div>

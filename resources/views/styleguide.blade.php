@@ -8,6 +8,65 @@
                 <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">A comprehensive guide to all available components and their variations.</p>
             </div>
 
+            <!-- Colors Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">Colors</h2>
+                
+                <!-- Primary Colors -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-medium text-gray-900 mb-6">Primary</h3>
+                    <div class="grid grid-cols-5 md:grid-cols-11 gap-2">
+                        <div class="bg-primary-50 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-950">50</div>
+                        <div class="bg-primary-100 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-950">100</div>
+                        <div class="bg-primary-200 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-950">200</div>
+                        <div class="bg-primary-300 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-950">300</div>
+                        <div class="bg-primary-400 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-950">400</div>
+                        <div class="bg-primary-500 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">500</div>
+                        <div class="bg-primary-600 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">600</div>
+                        <div class="bg-primary-700 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">700</div>
+                        <div class="bg-primary-800 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">800</div>
+                        <div class="bg-primary-900 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">900</div>
+                        <div class="bg-primary-950 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-primary-50">950</div>
+                    </div>
+                </div>
+
+                <!-- Secondary Colors -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-medium text-gray-900 mb-6">Secondary</h3>
+                    <div class="grid grid-cols-5 md:grid-cols-11 gap-2">
+                        <div class="bg-secondary-50 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-950">50</div>
+                        <div class="bg-secondary-100 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-950">100</div>
+                        <div class="bg-secondary-200 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-950">200</div>
+                        <div class="bg-secondary-300 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-950">300</div>
+                        <div class="bg-secondary-400 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-950">400</div>
+                        <div class="bg-secondary-500 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">500</div>
+                        <div class="bg-secondary-600 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">600</div>
+                        <div class="bg-secondary-700 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">700</div>
+                        <div class="bg-secondary-800 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">800</div>
+                        <div class="bg-secondary-900 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">900</div>
+                        <div class="bg-secondary-950 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-secondary-50">950</div>
+                    </div>
+                </div>
+
+                <!-- Tertiary Colors -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-medium text-gray-900 mb-6">Tertiary</h3>
+                    <div class="grid grid-cols-5 md:grid-cols-11 gap-2">
+                        <div class="bg-tertiary-50 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-950">50</div>
+                        <div class="bg-tertiary-100 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-950">100</div>
+                        <div class="bg-tertiary-200 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-950">200</div>
+                        <div class="bg-tertiary-300 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-950">300</div>
+                        <div class="bg-tertiary-400 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-950">400</div>
+                        <div class="bg-tertiary-500 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">500</div>
+                        <div class="bg-tertiary-600 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">600</div>
+                        <div class="bg-tertiary-700 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">700</div>
+                        <div class="bg-tertiary-800 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">800</div>
+                        <div class="bg-tertiary-900 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">900</div>
+                        <div class="bg-tertiary-950 aspect-square rounded-lg flex items-center justify-center text-xs font-medium text-tertiary-50">950</div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Buttons Section -->
             <section class="mb-16">
                 <h2 class="text-3xl font-semibold text-gray-900 mb-8">Buttons</h2>

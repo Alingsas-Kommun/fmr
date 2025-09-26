@@ -1,5 +1,5 @@
 <div>
-    <div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-xl mt-3 md:p-8">
+    <div class="md:bg-primary-50 rounded-xl mt-3 md:p-8">
         <form method="GET" action="{{ route('search.show') }}" class="space-y-6">
             <div class="space-y-1">
                 <h3 class="text-lg font-medium text-gray-900">{{ __('Advanced search', 'fmr') }}</h3>
@@ -26,7 +26,7 @@
                     <button 
                         type="submit"
                         :disabled="!$wire.query"
-                        class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-primary-500 hover:bg-primary-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-tertiary-500 hover:bg-tertiary-600 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
                     >
                         <x-heroicon-o-magnifying-glass class="h-4 w-4 mr-2" />
                         {{ __('Search', 'fmr') }}
@@ -139,13 +139,13 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                         {{ __('First Name', 'fmr') }}
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                         {{ __('Last Name', 'fmr') }}
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                         {{ __('Party', 'fmr') }}
                                     </th>
                                 </tr>
@@ -187,15 +187,15 @@
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                             {{ __('First Name', 'fmr') }}
                                         </th>
 
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                             {{ __('Last Name', 'fmr') }}
                                         </th>
                                         
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                                             {{ __('Party', 'fmr') }}
                                         </th>
                                     </tr>
@@ -206,31 +206,31 @@
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <a href="{{ $result->url }}" class="hover:text-primary-700 transition-colors duration-200">
+                                                    <x-link href="{{ $result->url }}" :underline="false">
                                                         {{ $result->firstname ?? '' }}
-                                                    </a>
+                                                    </x-link>
                                                 </div>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <a href="{{ $result->url }}" class="hover:text-primary-700 transition-colors duration-200">
+                                                    <x-link href="{{ $result->url }}" :underline="false">
                                                         {{ $result->lastname ?? '' }}
-                                                    </a>
+                                                    </x-link>
                                                 </div>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900">
                                                     @if($result->party)
-                                                        <a href="{{ $result->party->url }}" class="flex items-center space-x-2 hover:text-primary-700 transition-colors duration-200">
+                                                        <x-link href="{{ $result->party->url }}" class="flex items-center space-x-2" :underline="false">
                                                             @if($result->party->thumbnail)
                                                                 <div class="flex-shrink-0">
                                                                     {!! $result->party->thumbnail !!}
                                                                 </div>
                                                             @endif
                                                             <span>{{ $result->party->title }}</span>
-                                                        </a>
+                                                        </x-link>
                                                     @else
                                                         <span class="text-gray-400">{{ __('No party', 'fmr') }}</span>
                                                     @endif

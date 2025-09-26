@@ -1,4 +1,4 @@
-<div class="bg-gray-50 dark:bg-gray-100 rounded-lg overflow-hidden">
+<div class="bg-primary-50 rounded-lg overflow-hidden">
     <div class="p-8">
         <div class="flex items-center space-x-6">
             @if($thumbnail)
@@ -56,9 +56,9 @@
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
                         
-                        <a href="mailto:{{ $party->email }}" class="text-primary-600 hover:text-primary-700">
+                        <x-link href="mailto:{{ $party->email }}">
                             {{ $party->email }}
-                        </a>
+                        </x-link>
                     </div>
                 @endif
 
@@ -66,9 +66,9 @@
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
                         
-                        <a href="tel:{{ $party->phone }}" class="text-primary-600 hover:text-primary-700">
+                        <x-link href="tel:{{ $party->phone }}">
                             {{ $party->phone }}
-                        </a>
+                        </x-link>
                     </div>
                 @endif
 
@@ -76,7 +76,7 @@
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
                         
-                        <a href="{{ $party->website }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
+                        <a href="{{ $party->website }}" target="_blank" rel="noopener noreferrer" class="text-primary-500 hover:text-primary-600">
                             {{ $party->website }}
                         </a>
                     </div>
@@ -102,7 +102,7 @@
     @if($members->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($members as $member)
-                <a href="{{ get_permalink($member->ID) }}" class="group bg-gray-50 dark:bg-gray-100 rounded-lg duration-200 p-4">
+                <a href="{{ get_permalink($member->ID) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
                         @if($member->thumbnail())
                             <div class="flex-shrink-0">

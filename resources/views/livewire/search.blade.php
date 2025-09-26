@@ -70,20 +70,17 @@
             @endif
         </div>
 
-        <button type="submit" :disabled="!$wire.query" class="flex-none rounded-lg cursor-pointer bg-primary-500 disabled:opacity-50 px-6 py-3 text-sm font-semibold text-white hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+        <button type="submit" :disabled="!$wire.query" class="flex-none rounded-lg cursor-pointer bg-tertiary-500 hover:bg-tertiary-600 disabled:opacity-50 px-6 py-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary-500">
             {{ __('Search', 'fmr') }}
         </button>
     </form>
 
     @if($setting('show_advanced_search', true))
         <div class="mt-4 text-center">
-            <a 
-                href="{{ route('search.show') }}" 
-                class="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200"
-            >
+            <x-link :href="route('search.show')">
                 <x-heroicon-o-adjustments-horizontal class="w-4 h-4 mr-1" />
                 <span>{{ __('Search with more advanced search criteria', 'fmr') }}</span>
-            </a>
+            </x-link>
         </div>
     @endif
 </div>

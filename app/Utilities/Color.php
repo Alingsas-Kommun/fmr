@@ -167,6 +167,18 @@ class Color
     }
 
     /**
+     * Convert hex color to lightness value for OKLCH color space.
+     *
+     * @param string $hex Hex color (e.g., '#fab526')
+     * @return float Lightness value
+     */
+    public static function hexToLightness($hex)
+    {
+        $oklch = self::hexToOklch($hex);
+        return $oklch['l'];
+    }
+
+    /**
      * Convert hex color to OKLCH values.
      *
      * @param string $hex Hex color (e.g., '#fab526')

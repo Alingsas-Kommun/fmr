@@ -10,11 +10,11 @@
             </a>
 
             <nav class="flex items-center space-x-8">
-                <a href="{{ route('assignments.index') }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                <a href="{{ route('assignments.index') }}" class="text-primary-500 hover:text-primary-600 font-medium">
                     {!! __('Assignments', 'fmr') !!}
                 </a>
 
-                <a href="{{ route('decision-authorities.index') }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                <a href="{{ route('decision-authorities.index') }}" class="text-primary-500 hover:text-primary-600 font-medium">
                     {!! __('Decision Authorities', 'fmr') !!}
                 </a>
             </nav>

@@ -1,4 +1,4 @@
-<div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8">
+<div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8">
     <div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
             {{ $board->post_title }}
@@ -30,9 +30,9 @@
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
                         
-                        <a href="{{ $board->website }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700">
+                        <x-link href="{{ $board->website }}" target="_blank">
                             {{ $board->website }}
-                        </a>
+                        </x-link>
                     </div>
                 </div>
             @endif
@@ -44,9 +44,9 @@
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
                         
-                        <a href="mailto:{{ $board->email }}" class="text-primary-600 hover:text-primary-700">
+                        <x-link href="mailto:{{ $board->email }}">
                             {{ $board->email }}
-                        </a>
+                        </x-link>
                     </div>
                 </div>
             @endif
@@ -58,9 +58,9 @@
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
                         
-                        <a href="tel:{{ $board->phone }}" class="text-primary-600 hover:text-primary-700">
+                        <x-link href="tel:{{ $board->phone }}">
                             {{ $board->phone }}
-                        </a>
+                        </x-link>
                     </div>
                 </div>
             @endif
@@ -110,34 +110,34 @@
         <h2 class="text-2xl font-semibold mb-4">{!! __('Decision Authorities', 'fmr') !!}</h2>
         <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50 dark:bg-gray-200">
+                <thead class="bg-gray-100 dark:bg-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {!! __('Title', 'fmr') !!}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {!! __('Type', 'fmr') !!}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {!! __('Period', 'fmr') !!}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sr-only">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider sr-only">
                             {!! __('Actions', 'fmr') !!}
                         </th>
                     </tr>
                 </thead>
 
-                <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
+                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
                     @foreach($decisionAuthorities as $authority)
                         <tr>
                             <td class="px-6 py-4">
-                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('decision-authorities.show', $authority) }}">
                                     {{ $authority->title }}
-                                </a>
+                                </x-link>
                             </td>
                             
                             <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-600">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
                                     {{ $authority->type }}
                                 </span>
                             </td>
@@ -149,9 +149,9 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('decision-authorities.show', $authority) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('decision-authorities.show', $authority) }}">
                                     {!! __('View', 'fmr') !!}
-                                </a>
+                                </x-link>
                             </td>
                         </tr>
                     @endforeach

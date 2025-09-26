@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="md:bg-gray-50 dark:md:bg-gray-100 md:rounded-lg overflow-hidden md:p-8 mt-8">
+    <div class="md:bg-primary-50 md:rounded-lg overflow-hidden md:p-8 mt-8">
         <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 mb-8">
             <div class="flex items-center space-x-6 flex-1">
                 <div class="flex-shrink-0">
@@ -25,9 +25,9 @@
                                 </div>
                             @endif
                             
-                            <a href="{{ get_permalink($assignment->person->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                            <x-link href="{{ get_permalink($assignment->person->ID) }}" class="font-medium">
                                 {{ $assignment->person->post_title }}
-                            </a>
+                            </x-link>
                         </div>
                     @endif
                 </div>
@@ -52,9 +52,9 @@
                 </h3>
                 
                 @if($assignment->board)
-                    <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                    <x-link href="{{ get_permalink($assignment->board->ID) }}" class="font-medium">
                         {{ $assignment->board->post_title }}
-                    </a>
+                    </x-link>
                 @else
                     <span class="text-gray-400 italic">{{ __('No board assigned', 'fmr') }}</span>
                 @endif
@@ -67,9 +67,9 @@
                 </h3>
                 
                 @if($assignment->decisionAuthority)
-                    <a href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                    <x-link href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}" class="font-medium">
                         {{ $assignment->decisionAuthority->title }}
-                    </a>
+                    </x-link>
                 @else
                     <span class="text-gray-400 italic">{{ __('No decision authority assigned', 'fmr') }}</span>
                 @endif

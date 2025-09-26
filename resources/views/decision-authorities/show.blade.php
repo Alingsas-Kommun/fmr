@@ -1,15 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="my-8">
-        <a href="{{ route('decision-authorities.index') }}" class="text-primary-600 hover:text-primary-700">{{ __('Decision Authorities', 'fmr') }}</a>
 
-        <span class="mx-2">/</span>
 
-        <span class="text-gray-600">{{ $decisionAuthority->title }}</span>
-    </div>
-
-    <div class="md:bg-gray-50 dark:md:bg-gray-100 rounded-lg overflow-hidden md:p-8 mb-8">
+    <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8 my-8">
         <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div class="flex-1">
                 <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $decisionAuthority->title }}</h1>
@@ -20,15 +14,15 @@
                         
                         <span class="sr-only">{{ __('Board', 'fmr') }}:</span>
                         
-                        <a href="{{ get_permalink($decisionAuthority->board->ID) }}" class="text-primary-600 hover:text-primary-700 font-medium">
+                        <x-link href="{{ get_permalink($decisionAuthority->board->ID) }}" class="font-medium">
                             {{ $decisionAuthority->board->post_title }}
-                        </a>
+                        </x-link>
                     </div>
 
                     <div class="flex items-center space-x-2">                        
                         <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
                         
-                        <span class="inline-flex items-center px-3 py-1 gap-1 rounded-full text-sm font-medium bg-primary-100 text-primary-600">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-primary-500 space-x-1">
                             <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
                             <span>{{ $decisionAuthority->type }}</span>
                         </span>
@@ -50,42 +44,42 @@
     </div>
 
     @if($activeAssignments->count() > 0)
-        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
-            </div>
+        <div class="py-4">
+            <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
+        </div>
 
+        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50 dark:bg-gray-200">
+                <thead class="bg-gray-100 dark:bg-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {{ __('Name', 'fmr') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {{ __('Role', 'fmr') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {{ __('Period', 'fmr') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                             {{ __('Actions', 'fmr') }}
                         </th>
                     </tr>
                 </thead>
 
-                <tbody class="bg-white dark:bg-gray-100 divide-y divide-gray-200">
+                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
                     @forelse($activeAssignments as $assignment)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4">
-                                <a href="{{ get_permalink($assignment->person->ID) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ get_permalink($assignment->person->ID) }}">
                                     {{ $assignment->person->post_title }}
-                                </a>
+                                </x-link>
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}">
                                     {{ $assignment->roleTerm->name }}
-                                </a>
+                                </x-link>
                             </td>
 
                             <td class="px-6 py-4">
@@ -94,9 +88,9 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <a href="{{ route('assignments.show', $assignment) }}" class="text-primary-600 hover:text-primary-700">
+                                <x-link href="{{ route('assignments.show', $assignment) }}">
                                     {{ __('View', 'fmr') }}
-                                </a>
+                                </x-link>
                             </td>
                         </tr>
                     @empty
