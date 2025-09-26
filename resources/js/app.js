@@ -1,4 +1,3 @@
-import Alpine from 'alpinejs'
 import { ThemeManager } from './themeManager.js'
 import.meta.glob([
   '../images/**',
@@ -8,7 +7,3 @@ import.meta.glob([
 // Initialize theme manager
 const themeManager = new ThemeManager();
 window.themeManager = themeManager;
-
-// Initialize Alpine.js
-window.Alpine = Alpine
-Alpine.start()
