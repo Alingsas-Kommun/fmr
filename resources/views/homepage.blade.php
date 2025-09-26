@@ -59,7 +59,7 @@
                                 </div>
                             @endif
 
-                            <div class="flex-1 min-w-0">
+                            <div class="flex-1 min-w-0 space-y-1">
                                 <h3 class="text-lg font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
                                     @if($leader->getMeta('person_firstname') && $leader->getMeta('person_lastname'))
                                         {{ $leader->getMeta('person_firstname') }} {{ $leader->getMeta('person_lastname') }}
@@ -67,6 +67,18 @@
                                         {{ $leader->post_title }}
                                     @endif
                                 </h3>
+
+                                @if(isset($leader->party))
+                                    <span class="flex items-center space-x-2 text-sm">
+                                        @if($leader->party->thumbnail())
+                                            {!! $leader->party->thumbnail('w-4 h-4 flex-shrink-0') !!}
+                                        @else
+                                            <x-heroicon-o-user-group class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                        @endif
+
+                                        <span>{{ $leader->party->post_title }}</span>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="flex-shrink-0">
@@ -95,8 +107,9 @@
                                 </h3>
 
                                 @if($board->getMeta('board_category'))
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-primary-500">
-                                        {{ $board->getMeta('board_category') }}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-primary-500 space-x-1">
+                                        <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
+                                        <span>{{ $board->getMeta('board_category') }}</span>
                                     </span>
                                 @endif
                             </div>

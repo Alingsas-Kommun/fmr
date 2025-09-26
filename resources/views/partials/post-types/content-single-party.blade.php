@@ -34,7 +34,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 mt-8 pt-6">
                 @if($party->address || $party->zip || $party->city)
                     <div class="flex items-start space-x-3">
-                        <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                        <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 mt-0.5 flex-shrink-0" />
                         
                         <div class="text-gray-700">
                             @if($party->address)
@@ -54,7 +54,7 @@
 
                 @if($party->email)
                     <div class="flex items-center space-x-3">
-                        <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                        <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
                         
                         <x-link href="mailto:{{ $party->email }}">
                             {{ $party->email }}
@@ -64,7 +64,7 @@
 
                 @if($party->phone)
                     <div class="flex items-center space-x-3">
-                        <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                        <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0" />
                         
                         <x-link href="tel:{{ $party->phone }}">
                             {{ $party->phone }}
@@ -74,17 +74,17 @@
 
                 @if($party->website)
                     <div class="flex items-center space-x-3">
-                        <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
-                        
-                        <a href="{{ $party->website }}" target="_blank" rel="noopener noreferrer" class="text-primary-500 hover:text-primary-600">
+                        <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0" />
+
+                        <x-link href="{{ $party->website }}" target="_blank" rel="noopener noreferrer">
                             {{ $party->website }}
-                        </a>
+                        </x-link>
                     </div>
                 @endif
 
                 @if($party->groupLeader)
                     <div class="flex items-start space-x-3 md:col-span-2">
-                        <x-heroicon-o-user-circle class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                        <x-heroicon-o-user-circle class="h-6 w-6 text-primary-600 mt-0.5 flex-shrink-0" />
                         
                         <div class="text-gray-700">
                             <div class="font-medium">{!! __('Group Leader, City Council', 'fmr') !!}</div>

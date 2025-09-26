@@ -65,7 +65,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-200 pt-6 mt-8">
             @if($person->birthDate)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-calendar class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                    <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
@@ -76,7 +76,7 @@
 
             @if($person->ssn)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-identification class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                    <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
@@ -87,7 +87,7 @@
 
             @if($person->listing)
                 <div class="flex items-start space-x-3">
-                    <x-heroicon-o-list-bullet class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                    <x-heroicon-o-list-bullet class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
@@ -134,7 +134,7 @@
                     <div class="space-y-5">
                         @if($person->homeEmail)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
@@ -147,7 +147,7 @@
 
                         @if($person->homePhone)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
@@ -160,7 +160,7 @@
 
                         @if($person->homeMobile)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
@@ -173,7 +173,7 @@
 
                         @if($person->homeWebpage)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
@@ -227,7 +227,7 @@
                     <div class="space-y-5">
                         @if($person->workEmail)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
@@ -240,7 +240,7 @@
 
                         @if($person->workPhone)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
@@ -253,7 +253,7 @@
 
                         @if($person->workMobile)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
@@ -266,7 +266,7 @@
 
                         @if($person->workWebpage)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                                <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
@@ -279,7 +279,7 @@
 
                         @if($person->workAddress || $person->workZip || $person->workCity)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
@@ -300,7 +300,7 @@
 
                         @if($person->workVisitingAddress)
                             <div class="flex items-start space-x-3">
-                                <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                                <x-heroicon-o-building-office-2 class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                 
                                 <div class="text-gray-700">
                                     <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>

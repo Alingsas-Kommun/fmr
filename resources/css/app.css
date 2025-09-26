@@ -56,8 +56,8 @@
     --tertiary-chroma: 0.1612;
     --tertiary-lightness: 0.817;
     
-    --color-primary-50: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.95) calc(var(--primary-chroma) * 0.2) var(--primary-hue));
-    --color-primary-100: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.8) calc(var(--primary-chroma) * 0.4) var(--primary-hue));
+    --color-primary-50: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.95) calc(var(--primary-chroma) * 0.15) var(--primary-hue));
+    --color-primary-100: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.85) calc(var(--primary-chroma) * 0.3) var(--primary-hue));
     --color-primary-200: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.6) calc(var(--primary-chroma) * 0.5) var(--primary-hue));
     --color-primary-300: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.4) calc(var(--primary-chroma) * 0.6) var(--primary-hue));
     --color-primary-400: oklch(calc(var(--primary-lightness) + (1 - var(--primary-lightness)) * 0.2) calc(var(--primary-chroma) * 0.8) var(--primary-hue));
@@ -68,8 +68,8 @@
     --color-primary-900: oklch(calc(var(--primary-lightness) * 0.6) var(--primary-chroma) var(--primary-hue));
     --color-primary-950: oklch(calc(var(--primary-lightness) * 0.55) var(--primary-chroma) var(--primary-hue));
     
-    --color-secondary-50: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.95) calc(var(--secondary-chroma) * 0.2) var(--secondary-hue));
-    --color-secondary-100: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.8) calc(var(--secondary-chroma) * 0.4) var(--secondary-hue));
+    --color-secondary-50: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.95) calc(var(--secondary-chroma) * 0.15) var(--secondary-hue));
+    --color-secondary-100: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.85) calc(var(--secondary-chroma) * 0.3) var(--secondary-hue));
     --color-secondary-200: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.6) calc(var(--secondary-chroma) * 0.5) var(--secondary-hue));
     --color-secondary-300: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.4) calc(var(--secondary-chroma) * 0.6) var(--secondary-hue));
     --color-secondary-400: oklch(calc(var(--secondary-lightness) + (1 - var(--secondary-lightness)) * 0.2) calc(var(--secondary-chroma) * 0.8) var(--secondary-hue));
@@ -80,8 +80,8 @@
     --color-secondary-900: oklch(calc(var(--secondary-lightness) * 0.6) var(--secondary-chroma) var(--secondary-hue));
     --color-secondary-950: oklch(calc(var(--secondary-lightness) * 0.55) var(--secondary-chroma) var(--secondary-hue));
   
-    --color-tertiary-50: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.95) calc(var(--tertiary-chroma) * 0.2) var(--tertiary-hue));
-    --color-tertiary-100: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.8) calc(var(--tertiary-chroma) * 0.4) var(--tertiary-hue));
+    --color-tertiary-50: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.95) calc(var(--tertiary-chroma) * 0.15) var(--tertiary-hue));
+    --color-tertiary-100: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.85) calc(var(--tertiary-chroma) * 0.3) var(--tertiary-hue));
     --color-tertiary-200: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.6) calc(var(--tertiary-chroma) * 0.5) var(--tertiary-hue));
     --color-tertiary-300: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.4) calc(var(--tertiary-chroma) * 0.6) var(--tertiary-hue));
     --color-tertiary-400: oklch(calc(var(--tertiary-lightness) + (1 - var(--tertiary-lightness)) * 0.2) calc(var(--tertiary-chroma) * 0.8) var(--tertiary-hue));

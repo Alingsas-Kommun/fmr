@@ -3,7 +3,7 @@
         <form method="GET" action="{{ route('search.show') }}" class="space-y-6">
             <div class="space-y-1">
                 <h3 class="text-lg font-medium text-gray-900">{{ __('Advanced search', 'fmr') }}</h3>
-                <p class="text-xs text-gray-500">{{ __('Enter a search term or select filters to find elected officials', 'fmr') }}</p>
+                <p class="text-xs text-gray-700">{{ __('Enter a search term or select filters to find elected officials', 'fmr') }}</p>
             </div>
 
             <div class="flex items-end gap-4">
@@ -17,7 +17,7 @@
                         name="q"
                         wire:model.live="query"
                         value="{{ $query }}"
-                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
                         placeholder="{{ __('Search elected officials...', 'fmr') }}"
                     >
                 </div>

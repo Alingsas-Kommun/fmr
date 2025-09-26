@@ -6,7 +6,7 @@
                 wire:model.live="query"
                 type="text" 
                 id="search"
-                class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
                 placeholder="{{ __('Search elected officials...', 'fmr') }}"
                 autocomplete="off"
             >
