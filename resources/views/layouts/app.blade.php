@@ -4,28 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <script type="text/javascript">
-            (function() {
-                const storedTheme = localStorage.getItem('theme') || 'auto';
-                
-                if (storedTheme === 'dark') {
-                    document.documentElement.classList.add('dark');
-                } else if (storedTheme === 'light') {
-                    document.documentElement.classList.remove('dark');
-                } else {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                    if (prefersDark) {
-                        document.documentElement.classList.add('dark');
-                    }
-                }
-            })();
-        </script>
+        @include('partials.theme-init')
         
         @action('get_header')
         @php(wp_head())
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
         @livewireStyles
     </head>
 

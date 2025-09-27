@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Utilities\Color;
 
 use function App\Core\setting;
+use Illuminate\Support\Facades\Vite;
 
 class Theme
 {
@@ -17,6 +18,7 @@ class Theme
         add_action('init', [$this, 'loadTextDomain']);
         add_action('after_setup_theme', [$this, 'addThemeSupport'], 20);
         add_action('after_setup_theme', [$this, 'removeThemeSupport'], 20);
+        add_action('wp_enqueue_scripts', [$this, 'themeAssets'], 100);
         add_action('wp_head', [$this, 'enqueueFrontendColorVariables']);
     }
 
@@ -86,6 +88,18 @@ class Theme
          */
         remove_theme_support('core-block-patterns');
     }
+
+    /**
+     * Register the theme assets.
+     *
+     * @return void
+     */
+
+     public function themeAssets()
+     {        
+        wp_enqueue_script('app-js', Vite::asset('resources/js/app.js'), ['wp-i18n'], null, true);
+        wp_set_script_translations('app-js', 'fmr', get_stylesheet_directory() . '/resources/lang/'); 
+     }
 
     /**
      * Enqueue frontend assets with CSS variables for primary hue.

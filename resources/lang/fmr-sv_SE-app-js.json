@@ -1,0 +1,30 @@
+{
+  "domain": "fmr",
+  "locale_data": {
+    "fmr": {
+      "": {
+        "domain": "fmr",
+        "lang": "sv_SE",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Light theme": [
+        "Ljust tema"
+      ],
+      "Dark theme": [
+        "Mörkt tema"
+      ],
+      "Switch to dark theme": [
+        "Växla till mörkt tema"
+      ],
+      "Switch to auto theme": [
+        "Växla till automatiskt tema"
+      ],
+      "Switch to light theme": [
+        "Växla till ljust tema"
+      ],
+      "Auto theme": [
+        "Automatiskt tema"
+      ]
+    }
+  }
+}

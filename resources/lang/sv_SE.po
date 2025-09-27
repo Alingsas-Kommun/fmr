@@ -1,10 +1,8 @@
-# Copyright (C) 2025 Consid
-# This file is distributed under the MIT License.
 msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-26T16:27:45+00:00\n"
+"POT-Creation-Date: 2025-09-27T11:15:32+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,12 +25,8 @@ msgstr "https://roots.io/sage/"
 
 #. Description of the theme
 #: style.css
-msgid ""
-"Förtroendemannaregister is a wordpress theme for municipalities presenting "
-"their elected politicians and their assignments."
-msgstr ""
-"Förtroendemannaregister är ett wordpress-tema för kommuner som presenterar "
-"sina valda politiker och deras uppdrag."
+msgid "Förtroendemannaregister is a wordpress theme for municipalities presenting their elected politicians and their assignments."
+msgstr "Förtroendemannaregister är ett wordpress-tema för kommuner som presenterar sina valda politiker och deras uppdrag."
 
 #. Author of the theme
 #: style.css
@@ -109,7 +103,7 @@ msgstr "Uppgiften har uppdaterats."
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
-#: resources/views/partials/header.blade.php:62
+#: resources/views/partials/header.blade.php:57
 #: resources/views/partials/post-types/content-single-person.blade.php:334
 msgid "Assignments"
 msgstr "Uppdrag"
@@ -294,7 +288,7 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:17
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
-#: resources/views/partials/header.blade.php:67
+#: resources/views/partials/header.blade.php:62
 #: resources/views/partials/post-types/content-single-board.blade.php:115
 msgid "Decision Authorities"
 msgstr "Beslutsinstanser"
@@ -1143,8 +1137,7 @@ msgstr "Inga personer hittades som matchade de angivna kriterierna."
 
 #: resources/views/admin/anniversaries/index.blade.php:106
 msgid "Use the filters above to find persons by their years of service."
-msgstr ""
-"Använd filtren ovan för att hitta personer baserat på deras tjänstgöringstid."
+msgstr "Använd filtren ovan för att hitta personer baserat på deras tjänstgöringstid."
 
 #: resources/views/admin/assignments/index.blade.php:10
 msgid "Search Assignments"
@@ -1331,30 +1324,6 @@ msgstr "Ingen nämnd/styrelse tilldelad"
 msgid "No decision authority assigned"
 msgstr "Ingen beslutsinstans tilldelad"
 
-#: resources/views/components/theme-switcher.blade.php:62
-msgid "Light theme"
-msgstr "Ljust tema"
-
-#: resources/views/components/theme-switcher.blade.php:63
-msgid "Dark theme"
-msgstr "Mörkt tema"
-
-#: resources/views/components/theme-switcher.blade.php:64
-msgid "Auto theme"
-msgstr "Automatiskt tema"
-
-#: resources/views/components/theme-switcher.blade.php:72
-msgid "Switch to dark theme"
-msgstr "Växla till mörkt tema"
-
-#: resources/views/components/theme-switcher.blade.php:73
-msgid "Switch to auto theme"
-msgstr "Växla till automatiskt tema"
-
-#: resources/views/components/theme-switcher.blade.php:74
-msgid "Switch to light theme"
-msgstr "Växla till ljust tema"
-
 #: resources/views/decision-authorities/index.blade.php:19
 msgid "All Types"
 msgstr "Alla typer"
@@ -1387,9 +1356,7 @@ msgid "Find your politician in Alingsås"
 msgstr "Hitta din politiker i Alingsås"
 
 #: resources/views/homepage.blade.php:14
-msgid ""
-"Search through assignments, parties and politicians in the municipality of "
-"Alingsås."
+msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
 msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
 
 #: resources/views/homepage.blade.php:46
@@ -1480,23 +1447,23 @@ msgstr "Testa ett annat namn"
 msgid "Search with more advanced search criteria"
 msgstr "Sök med mer avancerade sökkriterier"
 
-#: resources/views/partials/header.blade.php:54
+#: resources/views/partials/header.blade.php:49
 msgid "Skip to content"
 msgstr "Hoppa till innehåll"
 
-#: resources/views/partials/header.blade.php:98
+#: resources/views/partials/header.blade.php:92
 msgid "Profile"
 msgstr "Profil"
 
-#: resources/views/partials/header.blade.php:107
+#: resources/views/partials/header.blade.php:101
 msgid "Settings"
 msgstr "Inställningar"
 
-#: resources/views/partials/header.blade.php:116
+#: resources/views/partials/header.blade.php:110
 msgid "Dashboard"
 msgstr "Instrumentpanel"
 
-#: resources/views/partials/header.blade.php:127
+#: resources/views/partials/header.blade.php:121
 msgid "Logout"
 msgstr "Logga ut"
 
@@ -1526,212 +1493,26 @@ msgstr "Dölj ytterligare information"
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
 
-#~ msgid "Main brand color"
-#~ msgstr "Huvudmärkesfärg"
+#: resources/js/frontend/themeSwitcher.js:51
+msgid "Light theme"
+msgstr "Ljust tema"
 
-#, fuzzy
-#~| msgid "Addresses"
-#~ msgid "Address (arbete)"
-#~ msgstr "Adresser"
+#: resources/js/frontend/themeSwitcher.js:52
+msgid "Dark theme"
+msgstr "Mörkt tema"
 
-#~ msgid "Try adjusting your search criteria or filters"
-#~ msgstr "Försök att justera dina sökkriterier eller filter"
+#: resources/js/frontend/themeSwitcher.js:63
+msgid "Switch to dark theme"
+msgstr "Växla till mörkt tema"
 
-#~ msgid "Start your search"
-#~ msgstr "Börja din sökning"
+#: resources/js/frontend/themeSwitcher.js:64
+msgid "Switch to auto theme"
+msgstr "Växla till automatiskt tema"
 
-#~ msgid "You must be using PHP 8.2 or greater."
-#~ msgstr "Du måste använda PHP 8.2 eller senare."
+#: resources/js/frontend/themeSwitcher.js:65
+msgid "Switch to light theme"
+msgstr "Växla till ljust tema"
 
-#~ msgid "Invalid PHP version"
-#~ msgstr "Ogiltig PHP-version"
-
-#~ msgid "You must be using WordPress 6.8.0 or greater."
-#~ msgstr "Du måste använda WordPress 6.8.0 eller senare."
-
-#~ msgid "Invalid WordPress version"
-#~ msgstr "Ogiltig WordPress-version"
-
-#~ msgid "Theme setup class is missing"
-#~ msgstr "Temakonfigurationsklassen saknas"
-
-#~ msgid "Filter setup class is missing"
-#~ msgstr "Filterinställningsklassen saknas"
-
-#~ msgid "Admin init class is missing"
-#~ msgstr "Admin-initklassen saknas"
-
-#~ msgid "App &rsaquo; Error"
-#~ msgstr "Appfel"
-
-#~ msgid "Assignment was deleted successfully."
-#~ msgstr "Uppdraget har raderats framgångsrikt."
-
-#~ msgid "Failed to delete assignment."
-#~ msgstr "Det gick inte att ta bort uppgiften."
-
-#, php-format
-#~ msgid "%s assignment was deleted."
-#~ msgid_plural "%s assignments were deleted."
-#~ msgstr[0] "%s uppdrag raderades."
-#~ msgstr[1] "%s uppdrag raderades."
-
-#~ msgid "Decision authority was deleted successfully."
-#~ msgstr "Beslutsinstansen raderades framgångsrikt."
-
-#~ msgid "Failed to delete decision authority."
-#~ msgstr "Det gick inte att ta bort beslutsinstansen"
-
-#, php-format
-#~ msgid "%s decision authority was deleted."
-#~ msgid_plural "%s decision authorities were deleted."
-#~ msgstr[0] "%s beslutsinstanser raderades."
-#~ msgstr[1] "%s uppdrag raderades."
-
-#~ msgid "Apply Filters"
-#~ msgstr "Applicera filter"
-
-#, fuzzy
-#~| msgid "Clear"
-#~ msgid "Clear All"
-#~ msgstr "Töm"
-
-#~ msgid "Downloading..."
-#~ msgstr "Laddar ner…"
-
-#~ msgid "Your file has been downloaded successfully."
-#~ msgstr "Din fil har laddats ner."
-
-#~ msgid "Filter"
-#~ msgstr "Filter"
-
-#~ msgid "year"
-#~ msgid_plural "years"
-#~ msgstr[0] "år"
-#~ msgstr[1] "år"
-
-#~ msgid "day"
-#~ msgid_plural "days"
-#~ msgstr[0] "dag"
-#~ msgstr[1] "dagar"
-
-#~ msgid "years"
-#~ msgstr "år"
-
-#~ msgid "months"
-#~ msgstr "månader"
-
-#~ msgid "days"
-#~ msgstr "dagar"
-
-#~ msgid "Chairman"
-#~ msgstr "Ordförande"
-
-#~ msgid "Vice Chairman"
-#~ msgstr "Vice ordförande"
-
-#~ msgid "Member"
-#~ msgstr "Ledamot"
-
-#~ msgid "Deputy"
-#~ msgstr "Vice"
-
-#~ msgid "Active only"
-#~ msgstr "Endast aktiva"
-
-#~ msgid "Edit Assignment"
-#~ msgstr "Redigera uppdrag"
-
-#~ msgid "Add New Assignment"
-#~ msgstr "Lägg till nytt uppdrag"
-
-#, fuzzy
-#~| msgid "Add %s"
-#~ msgid "Add Test"
-#~ msgstr "Lägg till %s"
-
-#, fuzzy
-#~| msgid "Edit person"
-#~ msgid "Edit Test"
-#~ msgstr "Redigera person"
-
-#, fuzzy
-#~| msgid "Add new person"
-#~ msgid "Add new test"
-#~ msgstr "Lägg till ny person"
-
-#, fuzzy
-#~| msgid "Update role"
-#~ msgid "Update Test"
-#~ msgstr "Uppdatera roll"
-
-#, fuzzy
-#~| msgid "Assignment created successfully."
-#~ msgid "Test object created successfully."
-#~ msgstr "Uppgiften har skapats."
-
-#~ msgid "Save Decision Authority"
-#~ msgstr "Spara beslutsinstans"
-
-#~ msgid "Decision authorities details"
-#~ msgstr "Detaljer om beslutsinstans"
-
-#~ msgid "Enter name, party or role..."
-#~ msgstr "Ange namn, parti eller roll..."
-
-#~ msgid "(new)"
-#~ msgstr "(ny)"
-
-#~ msgid "required"
-#~ msgstr "obligatorisk"
-
-#~ msgid "Member of party"
-#~ msgstr "Medlem av partiet"
-
-#~ msgid "Select party"
-#~ msgstr "Välj parti"
-
-#~ msgid "Party 1"
-#~ msgstr "Parti 1"
-
-#~ msgid "Party 2"
-#~ msgstr "Parti 2"
-
-#~ msgid "Assignment Details"
-#~ msgstr "Uppdragsdetaljer"
-
-#~ msgid "Back to Assignments"
-#~ msgstr "Tillbaka till Uppgifter"
-
-#~ msgid "Category:"
-#~ msgstr "Kategori:"
-
-#~ msgid "Website:"
-#~ msgstr "Webbplats:"
-
-#~ msgid "Page"
-#~ msgstr "Sida"
-
-#~ msgid "of"
-#~ msgstr "av"
-
-#~ msgid "Select the board this decision authority belongs to"
-#~ msgstr "Välj den nämnd/styrelse som denna beslutsinstans tillhör"
-
-#~ msgid "The type of decision authority"
-#~ msgstr "Beslutsinstansen typ"
-
-#, fuzzy
-#~| msgid "Decision Authorities"
-#~ msgid "When this decision authority expires"
-#~ msgstr "Beslutsinstanser"
-
-#~ msgid "Current Assignments"
-#~ msgstr "Nuvarande uppdrag"
-
-#~ msgid "Add/Edit Assignment"
-#~ msgstr "Lägg till / Redigera uppdrag"
-
-#~ msgctxt "Admin menu name"
-#~ msgid "Parties"
-#~ msgstr "Partier"
+#: resources/js/frontend/themeSwitcher.js:53
+msgid "Auto theme"
+msgstr "Automatiskt tema"
