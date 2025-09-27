@@ -26,9 +26,11 @@ class SearchController extends Controller
         }
 
         $persons = $this->buildSearchQuery($query)
-            ->with(['meta' => function ($q) {
-                $q->whereIn('meta_key', ['person_firstname', 'person_lastname', 'person_party']);
-            }])
+            ->with([
+                'meta' => function ($q) {
+                    $q->whereIn('meta_key', ['person_firstname', 'person_lastname']);
+                },
+            ])
             ->limit(10)
             ->get();
 
@@ -45,7 +47,7 @@ class SearchController extends Controller
             return collect();
         }
 
-        $personsQuery = Post::persons()->published();
+        $personsQuery = Post::persons()->with('party')->published();
 
         // Add search criteria if query is provided
         if (!empty($query)) {
@@ -65,13 +67,10 @@ class SearchController extends Controller
         // Apply filters
         $this->applyFilters($personsQuery, $boardId, $partyId, $roleId);
 
-        // Get party IDs for eager loading
-        $partyIds = $this->getPartyIds($personsQuery);
-
         // Execute query with eager loading
         $persons = $personsQuery->with([
                 'meta' => function ($q) {
-                    $q->whereIn('meta_key', ['person_firstname', 'person_lastname', 'person_party']);
+                    $q->whereIn('meta_key', ['person_firstname', 'person_lastname']);
                 },
                 'personAssignments.decisionAuthority.board',
                 'personAssignments.roleTerm'
@@ -79,10 +78,7 @@ class SearchController extends Controller
             ->limit(50)
             ->get();
 
-        // Eager load parties
-        $parties = Post::whereIn('ID', $partyIds)->get()->keyBy('ID');
-
-        return $this->transformAdvancedResults($persons, $parties);
+        return $this->transformAdvancedResults($persons);
     }
 
     /**
@@ -91,6 +87,7 @@ class SearchController extends Controller
     private function buildSearchQuery(string $query)
     {
         return Post::persons()
+            ->with('party')
             ->published()
             ->where(function ($q) use ($query) {
                 // Search by post title
@@ -170,47 +167,19 @@ class SearchController extends Controller
         }
     }
 
-    /**
-     * Get party IDs for eager loading.
-     */
-    private function getPartyIds($query): array
-    {
-        return $query->get()
-            ->pluck('meta')
-            ->flatten()
-            ->where('meta_key', 'person_party')
-            ->pluck('meta_value')
-            ->filter()
-            ->unique()
-            ->values()
-            ->toArray();
-    }
 
     /**
      * Transform simple search results.
      */
     private function transformSimpleResults($persons, string $query)
     {
-        // Get all party IDs from results
-        $partyIds = $persons->pluck('meta')
-            ->flatten()
-            ->where('meta_key', 'person_party')
-            ->pluck('meta_value')
-            ->filter()
-            ->unique()
-            ->values();
-
-        // Eager load all parties
-        $parties = Post::whereIn('ID', $partyIds)->get()->keyBy('ID');
-
-        return $persons->map(function ($person) use ($query, $parties) {
+        return $persons->map(function ($person) use ($query) {
             $firstname = $person->getMeta('person_firstname');
             $lastname = $person->getMeta('person_lastname');
             $fullName = trim($firstname . ' ' . $lastname);
             
-            // Get party from eager loaded collection
-            $partyId = $person->getMeta('person_party');
-            $party = $partyId ? $parties->get($partyId) : null;
+            // Get party from BelongsToMeta relationship
+            $party = $person->party;
             
             return (object) [
                 'id' => $person->ID,
@@ -231,15 +200,14 @@ class SearchController extends Controller
     /**
      * Transform advanced search results.
      */
-    private function transformAdvancedResults($persons, $parties)
+    private function transformAdvancedResults($persons)
     {
-        return $persons->map(function ($person) use ($parties) {
+        return $persons->map(function ($person) {
             $firstname = $person->getMeta('person_firstname');
             $lastname = $person->getMeta('person_lastname');
             
-            // Get party from eager loaded collection
-            $partyId = $person->getMeta('person_party');
-            $party = $partyId ? $parties->get($partyId) : null;
+            // Get party from BelongsToMeta relationship
+            $party = $person->party;
             
             return (object) [
                 'id' => $person->ID,
