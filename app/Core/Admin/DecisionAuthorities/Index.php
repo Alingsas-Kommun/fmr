@@ -73,6 +73,15 @@ class Index extends \WP_List_Table
             30
         );
 
+        add_submenu_page(
+            'decision_authorities',
+            __('Types', 'fmr'),
+            __('Types', 'fmr'),
+            'manage_options',
+            'edit-tags.php?taxonomy=type',
+            null
+        );
+
         // Hook into admin actions
         add_action('admin_action_delete_decision_authority', [self::$instance, 'handle_delete_decision_authority']);
     }
@@ -331,7 +340,21 @@ class Index extends \WP_List_Table
      */
     public function column_type($item)
     {
-        return esc_html($item->type);
+        if (!$item->typeTerm) {
+            return '—';
+        }
+
+        $edit_link = add_query_arg(
+            [
+                'taxonomy' => 'type',
+                'tag_ID' => $item->typeTerm->term_id,
+            ],
+            admin_url('term.php')
+        );
+
+        $type_name = esc_html($item->typeTerm->name);
+        
+        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $type_name);
     }
 
     /**

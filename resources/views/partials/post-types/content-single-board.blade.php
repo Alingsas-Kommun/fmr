@@ -15,7 +15,7 @@
                 <x-heroicon-o-tag class="h-5 w-5 text-primary-600 flex-shrink-0" />
                 
                 <div class="text-gray-700">
-                    {{ $board->category }}
+                    {{ $board->category->name }}
                 </div>
             </div>
         @endif
@@ -137,9 +137,13 @@
                             </td>
                             
                             <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
-                                    {{ $authority->type }}
-                                </span>
+                                @if($authority->typeTerm)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
+                                        {{ $authority->typeTerm->name }}
+                                    </span>
+                                @else
+                                    <span class="text-gray-400 italic">{{ __('No type assigned', 'fmr') }}</span>
+                                @endif
                             </td>
 
                             <td class="px-6 py-4">

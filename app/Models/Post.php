@@ -5,6 +5,7 @@ namespace App\Models;
 use function App\Core\getImageElement;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Database\Eloquent\Relations\BelongsToMeta;
 
 class Post extends Model
 {
@@ -62,6 +63,40 @@ class Post extends Model
         return $this->$relation()
             ->where('period_start', '<=', now())
             ->where('period_end', '>=', now());
+    }
+
+    /**
+     * Get the category term for boards (meta-based relationship)
+     */
+    public function categoryTerm()
+    {
+        return $this->belongsToMeta(Term::class, 'board_category', 'term_id', 'categoryTerm');
+    }
+
+    /**
+     * Get the party for persons (meta-based relationship)
+     */
+    public function party()
+    {
+        return $this->belongsToMeta(Post::class, 'person_party', 'ID', 'party');
+    }
+
+    /**
+     * Custom relationship method for meta-based belongsTo relationships
+     */
+    protected function belongsToMeta($related, $metaKey, $ownerKey = null, $relationName = null)
+    {
+        $instance = $this->newRelatedInstance($related);
+        $ownerKey = $ownerKey ?: $instance->getKeyName();
+        $relationName = $relationName ?: 'belongsToMeta';
+        
+        return new BelongsToMeta(
+            $instance->newQuery(),
+            $this,
+            $metaKey,
+            $ownerKey,
+            $relationName
+        );
     }
 
     /**

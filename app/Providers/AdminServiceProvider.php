@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\BoardController;
 use App\Http\Controllers\Admin\DecisionAuthorityController as AdminDecisionAuthorityController;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Utilities\Dir;
 
 class AdminServiceProvider extends SageServiceProvider
@@ -52,6 +53,7 @@ class AdminServiceProvider extends SageServiceProvider
         $this->app->singleton(BoardController::class);
         $this->app->singleton(PersonController::class);
         $this->app->singleton(RoleController::class);
+        $this->app->singleton(TypeController::class);
     }
 
     /**
@@ -132,10 +134,16 @@ class AdminServiceProvider extends SageServiceProvider
     /**
      * Enqueue admin assets.
      */
-    public function enqueueAdminAssets(): void
+    public function enqueueAdminAssets($hook_suffix = null): void
     {
         // Skip asset loading in CLI context
         if (php_sapi_name() === 'cli') {
+            return;
+        }
+
+        // Don't enqueue on taxonomy pages
+        $excluded_pages = ['term.php', 'edit-tags.php'];
+        if ($hook_suffix && in_array($hook_suffix, $excluded_pages)) {
             return;
         }
 

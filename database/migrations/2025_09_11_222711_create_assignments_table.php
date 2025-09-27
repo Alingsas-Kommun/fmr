@@ -35,12 +35,12 @@ return new class extends Migration
             $table->foreign('person_id')
                 ->references('ID')
                 ->on('posts')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
                 
             $table->foreign('role_term_id')
                 ->references('term_id')
                 ->on('terms')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
         });
     }
 

@@ -33,6 +33,8 @@
                 />
                 @break
 
+            @case('post_relation')
+            @case('taxonomy_relation')
             @case('select')
                 <x-admin.select-field
                     :id="$field['id']"
@@ -127,18 +129,6 @@
                     :label="$field['label']"
                     :description="$field['description'] ?? ''"
                     type="tel"
-                />
-                @break
-
-            @case('post_relation')
-                <x-admin.post-relation-field
-                    :id="$field['id']"
-                    :name="$field['id']"
-                    :value="$value"
-                    :optional="$field['optional'] ?? false"
-                    :label="$field['label']"
-                    :description="$field['description'] ?? ''"
-                    :options="$field['options'] ?? []"
                 />
                 @break
 

@@ -117,37 +117,37 @@ msgstr "Roller"
 #: app/Core/Admin/Assignments/Index.php:100
 #: app/Core/Admin/Assignments/Index.php:146
 #: app/Core/Admin/Assignments/Index.php:170
-#: app/Core/Admin/DecisionAuthorities/Index.php:118
+#: app/Core/Admin/DecisionAuthorities/Index.php:127
 msgid "You do not have permission to perform this action."
 msgstr "Du har inte behörighet att utföra den här åtgärden."
 
 #: app/Core/Admin/Assignments/Index.php:135
-#: app/Core/Admin/DecisionAuthorities/Index.php:107
+#: app/Core/Admin/DecisionAuthorities/Index.php:116
 msgid "Invalid request."
 msgstr "Ogiltig begäran."
 
 #: app/Core/Admin/Assignments/Index.php:142
-#: app/Core/Admin/DecisionAuthorities/Index.php:114
+#: app/Core/Admin/DecisionAuthorities/Index.php:123
 msgid "Security check failed. Please try again."
 msgstr "Säkerhetskontrollen misslyckades. Försök igen."
 
 #: app/Core/Admin/Assignments/Index.php:207
-#: app/Core/Admin/DecisionAuthorities/Index.php:175
+#: app/Core/Admin/DecisionAuthorities/Index.php:184
 msgid "All"
 msgstr "Alla"
 
 #: app/Core/Admin/Assignments/Index.php:215
-#: app/Core/Admin/DecisionAuthorities/Index.php:183
+#: app/Core/Admin/DecisionAuthorities/Index.php:192
 msgid "Ongoing"
 msgstr "Pågående"
 
 #: app/Core/Admin/Assignments/Index.php:223
-#: app/Core/Admin/DecisionAuthorities/Index.php:191
+#: app/Core/Admin/DecisionAuthorities/Index.php:200
 msgid "Past"
 msgstr "Historiska"
 
 #: app/Core/Admin/Assignments/Index.php:238
-#: app/Core/Admin/DecisionAuthorities/Index.php:206
+#: app/Core/Admin/DecisionAuthorities/Index.php:215
 msgid "Delete"
 msgstr "Radera"
 
@@ -175,7 +175,7 @@ msgid "Role"
 msgstr "Roll"
 
 #: app/Core/Admin/Assignments/Index.php:253
-#: app/Core/Admin/DecisionAuthorities/Index.php:220
+#: app/Core/Admin/DecisionAuthorities/Index.php:229
 #: app/Core/PostTypes/Boards.php:29
 #: resources/views/admin/assignments/index.blade.php:33
 #: resources/views/admin/decision-authorities/index.blade.php:19
@@ -199,7 +199,7 @@ msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
 #: app/Core/Admin/Assignments/Index.php:255
-#: app/Core/Admin/DecisionAuthorities/Index.php:222
+#: app/Core/Admin/DecisionAuthorities/Index.php:231
 #: app/Services/AssignmentExportService.php:103
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:41
@@ -230,7 +230,7 @@ msgid "Export CSV"
 msgstr "Exportera CSV"
 
 #: app/Core/Admin/Assignments/Index.php:354
-#: app/Core/Admin/DecisionAuthorities/Index.php:291
+#: app/Core/Admin/DecisionAuthorities/Index.php:300
 msgid "Edit"
 msgstr "Redigera"
 
@@ -239,7 +239,7 @@ msgid "Are you sure you want to delete this assignment?"
 msgstr "Är du säker på att du vill ta bort det här uppdraget?"
 
 #: app/Core/Admin/Assignments/Index.php:357
-#: app/Core/Admin/DecisionAuthorities/Index.php:294
+#: app/Core/Admin/DecisionAuthorities/Index.php:303
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -293,15 +293,16 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 msgid "Decision Authorities"
 msgstr "Beslutsinstanser"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:219
+#: app/Core/Admin/DecisionAuthorities/Index.php:228
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:30
 #: resources/views/decision-authorities/index.blade.php:53
 #: resources/views/partials/post-types/content-single-board.blade.php:121
 msgid "Title"
 msgstr "Titel"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:221
+#: app/Core/Admin/DecisionAuthorities/Index.php:230
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:37
+#: app/Core/Taxonomies/Types.php:26
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
@@ -310,7 +311,7 @@ msgstr "Titel"
 msgid "Type"
 msgstr "Typ"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:293
+#: app/Core/Admin/DecisionAuthorities/Index.php:302
 msgid "Are you sure you want to delete this decision authority?"
 msgstr "Är du säker på att du vill ta bort den här beslutsinstansen?"
 
@@ -1516,3 +1517,50 @@ msgstr "Växla till ljust tema"
 #: resources/js/frontend/themeSwitcher.js:53
 msgid "Auto theme"
 msgstr "Automatiskt tema"
+
+#: app/Core/Admin/DecisionAuthorities/Index.php:78
+#: app/Core/Admin/DecisionAuthorities/Index.php:79
+#: app/Core/Taxonomies/Types.php:23 app/Core/Taxonomies/Types.php:25
+msgid "Types"
+msgstr "Typer"
+
+#: app/Core/Taxonomies/Types.php:27
+msgctxt "Admin menu name"
+msgid "Types"
+msgstr "Typer"
+
+#: app/Core/Taxonomies/Types.php:28
+msgid "Search types"
+msgstr "Sök typer"
+
+#: app/Core/Taxonomies/Types.php:29
+msgid "All types"
+msgstr "Alla typer"
+
+#: app/Core/Taxonomies/Types.php:30
+msgid "Parent type"
+msgstr "Överordnad typ"
+
+#: app/Core/Taxonomies/Types.php:31
+msgid "Parent type:"
+msgstr "Överordnad typ:"
+
+#: app/Core/Taxonomies/Types.php:32
+msgid "Edit type"
+msgstr "Redigera typ"
+
+#: app/Core/Taxonomies/Types.php:33
+msgid "Update type"
+msgstr "Uppdatera typ"
+
+#: app/Core/Taxonomies/Types.php:34
+msgid "Add new type"
+msgstr "Lägg till ny typ"
+
+#: app/Core/Taxonomies/Types.php:35
+msgid "New type name"
+msgstr "Nytt namn för typ"
+
+#: app/Core/Taxonomies/Types.php:36
+msgid "No types were found"
+msgstr "Inga typer hittades"

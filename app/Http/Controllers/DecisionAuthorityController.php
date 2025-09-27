@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DecisionAuthority;
+use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Http\Request;
 
 class DecisionAuthorityController extends Controller
@@ -15,7 +16,7 @@ class DecisionAuthorityController extends Controller
      */
     public function index(Request $request)
     {
-        $query = DecisionAuthority::with(['board']);
+        $query = DecisionAuthority::with(['board', 'typeTerm']);
 
         // Only show active decision authorities
         $today = now()->toDateString();
@@ -24,7 +25,9 @@ class DecisionAuthorityController extends Controller
 
         // Filter by type if provided
         if ($request->filled('type')) {
-            $query->where('type', $request->type);
+            $query->whereHas('typeTerm', function($q) use ($request) {
+                $q->where('name', $request->type);
+            });
         }
 
         // Default sorting by latest
@@ -39,8 +42,13 @@ class DecisionAuthorityController extends Controller
                                    ->take($perPage)
                                    ->get();
 
+        // Get type terms for filter dropdown
+        $typeController = app(TypeController::class);
+        $typeTerms = $typeController->getAll();
+
         return view('decision-authorities.index', [
             'decisionAuthorities' => $decisionAuthorities,
+            'typeTerms' => $typeTerms,
             'pagination' => [
                 'current_page' => $page,
                 'per_page' => $perPage,
@@ -61,6 +69,9 @@ class DecisionAuthorityController extends Controller
      */
     public function show(DecisionAuthority $decisionAuthority)
     {        
+        // Load the typeTerm relationship
+        $decisionAuthority->load('typeTerm');
+        
         $today = now()->toDateString();
         $activeAssignments = $decisionAuthority->assignments()
             ->with('person', 'roleTerm', 'board')

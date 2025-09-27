@@ -14,7 +14,7 @@ class DecisionAuthorityController
      */
     public function getAll()
     {
-        return DecisionAuthority::with('board')
+        return DecisionAuthority::with(['board', 'typeTerm'])
             ->orderBy('title')
             ->get();
     }
@@ -28,7 +28,7 @@ class DecisionAuthorityController
     public function getDecisionAuthoritiesForBoard($board_id)
     {
         return DecisionAuthority::where('board_id', $board_id)
-            ->with('board')
+            ->with(['board', 'typeTerm'])
             ->orderBy('start_date', 'desc')
             ->get();
     }
@@ -55,7 +55,7 @@ class DecisionAuthorityController
         return DecisionAuthority::create($request->only([
             'board_id',
             'title',
-            'type',
+            'type_term_id',
             'start_date',
             'end_date'
         ]));
@@ -75,7 +75,7 @@ class DecisionAuthorityController
         $decisionAuthority->update($request->only([
             'board_id',
             'title',
-            'type',
+            'type_term_id',
             'start_date',
             'end_date'
         ]));
@@ -124,7 +124,7 @@ class DecisionAuthorityController
      */
     public function getPaginatedDecisionAuthorities($args = [])
     {
-        $query = DecisionAuthority::with('board');
+        $query = DecisionAuthority::with(['board', 'typeTerm']);
 
         // Handle sorting
         $orderby = $args['orderby'] ?? 'id';
@@ -139,7 +139,8 @@ class DecisionAuthorityController
                     ->orderBy('posts.post_title', $order);
                 break;
             case 'type':
-                $query->orderBy('type', $order);
+                $query->join('terms', 'decision_authority.type_term_id', '=', 'terms.term_id')
+                    ->orderBy('terms.name', $order);
                 break;
             default:
                 $query->orderBy('id', 'desc');
@@ -178,7 +179,9 @@ class DecisionAuthorityController
         if (!empty($search)) {
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('type', 'like', '%' . $search . '%')
+                    ->orWhereHas('typeTerm', function($q) use ($search) {
+                        $q->where('name', 'like', '%' . $search . '%');
+                    })
                     ->orWhereHas('board', function($q) use ($search) {
                         $q->where('post_title', 'like', '%' . $search . '%');
                     })

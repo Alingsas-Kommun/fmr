@@ -4,15 +4,18 @@ namespace App\Core\Admin\DecisionAuthorities\MetaBoxes;
 
 use App\Core\Admin\Abstracts\MetaBox;
 use App\Http\Controllers\Admin\BoardController;
+use App\Http\Controllers\Admin\TypeController;
 use function Roots\view;
 
 class Details extends MetaBox
 {
     protected $boardController;
+    protected $typeController;
 
     public function __construct($editPage)
     {
         $this->boardController = app(BoardController::class);
+        $this->typeController = app(TypeController::class);
         
         parent::__construct($editPage);
     }
@@ -36,6 +39,7 @@ class Details extends MetaBox
         echo view('admin.decision-authorities.meta-boxes.details', [
             'object' => $object,
             'boards' => $this->boardController->getAll(),
+            'types' => $this->typeController->getAll(),
             'getFieldValue' => function($field, $default = '') {
                 return $this->getFieldValue($field, $default);
             }

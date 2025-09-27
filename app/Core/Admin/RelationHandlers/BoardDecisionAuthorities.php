@@ -4,6 +4,7 @@ namespace App\Core\Admin\RelationHandlers;
 
 use App\Core\Admin\Abstracts\RelationHandler;
 use App\Http\Controllers\Admin\DecisionAuthorityController;
+use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Http\Request;
 
 class BoardDecisionAuthorities extends RelationHandler
@@ -11,6 +12,7 @@ class BoardDecisionAuthorities extends RelationHandler
     protected static $post_type = 'board';
     protected static $meta_box_id = 'board_decision_authorities';
     protected static $priority = 'low';
+    protected static $type_terms = [];
 
     protected function getTitle()
     {
@@ -32,17 +34,10 @@ class BoardDecisionAuthorities extends RelationHandler
                     'cols' => 3,
                 ],
                 [
-                    'key' => 'type',
+                    'key' => 'type_term_id',
                     'type' => 'select',
                     'label' => __('Type', 'fmr'),
-                    'relation_field' => 'type',
-                    'options' => [
-                        'Nämnd' => 'Nämnd', 
-                        'Styrelse' => 'Styrelse', 
-                        'Utskott' => 'Utskott', 
-                        'Beredning' => 'Beredning', 
-                        'Råd' => 'Råd',
-                    ],
+                    'options' => static::$type_terms,
                     'cols' => 3,
                 ],
                 [
@@ -66,10 +61,20 @@ class BoardDecisionAuthorities extends RelationHandler
 
     protected function loadExistingData($post_id)
     {
+        $this->loadTypeTerms();
+        
         $controller = app(DecisionAuthorityController::class);
         $decision_authorities = $controller->getDecisionAuthoritiesForBoard($post_id)->toArray();
             
         return $decision_authorities;
+    }
+
+    protected function loadTypeTerms()
+    {
+        $typeController = app(TypeController::class);
+        $typeTerms = $typeController->getAll();
+
+        static::$type_terms = $typeTerms->pluck('name', 'term_id')->toArray();
     }
 
     protected function processRelationData($post_id, $relation_data)

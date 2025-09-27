@@ -17,13 +17,13 @@
             </div>
             <div class="fields-field-col" style="--cols: 6">
                 <div class="fields-field">
-                    <label for="type">{{ __('Type', 'fmr') }}</label>
-                    <select name="type" id="type" class="widefat" required>
+                    <label for="type_term_id">{{ __('Type', 'fmr') }}</label>
+                    <select name="type_term_id" id="type_term_id" class="widefat" required>
                         <option value="">{{ __('Select Type', 'fmr') }}</option>
                         
-                        @foreach(['Nämnd', 'Styrelse', 'Utskott', 'Beredning', 'Råd'] as $type)
-                            <option value="{{ $type }}" {{ $getFieldValue('type') == $type ? 'selected' : '' }}>
-                                {{ $type }}
+                        @foreach($types as $type)
+                            <option value="{{ $type->term_id }}" {{ $getFieldValue('type_term_id') == $type->term_id ? 'selected' : '' }}>
+                                {{ $type->name }}
                             </option>
                         @endforeach
                     </select>

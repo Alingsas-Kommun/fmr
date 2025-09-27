@@ -22,10 +22,14 @@
                     <div class="flex items-center space-x-2">                        
                         <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
                         
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-primary-500 space-x-1">
-                            <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
-                            <span>{{ $decisionAuthority->type }}</span>
-                        </span>
+                        @if($decisionAuthority->typeTerm)
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-primary-500 space-x-1">
+                                <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
+                                <span>{{ $decisionAuthority->typeTerm->name }}</span>
+                            </span>
+                        @else
+                            <span class="text-gray-400 italic">{{ __('No type assigned', 'fmr') }}</span>
+                        @endif
                     </div>
                 </div>
             </div>

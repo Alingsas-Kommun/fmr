@@ -66,7 +66,7 @@
                                     @endif
                                 </h3>
 
-                                @if(isset($leader->party))
+                                @if($leader->party)
                                     <span class="flex items-center space-x-2 text-sm">
                                         @if($leader->party->thumbnail())
                                             {!! $leader->party->thumbnail('w-4 h-4 flex-shrink-0') !!}
@@ -102,10 +102,10 @@
                                     {{ $board->post_title }}
                                 </h3>
 
-                                @if($board->getMeta('board_category'))
+                                @if(isset($board->categoryTerm))
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-primary-500 space-x-1">
                                         <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
-                                        <span>{{ $board->getMeta('board_category') }}</span>
+                                        <span>{{ $board->categoryTerm->name }}</span>
                                     </span>
                                 @endif
                             </div>

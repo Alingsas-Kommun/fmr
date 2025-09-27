@@ -4,6 +4,7 @@ namespace App\View\Composers;
 
 use App\Models\Post;
 use App\Models\DecisionAuthority;
+use App\Models\Term;
 use Roots\Acorn\View\Composer;
 use Illuminate\Support\Str;
 
@@ -78,7 +79,12 @@ class Board extends Composer
         
         foreach ($metaValues as $key => $value) {
             $propertyName = Str::camel(Str::replace('board_', '', $key)); 
-            $board->$propertyName = $value;
+            
+            // Handle taxonomy relations - convert term IDs to term names
+            if ($key === 'board_category' && $value) {
+                $term = Term::find($value);
+                $board->$propertyName =$term;
+            }
         }
 
         return $board;
@@ -96,6 +102,7 @@ class Board extends Composer
         }
 
         return DecisionAuthority::where('board_id', $board->ID)
+            ->with('typeTerm')
             ->orderBy('start_date', 'desc')
             ->get();
     }

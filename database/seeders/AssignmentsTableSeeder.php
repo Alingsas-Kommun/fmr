@@ -20,50 +20,23 @@ class AssignmentsTableSeeder extends Seeder
             ->where('post_type', 'person')
             ->get(['ID', 'post_title']);
 
-        // Create role terms in the role taxonomy
-        $roleNames = [
-            'Ordförande',
-            'Vice ordförande',
-            'Ledamot',
-            'Ersättare',
-            'Sekreterare'
-        ];
+        // Get existing role terms from the role taxonomy
+        $roleTerms = DB::table('terms')
+            ->join('term_taxonomy', 'terms.term_id', '=', 'term_taxonomy.term_id')
+            ->where('term_taxonomy.taxonomy', 'role')
+            ->select('terms.term_id', 'terms.name')
+            ->get();
 
-        $roleTermIds = [];
-        foreach ($roleNames as $roleName) {
-            // Check if term already exists by joining with term_taxonomy
-            $existingTerm = DB::table('terms')
-                ->join('term_taxonomy', 'terms.term_id', '=', 'term_taxonomy.term_id')
-                ->where('terms.name', $roleName)
-                ->where('term_taxonomy.taxonomy', 'role')
-                ->select('terms.term_id')
-                ->first();
-
-            if ($existingTerm) {
-                $roleTermIds[$roleName] = $existingTerm->term_id;
-            } else {
-                // Create new term
-                $termId = DB::table('terms')->insertGetId([
-                    'name' => $roleName,
-                    'slug' => sanitize_title($roleName),
-                    'term_group' => 0,
-                ]);
-
-                // Create term taxonomy entry
-                DB::table('term_taxonomy')->insert([
-                    'term_id' => $termId,
-                    'taxonomy' => 'role',
-                    'description' => '',
-                    'parent' => 0,
-                    'count' => 0,
-                ]);
-
-                $roleTermIds[$roleName] = $termId;
-            }
+        if ($roleTerms->isEmpty()) {
+            $this->command->warn('No role terms found in the database. Please create some role terms first.');
+            return;
         }
 
-        // Only proceed if we have both decision authorities and persons
-        if ($authorities->isNotEmpty() && $persons->isNotEmpty()) {
+        // Convert to array for easier random selection
+        $roleTermsArray = $roleTerms->toArray();
+
+        // Only proceed if we have decision authorities, persons, and role terms
+        if ($authorities->isNotEmpty() && $persons->isNotEmpty() && !empty($roleTermsArray)) {
             $assignments = [];
             
             // Create some example assignments
@@ -77,11 +50,14 @@ class AssignmentsTableSeeder extends Seeder
                 $assignedPersons = array_slice($availablePersons, 0, $numAssignments);
                 
                 foreach ($assignedPersons as $index => $person) {
-                    $roleName = $roleNames[$index % count($roleNames)]; // Cycle through role names
+                    // Randomly select a role term
+                    $randomRoleTerm = $roleTermsArray[array_rand($roleTermsArray)];
+                    $roleTermId = $randomRoleTerm->term_id;
+                    
                     $assignments[] = [
                         'decision_authority_id' => $authority->id,
                         'person_id' => $person->ID,
-                        'role_term_id' => $roleTermIds[$roleName], // Use term_id instead of role string
+                        'role_term_id' => $roleTermId,
                         'period_start' => $authority->start_date,
                         'period_end' => $authority->end_date,
                         'created_at' => now(),
@@ -94,9 +70,18 @@ class AssignmentsTableSeeder extends Seeder
             if (!empty($assignments)) {
                 DB::table('assignments')->insert($assignments);
                 $this->command->info('Assignments seeded successfully!');
+                $this->command->info('Used ' . count($roleTerms) . ' existing role terms: ' . $roleTerms->pluck('name')->implode(', '));
             }
         } else {
-            $this->command->warn('No boards or persons found in the database. Please create some first.');
+            if ($authorities->isEmpty()) {
+                $this->command->warn('No decision authorities found in the database. Please create some first.');
+            }
+            if ($persons->isEmpty()) {
+                $this->command->warn('No persons found in the database. Please create some first.');
+            }
+            if (empty($roleTermsArray)) {
+                $this->command->warn('No role terms found in the database.');
+            }
         }
     }
 }

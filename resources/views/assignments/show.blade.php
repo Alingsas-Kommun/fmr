@@ -11,7 +11,7 @@
                 </div>
                 
                 <div class="flex-1 space-y-2">
-                    <h1 class="text-2xl font-bold text-gray-900">{!! $assignment->role !!}</h1>
+                    <h1 class="text-2xl font-bold text-gray-900">{!! $assignment->roleTerm->name !!}</h1>
                     
                     @if($assignment->person)
                         <div class="flex items-center space-x-2">

@@ -18,8 +18,8 @@
                             <select name="type" id="type" class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-100" onchange="this.form.submit()">
                                 <option value="">{{ __('All Types', 'fmr') }}</option>
 
-                                @foreach(['Nämnd', 'Styrelse', 'Utskott', 'Beredning', 'Råd'] as $type)
-                                    <option value="{{ $type }}" {{ $filters['type'] === $type ? 'selected' : '' }}>{{ $type }}</option>
+                                @foreach($typeTerms as $typeTerm)
+                                    <option value="{{ $typeTerm->name }}" {{ $filters['type'] === $typeTerm->name ? 'selected' : '' }}>{{ $typeTerm->name }}</option>
                                 @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
@@ -95,9 +95,13 @@
                         </td>
                         
                         <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
-                                {{ $authority->type }}
-                            </span>
+                            @if($authority->typeTerm)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
+                                    {{ $authority->typeTerm->name }}
+                                </span>
+                            @else
+                                <span class="text-gray-400 italic">{{ __('No type assigned', 'fmr') }}</span>
+                            @endif
                         </td>
 
                         <td class="px-6 py-4">

@@ -3,6 +3,7 @@
 namespace App\Core\Admin\Traits;
 
 use App\Models\Post;
+use App\Models\Term;
 use function Roots\view;
 
 /**
@@ -141,6 +142,10 @@ trait FieldGroupTrait
                             if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
                                 $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title');
                             }
+
+                            if ($field['type'] === 'taxonomy_relation' && isset($field['taxonomy'])) {
+                                $field['options'] = $this->getTaxonomyRelationOptions($field['taxonomy']);
+                            }
                             
                             if (isset($field['visibility'])) {
                                 $visibility_id = $field['id'] . '_visibility';
@@ -155,6 +160,10 @@ trait FieldGroupTrait
                         
                         if ($row['type'] === 'post_relation' && isset($row['post_type'])) {
                             $row['options'] = $this->getPostRelationOptions($row['post_type'], $row['display_field'] ?? 'post_title');
+                        }
+
+                        if ($row['type'] === 'taxonomy_relation' && isset($row['taxonomy'])) {
+                            $row['options'] = $this->getTaxonomyRelationOptions($row['taxonomy']);
                         }
                         
                         if (isset($row['visibility'])) {
@@ -226,6 +235,27 @@ trait FieldGroupTrait
     }
 
     /**
+     * Get taxonomy relation options for a specific taxonomy
+     *
+     * @param string $taxonomy
+     * @return array
+     */
+    protected function getTaxonomyRelationOptions($taxonomy)
+    {
+        $terms = Term::whereHas('termTaxonomy', function($q) use ($taxonomy) {
+            $q->where('taxonomy', $taxonomy);
+        })->orderBy('name')->get();
+
+        $options = ['' => __('Select option', 'fmr')];
+        
+        foreach ($terms as $term) {
+            $options[$term->term_id] = $term->name;
+        }
+
+        return $options;
+    }
+
+    /**
      * Process field values for saving
      */
     protected function processFieldValue($field, $value)
@@ -241,6 +271,10 @@ trait FieldGroupTrait
                 return sanitize_hex_color($value);
             case 'key_generation':
                 return sanitize_text_field($value);
+            case 'taxonomy_relation':
+                return absint($value); // Ensure it's a positive integer (term ID)
+            case 'post_relation':
+                return absint($value); // Ensure it's a positive integer (post ID)
             default:
                 return sanitize_text_field($value);
         }

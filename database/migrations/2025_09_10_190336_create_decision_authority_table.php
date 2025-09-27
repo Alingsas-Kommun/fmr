@@ -15,20 +15,26 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('board_id')->comment('Reference to wp_posts.ID for board post type');
             $table->string('title');
-            $table->string('type');
+            $table->unsignedBigInteger('type_term_id')->comment('Reference to wp_terms.term_id for type taxonomy');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            // Add index for better query performance
+            // Add indexes for better query performance
             $table->index('board_id');
+            $table->index('type_term_id');
             
-            // Add foreign key constraint to wp_posts table
+            // Add foreign key constraints
             $table->foreign('board_id')
                 ->references('ID')
                 ->on('posts')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
+                
+            $table->foreign('type_term_id')
+                ->references('term_id')
+                ->on('terms')
+                ->onDelete('restrict');
         });
     }
 

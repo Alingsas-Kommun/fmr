@@ -2,9 +2,9 @@
 
 namespace App\Core\Taxonomies;
 
-class Roles
+class Types
 {
-    public static $base = 'role';
+    public static $base = 'type';
 
     public static $postTypes = [];
 
@@ -20,20 +20,20 @@ class Roles
     {
         $args = [
             'hierarchical' => false,
-            'label' => __('Roles', 'fmr'),
+            'label' => __('Types', 'fmr'),
             'labels' => [
-                'name'              => __('Roles', 'fmr'),
-                'singular_name'     => __('Role', 'fmr'),
-                'menu_name'         => _x('Roles', 'Admin menu name', 'fmr'),
-                'search_items'      => __('Search roles', 'fmr'),
-                'all_items'         => __('All roles', 'fmr'),
-                'parent_item'       => __('Parent role', 'fmr'),
-                'parent_item_colon' => __('Parent role:', 'fmr'),
-                'edit_item'         => __('Edit role', 'fmr'),
-                'update_item'       => __('Update role', 'fmr'),
-                'add_new_item'      => __('Add new role', 'fmr'),
-                'new_item_name'     => __('New role name', 'fmr'),
-                'not_found'         => __('No roles were found', 'fmr'),
+                'name'              => __('Types', 'fmr'),
+                'singular_name'     => __('Type', 'fmr'),
+                'menu_name'         => _x('Types', 'Admin menu name', 'fmr'),
+                'search_items'      => __('Search types', 'fmr'),
+                'all_items'         => __('All types', 'fmr'),
+                'parent_item'       => __('Parent type', 'fmr'),
+                'parent_item_colon' => __('Parent type:', 'fmr'),
+                'edit_item'         => __('Edit type', 'fmr'),
+                'update_item'       => __('Update type', 'fmr'),
+                'add_new_item'      => __('Add new type', 'fmr'),
+                'new_item_name'     => __('New type name', 'fmr'),
+                'not_found'         => __('No types were found', 'fmr'),
             ],
             'public' => false,
             'show_ui' => true,

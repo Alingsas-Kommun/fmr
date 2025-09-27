@@ -28,15 +28,8 @@ class BoardDetails extends FieldGroup
                             [
                                 'id' => 'board_category',
                                 'label' => __('Category', 'fmr'),
-                                'type' => 'select',
-                                'options' => [
-                                    '' => __('Select type', 'fmr'),
-                                    'company' => __('Company', 'fmr'),
-                                    'council' => __('Council', 'fmr'),
-                                    'committee' => __('Committee', 'fmr'),
-                                    'foundation' => __('Foundation', 'fmr'),
-                                    'other' => __('Other', 'fmr'),
-                                ],
+                                'type' => 'taxonomy_relation',
+                                'taxonomy' => 'type',
                                 'cols' => 12,
                             ],
                         ],
