@@ -6,7 +6,7 @@ class Types
 {
     public static $base = 'type';
 
-    public static $postTypes = [];
+    public static $postTypes = ['board'];
 
     public function __construct()
     {
@@ -37,7 +37,7 @@ class Types
             ],
             'public' => false,
             'show_ui' => true,
-            'show_in_menu' => false,
+            'show_in_menu' => true,
             'rewrite' => false,
             'query_var' => true,
         ];
