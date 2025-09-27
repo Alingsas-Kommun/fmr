@@ -137,9 +137,6 @@ class AdvancedSearch extends Component
         $this->partyId = null;
         $this->roleId = null;
         $this->results = collect();
-        
-        // Redirect to clean URL without parameters
-        return $this->redirect(route('search.show'));
     }
 
     /**
