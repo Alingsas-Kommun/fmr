@@ -75,7 +75,7 @@
                                 </h3>
 
                                 @if($leader->party)
-                                    <span class="flex items-center space-x-2 text-sm">
+                                    <span class="flex items-center space-x-1 text-sm">
                                         @if($leader->party->thumbnail())
                                             {!! $leader->party->thumbnail('w-4 h-4 flex-shrink-0') !!}
                                         @else
