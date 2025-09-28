@@ -29,10 +29,16 @@ export function relationHandler(config, existingData = []) {
          * Sets up relations, new relation form, grouping, and date validation
          */
         init() {
-            this.initializeRelations();
-            this.initializeNewRelation();
-            this.groupRelations();
-            this.setupDateValidation();
+            this.loading = true;
+            
+            // Use setTimeout to ensure the loading state is visible before processing
+            setTimeout(() => {
+                this.initializeRelations();
+                this.initializeNewRelation();
+                this.groupRelations();
+                this.setupDateValidation();
+                this.loading = false;
+            }, 100);
         },
         
         /**
