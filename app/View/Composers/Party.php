@@ -45,7 +45,8 @@ class Party extends Composer
         return [
             'party' => $this->partyWithMeta(),
             'thumbnail' => $this->thumbnail(),
-            'members' => $this->members(),
+            'activeMembers' => $this->members(true),
+            'inactiveMembers' => is_user_logged_in() ? $this->members(false) : collect(),
         ];
     }
 
@@ -115,7 +116,7 @@ class Party extends Composer
     /**
      * Get all members for the party.
      */
-    public function members()
+    public function members($has_active_assignments = true)
     {
         $party = $this->party();
         
@@ -126,8 +127,21 @@ class Party extends Composer
         $persons = Post::persons()
             ->published()
             ->withMeta('person_party', $party->ID)
-            ->orderBy('post_title')
-            ->get();
+            ->orderBy('post_title');
+
+        if ($has_active_assignments) {
+            $persons->whereHas('personAssignments', function ($assignQ) {
+                $assignQ->where('period_start', '<=', now())
+                        ->where('period_end', '>=', now());
+            });
+        } else {
+            $persons->whereDoesntHave('personAssignments', function ($assignQ) {
+                $assignQ->where('period_start', '<=', now())
+                        ->where('period_end', '>=', now());
+            });
+        }
+
+        $persons = $persons->get();
 
         return $persons;
     }

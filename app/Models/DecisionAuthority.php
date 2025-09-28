@@ -22,6 +22,7 @@ class DecisionAuthority extends Model
         'board_id',
         'title',
         'type_term_id',
+        'author_id',
         'start_date',
         'end_date',
     ];
@@ -60,5 +61,13 @@ class DecisionAuthority extends Model
     public function typeTerm()
     {
         return $this->belongsTo(Term::class, 'type_term_id', 'term_id');
+    }
+
+    /**
+     * Get the author (user) associated with the decision authority.
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'ID');
     }
 }

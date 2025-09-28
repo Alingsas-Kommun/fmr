@@ -20,12 +20,12 @@
                                     {!! $assignment->person->thumbnail() !!}
                                 </div>
                             @else
-                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <div class="w-6 h-6 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
                                     <x-heroicon-o-user class="w-4 h-4 text-primary-600" />
                                 </div>
                             @endif
                             
-                            <x-link href="{{ get_permalink($assignment->person->ID) }}" class="font-medium">
+                            <x-link href="{{ get_permalink($assignment->person->ID) }}" :underline="false" class="font-medium">
                                 {{ $assignment->person->post_title }}
                             </x-link>
                         </div>
@@ -38,6 +38,7 @@
                     <x-heroicon-o-calendar class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     <span class="text-sm font-medium text-gray-700">{{ __('Period', 'fmr') }}</span>
                 </div>
+                
                 <div class="text-lg font-semibold text-gray-900">
                     {{ $assignment->period_start->format('j M Y') }} - {{ $assignment->period_end->format('j M Y') }}
                 </div>
@@ -45,7 +46,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="md:bg-white dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+            <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                     <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
                     {!! __('Board', 'fmr') !!}
@@ -60,7 +61,7 @@
                 @endif
             </div>
 
-            <div class="md:bg-white dark:md:bg-gray-200 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
+            <div class="md:bg-white dark:md:bg-gray-100 md:rounded-lg md:border md:border-gray-200 dark:md:border-gray-300 md:p-6">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                     <x-heroicon-o-scale class="h-5 w-5 text-primary-600 mr-3" />
                     {!! __('Decision Authority', 'fmr') !!}

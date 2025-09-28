@@ -96,7 +96,7 @@
                         
                         <td class="px-6 py-4">
                             @if($authority->typeTerm)
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-500">
                                     {{ $authority->typeTerm->name }}
                                 </span>
                             @else

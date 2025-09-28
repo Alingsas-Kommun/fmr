@@ -22,6 +22,7 @@ class Assignment extends Model
         'decision_authority_id',
         'person_id',
         'role_term_id',
+        'author_id',
         'period_start',
         'period_end',
     ];
@@ -83,5 +84,13 @@ class Assignment extends Model
     public function getRoleAttribute()
     {
         return $this->roleTerm ? $this->roleTerm->name : null;
+    }
+
+    /**
+     * Get the author (user) associated with the assignment.
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'ID');
     }
 }

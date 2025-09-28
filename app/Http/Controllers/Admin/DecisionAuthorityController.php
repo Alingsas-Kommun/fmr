@@ -52,13 +52,18 @@ class DecisionAuthorityController
      */
     public function store(Request $request)
     {
-        return DecisionAuthority::create($request->only([
+        $data = $request->only([
             'board_id',
             'title',
             'type_term_id',
             'start_date',
             'end_date'
-        ]));
+        ]);
+
+        // Set the current user as the author
+        $data['author_id'] = \get_current_user_id();
+
+        return DecisionAuthority::create($data);
     }
 
     /**
@@ -124,7 +129,7 @@ class DecisionAuthorityController
      */
     public function getPaginatedDecisionAuthorities($args = [])
     {
-        $query = DecisionAuthority::with(['board', 'typeTerm']);
+        $query = DecisionAuthority::with(['board', 'typeTerm', 'author']);
 
         // Handle sorting
         $orderby = $args['orderby'] ?? 'id';
@@ -141,6 +146,10 @@ class DecisionAuthorityController
             case 'type':
                 $query->join('terms', 'decision_authority.type_term_id', '=', 'terms.term_id')
                     ->orderBy('terms.name', $order);
+                break;
+            case 'author':
+                $query->join('users as author', 'decision_authority.author_id', '=', 'author.ID')
+                    ->orderBy('author.display_name', $order);
                 break;
             default:
                 $query->orderBy('id', 'desc');
@@ -174,6 +183,10 @@ class DecisionAuthorityController
             $query->where('end_date', '<=', $args['end_date']);
         }
 
+        if (!empty($args['author_filter'])) {
+            $query->where('author_id', $args['author_filter']);
+        }
+
         // Handle search
         $search = $args['search'] ?? '';
         if (!empty($search)) {
@@ -184,6 +197,10 @@ class DecisionAuthorityController
                     })
                     ->orWhereHas('board', function($q) use ($search) {
                         $q->where('post_title', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('author', function($q) use ($search) {
+                        $q->where('display_name', 'like', '%' . $search . '%')
+                          ->orWhere('user_login', 'like', '%' . $search . '%');
                     })
                     ->orWhere('start_date', 'like', '%' . $search . '%')
                     ->orWhere('end_date', 'like', '%' . $search . '%');

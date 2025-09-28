@@ -110,7 +110,7 @@
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-500">
                                 {{ $assignment->roleTerm->name }}
                             </span>
                         </td>

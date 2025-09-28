@@ -54,13 +54,18 @@ class AssignmentController
      */
     public function store(Request $request)
     {
-        return Assignment::create($request->only([
+        $data = $request->only([
             'person_id',
             'decision_authority_id',
             'role_term_id',
             'period_start',
             'period_end'
-        ]));
+        ]);
+
+        // Set the current user as the author
+        $data['author_id'] = \get_current_user_id();
+
+        return Assignment::create($data);
     }
 
     /**
@@ -181,7 +186,7 @@ class AssignmentController
      */
     public function buildFilteredQuery($args = [])
     {
-        $query = Assignment::with(['person', 'board', 'decisionAuthority', 'roleTerm']);
+        $query = Assignment::with(['person', 'board', 'decisionAuthority', 'roleTerm', 'author']);
 
         $this->applySorting($query, $args);
         $this->applyFilters($query, $args);
@@ -223,6 +228,10 @@ class AssignmentController
                 // Sort by period_start first, then by period_end for same start dates
                 $query->orderBy('period_start', $order)
                       ->orderBy('period_end', $order);
+                break;
+            case 'author':
+                $query->join('users as author', 'assignments.author_id', '=', 'author.ID')
+                    ->orderBy('author.display_name', $order);
                 break;
             default:
                 $query->orderBy('id', 'desc');
@@ -278,6 +287,10 @@ class AssignmentController
             $query->where('period_end', '<=', $args['period_end']);
         }
 
+        if (!empty($args['author_filter'])) {
+            $query->where('author_id', $args['author_filter']);
+        }
+
         // Handle search
         $search = $args['search'] ?? '';
         if (!empty($search)) {
@@ -293,6 +306,10 @@ class AssignmentController
                 })
                 ->orWhereHas('roleTerm', function($q) use ($search) {
                     $q->where('name', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('author', function($q) use ($search) {
+                    $q->where('display_name', 'like', '%' . $search . '%')
+                      ->orWhere('user_login', 'like', '%' . $search . '%');
                 })
                 ->orWhere('period_start', 'like', '%' . $search . '%')
                 ->orWhere('period_end', 'like', '%' . $search . '%');

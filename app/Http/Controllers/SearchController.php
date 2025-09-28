@@ -47,7 +47,13 @@ class SearchController extends Controller
             return collect();
         }
 
-        $personsQuery = Post::persons()->with('party')->published();
+        $personsQuery = Post::persons()
+            ->with('party')
+            ->published()
+            ->whereHas('personAssignments', function ($assignQ) {
+                $assignQ->where('period_start', '<=', now())
+                        ->where('period_end', '>=', now());
+            });
 
         // Add search criteria if query is provided
         if (!empty($query)) {
@@ -75,7 +81,6 @@ class SearchController extends Controller
                 'personAssignments.decisionAuthority.board',
                 'personAssignments.roleTerm'
             ])
-            ->limit(50)
             ->get();
 
         return $this->transformAdvancedResults($persons);
@@ -89,6 +94,10 @@ class SearchController extends Controller
         return Post::persons()
             ->with('party')
             ->published()
+            ->whereHas('personAssignments', function ($assignQ) {
+                $assignQ->where('period_start', '<=', now())
+                        ->where('period_end', '>=', now());
+            })
             ->where(function ($q) use ($query) {
                 // Search by post title
                 $q->where('post_title', 'like', '%' . $query . '%')

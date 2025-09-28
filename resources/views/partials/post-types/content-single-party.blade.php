@@ -98,10 +98,11 @@
 </div>
 
 <div class="mt-6">
-    <h2 class="text-2xl font-semibold mb-6">{!! __('Members', 'fmr') !!}</h2>
-    @if($members->isNotEmpty())
+    <h2 class="text-2xl font-semibold mb-6">{!! __('Active Members', 'fmr') !!}</h2>
+
+    @if($activeMembers->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($members as $member)
+            @foreach($activeMembers as $member)
                 <a href="{{ get_permalink($member->ID) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
                         @if($member->thumbnail())
@@ -111,13 +112,13 @@
                                 </div>
                             </div>
                         @else
-                            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                                 <x-heroicon-o-user class="h-8 w-8 text-primary-600" />
                             </div>
                         @endif
 
                         <div class="flex-1 min-w-0">
-                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
+                            <h3 class="text-md font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
                                 @if($member->getMeta('person_firstname') && $member->getMeta('person_lastname'))
                                     {{ $member->getMeta('person_firstname') }} {{ $member->getMeta('person_lastname') }}
                                 @else
@@ -140,3 +141,31 @@
         </x-alert>
     @endif
 </div>
+
+@user
+    <div class="mt-6">
+        <h3 class="text-2xl font-bold mb-6">{!! __('Inactive Members', 'fmr') !!}</h3>
+        
+        @if($inactiveMembers->isNotEmpty())
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach($inactiveMembers as $member)
+                    <a href="{!! get_edit_post_link($member->ID) !!}" target="_blank" class="flex items-center space-x-4 bg-gray-100 rounded-lg p-4">
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-md font-normal text-gray-900 transition-colors duration-200">
+                                {!! $member->post_title !!}
+                            </h3>
+                        </div>
+
+                        <div class="flex-shrink-0">
+                            <x-heroicon-o-arrow-right class="h-5 w-5 text-gray-400 group-hover:text-primary-700 transition-colors duration-200" />
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <x-alert type="info">
+                {!! __('No inactive members found for this party.', 'fmr') !!}
+            </x-alert>
+        @endif
+    </div>
+@enduser

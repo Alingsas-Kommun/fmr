@@ -20,6 +20,7 @@ class Persons
     public static $supports = [
         'title',
         'thumbnail',
+        'author',
     ];
 
     public static $archive_page = false;
@@ -130,6 +131,12 @@ class Persons
             'priority' => 7,
         ];
 
+        $columns_to_add[] = [
+            'slug' => 'author',
+            'title' => __('Author', 'fmr'),
+            'priority' => 8,
+        ];
+
         foreach ($columns_to_add as $col) {
             arraySpliceAssoc($columns, $col['priority'], 0, [$col['slug'] => $col['title']]);
         }
@@ -144,9 +151,17 @@ class Persons
                 $attachment_id = get_post_thumbnail_id($post_id);
                 $link = get_edit_post_link($post_id);
 
-                $image  = "<a href='{$link}'>";
-                $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
-                $image .= "</a>";
+                if ($attachment_id) {
+                    $image  = "<a href='{$link}'>";
+                    $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
+                    $image .= "</a>";
+                } else {
+                    $image  = "<a href='{$link}'>";
+                    $image .= "<div class='person-image-fallback'>";
+                    $image .= "<span class='dashicons dashicons-businessperson'></span>";
+                    $image .= "</div>";
+                    $image .= "</a>";
+                }
 
                 echo $image;
 
@@ -181,7 +196,8 @@ class Persons
     public static function personImageColumnWidth()
     {
         echo '<style type="text/css">';
-        echo 'td.person-image, td.person-image img, th#person-image { max-width: 70px !important; width: 70px !important; height: auto !important; }';
+        echo 'td.person-image, td.person-image img, th#person-image { max-width: 50px !important; width: 50px !important; height: auto !important; } td.person-image img { border-radius: 50rem !important; aspect-ratio: 1/1 !important; object-fit: cover !important; }';
+        echo '.person-image-fallback { width: 50px; height: 50px; border-radius: 50rem; background-color: #e5e5e5; display: flex; align-items: center; justify-content: center; color: white; } .person-image-fallback .dashicons { font-size: 24px; width: 24px; height: 24px; color: var(--wp-admin-color-primary, #0073aa); }';
         echo '</style>';
     }
 

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('board_id')->comment('Reference to wp_posts.ID for board post type');
             $table->string('title');
-            $table->unsignedBigInteger('type_term_id')->comment('Reference to wp_terms.term_id for type taxonomy');
+            $table->unsignedBigInteger('type_term_id')->nullable()->comment('Reference to wp_terms.term_id for type taxonomy');
+            $table->unsignedBigInteger('author_id')->nullable()->comment('Reference to wp_users.ID for decision authority author');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamp('created_at')->useCurrent();
@@ -24,6 +25,7 @@ return new class extends Migration
             // Add indexes for better query performance
             $table->index('board_id');
             $table->index('type_term_id');
+            $table->index('author_id');
             
             // Add foreign key constraints
             $table->foreign('board_id')
@@ -34,7 +36,12 @@ return new class extends Migration
             $table->foreign('type_term_id')
                 ->references('term_id')
                 ->on('terms')
-                ->onDelete('restrict');
+                ->onDelete('set null');
+
+            $table->foreign('author_id')
+                ->references('ID')
+                ->on('users')
+                ->onDelete('set null');
         });
     }
 

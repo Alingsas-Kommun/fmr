@@ -20,6 +20,7 @@ class Parties
     public static $supports = [
         'title',
         'thumbnail',
+        'author',
     ];
 
     public static $archive_page = false;
@@ -97,7 +98,6 @@ class Parties
     public static function addColumns($columns)
     {
         unset($columns['date']);
-        unset($columns['author']);
 
         $columns_to_add = [];
         $columns_to_add[] = [
@@ -130,9 +130,18 @@ class Parties
                 $attachment_id = get_post_thumbnail_id($post_id);
                 $link = get_edit_post_link($post_id);
 
+                if ($attachment_id) {
+
                 $image  = "<a href='{$link}'>";
-                $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
-                $image .= "</a>";
+                    $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
+                    $image .= "</a>";
+                } else {
+                    $image  = "<a href='{$link}'>";
+                    $image .= "<div class='party-image-fallback'>";
+                    $image .= "<span class='dashicons dashicons-groups'></span>";
+                    $image .= "</div>";
+                    $image .= "</a>";
+                }
 
                 echo $image;
 
@@ -152,6 +161,7 @@ class Parties
     {
         echo '<style type="text/css">';
         echo 'td.party-image, td.party-image img, th#party-image { max-width: 50px !important; width: 50px !important; height: auto !important; }';
+        echo '.party-image-fallback { width: 50px; height: 50px; border-radius: 50rem; background-color: #e5e5e5; display: flex; align-items: center; justify-content: center; color: white; } .party-image-fallback .dashicons { font-size: 24px; width: 24px; height: 24px; color: var(--wp-admin-color-primary, #0073aa); }';
         echo '</style>';
     }
 

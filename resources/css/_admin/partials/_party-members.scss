@@ -68,24 +68,21 @@
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #e0e0e0;
+        border: 1px solid #e0e0e0;
     }
 
     .party-member-avatar-placeholder {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: #2271b1;
+        background: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid #e0e0e0;
+        border: 1px solid #e0e0e0;
 
-        .party-member-initials {
-            color: white;
-            font-weight: 600;
-            font-size: 0.9em;
-            text-transform: uppercase;
+        span {
+            color: var(--wp-admin-color-primary, #0073aa);
         }
     }
 

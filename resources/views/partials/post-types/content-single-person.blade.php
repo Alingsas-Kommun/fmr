@@ -33,17 +33,18 @@
                 </h2>
             @endif
             
-            @set($hasContactInfo, $person->workEmail || $person->groupLeader)
+            @set($hasContactInfo, $person->ssn || $person->groupLeader)
             
             @if($hasContactInfo)
                 <div class="flex items-center space-x-4 mt-2">
-                    @if($person->workEmail)
+                    @if($person->ssn)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
+                            <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
-                            <x-link href="mailto:{{ $person->workEmail }}" :underline="false">
-                                {{ $person->workEmail }}
-                            </x-link>
+                            <div class="text-gray-700">
+                                <div class="sr-only">{!! __('Social Security Number', 'fmr') !!}</div>
+                                <div>{{ $person->ssn }}</div>
+                            </div>
                         </div>
                     @endif
 
@@ -59,57 +60,19 @@
         </div>
     </div>
 
-    @set($hasBasicInfo, $person->birthDate || $person->ssn || $person->listing)
-
-    @if($hasBasicInfo)
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 border-t border-gray-200 pt-6 mt-8">
-            @if($person->birthDate)
-                <div class="flex items-start space-x-3">
-                    <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-
-                    <div class="text-gray-700">
-                        <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
-                        <div>{{ $person->birthDate }}</div>
-                    </div>
-                </div>
-            @endif
-
-            @if($person->ssn)
-                <div class="flex items-start space-x-3">
-                    <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-
-                    <div class="text-gray-700">
-                        <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
-                        <div>{{ $person->ssn }}</div>
-                    </div>
-                </div>
-            @endif
-
-            @if($person->listing)
-                <div class="flex items-start space-x-3">
-                    <x-heroicon-o-list-bullet class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-
-                    <div class="text-gray-700">
-                        <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
-                        <div>{{ $person->listing }}</div>
-                    </div>
-                </div>
-            @endif
-        </div>
-    @endif
-
+    @set($hasBasicInfo, $person->birthDate || $person->listing)
     @set($hasHomeInfo, $person->homeEmail || $person->homePhone || $person->homeMobile || $person->homeWebpage || $person->homeAddress || $person->homeZip || $person->homeCity || $person->homeVisitingAddress)
     @set($hasWorkInfo, $person->workEmail || $person->workPhone || $person->workMobile || $person->workWebpage || $person->workAddress || $person->workZip || $person->workCity || $person->workVisitingAddress)
-    @set($hasAdditionalInfo, $hasHomeInfo || $hasWorkInfo)
+    @set($hasAdditionalInfo, $hasBasicInfo || $hasHomeInfo || $hasWorkInfo)
     
     @if($hasAdditionalInfo)
         <div class="flex items-center justify-between mt-6">
             <div class="flex-1 border-t border-gray-200"></div>
 
-             <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors duration-200 focus:outline-none">
+            <button @click="showMoreInfo = !showMoreInfo" class="mx-8 inline-flex items-center text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors duration-200 focus:outline-none">
                 <span x-text="showMoreInfo ? '{!! __('Hide Additional Information', 'fmr') !!}' : '{!! __('Show Additional Information', 'fmr') !!}'"></span>
                 <x-heroicon-o-chevron-down class="ml-2 h-4 w-4 transition-transform duration-200" ::class="{ 'rotate-180': showMoreInfo }" />
-             </button>
+            </button>
             
             <div class="flex-1 border-t border-gray-200"></div>
         </div>
@@ -121,196 +84,235 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 transform translate-y-0"
             x-transition:leave-end="opacity-0 transform translate-y-4"
-            class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6"
+            class="mt-6"
         >
-            
-            @if($hasHomeInfo)
-                <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                        <x-heroicon-o-home class="h-5 w-5 text-primary-600 mr-3" />
-                        {!! __('Home Information', 'fmr') !!}
-                    </h3>
 
-                    <div class="space-y-5">
-                        @if($person->homeEmail)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <x-link href="mailto:{{ $person->homeEmail }}">
-                                        {{ $person->homeEmail }}
-                                    </x-link>
-                                </div>
-                            </div>
-                        @endif
+            @if($hasBasicInfo)
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
+                    @if($person->birthDate)
+                        <div class="flex items-start space-x-3">
+                            <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
-                        @if($person->homePhone)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <x-link href="tel:{{ $person->homePhone }}">
-                                        {{ $person->homePhone }}
-                                    </x-link>
-                                </div>
+                            <div class="text-gray-700">
+                                <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
+                                <div>{{ $person->birthDate }}</div>
                             </div>
-                        @endif
+                        </div>
+                    @endif
 
-                        @if($person->homeMobile)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <x-link href="tel:{{ $person->homeMobile }}">
-                                        {{ $person->homeMobile }}
-                                    </x-link>
-                                </div>
-                            </div>
-                        @endif
+                    @if($person->ssn)
+                        <div class="flex items-start space-x-3">
+                            <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
-                        @if($person->homeWebpage)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <x-link href="{{ $person->homeWebpage }}" target="_blank">
-                                        {{ $person->homeWebpage }}
-                                    </x-link>
-                                </div>
+                            <div class="text-gray-700">
+                                <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
+                                <div>{{ $person->ssn }}</div>
                             </div>
-                        @endif
+                        </div>
+                    @endif
 
-                        @if($person->homeAddress || $person->homeZip || $person->homeCity)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
-                                    @if($person->homeAddress)
-                                        <div>{{ $person->homeAddress }}</div>
-                                    @endif
-                                    @if($person->homeZip || $person->homeCity)
-                                        <div>
-                                            @if($person->homeZip){{ $person->homeZip }}@endif
-                                            @if($person->homeZip && $person->homeCity), @endif
-                                            @if($person->homeCity){{ $person->homeCity }}@endif
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        @endif
+                    @if($person->listing)
+                        <div class="flex items-start space-x-3">
+                            <x-heroicon-o-list-bullet class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
-                        @if($person->homeVisitingAddress)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
-                                    <div>{{ $person->homeVisitingAddress }}</div>
-                                </div>
+                            <div class="text-gray-700">
+                                <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
+                                <div>{{ $person->listing }}</div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
             @endif
 
-            @if($hasWorkInfo)
-                <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                        <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
-                        {!! __('Work Information', 'fmr') !!}
-                    </h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                @if($hasHomeInfo)
+                    <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
+                            <x-heroicon-o-home class="h-5 w-5 text-primary-600 mr-3" />
+                            {!! __('Home Information', 'fmr') !!}
+                        </h3>
 
-                    <div class="space-y-5">
-                        @if($person->workEmail)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                    <x-link href="mailto:{{ $person->workEmail }}">
-                                        {{ $person->workEmail }}
-                                    </x-link>
+                        <div class="space-y-5">
+                            @if($person->homeEmail)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
+                                        <x-link href="mailto:{{ $person->homeEmail }}">
+                                            {{ $person->homeEmail }}
+                                        </x-link>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
 
-                        @if($person->workPhone)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                    <x-link href="tel:{{ $person->workPhone }}">
-                                        {{ $person->workPhone }}
-                                    </x-link>
+                            @if($person->homePhone)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
+                                        <x-link href="tel:{{ $person->homePhone }}">
+                                            {{ $person->homePhone }}
+                                        </x-link>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
 
-                        @if($person->workMobile)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                    <x-link href="tel:{{ $person->workMobile }}">
-                                        {{ $person->workMobile }}
-                                    </x-link>
+                            @if($person->homeMobile)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
+                                        <x-link href="tel:{{ $person->homeMobile }}">
+                                            {{ $person->homeMobile }}
+                                        </x-link>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
 
-                        @if($person->workWebpage)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                    <x-link href="{{ $person->workWebpage }}" target="_blank">
-                                        {{ $person->workWebpage }}
-                                    </x-link>
+                            @if($person->homeWebpage)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
+                                        <x-link href="{{ $person->homeWebpage }}" target="_blank">
+                                            {{ $person->homeWebpage }}
+                                        </x-link>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
 
-                        @if($person->workAddress || $person->workZip || $person->workCity)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
-                                    @if($person->workAddress)
-                                        <div>{{ $person->workAddress }}</div>
-                                    @endif
-                                    @if($person->workZip || $person->workCity)
-                                <div>
+                            @if($person->homeAddress || $person->homeZip || $person->homeCity)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
+                                        @if($person->homeAddress)
+                                            <div>{{ $person->homeAddress }}</div>
+                                        @endif
+                                        @if($person->homeZip || $person->homeCity)
+                                            <div>
+                                                @if($person->homeZip){{ $person->homeZip }}@endif
+                                                @if($person->homeZip && $person->homeCity), @endif
+                                                @if($person->homeCity){{ $person->homeCity }}@endif
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
 
-                                @if($person->workZip){{ $person->workZip }}@endif
-                                @if($person->workZip && $person->workCity), @endif
-                                @if($person->workCity){{ $person->workCity }}@endif
-                            </div>
-                        @endif
+                            @if($person->homeVisitingAddress)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
+                                        <div>{{ $person->homeVisitingAddress }}</div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                    </div>
-                        @endif
+                @endif
 
-                        @if($person->workVisitingAddress)
-                            <div class="flex items-start space-x-3">
-                                <x-heroicon-o-building-office-2 class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-                                
-                                <div class="text-gray-700">
-                                    <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
-                                    <div>{{ $person->workVisitingAddress }}</div>
+                @if($hasWorkInfo)
+                    <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
+                            <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
+                            {!! __('Work Information', 'fmr') !!}
+                        </h3>
+
+                        <div class="space-y-5">
+                            @if($person->workEmail)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
+                                        <x-link href="mailto:{{ $person->workEmail }}">
+                                            {{ $person->workEmail }}
+                                        </x-link>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+
+                            @if($person->workPhone)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
+                                        <x-link href="tel:{{ $person->workPhone }}">
+                                            {{ $person->workPhone }}
+                                        </x-link>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($person->workMobile)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
+                                        <x-link href="tel:{{ $person->workMobile }}">
+                                            {{ $person->workMobile }}
+                                        </x-link>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($person->workWebpage)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
+                                        <x-link href="{{ $person->workWebpage }}" target="_blank">
+                                            {{ $person->workWebpage }}
+                                        </x-link>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($person->workAddress || $person->workZip || $person->workCity)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
+                                        @if($person->workAddress)
+                                            <div>{{ $person->workAddress }}</div>
+                                        @endif
+                                        @if($person->workZip || $person->workCity)
+                                    <div>
+
+                                    @if($person->workZip){{ $person->workZip }}@endif
+                                    @if($person->workZip && $person->workCity), @endif
+                                    @if($person->workCity){{ $person->workCity }}@endif
+                                </div>
+                            @endif
+                        </div>
+                        </div>
+                            @endif
+
+                            @if($person->workVisitingAddress)
+                                <div class="flex items-start space-x-3">
+                                    <x-heroicon-o-building-office-2 class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
+                                    
+                                    <div class="text-gray-700">
+                                        <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
+                                        <div>{{ $person->workVisitingAddress }}</div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
     @endif
 </div>

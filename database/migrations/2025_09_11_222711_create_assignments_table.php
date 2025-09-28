@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('decision_authority_id')->comment('Reference to decision_authority.id');
             $table->unsignedBigInteger('person_id')->comment('Reference to wp_posts.ID for person post type');
             $table->unsignedBigInteger('role_term_id')->comment('Reference to wp_terms.term_id for role taxonomy');
+            $table->unsignedBigInteger('author_id')->nullable()->comment('Reference to wp_users.ID for assignment author');
             $table->date('period_start')->comment('Start date of the assignment');
             $table->date('period_end')->comment('End date of the assignment');
             $table->timestamps();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->index('decision_authority_id');
             $table->index('person_id');
             $table->index('role_term_id');
+            $table->index('author_id');
             $table->index(['period_start', 'period_end']);
             
             // Add foreign key constraints
@@ -35,12 +37,17 @@ return new class extends Migration
             $table->foreign('person_id')
                 ->references('ID')
                 ->on('posts')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
                 
             $table->foreign('role_term_id')
                 ->references('term_id')
                 ->on('terms')
                 ->onDelete('restrict');
+                
+            $table->foreign('author_id')
+                ->references('ID')
+                ->on('users')
+                ->onDelete('set null');
         });
     }
 

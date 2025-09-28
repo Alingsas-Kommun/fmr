@@ -97,11 +97,11 @@
 
 /* Dark mode theme overrides */
 .dark {
-  --color-primary-50: oklch(0.25 var(--primary-chroma) var(--primary-hue));
-  --color-primary-100: oklch(0.35 var(--primary-chroma) var(--primary-hue));
-  --color-primary-200: oklch(0.45 var(--primary-chroma) var(--primary-hue));
-  --color-primary-300: oklch(0.55 var(--primary-chroma) var(--primary-hue));
-  --color-primary-400: oklch(0.65 var(--primary-chroma) var(--primary-hue));
+  --color-primary-50: oklch(0.25 calc(var(--primary-chroma) * 0.3) var(--primary-hue));
+  --color-primary-100: oklch(0.35 calc(var(--primary-chroma) * 0.35) var(--primary-hue));
+  --color-primary-200: oklch(0.45 calc(var(--primary-chroma) * 0.4) var(--primary-hue));
+  --color-primary-300: oklch(0.55 calc(var(--primary-chroma) * 0.45) var(--primary-hue));
+  --color-primary-400: oklch(0.65 calc(var(--primary-chroma) * 0.5) var(--primary-hue));
   --color-primary-500: oklch(0.8 var(--primary-chroma) var(--primary-hue));
   --color-primary-600: oklch(0.88 var(--primary-chroma) var(--primary-hue));
   --color-primary-700: oklch(0.90 var(--primary-chroma) var(--primary-hue));
@@ -109,11 +109,11 @@
   --color-primary-900: oklch(0.97 var(--primary-chroma) var(--primary-hue));
   --color-primary-950: oklch(0.99 var(--primary-chroma) var(--primary-hue));
   
-  --color-secondary-50: oklch(0.25 var(--secondary-chroma) var(--secondary-hue));
-  --color-secondary-100: oklch(0.35 var(--secondary-chroma) var(--secondary-hue));
-  --color-secondary-200: oklch(0.45 var(--secondary-chroma) var(--secondary-hue));
-  --color-secondary-300: oklch(0.55 var(--secondary-chroma) var(--secondary-hue));
-  --color-secondary-400: oklch(0.65 var(--secondary-chroma) var(--secondary-hue));
+  --color-secondary-50: oklch(0.25 calc(var(--secondary-chroma) * 0.3) var(--secondary-hue));
+  --color-secondary-100: oklch(0.35 calc(var(--secondary-chroma) * 0.35) var(--secondary-hue));
+  --color-secondary-200: oklch(0.45 calc(var(--secondary-chroma) * 0.4) var(--secondary-hue));
+  --color-secondary-300: oklch(0.55 calc(var(--secondary-chroma) * 0.45) var(--secondary-hue));
+  --color-secondary-400: oklch(0.65 calc(var(--secondary-chroma) * 0.5) var(--secondary-hue));
   --color-secondary-500: oklch(0.8 var(--secondary-chroma) var(--secondary-hue));
   --color-secondary-600: oklch(0.88 var(--secondary-chroma) var(--secondary-hue));
   --color-secondary-700: oklch(0.90 var(--secondary-chroma) var(--secondary-hue));
@@ -121,11 +121,11 @@
   --color-secondary-900: oklch(0.97 var(--secondary-chroma) var(--secondary-hue));
   --color-secondary-950: oklch(0.99 var(--secondary-chroma) var(--secondary-hue));
   
-  --color-tertiary-50: oklch(0.25 var(--tertiary-chroma) var(--tertiary-hue));
-  --color-tertiary-100: oklch(0.35 var(--tertiary-chroma) var(--tertiary-hue));
-  --color-tertiary-200: oklch(0.45 var(--tertiary-chroma) var(--tertiary-hue));
-  --color-tertiary-300: oklch(0.55 var(--tertiary-chroma) var(--tertiary-hue));
-  --color-tertiary-400: oklch(0.65 var(--tertiary-chroma) var(--tertiary-hue));
+  --color-tertiary-50: oklch(0.25 calc(var(--tertiary-chroma) * 0.3) var(--tertiary-hue));
+  --color-tertiary-100: oklch(0.35 calc(var(--tertiary-chroma) * 0.35) var(--tertiary-hue));
+  --color-tertiary-200: oklch(0.45 calc(var(--tertiary-chroma) * 0.4) var(--tertiary-hue));
+  --color-tertiary-300: oklch(0.55 calc(var(--tertiary-chroma) * 0.45) var(--tertiary-hue));
+  --color-tertiary-400: oklch(0.65 calc(var(--tertiary-chroma) * 0.5) var(--tertiary-hue));
   --color-tertiary-500: oklch(0.8 var(--tertiary-chroma) var(--tertiary-hue));
   --color-tertiary-600: oklch(0.88 var(--tertiary-chroma) var(--tertiary-hue));
   --color-tertiary-700: oklch(0.90 var(--tertiary-chroma) var(--tertiary-hue));

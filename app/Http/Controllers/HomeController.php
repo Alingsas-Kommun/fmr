@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\DecisionAuthority;
 
 class HomeController extends Controller
 {
@@ -22,12 +23,22 @@ class HomeController extends Controller
             ->with('party')
             ->get();
 
-        $boards = Post::boards()
-            ->published()
-            ->with('categoryTerm')
+        $decisionAuthorities = DecisionAuthority::with(['board', 'typeTerm'])
+            ->where(function($query) {
+                $query->where('start_date', '<=', now())
+                    ->where(function($q) {
+                        $q->where('end_date', '>=', now())
+                            ->orWhereNull('end_date');
+                    });
+            })
+            ->orderBy('title')
             ->get();
 
-        return view('homepage', compact('parties', 'groupLeaders', 'boards'));
+        $groupedAuthorities = $decisionAuthorities->groupBy(function($authority) {
+            return $authority->typeTerm ? $authority->typeTerm->name : __('Other', 'fmr');
+        })->sortKeys();
+
+        return view('homepage', compact('parties', 'groupLeaders', 'groupedAuthorities'));
     }
 
 }

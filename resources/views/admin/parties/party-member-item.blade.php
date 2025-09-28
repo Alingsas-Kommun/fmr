@@ -7,7 +7,7 @@
                 {!! $thumbnail !!}
             @else
                 <div class="party-member-avatar-placeholder">
-                    <span class="party-member-initials">{{ substr($member->post_title, 0, 1) }}</span>
+                    <span class='dashicons dashicons-businessperson'></span>
                 </div>
             @endif
         </div>

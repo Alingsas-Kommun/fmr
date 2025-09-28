@@ -252,7 +252,8 @@ class Index extends \WP_List_Table
             'role'                  => __('Role', 'fmr'),
             'board'                 => __('Board', 'fmr'),
             'decision_authority'    => __('Decision Authority', 'fmr'),
-            'period'                => __('Period', 'fmr')
+            'period'                => __('Period', 'fmr'),
+            'author'                => __('Author', 'fmr')
         ];
     }
 
@@ -278,7 +279,8 @@ class Index extends \WP_List_Table
             'role'               => ['role', false],
             'board'              => ['board', false],
             'decision_authority' => ['decision_authority', false],
-            'period'             => ['period', false]
+            'period'             => ['period', false],
+            'author'             => ['author', false]
         ];
     }
 
@@ -449,6 +451,28 @@ class Index extends \WP_List_Table
     }
 
     /**
+     * Render the author column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
+    public function column_author($item)
+    {
+        if (!$item->author) {
+            return '—';
+        }
+
+        $author_name = esc_html($item->author->display_name ?: $item->author->user_login);
+        
+        $filter_link = add_query_arg(
+            ['author_filter' => $item->author->ID],
+            $_SERVER['REQUEST_URI']
+        );
+
+        return sprintf('<a href="%s">%s</a>', esc_url($filter_link), $author_name);
+    }
+
+    /**
      * Handle any custom columns that don't have a specific method.
      *
      * @param object $item The current assignment item.
@@ -486,6 +510,7 @@ class Index extends \WP_List_Table
             'role_filter' => $_REQUEST['role_filter'] ?? '',
             'board_filter' => $_REQUEST['board_filter'] ?? '',
             'person_filter' => $_REQUEST['person_filter'] ?? '',
+            'author_filter' => $_REQUEST['author_filter'] ?? '',
             'period_start' => $_REQUEST['period_start'] ?? '',
             'period_end' => $_REQUEST['period_end'] ?? ''
         ]);

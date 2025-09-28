@@ -140,11 +140,11 @@ trait FieldGroupTrait
                             $field['value'] = $this->getFieldValue($field['id'], $post);
                             
                             if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
-                                $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title');
+                                $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title', $field['label'] ?? '');
                             }
 
                             if ($field['type'] === 'taxonomy_relation' && isset($field['taxonomy'])) {
-                                $field['options'] = $this->getTaxonomyRelationOptions($field['taxonomy']);
+                                $field['options'] = $this->getTaxonomyRelationOptions($field['taxonomy'], $field['label'] ?? '');
                             }
                             
                             if (isset($field['visibility'])) {
@@ -159,11 +159,11 @@ trait FieldGroupTrait
                         $row['value'] = $this->getFieldValue($row['id'], $post);
                         
                         if ($row['type'] === 'post_relation' && isset($row['post_type'])) {
-                            $row['options'] = $this->getPostRelationOptions($row['post_type'], $row['display_field'] ?? 'post_title');
+                            $row['options'] = $this->getPostRelationOptions($row['post_type'], $row['display_field'] ?? 'post_title', $row['label'] ?? '');
                         }
 
                         if ($row['type'] === 'taxonomy_relation' && isset($row['taxonomy'])) {
-                            $row['options'] = $this->getTaxonomyRelationOptions($row['taxonomy']);
+                            $row['options'] = $this->getTaxonomyRelationOptions($row['taxonomy'], $row['label'] ?? '');
                         }
                         
                         if (isset($row['visibility'])) {
@@ -206,14 +206,14 @@ trait FieldGroupTrait
      * @param string $display_field
      * @return array
      */
-    protected function getPostRelationOptions($post_type, $display_field = 'post_title')
+    protected function getPostRelationOptions($post_type, $display_field = 'post_title', $label = '')
     {
         $posts = Post::type($post_type)
             ->published()
             ->orderBy('post_title')
             ->get();
 
-        $options = [];
+        $options = ['' => sprintf(__('Select %s', 'fmr'), strtolower($label))];
 
         foreach ($posts as $post) {
             $display_value = $post->$display_field;
@@ -240,13 +240,13 @@ trait FieldGroupTrait
      * @param string $taxonomy
      * @return array
      */
-    protected function getTaxonomyRelationOptions($taxonomy)
+    protected function getTaxonomyRelationOptions($taxonomy, $label = '')
     {
         $terms = Term::whereHas('termTaxonomy', function($q) use ($taxonomy) {
             $q->where('taxonomy', $taxonomy);
         })->orderBy('name')->get();
 
-        $options = ['' => __('Select option', 'fmr')];
+        $options = ['' => sprintf(__('Select %s', 'fmr'), strtolower($label))];
         
         foreach ($terms as $term) {
             $options[$term->term_id] = $term->name;

@@ -16,6 +16,7 @@ class Boards
 
     public static $supports = [
         'title',
+        'author',
     ];
 
     public static $archive_page = false;
@@ -88,7 +89,6 @@ class Boards
     public static function addColumns($columns)
     {
         unset($columns['date']);
-        unset($columns['author']);
 
         $columns_to_add = [];
         $columns_to_add[] = [
