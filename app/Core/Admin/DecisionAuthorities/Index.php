@@ -4,6 +4,7 @@ namespace App\Core\Admin\DecisionAuthorities;
 
 use App\Http\Controllers\Admin\DecisionAuthorityController;
 use App\Http\Controllers\Admin\BoardController;
+use Illuminate\Support\Facades\Blade;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -177,28 +178,34 @@ class Index extends \WP_List_Table
 
         $counts = $this->controller->getStatusCounts();
 
-        $views['all'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(remove_query_arg('period_status')),
-            $current === 'all' ? 'current' : '',
-            __('All', 'fmr'),
-            number_format_i18n($counts['all'])
+        $views['all'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(remove_query_arg('period_status')),
+                'class' => $current === 'all' ? 'current' : '',
+                'label' => __('All', 'fmr'),
+                'count' => number_format_i18n($counts['all'])
+            ]
         );
 
-        $views['ongoing'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(add_query_arg('period_status', 'ongoing')),
-            $current === 'ongoing' ? 'current' : '',
-            __('Ongoing', 'fmr'),
-            number_format_i18n($counts['ongoing'])
+        $views['ongoing'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(add_query_arg('period_status', 'ongoing')),
+                'class' => $current === 'ongoing' ? 'current' : '',
+                'label' => __('Ongoing', 'fmr'),
+                'count' => number_format_i18n($counts['ongoing'])
+            ]
         );
 
-        $views['past'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(add_query_arg('period_status', 'past')),
-            $current === 'past' ? 'current' : '',
-            __('Past', 'fmr'),
-            number_format_i18n($counts['past'])
+        $views['past'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(add_query_arg('period_status', 'past')),
+                'class' => $current === 'past' ? 'current' : '',
+                'label' => __('Past', 'fmr'),
+                'count' => number_format_i18n($counts['past'])
+            ]
         );
 
         return $views;
@@ -266,9 +273,9 @@ class Index extends \WP_List_Table
      */
     public function column_cb($item)
     {
-        return sprintf(
-            '<input type="checkbox" name="decision_authorities[]" value="%s" />',
-            $item->id
+        return Blade::render(
+            '<input type="checkbox" name="decision_authorities[]" value="{!! $value !!}" />',
+            ['value' => $item->id]
         );
     }
 
@@ -293,22 +300,26 @@ class Index extends \WP_List_Table
             'delete_decision_authority_' . $item->id
         );
 
-        $row_actions = sprintf(
+        $row_actions = Blade::render(
             '<div class="row-actions">
-                <span class="edit"><a href="%s">%s</a> | </span>
-                <span class="trash"><a href="%s" onclick="return confirm(\'%s\')">%s</a></span>
+                <span class="edit"><a href="{!! $edit_url !!}">{!! $edit_label !!}</a> | </span>
+                <span class="trash"><a href="{!! $delete_url !!}" onclick="return confirm(\'{!! $confirm_message !!}\')">{!! $delete_label !!}</a></span>
             </div>',
-            esc_url($edit_link),
-            __('Edit', 'fmr'),
-            esc_url($delete_link),
-            esc_js(__('Are you sure you want to delete this decision authority?', 'fmr')),
-            __('Remove', 'fmr')
+            [
+                'edit_url' => esc_url($edit_link),
+                'edit_label' => __('Edit', 'fmr'),
+                'delete_url' => esc_url($delete_link),
+                'confirm_message' => esc_js(__('Are you sure you want to delete this decision authority?', 'fmr')),
+                'delete_label' => __('Remove', 'fmr')
+            ]
         );
 
-        return sprintf(
-            '<strong>%s</strong>%s',
-            esc_html($item->title),
-            $row_actions
+        return Blade::render(
+            '<strong>{!! $title !!}</strong>{!! $row_actions !!}',
+            [
+                'title' => esc_html($item->title),
+                'row_actions' => $row_actions
+            ]
         );
     }
 
@@ -327,10 +338,12 @@ class Index extends \WP_List_Table
         $edit_link = get_edit_post_link($item->board->ID);
         $title = esc_html($item->board->post_title);
         
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url($edit_link),
-            $title
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $title !!}</a>',
+            [
+                'url' => esc_url($edit_link),
+                'title' => $title
+            ]
         );
     }
 
@@ -356,7 +369,13 @@ class Index extends \WP_List_Table
 
         $type_name = esc_html($item->typeTerm->name);
         
-        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $type_name);
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $name !!}</a>',
+            [
+                'url' => esc_url($edit_link),
+                'name' => $type_name
+            ]
+        );
     }
 
     /**
@@ -396,7 +415,13 @@ class Index extends \WP_List_Table
             $_SERVER['REQUEST_URI']
         );
 
-        return sprintf('<a href="%s">%s</a>', esc_url($filter_link), $author_name);
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $name !!}</a>',
+            [
+                'url' => esc_url($filter_link),
+                'name' => $author_name
+            ]
+        );
     }
 
     /**

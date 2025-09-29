@@ -4,6 +4,7 @@ namespace App\Core\PostTypes;
 
 use function App\Core\{arraySpliceAssoc};
 use App\Models\Post;
+use Illuminate\Support\Facades\Blade;
 
 use function Roots\view;
 
@@ -131,19 +132,24 @@ class Parties
                 $link = get_edit_post_link($post_id);
 
                 if ($attachment_id) {
-
-                $image  = "<a href='{$link}'>";
-                    $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
-                    $image .= "</a>";
+                    $image_html = wp_get_attachment_image($attachment_id, 'thumbnail');
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">{!! $image_html !!}</a>',
+                        [
+                            'link' => $link,
+                            'image_html' => $image_html
+                        ]
+                    );
                 } else {
-                    $image  = "<a href='{$link}'>";
-                    $image .= "<div class='party-image-fallback'>";
-                    $image .= "<span class='dashicons dashicons-groups'></span>";
-                    $image .= "</div>";
-                    $image .= "</a>";
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">
+                            <div class="party-image-fallback">
+                                <span class="dashicons dashicons-groups"></span>
+                            </div>
+                        </a>',
+                        ['link' => $link]
+                    );
                 }
-
-                echo $image;
 
                 break;
             case 'party-shortening':

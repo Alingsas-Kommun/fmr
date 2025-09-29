@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\BoardController;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\RoleController;
+use Illuminate\Support\Facades\Blade;
 use function Roots\view;
 
 if (!defined('ABSPATH')) {
@@ -200,28 +201,34 @@ class Index extends \WP_List_Table
 
         $counts = $this->controller->getStatusCounts();
 
-        $views['all'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(remove_query_arg('period_status')),
-            $current === 'all' ? 'current' : '',
-            __('All', 'fmr'),
-            number_format_i18n($counts['all'])
+        $views['all'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(remove_query_arg('period_status')),
+                'class' => $current === 'all' ? 'current' : '',
+                'label' => __('All', 'fmr'),
+                'count' => number_format_i18n($counts['all'])
+            ]
         );
 
-        $views['ongoing'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(add_query_arg('period_status', 'ongoing')),
-            $current === 'ongoing' ? 'current' : '',
-            __('Ongoing', 'fmr'),
-            number_format_i18n($counts['ongoing'])
+        $views['ongoing'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(add_query_arg('period_status', 'ongoing')),
+                'class' => $current === 'ongoing' ? 'current' : '',
+                'label' => __('Ongoing', 'fmr'),
+                'count' => number_format_i18n($counts['ongoing'])
+            ]
         );
 
-        $views['past'] = sprintf(
-            '<a href="%s" class="%s">%s <span class="count">(%s)</span></a>',
-            esc_url(add_query_arg('period_status', 'past')),
-            $current === 'past' ? 'current' : '',
-            __('Past', 'fmr'),
-            number_format_i18n($counts['past'])
+        $views['past'] = Blade::render(
+            '<a href="{!! $url !!}" class="{{ $class }}">{!! $label !!} <span class="count">({!! $count !!})</span></a>',
+            [
+                'url' => esc_url(add_query_arg('period_status', 'past')),
+                'class' => $current === 'past' ? 'current' : '',
+                'label' => __('Past', 'fmr'),
+                'count' => number_format_i18n($counts['past'])
+            ]
         );
 
         return $views;
@@ -293,15 +300,24 @@ class Index extends \WP_List_Table
     protected function extra_tablenav($which)
     {
         if ($which === 'top') {
-            echo '<div class="export-actions">';
-            echo '<a href="' . esc_url(add_query_arg(['export' => 'excel'], $_SERVER['REQUEST_URI'])) . '" class="button button-secondary" title="' . __('Export to Excel', 'fmr') . '">';
-            echo '📊 ' . __('Export Excel', 'fmr');
-            echo '</a>';
-            
-            echo '<a href="' . esc_url(add_query_arg(['export' => 'csv'], $_SERVER['REQUEST_URI'])) . '" class="button button-secondary" title="' . __('Export to CSV', 'fmr') . '">';
-            echo '📄 ' . __('Export CSV', 'fmr');
-            echo '</a>';
-            echo '</div>';
+            echo Blade::render(
+                '<div class="export-actions">
+                    <a href="{!! $excel_url !!}" class="button button-secondary" title="{!! $excel_title !!}">
+                        📊 {!! $excel_label !!}
+                    </a>
+                    <a href="{!! $csv_url !!}" class="button button-secondary" title="{!! $csv_title !!}">
+                        📄 {!! $csv_label !!}
+                    </a>
+                </div>',
+                [
+                    'excel_url' => esc_url(add_query_arg(['export' => 'excel'], $_SERVER['REQUEST_URI'])),
+                    'excel_title' => __('Export to Excel', 'fmr'),
+                    'excel_label' => __('Export Excel', 'fmr'),
+                    'csv_url' => esc_url(add_query_arg(['export' => 'csv'], $_SERVER['REQUEST_URI'])),
+                    'csv_title' => __('Export to CSV', 'fmr'),
+                    'csv_label' => __('Export CSV', 'fmr')
+                ]
+            );
         }
     }
 
@@ -313,9 +329,9 @@ class Index extends \WP_List_Table
      */
     public function column_cb($item)
     {
-        return sprintf(
-            '<input type="checkbox" name="assignments[]" value="%s" />',
-            $item->id
+        return Blade::render(
+            '<input type="checkbox" name="assignments[]" value="{!! $value !!}" />',
+            ['value' => $item->id]
         );
     }
 
@@ -347,23 +363,27 @@ class Index extends \WP_List_Table
             'delete_assignment_' . $item->id
         );
 
-        $row_actions = sprintf(
+        $row_actions = Blade::render(
             '<div class="row-actions">
-                <span class="edit"><a href="%s">%s</a> | </span>
-                <span class="trash"><a href="%s" onclick="return confirm(\'%s\')">%s</a></span>
+                <span class="edit"><a href="{!! $edit_url !!}">{!! $edit_label !!}</a> | </span>
+                <span class="trash"><a href="{!! $delete_url !!}" onclick="return confirm(\'{!! $confirm_message !!}\')">{!! $delete_label !!}</a></span>
             </div>',
-            esc_url($edit_assignment_link),
-            __('Edit', 'fmr'),
-            esc_url($delete_link),
-            esc_js(__('Are you sure you want to delete this assignment?', 'fmr')),
-            __('Remove', 'fmr')
+            [
+                'edit_url' => esc_url($edit_assignment_link),
+                'edit_label' => __('Edit', 'fmr'),
+                'delete_url' => esc_url($delete_link),
+                'confirm_message' => esc_js(__('Are you sure you want to delete this assignment?', 'fmr')),
+                'delete_label' => __('Remove', 'fmr')
+            ]
         );
         
-        return sprintf(
-            '<strong><a href="%s">%s</a></strong>%s',
-            esc_url($edit_link),
-            $title,
-            $row_actions
+        return Blade::render(
+            '<strong><a href="{!! $edit_url !!}">{!! $title !!}</a></strong>{!! $row_actions !!}',
+            [
+                'edit_url' => esc_url($edit_link),
+                'title' => $title,
+                'row_actions' => $row_actions
+            ]
         );
     }
 
@@ -446,8 +466,14 @@ class Index extends \WP_List_Table
         );
 
         $role_name = esc_html($item->roleTerm->name);
-        
-        return sprintf('<a href="%s">%s</a>', esc_url($edit_link), $role_name);
+
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $name !!}</a>',
+            [
+                'url' => esc_url($edit_link),
+                'name' => $role_name
+            ]
+        );
     }
 
     /**
@@ -469,7 +495,13 @@ class Index extends \WP_List_Table
             $_SERVER['REQUEST_URI']
         );
 
-        return sprintf('<a href="%s">%s</a>', esc_url($filter_link), $author_name);
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $name !!}</a>',
+            [
+                'url' => esc_url($filter_link),
+                'name' => $author_name
+            ]
+        );
     }
 
     /**

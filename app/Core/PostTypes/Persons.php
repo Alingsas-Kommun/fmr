@@ -6,6 +6,7 @@ use App\Models\Post;
 
 use function App\Core\{arraySpliceAssoc};
 use App\Http\Controllers\Admin\PersonController;
+use Illuminate\Support\Facades\Blade;
 
 class Persons
 {
@@ -107,7 +108,7 @@ class Persons
         $columns_to_add = [];
         $columns_to_add[] = [
             'slug' => 'person-image',
-            'title' => __('Thumbnail', 'fmr'),
+            'title' => '',
             'priority' => 1,
         ];
         $columns_to_add[] = [
@@ -152,18 +153,24 @@ class Persons
                 $link = get_edit_post_link($post_id);
 
                 if ($attachment_id) {
-                    $image  = "<a href='{$link}'>";
-                    $image .= wp_get_attachment_image($attachment_id, 'thumbnail');
-                    $image .= "</a>";
+                    $image_html = wp_get_attachment_image($attachment_id, 'thumbnail');
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">{!! $image_html !!}</a>',
+                        [
+                            'link' => $link,
+                            'image_html' => $image_html
+                        ]
+                    );
                 } else {
-                    $image  = "<a href='{$link}'>";
-                    $image .= "<div class='person-image-fallback'>";
-                    $image .= "<span class='dashicons dashicons-businessperson'></span>";
-                    $image .= "</div>";
-                    $image .= "</a>";
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">
+                            <div class="person-image-fallback">
+                                <span class="dashicons dashicons-businessperson"></span>
+                            </div>
+                        </a>',
+                        ['link' => $link]
+                    );
                 }
-
-                echo $image;
 
                 break;
             case 'person-party':
@@ -171,7 +178,17 @@ class Persons
                 $partyTitle = get_the_title($partyId);
                 $partyLink = get_edit_post_link($partyId);
 
-                echo $partyTitle ? "<a href='{$partyLink}'>{$partyTitle}</a>" : '-';
+                if ($partyTitle) {
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">{!! $title !!}</a>',
+                        [
+                            'link' => $partyLink,
+                            'title' => $partyTitle
+                        ]
+                    );
+                } else {
+                    echo '-';
+                }
 
                 break;
             case 'person-birthday':
@@ -196,7 +213,8 @@ class Persons
     public static function personImageColumnWidth()
     {
         echo '<style type="text/css">';
-        echo 'td.person-image, td.person-image img, th#person-image { max-width: 50px !important; width: 50px !important; height: auto !important; } td.person-image img { border-radius: 50rem !important; aspect-ratio: 1/1 !important; object-fit: cover !important; }';
+        echo 'td.person-image, th#person-image {width: 50px;}';
+        echo 'td.person-image img { max-width: 50px !important; width: 50px !important; height: auto !important; } td.person-image img { border-radius: 50rem !important; aspect-ratio: 1/1 !important; object-fit: cover !important; }';
         echo '.person-image-fallback { width: 50px; height: 50px; border-radius: 50rem; background-color: #e5e5e5; display: flex; align-items: center; justify-content: center; color: white; } .person-image-fallback .dashicons { font-size: 24px; width: 24px; height: 24px; color: var(--wp-admin-color-primary, #0073aa); }';
         echo '</style>';
     }
@@ -217,17 +235,18 @@ class Persons
             if (!empty($parties)) {
                 $selected = isset($_GET['person_party']) ? $_GET['person_party'] : '';
                 
-                echo '<select name="person_party" id="person_party">';
-                echo '<option value="">' . __('All parties', 'fmr') . '</option>';
-                
+                $options = ['' => __('All parties', 'fmr')];
                 foreach ($parties as $party) {
-                    $selected_attr = selected($selected, $party->ID, false);
-                    echo '<option value="' . esc_attr($party->ID) . '"' . $selected_attr . '>';
-                    echo esc_html($party->post_title);
-                    echo '</option>';
+                    $options[$party->ID] = $party->post_title;
                 }
                 
-                echo '</select>';
+                echo Blade::render(
+                    '<x-admin.select-field :full-width="false" id="person_party" name="person_party" :value="$selected" :optional="true" :options="$options" />',
+                    [
+                        'selected' => $selected,
+                        'options' => $options
+                    ]
+                );
             }
         }
     }

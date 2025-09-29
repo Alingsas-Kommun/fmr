@@ -12,6 +12,7 @@ class SelectField extends Component
     public $optional;
     public $label;
     public $description;
+    public $fullWidth;
     public $options;
 
     /**
@@ -24,6 +25,7 @@ class SelectField extends Component
         bool $optional = false,
         string $label = '',
         string $description = '',
+        bool $fullWidth = false,
         array $options = []
     ) {
         $this->id = $id;
@@ -32,6 +34,7 @@ class SelectField extends Component
         $this->optional = $optional;
         $this->label = $label;
         $this->description = $description;
+        $this->fullWidth = $fullWidth;
         $this->options = $options;
     }
 
