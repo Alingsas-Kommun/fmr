@@ -106,18 +106,10 @@ class DecisionAuthorityController
      */
     public function getStatusCounts()
     {
-        $today = date('Y-m-d');
-
         return [
             'all' => DecisionAuthority::count(),
-            'ongoing' => DecisionAuthority::where(function($query) use ($today) {
-                $query->where('start_date', '<=', $today)
-                    ->where(function($q) use ($today) {
-                        $q->where('end_date', '>=', $today)
-                            ->orWhereNull('end_date');
-                    });
-            })->count(),
-            'past' => DecisionAuthority::where('end_date', '<', $today)->count()
+            'ongoing' => DecisionAuthority::active()->count(),
+            'past' => DecisionAuthority::inactive()->count()
         ];
     }
 
@@ -129,9 +121,53 @@ class DecisionAuthorityController
      */
     public function getPaginatedDecisionAuthorities($args = [])
     {
+        $query = $this->buildFilteredQuery($args);
+
+        // Get total before pagination
+        $total_items = $query->count();
+
+        // Handle pagination
+        $per_page = $args['per_page'] ?? 15;
+        $current_page = $args['current_page'] ?? 1;
+
+        $items = $query->skip(($current_page - 1) * $per_page)
+            ->take($per_page)
+            ->get();
+
+        return [
+            'items' => $items,
+            'total_items' => $total_items,
+            'per_page' => $per_page,
+            'total_pages' => ceil($total_items / $per_page)
+        ];
+    }
+
+    /**
+     * Build a filtered and sorted query for decision authorities.
+     * This method is shared between pagination and export.
+     *
+     * @param array $args
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function buildFilteredQuery($args = [])
+    {
         $query = DecisionAuthority::with(['board', 'typeTerm', 'author']);
 
-        // Handle sorting
+        $this->applySorting($query, $args);
+        $this->applyFilters($query, $args);
+
+        return $query;
+    }
+
+    /**
+     * Apply sorting to the query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array $args
+     * @return void
+     */
+    private function applySorting($query, $args)
+    {
         $orderby = $args['orderby'] ?? 'id';
         $order = isset($args['order']) ? strtolower($args['order']) : 'desc';
 
@@ -155,32 +191,45 @@ class DecisionAuthorityController
                 $query->orderBy('id', 'desc');
                 break;
         }
+    }
 
+    /**
+     * Apply filters to the query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array $args
+     * @return void
+     */
+    private function applyFilters($query, $args)
+    {
+        // Handle period status filter
         $period_status = $args['period_status'] ?? 'all';
-        $today = date('Y-m-d');
 
         if ($period_status === 'ongoing') {
-            $query->where(function($q) use ($today) {
-                $q->where('start_date', '<=', $today)
-                    ->where(function($q) use ($today) {
-                        $q->where('end_date', '>=', $today)
-                            ->orWhereNull('end_date');
-                    });
-            });
+            $query->ongoing();
         } elseif ($period_status === 'past') {
-            $query->where('end_date', '<', $today);
+            $query->past();
         }
 
+        // Handle additional filters
         if (!empty($args['board_filter'])) {
             $query->where('board_id', $args['board_filter']);
         }
 
         if (!empty($args['start_date'])) {
-            $query->where('start_date', '>=', $args['start_date']);
+            $query->where('start_date', '<=', $args['start_date'])
+                  ->where(function($q) use ($args) {
+                      $q->where('end_date', '>=', $args['start_date'])
+                        ->orWhereNull('end_date');
+                  });
         }
 
         if (!empty($args['end_date'])) {
-            $query->where('end_date', '<=', $args['end_date']);
+            $query->where('start_date', '<=', $args['end_date'])
+                  ->where(function($q) use ($args) {
+                      $q->where('end_date', '>=', $args['end_date'])
+                        ->orWhereNull('end_date');
+                  });
         }
 
         if (!empty($args['author_filter'])) {
@@ -206,23 +255,5 @@ class DecisionAuthorityController
                     ->orWhere('end_date', 'like', '%' . $search . '%');
             });
         }
-
-        // Get total before pagination
-        $total_items = $query->count();
-
-        // Handle pagination
-        $per_page = $args['per_page'] ?? 15;
-        $current_page = $args['current_page'] ?? 1;
-
-        $items = $query->skip(($current_page - 1) * $per_page)
-            ->take($per_page)
-            ->get();
-
-        return [
-            'items' => $items,
-            'total_items' => $total_items,
-            'per_page' => $per_page,
-            'total_pages' => ceil($total_items / $per_page)
-        ];
     }
 }

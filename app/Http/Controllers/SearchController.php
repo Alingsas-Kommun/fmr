@@ -34,7 +34,7 @@ class SearchController extends Controller
             ->limit(10)
             ->get();
 
-        return $this->transformSimpleResults($persons, $query);
+        return $this->transformResults($persons);
     }
 
     /**
@@ -51,8 +51,7 @@ class SearchController extends Controller
             ->with('party')
             ->published()
             ->whereHas('personAssignments', function ($assignQ) {
-                $assignQ->where('period_start', '<=', now())
-                        ->where('period_end', '>=', now());
+                $assignQ->active();
             });
 
         // Add search criteria if query is provided
@@ -83,7 +82,7 @@ class SearchController extends Controller
             ])
             ->get();
 
-        return $this->transformAdvancedResults($persons);
+        return $this->transformResults($persons);
     }
 
     /**
@@ -95,8 +94,7 @@ class SearchController extends Controller
             ->with('party')
             ->published()
             ->whereHas('personAssignments', function ($assignQ) {
-                $assignQ->where('period_start', '<=', now())
-                        ->where('period_end', '>=', now());
+                $assignQ->active();
             })
             ->where(function ($q) use ($query) {
                 // Search by post title
@@ -123,16 +121,14 @@ class SearchController extends Controller
                   })
                   // Search by role (active assignments only)
                   ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
-                      $assignQ->where('period_start', '<=', now())
-                              ->where('period_end', '>=', now())
+                      $assignQ->active()
                               ->whereHas('roleTerm', function ($roleQ) use ($query) {
                                   $roleQ->where('name', 'like', '%' . $query . '%');
                               });
                   })
                   // Search by board (active assignments only)
                   ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
-                      $assignQ->where('period_start', '<=', now())
-                              ->where('period_end', '>=', now())
+                      $assignQ->active()
                               ->whereHas('decisionAuthority', function ($daQ) use ($query) {
                                   $daQ->whereHas('board', function ($boardQ) use ($query) {
                                       $boardQ->where('post_title', 'like', '%' . $query . '%');
@@ -150,8 +146,7 @@ class SearchController extends Controller
         // Apply board filter (only active assignments)
         if ($boardId) {
             $query->whereHas('personAssignments', function ($q) use ($boardId) {
-                $q->where('period_start', '<=', now())
-                  ->where('period_end', '>=', now())
+                $q->active()
                   ->whereHas('decisionAuthority', function ($subQ) use ($boardId) {
                       $subQ->where('board_id', $boardId);
                   });
@@ -169,8 +164,7 @@ class SearchController extends Controller
         // Apply role filter (only active assignments)
         if ($roleId) {
             $query->whereHas('personAssignments', function ($q) use ($roleId) {
-                $q->where('period_start', '<=', now())
-                  ->where('period_end', '>=', now())
+                $q->active()
                   ->where('role_term_id', $roleId);
             });
         }
@@ -178,11 +172,11 @@ class SearchController extends Controller
 
 
     /**
-     * Transform simple search results.
+     * Transform search results.
      */
-    private function transformSimpleResults($persons, string $query)
+    private function transformResults($persons)
     {
-        return $persons->map(function ($person) use ($query) {
+        return $persons->map(function ($person) {
             $firstname = $person->getMeta('person_firstname');
             $lastname = $person->getMeta('person_lastname');
             $fullName = trim($firstname . ' ' . $lastname);
@@ -193,6 +187,8 @@ class SearchController extends Controller
             return (object) [
                 'id' => $person->ID,
                 'title' => $fullName,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
                 'thumbnail' => $person->thumbnail(),
                 'url' => get_permalink($person->ID),
                 'type' => 'person',
@@ -205,33 +201,4 @@ class SearchController extends Controller
             ];
         });
     }
-
-    /**
-     * Transform advanced search results.
-     */
-    private function transformAdvancedResults($persons)
-    {
-        return $persons->map(function ($person) {
-            $firstname = $person->getMeta('person_firstname');
-            $lastname = $person->getMeta('person_lastname');
-            
-            // Get party from BelongsToMeta relationship
-            $party = $person->party;
-            
-            return (object) [
-                'id' => $person->ID,
-                'title' => $person->post_title,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'party' => $party ? (object) [
-                    'id' => $party->ID,
-                    'title' => $party->post_title,
-                    'thumbnail' => $party->thumbnail('w-4 h-4'),
-                    'url' => get_permalink($party->ID),
-                ] : null,
-                'url' => get_permalink($person->ID),
-            ];
-        });
-    }
-
 }

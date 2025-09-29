@@ -13,11 +13,8 @@ class AssignmentController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Assignment::with(['board', 'decisionAuthority', 'person', 'roleTerm']);
-
-        $today = now()->toDateString();
-        $query->where('period_start', '<=', $today)
-                ->where('period_end', '>=', $today);
+        $query = Assignment::with(['board', 'decisionAuthority', 'person', 'roleTerm'])
+            ->active();
 
         // Filter by role if provided
         if ($request->filled('role')) {

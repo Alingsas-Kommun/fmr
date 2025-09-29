@@ -93,4 +93,48 @@ class Assignment extends Model
     {
         return $this->belongsTo(User::class, 'author_id', 'ID');
     }
+
+    /**
+     * Scope a query to only include active assignments (ongoing).
+     */
+    public function scopeActive($query)
+    {
+        $today = now();
+        
+        return $query->where(function($q) use ($today) {
+            $q->where('period_start', '<=', $today)
+                ->where(function($q) use ($today) {
+                    $q->where('period_end', '>=', $today)
+                        ->orWhereNull('period_end');
+                });
+        });
+    }
+
+    /**
+     * Scope a query to only include inactive assignments (past).
+     */
+    public function scopeInactive($query)
+    {
+        $today = now();
+        
+        return $query->where('period_end', '<', $today);
+    }
+
+    /**
+     * Scope a query to only include assignments that are currently ongoing.
+     * This is an alias for the active scope for better readability.
+     */
+    public function scopeOngoing($query)
+    {
+        return $query->active();
+    }
+
+    /**
+     * Scope a query to only include assignments that have ended.
+     * This is an alias for the inactive scope for better readability.
+     */
+    public function scopePast($query)
+    {
+        return $query->inactive();
+    }
 }

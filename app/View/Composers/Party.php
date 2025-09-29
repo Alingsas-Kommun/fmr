@@ -130,15 +130,9 @@ class Party extends Composer
             ->orderBy('post_title');
 
         if ($has_active_assignments) {
-            $persons->whereHas('personAssignments', function ($assignQ) {
-                $assignQ->where('period_start', '<=', now())
-                        ->where('period_end', '>=', now());
-            });
+            $persons->activeAssignments();
         } else {
-            $persons->whereDoesntHave('personAssignments', function ($assignQ) {
-                $assignQ->where('period_start', '<=', now())
-                        ->where('period_end', '>=', now());
-            });
+            $persons->inactiveAssignments();
         }
 
         $persons = $persons->get();

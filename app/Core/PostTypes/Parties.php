@@ -208,26 +208,22 @@ class Parties
      * Get party members with optional active assignment filter
      *
      * @param int $party_id
-     * @param bool $has_active_assignments
+     * @param bool $active
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    private static function getPartyMembers($party_id, $has_active_assignments = true)
-    {
-        $now = now();
-        
+    private static function getPartyMembers($party_id, $active = true)
+    {   
         $query = Post::persons()
             ->published()
             ->withMeta('person_party', $party_id);
 
-        if ($has_active_assignments) {
-            $query->whereHas('personAssignments', function($query) use ($now) {
-                $query->where('period_start', '<=', $now)
-                      ->where('period_end', '>=', $now);
+        if ($active) {
+            $query->whereHas('personAssignments', function($query) {
+                $query->active();
             });
         } else {
-            $query->whereDoesntHave('personAssignments', function($query) use ($now) {
-                $query->where('period_start', '<=', $now)
-                      ->where('period_end', '>=', $now);
+            $query->whereDoesntHave('personAssignments', function($query) {
+                $query->active();
             });
         }
 

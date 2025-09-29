@@ -44,25 +44,11 @@ class Post extends Model
     }
 
     /**
-     * Get assignments where this post is the board
-     */
-    public function boardAssignments()
-    {
-        return $this->hasMany(Assignment::class, 'board_id', 'ID')
-            ->with('person')
-            ->orderBy('role');
-    }
-
-    /**
      * Get active assignments
      */
     public function activeAssignments()
     {
-        $relation = $this->post_type === 'board' ? 'boardAssignments' : 'personAssignments';
-
-        return $this->$relation()
-            ->where('period_start', '<=', now())
-            ->where('period_end', '>=', now());
+        return $this->personAssignments()->active();
     }
 
     /**
@@ -253,6 +239,20 @@ class Post extends Model
         return $query->whereHas('meta', function ($query) use ($key, $value) {
             $query->where('meta_key', $key)
                 ->where('meta_value', $value);
+        });
+    }
+
+    public function scopeActiveAssignments($query)
+    {
+        return $query->whereHas('personAssignments', function($query) {
+            $query->active();
+        });
+    }
+
+    public function scopeInactiveAssignments($query)
+    {
+        return $query->whereDoesntHave('personAssignments', function($query) {
+            $query->active();
         });
     }
 }

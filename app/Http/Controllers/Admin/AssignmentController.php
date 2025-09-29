@@ -119,18 +119,10 @@ class AssignmentController
      */
     public function getStatusCounts()
     {
-        $today = date('Y-m-d');
-
         return [
             'all' => Assignment::count(),
-            'ongoing' => Assignment::where(function($query) use ($today) {
-                $query->where('period_start', '<=', $today)
-                    ->where(function($q) use ($today) {
-                        $q->where('period_end', '>=', $today)
-                            ->orWhereNull('period_end');
-                    });
-            })->count(),
-            'past' => Assignment::where('period_end', '<', $today)->count()
+            'ongoing' => Assignment::active()->count(),
+            'past' => Assignment::inactive()->count()
         ];
     }
 
@@ -250,18 +242,11 @@ class AssignmentController
     {
         // Handle period status filter
         $period_status = $args['period_status'] ?? 'all';
-        $today = date('Y-m-d');
 
         if ($period_status === 'ongoing') {
-            $query->where(function($q) use ($today) {
-                $q->where('period_start', '<=', $today)
-                    ->where(function($q) use ($today) {
-                        $q->where('period_end', '>=', $today)
-                            ->orWhereNull('period_end');
-                    });
-            });
+            $query->active();
         } elseif ($period_status === 'past') {
-            $query->where('period_end', '<', $today);
+            $query->inactive();
         }
 
         // Handle additional filters
@@ -280,11 +265,19 @@ class AssignmentController
         }
 
         if (!empty($args['period_start'])) {
-            $query->where('period_start', '>=', $args['period_start']);
+            $query->where('period_start', '<=', $args['period_start'])
+                  ->where(function($q) use ($args) {
+                      $q->where('period_end', '>=', $args['period_start'])
+                        ->orWhereNull('period_end');
+                  });
         }
 
         if (!empty($args['period_end'])) {
-            $query->where('period_end', '<=', $args['period_end']);
+            $query->where('period_start', '<=', $args['period_end'])
+                  ->where(function($q) use ($args) {
+                      $q->where('period_end', '>=', $args['period_end'])
+                        ->orWhereNull('period_end');
+                  });
         }
 
         if (!empty($args['author_filter'])) {

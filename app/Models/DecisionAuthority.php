@@ -70,4 +70,48 @@ class DecisionAuthority extends Model
     {
         return $this->belongsTo(User::class, 'author_id', 'ID');
     }
+
+    /**
+     * Scope a query to only include active decision authorities (ongoing).
+     */
+    public function scopeActive($query)
+    {
+        $today = now();
+        
+        return $query->where(function($q) use ($today) {
+            $q->where('start_date', '<=', $today)
+                ->where(function($q) use ($today) {
+                    $q->where('end_date', '>=', $today)
+                        ->orWhereNull('end_date');
+                });
+        });
+    }
+
+    /**
+     * Scope a query to only include inactive decision authorities (past).
+     */
+    public function scopeInactive($query)
+    {
+        $today = now();
+        
+        return $query->where('end_date', '<', $today);
+    }
+
+    /**
+     * Scope a query to only include decision authorities that are currently ongoing.
+     * This is an alias for the active scope for better readability.
+     */
+    public function scopeOngoing($query)
+    {
+        return $query->active();
+    }
+
+    /**
+     * Scope a query to only include decision authorities that have ended.
+     * This is an alias for the inactive scope for better readability.
+     */
+    public function scopePast($query)
+    {
+        return $query->inactive();
+    }
 }

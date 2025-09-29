@@ -16,12 +16,8 @@ class DecisionAuthorityController extends Controller
      */
     public function index(Request $request)
     {
-        $query = DecisionAuthority::with(['board', 'typeTerm']);
-
-        // Only show active decision authorities
-        $today = now()->toDateString();
-        $query->where('start_date', '<=', $today)
-              ->where('end_date', '>=', $today);
+        $query = DecisionAuthority::with(['board', 'typeTerm'])
+            ->active();
 
         // Filter by type if provided
         if ($request->filled('type')) {
@@ -72,11 +68,9 @@ class DecisionAuthorityController extends Controller
         // Load the typeTerm relationship
         $decisionAuthority->load('typeTerm');
         
-        $today = now()->toDateString();
         $activeAssignments = $decisionAuthority->assignments()
             ->with('person', 'roleTerm', 'board')
-            ->where('period_start', '<=', $today)
-            ->where('period_end', '>=', $today)
+            ->active()
             ->get();
 
         return view('decision-authorities.show', [

@@ -24,13 +24,7 @@ class HomeController extends Controller
             ->get();
 
         $decisionAuthorities = DecisionAuthority::with(['board', 'typeTerm'])
-            ->where(function($query) {
-                $query->where('start_date', '<=', now())
-                    ->where(function($q) {
-                        $q->where('end_date', '>=', now())
-                            ->orWhereNull('end_date');
-                    });
-            })
+            ->ongoing()
             ->orderBy('title')
             ->get();
 

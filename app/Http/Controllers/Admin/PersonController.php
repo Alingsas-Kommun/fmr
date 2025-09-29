@@ -26,15 +26,12 @@ class PersonController
      * @return bool
      */
     public function isActive($person_id)
-    {
-        $now = now();
-        
+    {   
         return Post::where('ID', $person_id)
             ->published()
             ->type('person')
-            ->whereHas('personAssignments', function($query) use ($now) {
-                $query->where('period_start', '<=', $now)
-                      ->where('period_end', '>=', $now);
+            ->whereHas('personAssignments', function($query) {
+                $query->active();
             })
             ->exists();
     }

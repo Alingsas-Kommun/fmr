@@ -37,9 +37,7 @@ class AssignmentController extends Controller
             }
 
             if ($request->boolean('active')) {
-                $today = now()->toDateString();
-                $query->where('period_start', '<=', $today)
-                      ->where('period_end', '>=', $today);
+                $query->active();
             }
 
             // Date range filters
