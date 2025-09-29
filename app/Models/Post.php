@@ -136,8 +136,8 @@ class Post extends Model
     {
         $visibility = $this->getMetaVisibility($key);
         
-        // If not admin, return default if visibility is false
-        if (!$visibility && !is_admin()) {
+        // If user is logged out and visibility is false, return default
+        if (!$visibility && !is_user_logged_in()) {
             return $default;
         }
 
@@ -154,41 +154,12 @@ class Post extends Model
     }
 
     /**
-     * Set a meta value
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return void
-     */
-    public function setMeta($key, $value)
-    {
-        $this->meta()->updateOrCreate(
-            ['meta_key' => $key],
-            ['meta_value' => $value]
-        );
-    }
-
-    /**
-     * Get multiple meta values by keys
-     *
-     * @param array $keys
-     * @return array
-     */
-    public function getMetaValues(array $keys)
-    {
-        return $this->meta()
-            ->whereIn('meta_key', $keys)
-            ->pluck('meta_value', 'meta_key')
-            ->toArray();
-    }
-
-    /**
      * Get multiple meta values by keys with visibility check
      *
      * @param array $keys
      * @return array
      */
-    public function getVisibleMetaValues(array $keys)
+    public function getMetaValues(array $keys)
     {
         // Add visibility keys
         $visibilityKeys = array_map(function($key) {
@@ -197,22 +168,39 @@ class Post extends Model
 
         // Get all meta values in a single query
         $allMetaKeys = array_merge($keys, $visibilityKeys);
-        $metaValues = $this->getMetaValues($allMetaKeys);
+        $metaValues = $this->meta()
+            ->whereIn('meta_key', $allMetaKeys)
+            ->pluck('meta_value', 'meta_key')
+            ->toArray();
 
         // Process the results and check visibility
         $result = [];
+        
         foreach ($keys as $key) {
-            $visibilityKey = $key . '_visibility';
-            $isVisible = $metaValues[$visibilityKey] ?? true;
-            
-            if ($isVisible) {
-                $result[$key] = $metaValues[$key] ?? null;
-            } else {
-                $result[$key] = null;
-            }
+            $result[$key] = $this->processMetaValueWithVisibility($key, $metaValues);
         }
 
         return $result;
+    }
+
+    /**
+     * Process a single meta value with visibility check for logged out users
+     *
+     * @param string $key
+     * @param array $metaValues
+     * @return mixed
+     */
+    private function processMetaValueWithVisibility($key, $metaValues)
+    {
+        $visibilityKey = $key . '_visibility';
+        $isVisible = $metaValues[$visibilityKey] ?? true;
+        
+        // If user is logged out and visibility is false, return null
+        if (!$isVisible && !is_user_logged_in()) {
+            return null;
+        }
+        
+        return $metaValues[$key] ?? null;
     }
 
     /**

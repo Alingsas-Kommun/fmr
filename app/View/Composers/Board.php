@@ -118,6 +118,6 @@ class Board extends Composer
             return [];
         }
 
-        return $board->getVisibleMetaValues(static::$metaFields);
+        return $board->getMetaValues(static::$metaFields);
     }
 }

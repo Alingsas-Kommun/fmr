@@ -110,7 +110,7 @@ class Party extends Composer
             return [];
         }
 
-        return $party->getVisibleMetaValues(static::$metaFields);
+        return $party->getMetaValues(static::$metaFields);
     }
 
     /**

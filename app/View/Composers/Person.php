@@ -155,7 +155,7 @@ class Person extends Composer
     }
 
     /**
-     * Get all visible person meta fields in a single query.
+     * Get all person meta fields in a single query.
      */
     public function personMeta()
     {
@@ -165,6 +165,6 @@ class Person extends Composer
             return [];
         }
 
-        return $person->getVisibleMetaValues(static::$metaFields);
+        return $person->getMetaValues(static::$metaFields);
     }
 }
