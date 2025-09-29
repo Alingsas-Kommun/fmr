@@ -53,6 +53,7 @@ class Index extends \WP_List_Table
         ]);
 
         $this->controller = app(AssignmentController::class);
+        
     }
 
     /**
@@ -64,7 +65,7 @@ class Index extends \WP_List_Table
     {
         self::init();
         
-        add_menu_page(
+        $hook = add_menu_page(
             __('Assignments', 'fmr'),
             __('Assignments', 'fmr'),
             'manage_options',
@@ -85,6 +86,25 @@ class Index extends \WP_List_Table
 
         // Hook into admin actions
         add_action('admin_action_delete_assignment', [self::$instance, 'handle_delete_assignment']);
+
+        // Add screen options for per page
+        add_action("load-$hook", function() {
+            add_screen_option('per_page', array(
+                'label'   => __('Assignments per page', 'fmr'),
+                'default' => 20,
+                'option'  => 'edit_assignment_per_page'
+            ));
+        });
+
+        // Handle screen options saving ourselves
+        add_action('admin_init', function() {
+            if (isset($_POST['wp_screen_options']) && isset($_POST['wp_screen_options']['option']) && $_POST['wp_screen_options']['option'] === 'edit_assignment_per_page') {
+                $per_page = (int) $_POST['wp_screen_options']['value'];
+                if ($per_page > 0) {
+                    update_user_meta(get_current_user_id(), 'edit_assignment_per_page', $per_page);
+                }
+            }
+        });
     }
 
     /**
@@ -533,7 +553,7 @@ class Index extends \WP_List_Table
         ];
 
         $result = $this->controller->getPaginatedAssignments([
-            'per_page' => 15,
+            'per_page' => $this->get_items_per_page('edit_assignment_per_page'),
             'current_page' => $this->get_pagenum(),
             'orderby' => $_REQUEST['orderby'] ?? 'id',
             'order' => $_REQUEST['order'] ?? 'desc',

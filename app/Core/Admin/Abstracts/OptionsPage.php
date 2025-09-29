@@ -145,6 +145,12 @@ abstract class OptionsPage
      */
     public function setupMetaBoxes()
     {
+        // Register screen options for metabox position persistence
+        add_screen_option('layout_columns', [
+            'max' => 2,
+            'default' => 2
+        ]);
+
         // Register the publish meta box
         add_meta_box(
             $this->pageSlug . '_publish',
