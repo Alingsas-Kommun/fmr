@@ -41,26 +41,26 @@ msgstr "Skapa"
 msgid "Update"
 msgstr "Uppdatera"
 
-#: app/Core/Admin/Abstracts/EditPage.php:182
+#: app/Core/Admin/Abstracts/EditPage.php:188
 msgid "Publish"
 msgstr "Publicera"
 
-#: app/Core/Admin/Abstracts/EditPage.php:307
-#: app/Core/Admin/Abstracts/OptionsPage.php:256
+#: app/Core/Admin/Abstracts/EditPage.php:313
+#: app/Core/Admin/Abstracts/OptionsPage.php:262
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Du har inte tillräcklig behörighet för att komma åt den här sidan."
 
-#: app/Core/Admin/Abstracts/EditPage.php:311
-#: app/Core/Admin/Abstracts/OptionsPage.php:260
+#: app/Core/Admin/Abstracts/EditPage.php:317
+#: app/Core/Admin/Abstracts/OptionsPage.php:266
 msgid "Security check failed."
 msgstr "Säkerhetskontrollen misslyckades."
 
-#: app/Core/Admin/Abstracts/EditPage.php:326
+#: app/Core/Admin/Abstracts/EditPage.php:332
 msgid "Failed to save the object."
 msgstr "Det gick inte att spara objektet."
 
 #: app/Core/Admin/Abstracts/OptionsPage.php:112
-#: app/Core/Admin/Abstracts/OptionsPage.php:151
+#: app/Core/Admin/Abstracts/OptionsPage.php:157
 msgid "Save Configuration"
 msgstr "Spara konfiguration"
 
@@ -97,8 +97,8 @@ msgstr "Uppgiften har skapats."
 msgid "Assignment updated successfully."
 msgstr "Uppgiften har uppdaterats."
 
-#: app/Core/Admin/Assignments/Index.php:67
-#: app/Core/Admin/Assignments/Index.php:68
+#: app/Core/Admin/Assignments/Index.php:69
+#: app/Core/Admin/Assignments/Index.php:70
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:20
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
 #: resources/views/admin/assignments/index.blade.php:2
@@ -108,58 +108,58 @@ msgstr "Uppgiften har uppdaterats."
 msgid "Assignments"
 msgstr "Uppdrag"
 
-#: app/Core/Admin/Assignments/Index.php:78
-#: app/Core/Admin/Assignments/Index.php:79 app/Core/Taxonomies/Roles.php:23
+#: app/Core/Admin/Assignments/Index.php:80
+#: app/Core/Admin/Assignments/Index.php:81 app/Core/Taxonomies/Roles.php:23
 #: app/Core/Taxonomies/Roles.php:25
 msgid "Roles"
 msgstr "Roller"
 
-#: app/Core/Admin/Assignments/Index.php:100
-#: app/Core/Admin/Assignments/Index.php:146
-#: app/Core/Admin/Assignments/Index.php:170
-#: app/Core/Admin/DecisionAuthorities/Index.php:127
+#: app/Core/Admin/Assignments/Index.php:121
+#: app/Core/Admin/Assignments/Index.php:167
+#: app/Core/Admin/Assignments/Index.php:191
+#: app/Core/Admin/DecisionAuthorities/Index.php:147
 msgid "You do not have permission to perform this action."
 msgstr "Du har inte behörighet att utföra den här åtgärden."
 
-#: app/Core/Admin/Assignments/Index.php:135
-#: app/Core/Admin/DecisionAuthorities/Index.php:116
+#: app/Core/Admin/Assignments/Index.php:156
+#: app/Core/Admin/DecisionAuthorities/Index.php:136
 msgid "Invalid request."
 msgstr "Ogiltig begäran."
 
-#: app/Core/Admin/Assignments/Index.php:142
-#: app/Core/Admin/DecisionAuthorities/Index.php:123
+#: app/Core/Admin/Assignments/Index.php:163
+#: app/Core/Admin/DecisionAuthorities/Index.php:143
 msgid "Security check failed. Please try again."
 msgstr "Säkerhetskontrollen misslyckades. Försök igen."
 
-#: app/Core/Admin/Assignments/Index.php:207
-#: app/Core/Admin/DecisionAuthorities/Index.php:184
+#: app/Core/Admin/Assignments/Index.php:229
+#: app/Core/Admin/DecisionAuthorities/Index.php:205
 msgid "All"
 msgstr "Alla"
 
-#: app/Core/Admin/Assignments/Index.php:215
-#: app/Core/Admin/DecisionAuthorities/Index.php:192
+#: app/Core/Admin/Assignments/Index.php:239
+#: app/Core/Admin/DecisionAuthorities/Index.php:215
 msgid "Ongoing"
 msgstr "Pågående"
 
-#: app/Core/Admin/Assignments/Index.php:223
-#: app/Core/Admin/DecisionAuthorities/Index.php:200
+#: app/Core/Admin/Assignments/Index.php:249
+#: app/Core/Admin/DecisionAuthorities/Index.php:225
 msgid "Past"
 msgstr "Historiska"
 
-#: app/Core/Admin/Assignments/Index.php:238
-#: app/Core/Admin/DecisionAuthorities/Index.php:215
+#: app/Core/Admin/Assignments/Index.php:265
+#: app/Core/Admin/DecisionAuthorities/Index.php:241
 msgid "Delete"
 msgstr "Radera"
 
-#: app/Core/Admin/Assignments/Index.php:251
+#: app/Core/Admin/Assignments/Index.php:278
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:33
-#: app/Core/PostTypes/Persons.php:34
+#: app/Core/PostTypes/Persons.php:35
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:6
 #: resources/views/assignments/index.blade.php:62
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/Admin/Assignments/Index.php:252
+#: app/Core/Admin/Assignments/Index.php:279
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:42
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:43
 #: app/Core/Taxonomies/Roles.php:26
@@ -174,8 +174,8 @@ msgstr "Person"
 msgid "Role"
 msgstr "Roll"
 
-#: app/Core/Admin/Assignments/Index.php:253
-#: app/Core/Admin/DecisionAuthorities/Index.php:229
+#: app/Core/Admin/Assignments/Index.php:280
+#: app/Core/Admin/DecisionAuthorities/Index.php:255
 #: app/Core/PostTypes/Boards.php:30
 #: resources/views/admin/assignments/index.blade.php:33
 #: resources/views/admin/decision-authorities/index.blade.php:19
@@ -188,7 +188,7 @@ msgstr "Roll"
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
-#: app/Core/Admin/Assignments/Index.php:254
+#: app/Core/Admin/Assignments/Index.php:281
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:34
 #: app/Services/AssignmentExportService.php:102
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:43
@@ -198,8 +198,8 @@ msgstr "Nämnd/Styrelse"
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
-#: app/Core/Admin/Assignments/Index.php:255
-#: app/Core/Admin/DecisionAuthorities/Index.php:231
+#: app/Core/Admin/Assignments/Index.php:282
+#: app/Core/Admin/DecisionAuthorities/Index.php:257
 #: app/Services/AssignmentExportService.php:103
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:41
@@ -211,35 +211,35 @@ msgstr "Beslutsinstans"
 msgid "Period"
 msgstr "Period"
 
-#: app/Core/Admin/Assignments/Index.php:297
+#: app/Core/Admin/Assignments/Index.php:334
 msgid "Export to Excel"
 msgstr "Exportera Excel"
 
-#: app/Core/Admin/Assignments/Index.php:298
+#: app/Core/Admin/Assignments/Index.php:335
 #: resources/views/admin/anniversaries/index.blade.php:52
 msgid "Export Excel"
 msgstr "Exportera Excel"
 
-#: app/Core/Admin/Assignments/Index.php:301
+#: app/Core/Admin/Assignments/Index.php:337
 msgid "Export to CSV"
 msgstr "Exportera CSV"
 
-#: app/Core/Admin/Assignments/Index.php:302
+#: app/Core/Admin/Assignments/Index.php:338
 #: resources/views/admin/anniversaries/index.blade.php:56
 msgid "Export CSV"
 msgstr "Exportera CSV"
 
-#: app/Core/Admin/Assignments/Index.php:356
-#: app/Core/Admin/DecisionAuthorities/Index.php:302
+#: app/Core/Admin/Assignments/Index.php:393
+#: app/Core/Admin/DecisionAuthorities/Index.php:329
 msgid "Edit"
 msgstr "Redigera"
 
-#: app/Core/Admin/Assignments/Index.php:358
+#: app/Core/Admin/Assignments/Index.php:395
 msgid "Are you sure you want to delete this assignment?"
 msgstr "Är du säker på att du vill ta bort det här uppdraget?"
 
-#: app/Core/Admin/Assignments/Index.php:359
-#: app/Core/Admin/DecisionAuthorities/Index.php:305
+#: app/Core/Admin/Assignments/Index.php:396
+#: app/Core/Admin/DecisionAuthorities/Index.php:332
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -283,8 +283,8 @@ msgstr "Beslutsinstansen har skapats framgångsrikt."
 msgid "Decision authority updated successfully."
 msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:67
 #: app/Core/Admin/DecisionAuthorities/Index.php:68
+#: app/Core/Admin/DecisionAuthorities/Index.php:69
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:19
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
@@ -293,14 +293,14 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 msgid "Decision Authorities"
 msgstr "Beslutsinstanser"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:228
+#: app/Core/Admin/DecisionAuthorities/Index.php:254
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:32
 #: resources/views/decision-authorities/index.blade.php:53
 #: resources/views/partials/post-types/content-single-board.blade.php:121
 msgid "Title"
 msgstr "Titel"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:230
+#: app/Core/Admin/DecisionAuthorities/Index.php:256
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:39
 #: app/Core/Taxonomies/Types.php:26
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
@@ -311,7 +311,7 @@ msgstr "Titel"
 msgid "Type"
 msgstr "Typ"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:304
+#: app/Core/Admin/DecisionAuthorities/Index.php:331
 msgid "Are you sure you want to delete this decision authority?"
 msgstr "Är du säker på att du vill ta bort den här beslutsinstansen?"
 
@@ -381,13 +381,13 @@ msgstr "Allmänt"
 msgid "Category"
 msgstr "Kategori"
 
-#: app/Http/Controllers/HomeController.php:38
+#: app/Http/Controllers/HomeController.php:32
 msgid "Other"
 msgstr "Övrigt"
 
 #: app/Core/Admin/FieldGroups/BoardDetails.php:41
 #: app/Core/Admin/FieldGroups/PartyDetails.php:42
-#: app/Core/PostTypes/Boards.php:101 app/Core/PostTypes/Parties.php:110
+#: app/Core/PostTypes/Boards.php:101 app/Core/PostTypes/Parties.php:111
 msgid "Shortening"
 msgstr "Förkortning"
 
@@ -495,7 +495,7 @@ msgstr "Visa brödsmulor"
 #: app/Core/Admin/FieldGroups/General.php:123
 #: app/Core/Admin/FieldGroups/PersonDetails.php:101
 #: app/Core/Admin/FieldGroups/PersonDetails.php:109
-#: app/Core/PostTypes/Persons.php:184
+#: app/Core/PostTypes/Persons.php:201
 #: resources/views/admin/relation-handler/form.blade.php:134
 msgid "Yes"
 msgstr "Ja"
@@ -506,7 +506,7 @@ msgstr "Ja"
 #: app/Core/Admin/FieldGroups/General.php:124
 #: app/Core/Admin/FieldGroups/PersonDetails.php:102
 #: app/Core/Admin/FieldGroups/PersonDetails.php:110
-#: app/Core/PostTypes/Persons.php:184
+#: app/Core/PostTypes/Persons.php:201
 #: resources/views/admin/relation-handler/form.blade.php:134
 msgid "No"
 msgstr "Nej"
@@ -564,7 +564,7 @@ msgid "Description"
 msgstr "Beskrivning"
 
 #: app/Core/Admin/FieldGroups/PartyDetails.php:52
-#: app/Core/PostTypes/Parties.php:115
+#: app/Core/PostTypes/Parties.php:116
 #: resources/views/partials/post-types/content-single-party.blade.php:96
 msgid "Group Leader, City Council"
 msgstr "Gruppledare, kommunfullmäktige"
@@ -600,7 +600,7 @@ msgid "Politics Information"
 msgstr "Politikinformation"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:77
-#: app/Core/PostTypes/Parties.php:34 app/Core/PostTypes/Persons.php:115
+#: app/Core/PostTypes/Parties.php:35 app/Core/PostTypes/Persons.php:116
 #: resources/views/livewire/advanced-search.blade.php:83
 #: resources/views/livewire/advanced-search.blade.php:163
 #: resources/views/livewire/advanced-search.blade.php:218
@@ -695,8 +695,8 @@ msgctxt "Add New on Toolbar"
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
-#: app/Core/PostTypes/Boards.php:52 app/Core/PostTypes/Parties.php:61
-#: app/Core/PostTypes/Persons.php:65
+#: app/Core/PostTypes/Boards.php:52 app/Core/PostTypes/Parties.php:62
+#: app/Core/PostTypes/Persons.php:66
 msgid "Add new"
 msgstr "Lägg till ny"
 
@@ -740,164 +740,160 @@ msgstr "Inga nämnder/styrelser hittades i papperskorgen."
 msgid "boards"
 msgstr "namnd-styrelse"
 
-#: app/Core/PostTypes/Parties.php:35
-msgid "Parties"
-msgstr "Partier"
-
-#: app/Core/PostTypes/Parties.php:57
-msgctxt "Post type general name"
+#: app/Core/PostTypes/Parties.php:36
 msgid "Parties"
 msgstr "Partier"
 
 #: app/Core/PostTypes/Parties.php:58
+msgctxt "Post type general name"
+msgid "Parties"
+msgstr "Partier"
+
+#: app/Core/PostTypes/Parties.php:59
 msgctxt "Post type singular name"
 msgid "Party"
 msgstr "Parti"
 
-#: app/Core/PostTypes/Parties.php:59
+#: app/Core/PostTypes/Parties.php:60
 msgctxt "Admin Menu text"
 msgid "Parties"
 msgstr "Partier"
 
-#: app/Core/PostTypes/Parties.php:60
+#: app/Core/PostTypes/Parties.php:61
 msgctxt "Add New on Toolbar"
 msgid "Party"
 msgstr "Parti"
 
-#: app/Core/PostTypes/Parties.php:62
+#: app/Core/PostTypes/Parties.php:63
 msgid "Add new party"
 msgstr "Lägg till nytt parti"
 
-#: app/Core/PostTypes/Parties.php:63
+#: app/Core/PostTypes/Parties.php:64
 msgid "New party"
 msgstr "Nytt parti"
 
-#: app/Core/PostTypes/Parties.php:64
+#: app/Core/PostTypes/Parties.php:65
 msgid "Edit party"
 msgstr "Redigera parti"
 
-#: app/Core/PostTypes/Parties.php:65
+#: app/Core/PostTypes/Parties.php:66
 msgid "View party"
 msgstr "Visa parti"
 
-#: app/Core/PostTypes/Parties.php:66 app/Core/PostTypes/Persons.php:221
+#: app/Core/PostTypes/Parties.php:67 app/Core/PostTypes/Persons.php:238
 msgid "All parties"
 msgstr "Alla partier"
 
-#: app/Core/PostTypes/Parties.php:67
+#: app/Core/PostTypes/Parties.php:68
 msgid "Search parties"
 msgstr "Sök partier"
 
-#: app/Core/PostTypes/Parties.php:68
+#: app/Core/PostTypes/Parties.php:69
 msgid "Parent parties:"
 msgstr "Överordnat parti:"
 
-#: app/Core/PostTypes/Parties.php:69
+#: app/Core/PostTypes/Parties.php:70
 msgid "No parties found."
 msgstr "Inga partier hittades."
 
-#: app/Core/PostTypes/Parties.php:70
+#: app/Core/PostTypes/Parties.php:71
 msgid "No parties found in Trash."
 msgstr "Inga partier hittades i papperskorgen."
 
-#: app/Core/PostTypes/Parties.php:86
+#: app/Core/PostTypes/Parties.php:87
 msgid "parties"
 msgstr "partier"
 
-#: app/Core/PostTypes/Parties.php:172
+#: app/Core/PostTypes/Parties.php:178
 msgid "Party Members"
 msgstr "Partimedlemmar"
 
-#: app/Core/PostTypes/Persons.php:35
+#: app/Core/PostTypes/Persons.php:36
 #: resources/views/admin/assignments/index.blade.php:48
 msgid "Persons"
 msgstr "Personer"
 
-#: app/Core/PostTypes/Persons.php:61
+#: app/Core/PostTypes/Persons.php:62
 msgctxt "Post type general name"
 msgid "Persons"
 msgstr "Personer"
 
-#: app/Core/PostTypes/Persons.php:62
+#: app/Core/PostTypes/Persons.php:63
 msgctxt "Post type singular name"
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/PostTypes/Persons.php:63
+#: app/Core/PostTypes/Persons.php:64
 msgctxt "Admin Menu text"
 msgid "Persons"
 msgstr "Personer"
 
-#: app/Core/PostTypes/Persons.php:64
+#: app/Core/PostTypes/Persons.php:65
 msgctxt "Add New on Toolbar"
 msgid "Person"
 msgstr "Person"
 
-#: app/Core/PostTypes/Persons.php:66
+#: app/Core/PostTypes/Persons.php:67
 msgid "Add new person"
 msgstr "Lägg till ny person"
 
-#: app/Core/PostTypes/Persons.php:67
+#: app/Core/PostTypes/Persons.php:68
 msgid "New person"
 msgstr "Ny person"
 
-#: app/Core/PostTypes/Persons.php:68
+#: app/Core/PostTypes/Persons.php:69
 msgid "Edit person"
 msgstr "Redigera person"
 
-#: app/Core/PostTypes/Persons.php:69
+#: app/Core/PostTypes/Persons.php:70
 msgid "View person"
 msgstr "Visa person"
 
-#: app/Core/PostTypes/Persons.php:70
+#: app/Core/PostTypes/Persons.php:71
 #: resources/views/admin/assignments/index.blade.php:50
 msgid "All persons"
 msgstr "Alla personer"
 
-#: app/Core/PostTypes/Persons.php:71
+#: app/Core/PostTypes/Persons.php:72
 msgid "Search persons"
 msgstr "Sök personer"
 
-#: app/Core/PostTypes/Persons.php:72
+#: app/Core/PostTypes/Persons.php:73
 msgid "Parent persons:"
 msgstr "Överordnade personer:"
 
-#: app/Core/PostTypes/Persons.php:73
+#: app/Core/PostTypes/Persons.php:74
 msgid "No persons found."
 msgstr "Inga personer hittades."
 
-#: app/Core/PostTypes/Persons.php:74
+#: app/Core/PostTypes/Persons.php:75
 msgid "No persons found in Trash."
 msgstr "Inga personer hittades i papperskorgen."
 
-#: app/Core/PostTypes/Persons.php:90
+#: app/Core/PostTypes/Persons.php:91
 msgid "persons"
 msgstr "personer"
 
-#: app/Core/PostTypes/Persons.php:110
-msgid "Thumbnail"
-msgstr "Tumnagel"
-
-#: app/Core/PostTypes/Persons.php:120
+#: app/Core/PostTypes/Persons.php:121
 msgid "Birthday"
 msgstr "Födelsedag"
 
-#: app/Core/PostTypes/Persons.php:125
+#: app/Core/PostTypes/Persons.php:126
 #: resources/views/partials/post-types/content-single-person.blade.php:58
 msgid "Group Leader"
 msgstr "Gruppledare"
 
-#: app/Core/PostTypes/Persons.php:130
+#: app/Core/PostTypes/Persons.php:131
 msgid "Status"
 msgstr "Status"
 
 #: app/Core/Admin/FieldGroups/PersonDetails.php:98
-#: app/Core/PostTypes/Persons.php:190
+#: app/Core/PostTypes/Persons.php:207
 #: resources/views/admin/parties/party-members.blade.php:7
 msgid "Active"
 msgstr "Aktiv"
 
-#: app/Core/PostTypes/Persons.php:190
+#: app/Core/PostTypes/Persons.php:207
 #: resources/views/admin/parties/party-members.blade.php:13
 msgid "Inactive"
 msgstr "Inaktiv"
@@ -1202,11 +1198,11 @@ msgstr "Välj nämnd/styrelse"
 msgid "Select Type"
 msgstr "Välj typ"
 
-#: resources/views/admin/edit-page.blade.php:36
+#: resources/views/admin/edit-page.blade.php:40
 msgid "Enter title..."
 msgstr "Ange en rubrik…"
 
-#: resources/views/admin/edit-page.blade.php:47
+#: resources/views/admin/edit-page.blade.php:51
 msgid "Permalink:"
 msgstr "Permalänk:"
 
@@ -1497,8 +1493,8 @@ msgstr "Växla till ljust tema"
 msgid "Auto theme"
 msgstr "Automatiskt tema"
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:78
 #: app/Core/Admin/DecisionAuthorities/Index.php:79
+#: app/Core/Admin/DecisionAuthorities/Index.php:80
 #: app/Core/Taxonomies/Types.php:23 app/Core/Taxonomies/Types.php:25
 msgid "Types"
 msgstr "Typer"
@@ -1544,9 +1540,9 @@ msgstr "Nytt namn för typ"
 msgid "No types were found"
 msgstr "Inga typer hittades"
 
-#: app/Core/Admin/Assignments/Index.php:256
-#: app/Core/Admin/DecisionAuthorities/Index.php:232
-#: app/Core/PostTypes/Persons.php:136
+#: app/Core/Admin/Assignments/Index.php:283
+#: app/Core/Admin/DecisionAuthorities/Index.php:258
+#: app/Core/PostTypes/Persons.php:137
 msgid "Author"
 msgstr "Författare"
 
@@ -1563,3 +1559,11 @@ msgstr "Ingen typ tilldelad"
 #: resources/views/partials/post-types/content-single-party.blade.php:180
 msgid "No inactive members found for this party."
 msgstr "Inga inaktiva medlemmar hittades för det här partiet."
+
+#: app/Core/Admin/Assignments/Index.php:93
+msgid "Assignments per page"
+msgstr "Uppdrag per sida"
+
+#: app/Core/Admin/DecisionAuthorities/Index.php:92
+msgid "Decision Authorities per page"
+msgstr "Beslutsinstanser per sida"
