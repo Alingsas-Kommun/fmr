@@ -61,8 +61,8 @@ class AdminServiceProvider extends SageServiceProvider
      */
     public function boot(): void
     {
-        // Only boot admin services in admin context
-        if (!is_admin()) {
+        // Only boot admin services in admin context (including login, password reset, etc.)
+        if (!is_admin() && !$this->isLoginPage()) {
             return;
         }
 
@@ -177,5 +177,23 @@ class AdminServiceProvider extends SageServiceProvider
             })();
             JS
         );
+    }
+
+    /**
+     * Check if we're on a WordPress login page.
+     */
+    private function isLoginPage(): bool
+    {
+        global $pagenow;
+        
+        // Check for login page and related pages
+        $loginPages = [
+            'wp-login.php',
+            'wp-register.php',
+            'wp-signup.php'
+        ];
+        
+        return in_array($pagenow, $loginPages) || 
+               (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], 'wp-login.php') !== false);
     }
 }
