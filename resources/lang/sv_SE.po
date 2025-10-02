@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Förtroendemannaregister 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fmr\n"
-"POT-Creation-Date: 2025-09-27T11:15:32+00:00\n"
+"POT-Creation-Date: 2025-10-02T22:19:53+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -101,10 +101,12 @@ msgstr "Uppgiften har uppdaterats."
 #: app/Core/Admin/Assignments/Index.php:70
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:20
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
+#: app/View/Composers/Breadcrumbs.php:143
+#: app/View/Composers/Breadcrumbs.php:158
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
 #: resources/views/partials/header.blade.php:57
-#: resources/views/partials/post-types/content-single-person.blade.php:335
+#: resources/views/partials/post-types/content-single-person.blade.php:334
 msgid "Assignments"
 msgstr "Uppdrag"
 
@@ -113,6 +115,10 @@ msgstr "Uppdrag"
 #: app/Core/Taxonomies/Roles.php:25
 msgid "Roles"
 msgstr "Roller"
+
+#: app/Core/Admin/Assignments/Index.php:93
+msgid "Assignments per page"
+msgstr "Uppdrag per sida"
 
 #: app/Core/Admin/Assignments/Index.php:121
 #: app/Core/Admin/Assignments/Index.php:167
@@ -168,9 +174,9 @@ msgstr "Person"
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:22
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
-#: resources/views/decision-authorities/show.blade.php:64
+#: resources/views/decision-authorities/show.blade.php:62
 #: resources/views/livewire/advanced-search.blade.php:112
-#: resources/views/partials/post-types/content-single-person.blade.php:342
+#: resources/views/partials/post-types/content-single-person.blade.php:341
 msgid "Role"
 msgstr "Roll"
 
@@ -182,9 +188,9 @@ msgstr "Roll"
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:6
 #: resources/views/assignments/show.blade.php:55
 #: resources/views/decision-authorities/index.blade.php:60
-#: resources/views/decision-authorities/show.blade.php:12
+#: resources/views/decision-authorities/show.blade.php:10
 #: resources/views/livewire/advanced-search.blade.php:54
-#: resources/views/partials/post-types/content-single-person.blade.php:343
+#: resources/views/partials/post-types/content-single-person.blade.php:342
 msgid "Board"
 msgstr "Nämnd/Styrelse"
 
@@ -194,7 +200,7 @@ msgstr "Nämnd/Styrelse"
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:43
 #: resources/views/assignments/index.blade.php:55
 #: resources/views/assignments/show.blade.php:72
-#: resources/views/partials/post-types/content-single-person.blade.php:344
+#: resources/views/partials/post-types/content-single-person.blade.php:343
 msgid "Decision Authority"
 msgstr "Beslutsinstans"
 
@@ -204,12 +210,18 @@ msgstr "Beslutsinstans"
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:41
 #: resources/views/decision-authorities/index.blade.php:74
-#: resources/views/decision-authorities/show.blade.php:39
-#: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/decision-authorities/show.blade.php:37
+#: resources/views/decision-authorities/show.blade.php:66
 #: resources/views/partials/post-types/content-single-board.blade.php:129
-#: resources/views/partials/post-types/content-single-person.blade.php:345
+#: resources/views/partials/post-types/content-single-person.blade.php:344
 msgid "Period"
 msgstr "Period"
+
+#: app/Core/Admin/Assignments/Index.php:283
+#: app/Core/Admin/DecisionAuthorities/Index.php:258
+#: app/Core/PostTypes/Persons.php:137
+msgid "Author"
+msgstr "Författare"
 
 #: app/Core/Admin/Assignments/Index.php:334
 msgid "Export to Excel"
@@ -286,12 +298,24 @@ msgstr "Beslutsinstansen har uppdaterats framgångsrikt."
 #: app/Core/Admin/DecisionAuthorities/Index.php:68
 #: app/Core/Admin/DecisionAuthorities/Index.php:69
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:19
+#: app/View/Composers/Breadcrumbs.php:207
+#: app/View/Composers/Breadcrumbs.php:222
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
 #: resources/views/partials/header.blade.php:62
 #: resources/views/partials/post-types/content-single-board.blade.php:115
 msgid "Decision Authorities"
 msgstr "Beslutsinstanser"
+
+#: app/Core/Admin/DecisionAuthorities/Index.php:79
+#: app/Core/Admin/DecisionAuthorities/Index.php:80
+#: app/Core/Taxonomies/Types.php:23 app/Core/Taxonomies/Types.php:25
+msgid "Types"
+msgstr "Typer"
+
+#: app/Core/Admin/DecisionAuthorities/Index.php:92
+msgid "Decision Authorities per page"
+msgstr "Beslutsinstanser per sida"
 
 #: app/Core/Admin/DecisionAuthorities/Index.php:254
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:32
@@ -306,7 +330,7 @@ msgstr "Titel"
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
-#: resources/views/decision-authorities/show.blade.php:23
+#: resources/views/decision-authorities/show.blade.php:21
 #: resources/views/partials/post-types/content-single-board.blade.php:125
 msgid "Type"
 msgstr "Typ"
@@ -380,10 +404,6 @@ msgstr "Allmänt"
 #: app/Core/PostTypes/Boards.php:96
 msgid "Category"
 msgstr "Kategori"
-
-#: app/Http/Controllers/HomeController.php:32
-msgid "Other"
-msgstr "Övrigt"
 
 #: app/Core/Admin/FieldGroups/BoardDetails.php:41
 #: app/Core/Admin/FieldGroups/PartyDetails.php:42
@@ -611,6 +631,12 @@ msgstr "Parti"
 msgid "Total kilometers"
 msgstr "Totalt antal kilometer"
 
+#: app/Core/Admin/FieldGroups/PersonDetails.php:98
+#: app/Core/PostTypes/Persons.php:207
+#: resources/views/admin/parties/party-members.blade.php:7
+msgid "Active"
+msgstr "Aktiv"
+
 #: app/Core/Admin/FieldGroups/PersonDetails.php:106
 msgid "Group leader"
 msgstr "Gruppledare"
@@ -671,7 +697,15 @@ msgstr "beslutsinstanser"
 msgid "ongoing"
 msgstr "pågående"
 
-#: app/Core/PostTypes/Boards.php:31
+#: app/Core/Admin/Traits/FieldGroupTrait.php:216
+#: app/Core/Admin/Traits/FieldGroupTrait.php:249
+#: resources/views/admin/relation-handler/form.blade.php:71
+#: resources/views/admin/relation-handler/form.blade.php:100
+#, php-format
+msgid "Select %s"
+msgstr "Välj %s"
+
+#: app/Core/PostTypes/Boards.php:31 app/View/Composers/Breadcrumbs.php:117
 msgid "Boards"
 msgstr "Nämnder/Styrelser"
 
@@ -740,7 +774,7 @@ msgstr "Inga nämnder/styrelser hittades i papperskorgen."
 msgid "boards"
 msgstr "namnd-styrelse"
 
-#: app/Core/PostTypes/Parties.php:36
+#: app/Core/PostTypes/Parties.php:36 app/View/Composers/Breadcrumbs.php:109
 msgid "Parties"
 msgstr "Partier"
 
@@ -808,7 +842,7 @@ msgstr "partier"
 msgid "Party Members"
 msgstr "Partimedlemmar"
 
-#: app/Core/PostTypes/Persons.php:36
+#: app/Core/PostTypes/Persons.php:36 app/View/Composers/Breadcrumbs.php:101
 #: resources/views/admin/assignments/index.blade.php:48
 msgid "Persons"
 msgstr "Personer"
@@ -887,12 +921,6 @@ msgstr "Gruppledare"
 msgid "Status"
 msgstr "Status"
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:98
-#: app/Core/PostTypes/Persons.php:207
-#: resources/views/admin/parties/party-members.blade.php:7
-msgid "Active"
-msgstr "Aktiv"
-
 #: app/Core/PostTypes/Persons.php:207
 #: resources/views/admin/parties/party-members.blade.php:13
 msgid "Inactive"
@@ -941,6 +969,47 @@ msgstr "Ny roll"
 msgid "No roles were found"
 msgstr "Inga roller hittades"
 
+#: app/Core/Taxonomies/Types.php:27
+msgctxt "Admin menu name"
+msgid "Types"
+msgstr "Typer"
+
+#: app/Core/Taxonomies/Types.php:28
+msgid "Search types"
+msgstr "Sök typer"
+
+#: app/Core/Taxonomies/Types.php:29
+msgid "All types"
+msgstr "Alla typer"
+
+#: app/Core/Taxonomies/Types.php:30
+msgid "Parent type"
+msgstr "Överordnad typ"
+
+#: app/Core/Taxonomies/Types.php:31
+msgid "Parent type:"
+msgstr "Överordnad typ:"
+
+#: app/Core/Taxonomies/Types.php:32
+msgid "Edit type"
+msgstr "Redigera typ"
+
+#: app/Core/Taxonomies/Types.php:33
+msgid "Update type"
+msgstr "Uppdatera typ"
+
+#: app/Core/Taxonomies/Types.php:34
+msgid "Add new type"
+msgstr "Lägg till ny typ"
+
+#: app/Core/Taxonomies/Types.php:35
+msgid "New type name"
+msgstr "Nytt namn för typ"
+
+#: app/Core/Taxonomies/Types.php:36
+msgid "No types were found"
+msgstr "Inga typer hittades"
+
 #: app/Http/Controllers/Admin/AnniversaryController.php:92
 #: resources/views/admin/anniversaries/index.blade.php:77
 msgid "Position"
@@ -960,6 +1029,10 @@ msgstr "Okänd roll"
 #: resources/views/admin/anniversaries/index.blade.php:97
 msgid "Result:"
 msgstr "Resultat:"
+
+#: app/Http/Controllers/HomeController.php:35
+msgid "Other"
+msgstr "Övrigt"
 
 #: app/Services/AnniversaryService.php:190
 #, php-format
@@ -1037,6 +1110,35 @@ msgstr "Stad (hem)"
 #: app/Services/AssignmentExportService.php:175
 msgid "Unknown Authority"
 msgstr "Okänd beslutsinstans"
+
+#: app/View/Composers/Breadcrumbs.php:41
+msgid "Home"
+msgstr "Hem"
+
+#: app/View/Composers/Breadcrumbs.php:182
+#: app/View/Composers/Breadcrumbs.php:190
+msgid "Assignment Details"
+msgstr "Uppdragsdetaljer"
+
+#: app/View/Composers/Breadcrumbs.php:246
+#: app/View/Composers/Breadcrumbs.php:254
+msgid "Decision Authority Details"
+msgstr "Beslutsinstans detaljer"
+
+#: app/View/Composers/Breadcrumbs.php:271
+#: resources/views/livewire/advanced-search.blade.php:33
+#: resources/views/livewire/search.blade.php:3
+#: resources/views/livewire/search.blade.php:113
+msgid "Search"
+msgstr "Sök"
+
+#: app/View/Composers/Breadcrumbs.php:289
+msgid "Search Results"
+msgstr "Sökresultat"
+
+#: app/View/Composers/Breadcrumbs.php:306
+msgid "Style Guide"
+msgstr "Stilguide"
 
 #: app/View/Composers/Post.php:34
 msgid "Latest Posts"
@@ -1166,14 +1268,6 @@ msgstr "Generera ny nyckel"
 msgid "Generate Key"
 msgstr "Generera nyckel"
 
-#: app/Core/Admin/Traits/FieldGroupTrait.php:216
-#: app/Core/Admin/Traits/FieldGroupTrait.php:249
-#: resources/views/admin/relation-handler/form.blade.php:71
-#: resources/views/admin/relation-handler/form.blade.php:100
-#, php-format
-msgid "Select %s"
-msgstr "Välj %s"
-
 #: resources/views/admin/components/visibility-toggle.blade.php:14
 msgid "Public"
 msgstr "Offentlig"
@@ -1212,22 +1306,23 @@ msgid "Optional"
 msgstr "Valfritt"
 
 #: resources/views/admin/parties/party-members.blade.php:5
-#: resources/views/admin/party-members.blade.php:3
 #: resources/views/partials/post-types/content-single-party.blade.php:107
 msgid "Active Members"
 msgstr "Aktiva medlemmar"
 
 #: resources/views/admin/parties/party-members.blade.php:11
-#: resources/views/admin/party-members.blade.php:18
 #: resources/views/partials/post-types/content-single-party.blade.php:158
 msgid "Inactive Members"
 msgstr "Inaktiva medlemmar"
 
 #: resources/views/admin/parties/party-members.blade.php:44
-#: resources/views/admin/party-members.blade.php:33
 #: resources/views/partials/post-types/content-single-party.blade.php:150
 msgid "No members found for this party."
 msgstr "Inga medlemmar hittades för detta partiet."
+
+#: resources/views/admin/relation-handler/list.blade.php:5
+msgid "Loading..."
+msgstr "Laddar…"
 
 #: resources/views/admin/relation-handler/list.blade.php:11
 msgid "Cancel"
@@ -1276,24 +1371,24 @@ msgstr "Filter"
 msgid "Clear"
 msgstr "Töm"
 
-#: resources/views/assignments/index.blade.php:132
-#: resources/views/decision-authorities/show.blade.php:103
+#: resources/views/assignments/index.blade.php:124
+#: resources/views/decision-authorities/show.blade.php:101
 #: resources/views/partials/post-types/content-single-board.blade.php:170
-#: resources/views/partials/post-types/content-single-person.blade.php:385
+#: resources/views/partials/post-types/content-single-person.blade.php:384
 msgid "View"
 msgstr "Visa"
 
-#: resources/views/assignments/index.blade.php:141
-#: resources/views/partials/post-types/content-single-person.blade.php:394
+#: resources/views/assignments/index.blade.php:133
+#: resources/views/partials/post-types/content-single-person.blade.php:393
 msgid "No assignments found."
 msgstr "Inga uppdrag hittades."
 
-#: resources/views/assignments/index.blade.php:157
+#: resources/views/assignments/index.blade.php:149
 #: resources/views/decision-authorities/index.blade.php:139
 msgid "Previous"
 msgstr "Föregående"
 
-#: resources/views/assignments/index.blade.php:180
+#: resources/views/assignments/index.blade.php:172
 #: resources/views/decision-authorities/index.blade.php:162
 msgid "Next"
 msgstr "Nästa"
@@ -1311,26 +1406,32 @@ msgstr "Ingen beslutsinstans tilldelad"
 msgid "All Types"
 msgstr "Alla typer"
 
+#: resources/views/decision-authorities/index.blade.php:108
+#: resources/views/decision-authorities/show.blade.php:29
+#: resources/views/partials/post-types/content-single-board.blade.php:157
+msgid "No type assigned"
+msgstr "Ingen typ tilldelad"
+
 #: resources/views/decision-authorities/index.blade.php:123
 msgid "No decision authorities found."
 msgstr "Inga beslutsinstanser hittades."
 
-#: resources/views/decision-authorities/show.blade.php:52
+#: resources/views/decision-authorities/show.blade.php:50
 msgid "Active Assignments"
 msgstr "Aktiva uppdrag"
 
-#: resources/views/decision-authorities/show.blade.php:60
+#: resources/views/decision-authorities/show.blade.php:58
 msgid "Name"
 msgstr "Namn"
 
-#: resources/views/decision-authorities/show.blade.php:72
+#: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/post-types/content-single-board.blade.php:133
-#: resources/views/partials/post-types/content-single-person.blade.php:346
+#: resources/views/partials/post-types/content-single-person.blade.php:345
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: resources/views/decision-authorities/show.blade.php:111
-#: resources/views/decision-authorities/show.blade.php:121
+#: resources/views/decision-authorities/show.blade.php:109
+#: resources/views/decision-authorities/show.blade.php:119
 msgid "No active assignments found."
 msgstr "Inga aktiva uppdrag hittades."
 
@@ -1342,7 +1443,7 @@ msgstr "Hitta din politiker i Alingsås"
 msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
 msgstr "Sök bland uppdrag, partier och politiker i Alingsås kommun."
 
-#: resources/views/homepage.blade.php:55
+#: resources/views/homepage.blade.php:57
 msgid "Group Leaders"
 msgstr "Gruppledare"
 
@@ -1366,12 +1467,6 @@ msgstr "Sökterm"
 #: resources/views/livewire/search.blade.php:10
 msgid "Search elected officials..."
 msgstr "Sök förtroendevalda…"
-
-#: resources/views/livewire/advanced-search.blade.php:33
-#: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:113
-msgid "Search"
-msgstr "Sök"
 
 #: resources/views/livewire/advanced-search.blade.php:64
 msgid "All Boards"
@@ -1448,13 +1543,13 @@ msgstr "Logga ut"
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104
 #: resources/views/partials/post-types/content-single-person.blade.php:220
-#: resources/views/partials/post-types/content-single-person.blade.php:320
+#: resources/views/partials/post-types/content-single-person.blade.php:319
 msgid "Visiting Address"
 msgstr "Besöksadress"
 
-#: resources/views/partials/post-types/content-single-person.blade.php:100
-msgid "Birth Date"
-msgstr "Födelsedag"
+#: resources/views/partials/post-types/content-single-party.blade.php:180
+msgid "No inactive members found for this party."
+msgstr "Inga inaktiva medlemmar hittades för det här partiet."
 
 #: resources/views/partials/post-types/content-single-person.blade.php:48
 #: resources/views/partials/post-types/content-single-person.blade.php:111
@@ -1469,6 +1564,10 @@ msgstr "Dölj ytterligare information"
 msgid "Show Additional Information"
 msgstr "Visa ytterligare information"
 
+#: resources/views/partials/post-types/content-single-person.blade.php:100
+msgid "Birth Date"
+msgstr "Födelsedag"
+
 #: resources/js/frontend/themeSwitcher.js:51
 msgid "Light theme"
 msgstr "Ljust tema"
@@ -1476,6 +1575,10 @@ msgstr "Ljust tema"
 #: resources/js/frontend/themeSwitcher.js:52
 msgid "Dark theme"
 msgstr "Mörkt tema"
+
+#: resources/js/frontend/themeSwitcher.js:53
+msgid "Auto theme"
+msgstr "Automatiskt tema"
 
 #: resources/js/frontend/themeSwitcher.js:63
 msgid "Switch to dark theme"
@@ -1488,82 +1591,3 @@ msgstr "Växla till automatiskt tema"
 #: resources/js/frontend/themeSwitcher.js:65
 msgid "Switch to light theme"
 msgstr "Växla till ljust tema"
-
-#: resources/js/frontend/themeSwitcher.js:53
-msgid "Auto theme"
-msgstr "Automatiskt tema"
-
-#: app/Core/Admin/DecisionAuthorities/Index.php:79
-#: app/Core/Admin/DecisionAuthorities/Index.php:80
-#: app/Core/Taxonomies/Types.php:23 app/Core/Taxonomies/Types.php:25
-msgid "Types"
-msgstr "Typer"
-
-#: app/Core/Taxonomies/Types.php:27
-msgctxt "Admin menu name"
-msgid "Types"
-msgstr "Typer"
-
-#: app/Core/Taxonomies/Types.php:28
-msgid "Search types"
-msgstr "Sök typer"
-
-#: app/Core/Taxonomies/Types.php:29
-msgid "All types"
-msgstr "Alla typer"
-
-#: app/Core/Taxonomies/Types.php:30
-msgid "Parent type"
-msgstr "Överordnad typ"
-
-#: app/Core/Taxonomies/Types.php:31
-msgid "Parent type:"
-msgstr "Överordnad typ:"
-
-#: app/Core/Taxonomies/Types.php:32
-msgid "Edit type"
-msgstr "Redigera typ"
-
-#: app/Core/Taxonomies/Types.php:33
-msgid "Update type"
-msgstr "Uppdatera typ"
-
-#: app/Core/Taxonomies/Types.php:34
-msgid "Add new type"
-msgstr "Lägg till ny typ"
-
-#: app/Core/Taxonomies/Types.php:35
-msgid "New type name"
-msgstr "Nytt namn för typ"
-
-#: app/Core/Taxonomies/Types.php:36
-msgid "No types were found"
-msgstr "Inga typer hittades"
-
-#: app/Core/Admin/Assignments/Index.php:283
-#: app/Core/Admin/DecisionAuthorities/Index.php:258
-#: app/Core/PostTypes/Persons.php:137
-msgid "Author"
-msgstr "Författare"
-
-#: resources/views/admin/relation-handler/list.blade.php:5
-msgid "Loading..."
-msgstr "Laddar…"
-
-#: resources/views/decision-authorities/index.blade.php:108
-#: resources/views/decision-authorities/show.blade.php:31
-#: resources/views/partials/post-types/content-single-board.blade.php:157
-msgid "No type assigned"
-msgstr "Ingen typ tilldelad"
-
-#: resources/views/partials/post-types/content-single-party.blade.php:180
-msgid "No inactive members found for this party."
-msgstr "Inga inaktiva medlemmar hittades för det här partiet."
-
-#: app/Core/Admin/Assignments/Index.php:93
-msgid "Assignments per page"
-msgstr "Uppdrag per sida"
-
-#: app/Core/Admin/DecisionAuthorities/Index.php:92
-msgid "Decision Authorities per page"
-msgstr "Beslutsinstanser per sida"

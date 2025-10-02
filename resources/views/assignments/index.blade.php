@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mt-8">
+    <div class="mt-3">
         <h1 class="text-3xl font-bold mb-8">{{ __('Assignments', 'fmr') }}</h1>
 
         <div class="mb-3">

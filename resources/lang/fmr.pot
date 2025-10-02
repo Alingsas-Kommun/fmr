@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-29T23:37:23+00:00\n"
+"POT-Creation-Date: 2025-10-02T22:19:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -102,10 +102,12 @@ msgstr ""
 #: app/Core/Admin/Assignments/Index.php:70
 #: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:20
 #: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
+#: app/View/Composers/Breadcrumbs.php:143
+#: app/View/Composers/Breadcrumbs.php:158
 #: resources/views/admin/assignments/index.blade.php:2
 #: resources/views/assignments/index.blade.php:5
 #: resources/views/partials/header.blade.php:57
-#: resources/views/partials/post-types/content-single-person.blade.php:335
+#: resources/views/partials/post-types/content-single-person.blade.php:334
 msgid "Assignments"
 msgstr ""
 
@@ -174,9 +176,9 @@ msgstr ""
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:22
 #: resources/views/assignments/index.blade.php:16
 #: resources/views/assignments/index.blade.php:69
-#: resources/views/decision-authorities/show.blade.php:64
+#: resources/views/decision-authorities/show.blade.php:62
 #: resources/views/livewire/advanced-search.blade.php:112
-#: resources/views/partials/post-types/content-single-person.blade.php:342
+#: resources/views/partials/post-types/content-single-person.blade.php:341
 msgid "Role"
 msgstr ""
 
@@ -188,9 +190,9 @@ msgstr ""
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:6
 #: resources/views/assignments/show.blade.php:55
 #: resources/views/decision-authorities/index.blade.php:60
-#: resources/views/decision-authorities/show.blade.php:12
+#: resources/views/decision-authorities/show.blade.php:10
 #: resources/views/livewire/advanced-search.blade.php:54
-#: resources/views/partials/post-types/content-single-person.blade.php:343
+#: resources/views/partials/post-types/content-single-person.blade.php:342
 msgid "Board"
 msgstr ""
 
@@ -200,7 +202,7 @@ msgstr ""
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:43
 #: resources/views/assignments/index.blade.php:55
 #: resources/views/assignments/show.blade.php:72
-#: resources/views/partials/post-types/content-single-person.blade.php:344
+#: resources/views/partials/post-types/content-single-person.blade.php:343
 msgid "Decision Authority"
 msgstr ""
 
@@ -210,10 +212,10 @@ msgstr ""
 #: resources/views/assignments/index.blade.php:76
 #: resources/views/assignments/show.blade.php:41
 #: resources/views/decision-authorities/index.blade.php:74
-#: resources/views/decision-authorities/show.blade.php:39
-#: resources/views/decision-authorities/show.blade.php:68
+#: resources/views/decision-authorities/show.blade.php:37
+#: resources/views/decision-authorities/show.blade.php:66
 #: resources/views/partials/post-types/content-single-board.blade.php:129
-#: resources/views/partials/post-types/content-single-person.blade.php:345
+#: resources/views/partials/post-types/content-single-person.blade.php:344
 msgid "Period"
 msgstr ""
 
@@ -298,6 +300,8 @@ msgstr ""
 #: app/Core/Admin/DecisionAuthorities/Index.php:68
 #: app/Core/Admin/DecisionAuthorities/Index.php:69
 #: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:19
+#: app/View/Composers/Breadcrumbs.php:207
+#: app/View/Composers/Breadcrumbs.php:222
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/decision-authorities/index.blade.php:5
 #: resources/views/partials/header.blade.php:62
@@ -329,7 +333,7 @@ msgstr ""
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
 #: resources/views/decision-authorities/index.blade.php:16
 #: resources/views/decision-authorities/index.blade.php:67
-#: resources/views/decision-authorities/show.blade.php:23
+#: resources/views/decision-authorities/show.blade.php:21
 #: resources/views/partials/post-types/content-single-board.blade.php:125
 msgid "Type"
 msgstr ""
@@ -707,6 +711,7 @@ msgid "Select %s"
 msgstr ""
 
 #: app/Core/PostTypes/Boards.php:31
+#: app/View/Composers/Breadcrumbs.php:117
 msgid "Boards"
 msgstr ""
 
@@ -777,6 +782,7 @@ msgid "boards"
 msgstr ""
 
 #: app/Core/PostTypes/Parties.php:36
+#: app/View/Composers/Breadcrumbs.php:109
 msgid "Parties"
 msgstr ""
 
@@ -846,6 +852,7 @@ msgid "Party Members"
 msgstr ""
 
 #: app/Core/PostTypes/Persons.php:36
+#: app/View/Composers/Breadcrumbs.php:101
 #: resources/views/admin/assignments/index.blade.php:48
 msgid "Persons"
 msgstr ""
@@ -1033,7 +1040,7 @@ msgstr ""
 msgid "Result:"
 msgstr ""
 
-#: app/Http/Controllers/HomeController.php:32
+#: app/Http/Controllers/HomeController.php:35
 msgid "Other"
 msgstr ""
 
@@ -1112,6 +1119,35 @@ msgstr ""
 
 #: app/Services/AssignmentExportService.php:175
 msgid "Unknown Authority"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:41
+msgid "Home"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:182
+#: app/View/Composers/Breadcrumbs.php:190
+msgid "Assignment Details"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:246
+#: app/View/Composers/Breadcrumbs.php:254
+msgid "Decision Authority Details"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:271
+#: resources/views/livewire/advanced-search.blade.php:33
+#: resources/views/livewire/search.blade.php:3
+#: resources/views/livewire/search.blade.php:113
+msgid "Search"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:289
+msgid "Search Results"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:306
+msgid "Style Guide"
 msgstr ""
 
 #: app/View/Composers/Post.php:34
@@ -1280,19 +1316,16 @@ msgid "Optional"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:5
-#: resources/views/admin/party-members.blade.php:3
 #: resources/views/partials/post-types/content-single-party.blade.php:107
 msgid "Active Members"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:11
-#: resources/views/admin/party-members.blade.php:18
 #: resources/views/partials/post-types/content-single-party.blade.php:158
 msgid "Inactive Members"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:44
-#: resources/views/admin/party-members.blade.php:33
 #: resources/views/partials/post-types/content-single-party.blade.php:150
 msgid "No members found for this party."
 msgstr ""
@@ -1348,24 +1381,24 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:132
-#: resources/views/decision-authorities/show.blade.php:103
+#: resources/views/assignments/index.blade.php:124
+#: resources/views/decision-authorities/show.blade.php:101
 #: resources/views/partials/post-types/content-single-board.blade.php:170
-#: resources/views/partials/post-types/content-single-person.blade.php:385
+#: resources/views/partials/post-types/content-single-person.blade.php:384
 msgid "View"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:141
-#: resources/views/partials/post-types/content-single-person.blade.php:394
+#: resources/views/assignments/index.blade.php:133
+#: resources/views/partials/post-types/content-single-person.blade.php:393
 msgid "No assignments found."
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:157
+#: resources/views/assignments/index.blade.php:149
 #: resources/views/decision-authorities/index.blade.php:139
 msgid "Previous"
 msgstr ""
 
-#: resources/views/assignments/index.blade.php:180
+#: resources/views/assignments/index.blade.php:172
 #: resources/views/decision-authorities/index.blade.php:162
 msgid "Next"
 msgstr ""
@@ -1384,7 +1417,7 @@ msgid "All Types"
 msgstr ""
 
 #: resources/views/decision-authorities/index.blade.php:108
-#: resources/views/decision-authorities/show.blade.php:31
+#: resources/views/decision-authorities/show.blade.php:29
 #: resources/views/partials/post-types/content-single-board.blade.php:157
 msgid "No type assigned"
 msgstr ""
@@ -1393,22 +1426,22 @@ msgstr ""
 msgid "No decision authorities found."
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:52
+#: resources/views/decision-authorities/show.blade.php:50
 msgid "Active Assignments"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:60
+#: resources/views/decision-authorities/show.blade.php:58
 msgid "Name"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:72
+#: resources/views/decision-authorities/show.blade.php:70
 #: resources/views/partials/post-types/content-single-board.blade.php:133
-#: resources/views/partials/post-types/content-single-person.blade.php:346
+#: resources/views/partials/post-types/content-single-person.blade.php:345
 msgid "Actions"
 msgstr ""
 
-#: resources/views/decision-authorities/show.blade.php:111
-#: resources/views/decision-authorities/show.blade.php:121
+#: resources/views/decision-authorities/show.blade.php:109
+#: resources/views/decision-authorities/show.blade.php:119
 msgid "No active assignments found."
 msgstr ""
 
@@ -1420,7 +1453,7 @@ msgstr ""
 msgid "Search through assignments, parties and politicians in the municipality of Alingsås."
 msgstr ""
 
-#: resources/views/homepage.blade.php:55
+#: resources/views/homepage.blade.php:57
 msgid "Group Leaders"
 msgstr ""
 
@@ -1443,12 +1476,6 @@ msgstr ""
 #: resources/views/livewire/advanced-search.blade.php:22
 #: resources/views/livewire/search.blade.php:10
 msgid "Search elected officials..."
-msgstr ""
-
-#: resources/views/livewire/advanced-search.blade.php:33
-#: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:113
-msgid "Search"
 msgstr ""
 
 #: resources/views/livewire/advanced-search.blade.php:64
@@ -1526,7 +1553,7 @@ msgstr ""
 
 #: resources/views/partials/post-types/content-single-board.blade.php:104
 #: resources/views/partials/post-types/content-single-person.blade.php:220
-#: resources/views/partials/post-types/content-single-person.blade.php:320
+#: resources/views/partials/post-types/content-single-person.blade.php:319
 msgid "Visiting Address"
 msgstr ""
 

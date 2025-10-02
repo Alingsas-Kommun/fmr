@@ -20,6 +20,8 @@
             @include('partials.header')
 
             <main id="main" class="max-w-5xl px-4 mx-auto pb-8">
+                <x-breadcrumb :breadcrumbs="$breadcrumbs" />
+
                 @yield('content')
             </main>
         </div>
