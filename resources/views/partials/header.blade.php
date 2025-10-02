@@ -24,7 +24,7 @@
         <div 
             class="max-w-5xl px-4 mx-auto bg-white dark:bg-gray-50 border-white dark:border-gray-50 transition-all duration-300"
             :class="{
-                'max-w-5xl mx-auto bg-white/80 dark:bg-gray-100/80 backdrop-blur-xl backdrop-saturate-200 rounded-xl shadow-xl shadow-gray-200/20 border border-gray-300/30': scrolled,
+                'max-w-5xl mx-auto bg-white/80 dark:bg-gray-100/80 backdrop-blur-xl backdrop-saturate-200 rounded-xl shadow-xl shadow-gray-200/20 dark:shadow-transparent border border-gray-300/30': scrolled,
                 'max-w-5xl px-4 mx-auto bg-white dark:bg-gray-50 border-white dark:border-gray-50': !scrolled
             }"
         >
