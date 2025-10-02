@@ -4,7 +4,6 @@ namespace App\View\Composers;
 
 use App\Models\Post;
 use Roots\Acorn\View\Composer;
-use Illuminate\Support\Str;
 
 class Party extends Composer
 {
@@ -18,22 +17,6 @@ class Party extends Composer
         'partials.post-types.content-party',
     ];
 
-    /**
-     * List of meta fields to be passed via the party object.
-     *
-     * @var array
-     */
-    protected static $metaFields = [
-        'party_description',
-        'party_shortening',
-        'party_group_leader',
-        'party_address',
-        'party_zip',
-        'party_city',
-        'party_website',
-        'party_email',
-        'party_phone',
-    ];
 
     /**
      * Data to be passed to view before rendering.
@@ -43,15 +26,14 @@ class Party extends Composer
     public function with()
     {
         return [
-            'party' => $this->partyWithMeta(),
-            'thumbnail' => $this->thumbnail(),
-            'activeMembers' => $this->members(true),
-            'inactiveMembers' => is_user_logged_in() ? $this->members(false) : collect(),
+            'party' => $this->party(),
+            'activeMembers' => $this->members(active: true),
+            'inactiveMembers' => is_user_logged_in() ? $this->members(active:false) : collect(),
         ];
     }
 
     /**
-     * Retrieve the party object.
+     * Retrieve the party object with aggregated meta fields.
      */
     public function party()
     {
@@ -61,62 +43,15 @@ class Party extends Composer
             return null;
         }
 
-        return Post::find($partyId);
+        return Post::with(['meta'])
+            ->find($partyId)
+            ?->format();
     }
 
     /**
-     * Retrieve the party object with aggregated meta fields.
+     * Get all members for the party based on active status.
      */
-    public function partyWithMeta()
-    {
-        $party = $this->party();
-        
-        if (!$party) {
-            return null;
-        }
-
-        $metaValues = $this->partyMeta();
-        
-        foreach ($metaValues as $key => $value) {
-            $propertyName = Str::camel(Str::replace('party_', '', $key)); 
-            $party->$propertyName = $value;
-        }
-
-        return $party;
-    }
-
-    /**
-     * Get the thumbnail for the party.
-     */
-    public function thumbnail()
-    {
-        $party = $this->party();
-        
-        if (!$party) {
-            return null;
-        }
-
-        return $party->thumbnail();
-    }
-
-    /**
-     * Get all visible party meta fields in a single query.
-     */
-    public function partyMeta()
-    {
-        $party = $this->party();
-        
-        if (!$party) {
-            return [];
-        }
-
-        return $party->getMetaValues(static::$metaFields);
-    }
-
-    /**
-     * Get all members for the party.
-     */
-    public function members($has_active_assignments = true)
+    public function members($active = true)
     {
         $party = $this->party();
         
@@ -126,17 +61,16 @@ class Party extends Composer
 
         $persons = Post::persons()
             ->published()
-            ->withMeta('person_party', $party->ID)
+            ->withMeta('person_party', $party->id)
+            ->with(['meta'])
             ->orderBy('post_title');
 
-        if ($has_active_assignments) {
+        if ($active) {
             $persons->activeAssignments();
         } else {
             $persons->inactiveAssignments();
         }
 
-        $persons = $persons->get();
-
-        return $persons;
+        return $persons->get()->format();
     }
 }

@@ -29,14 +29,6 @@ class Post extends Model
     ];
 
     /**
-     * Create a new Eloquent collection instance.
-     */
-    public function newCollection(array $models = []): PostCollection
-    {
-        return new PostCollection($models);
-    }
-
-    /**
      * Get all post meta fields
      */
     public function meta()
@@ -50,7 +42,7 @@ class Post extends Model
     public function personAssignments()
     {
         return $this->hasMany(Assignment::class, 'person_id', 'ID')
-            ->with('board', 'roleTerm')
+            ->with(['board', 'roleTerm', 'decisionAuthority'])
             ->orderBy('period_start', 'desc');
     }
 
@@ -262,6 +254,14 @@ class Post extends Model
     public function format(): PostTransformer
     {
         return new PostTransformer($this);
+    }
+
+    /**
+     * Create a new Eloquent collection instance.
+     */
+    public function newCollection(array $models = []): PostCollection
+    {
+        return new PostCollection($models);
     }
 
     /**

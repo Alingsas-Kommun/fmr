@@ -3,11 +3,14 @@
 namespace App\Transformers;
 
 use App\Models\Post;
+use App\Services\FieldGroupService;
+use Illuminate\Support\Str;
 
 class PostTransformer
 {
     protected $post;
     protected $rawMeta;
+    protected $relations = [];
     
     // Core properties
     public readonly int $id;
@@ -17,9 +20,8 @@ class PostTransformer
     public readonly ?string $image;
     public readonly object $meta;
     
-    // Relation properties (only set if loaded)
-    public readonly ?object $party;
-    public readonly ?string $category;
+    // Relation properties (dynamically added if relations are loaded)
+    // Note: These are set in constructor only if relations exist
 
     public function __construct(Post $post)
     {
@@ -29,20 +31,29 @@ class PostTransformer
         // Set core properties
         $this->id = $this->post->ID;
         $this->name = $this->post->post_title;
-        $this->url = \get_permalink($this->post->ID);
+        $this->url = get_permalink($this->post->ID);
         $this->date = $this->post->post_date;
 
         // Set image property
         $thumbnailId = $this->rawMeta['_thumbnail_id'] ?? null;
         if ($thumbnailId) {
-            $this->image = \wp_get_attachment_image_url($thumbnailId, 'full');
+            $this->image = wp_get_attachment_image_url($thumbnailId, 'full');
         } else {
             $this->image = null;
         }
 
-        // Set relation properties if loaded
-        $this->party = $this->getPartyData();
-        $this->category = $this->getCategoryData();
+        // Set relation properties if loaded (stored in internal array)
+        $this->relations = [];
+        
+        $partyData = $this->getPartyData();
+        if ($partyData !== null) {
+            $this->relations['party'] = $partyData;
+        }
+        
+        $categoryData = $this->getCategoryData();
+        if ($categoryData !== null) {
+            $this->relations['category'] = $categoryData;
+        }
 
         // Create meta object with cleaned properties
         $this->meta = $this->buildMetaObject();
@@ -53,26 +64,15 @@ class PostTransformer
      */
     protected function buildMetaObject(): object
     {
-        $metaData = [];
+        $metaData = FieldGroupService::formatMetaValues($this->rawMeta, $this->post->post_type);
         
-        foreach ($this->rawMeta as $key => $value) {
-            // Skip system keys
-            if (in_array($key, ['_edit_lock', '_edit_last', '_thumbnail_id'])) {
-                continue;
-            }
-            
-            // Remove prefixes and visibility keys
-            if (str_ends_with($key, '_visibility')) {
-                continue;
-            }
-            
-            $cleanKey = $this->removePrefix($key);
-            $cleanValue = $this->convertToBoolean($value);
-            
-            $metaData[$cleanKey] = $cleanValue;
+        $camelCaseData = [];
+
+        foreach ($metaData as $key => $value) {
+            $camelCaseData[Str::camel($key)] = $value;
         }
         
-        return (object) $metaData;
+        return (object) $camelCaseData;
     }
 
     /**
@@ -114,26 +114,13 @@ class PostTransformer
         ]);
     }
 
-    // Meta methods
-    public function getMeta(): array
-    {
-        return $this->rawMeta;
-    }
+    /**
+     * Get the edit URL for the post
+     */
 
-    public function getCleanMeta(): array
+     public function editUrl(): string
     {
-        $systemKeys = ['_edit_lock', '_edit_last', '_thumbnail_id'];
-        $relationKeys = ['person_party', 'board_category'];
-        $extractedFields = $this->getExtractedFields($this->post->post_type);
-        
-        $filteredMeta = array_filter($this->rawMeta, function ($key) use ($systemKeys, $relationKeys, $extractedFields) {
-            return !in_array($key, $systemKeys) && 
-                   !in_array($key, $relationKeys) && 
-                   !in_array($key, $extractedFields) &&
-                   !str_ends_with($key, '_visibility');
-        }, ARRAY_FILTER_USE_KEY);
-
-        return $this->cleanMetaValues($filteredMeta);
+        return get_edit_post_link($this->id);
     }
 
     // Conversion methods
@@ -148,14 +135,14 @@ class PostTransformer
         ];
 
         // Add relation properties if they exist
-        if ($this->party !== null) {
+        if (isset($this->relations['party'])) {
             $data['party'] = [
-                'id' => $this->party->id,
-                'name' => $this->party->name,
+                'id' => $this->relations['party']->id,
+                'name' => $this->relations['party']->name,
             ];
         }
-        if ($this->category !== null) {
-            $data['category'] = $this->category;
+        if (isset($this->relations['category'])) {
+            $data['category'] = $this->relations['category'];
         }
 
         // Add extracted fields to first level
@@ -168,99 +155,77 @@ class PostTransformer
         return $data;
     }
 
-    public function toJson(): string
+    public function getCleanMeta(): array
     {
-        return json_encode($this->toArray());
-    }
+        $systemKeys = ['_edit_lock', '_edit_last', '_thumbnail_id'];
+        $extractedFields = $this->getExtractedFields($this->post->post_type);
+        
+        $filteredMeta = array_filter($this->rawMeta, function ($key) use ($systemKeys, $extractedFields) {
+            return !in_array($key, $systemKeys) && 
+                   !in_array($key, $extractedFields) &&
+                   !str_ends_with($key, '_visibility');
+        }, ARRAY_FILTER_USE_KEY);
 
-    public function getOriginal(): Post
-    {
-        return $this->post;
-    }
-
-    // Magic methods for property access
-    public function __get($key)
-    {
-        return match($key) {
-            'id' => $this->id,
-            'name' => $this->name,
-            'url' => $this->url,
-            'date' => $this->date,
-            'image' => $this->image,
-            'meta' => $this->meta,
-            'party' => $this->party,
-            'category' => $this->category,
-            default => null
-        };
-    }
-
-    public function __isset($key)
-    {
-        return in_array($key, ['id', 'name', 'url', 'date', 'image', 'meta', 'party', 'category']);
+        return FieldGroupService::formatMetaValues($filteredMeta, $this->post->post_type, $extractedFields);
     }
 
     // Helper methods
     protected function getExtractedFields(string $postType): array
     {
-        return match($postType) {
+        $expectedFields = FieldGroupService::getExpectedFieldsForPostType($postType);
+        
+        // Define which fields should be extracted to first level for each post type
+        $extractedFieldIds = match($postType) {
             'person' => ['person_firstname', 'person_lastname', 'person_group_leader', 'person_active'],
             'party' => ['party_description', 'party_shortening', 'party_group_leader'],
-            'board' => ['board_shortening', 'board_category'],
+            'board' => ['board_shortening'],
             default => []
         };
+        
+        // Return only fields that exist in the field group definitions
+        return array_intersect($extractedFieldIds, array_keys($expectedFields));
     }
 
     protected function getExtractedData(): array
     {
-        $extractedFields = $this->getExtractedFields($this->post->post_type);
         $data = [];
+
+        $extractedFields = $this->getExtractedFields($this->post->post_type);
+        $expectedFields = FieldGroupService::getExpectedFieldsForPostType($this->post->post_type);
+        $relationFields = FieldGroupService::getRelationFieldIds($this->post->post_type);
         
         foreach ($extractedFields as $field) {
             // Skip relation fields as they're handled by relation properties
-            if (in_array($field, ['person_party', 'board_category'])) {
+            if (in_array($field, $relationFields)) {
                 continue;
             }
             
-            $cleanKey = $this->removePrefix($field);
+            $cleanKey = FieldGroupService::removePrefix($field, $this->post->post_type);
             $value = $this->rawMeta[$field] ?? null;
-            $data[$cleanKey] = $this->convertToBoolean($value);
+            
+            // Get field type information for proper casting
+            $fieldDefinition = $expectedFields[$field] ?? null;
+            $fieldType = $fieldDefinition['type'] ?? 'text';
+            
+            $data[$cleanKey] = FieldGroupService::castValueByType($value, $fieldType);
         }
         
         return $data;
     }
 
-    protected function cleanMetaValues(array $metaValues): array
+    /**
+     * Magic method to check if a dynamic property exists
+     */
+    public function __isset($name)
     {
-        $cleaned = [];
-        
-        foreach ($metaValues as $key => $value) {
-            $cleanKey = $this->removePrefix($key);
-            $cleanValue = $this->convertToBoolean($value);
-            $cleaned[$cleanKey] = $cleanValue;
-        }
-        
-        return $cleaned;
+        return isset($this->relations[$name]);
     }
 
-    protected function removePrefix(string $key): string
+    /**
+     * Magic method to get dynamic properties
+     */
+    public function __get($name)
     {
-        $prefixes = ['person_', 'party_', 'board_'];
-        
-        foreach ($prefixes as $prefix) {
-            if (str_starts_with($key, $prefix)) {
-                return substr($key, strlen($prefix));
-            }
-        }
-        
-        return $key;
-    }
-
-    protected function convertToBoolean($value)
-    {
-        if ($value === null) return null;
-        if ($value === '1') return true;
-        if ($value === '0') return false;
-
-        return $value;
+        return $this->relations[$name] ?? null;
     }
 }

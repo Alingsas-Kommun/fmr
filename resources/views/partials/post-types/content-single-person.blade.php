@@ -1,9 +1,9 @@
 <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
     <div class="flex items-center space-x-6">
-        @if($thumbnail)
+        @if($person->image())
             <div class="flex-shrink-0">
                 <div class="w-30 h-30 flex items-center justify-center rounded-full overflow-hidden">
-                    {!! $thumbnail !!}
+                    {!! $person->image('thumbnail', 'w-full h-full object-cover') !!}
                 </div>
             </div>
         @else
@@ -13,42 +13,42 @@
         @endif
         
         <div class="flex-1">
-            @if($party)
-                <x-link href="{{ get_permalink($party->ID) }}" class="flex items-center space-x-2 mb-1" :underline="false">
-                    @if($party->thumbnail())
+            @if($person->party)
+                <x-link href="{{ $person->party->url }}" class="flex items-center space-x-2 mb-1" :underline="false">
+                    @if($person->party->image())
                         <div class="w-5 h-5 flex-shrink-0">
-                            {!! $party->thumbnail('w-5 h-5') !!}
+                            {!! $person->party->image('thumbnail', 'w-full h-full object-cover') !!}
                         </div>
                     @else
                         <x-heroicon-o-user-group class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     @endif
 
-                    <span>{{ $party->post_title }}</span>
+                    <span>{{ $person->party->name }}</span>
                 </x-link>
             @endif
 
-            @if($person->firstname && $person->lastname)
+            @if($person->meta->firstname && $person->meta->lastname)
                 <h1 class="text-3xl font-bold text-gray-900">
-                    {{ $person->firstname }} {{ $person->lastname }}
-                </h2>
+                    {{ $person->meta->firstname }} {{ $person->meta->lastname }}
+                </h1>
             @endif
             
-            @set($hasContactInfo, $person->ssn || $person->groupLeader)
+            @set($hasContactInfo, $person->meta->ssn || $person->meta->groupLeader)
             
             @if($hasContactInfo)
                 <div class="flex items-center space-x-4 mt-2">
-                    @if($person->ssn)
+                    @if($person->meta->ssn)
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
                             <div class="text-gray-700">
                                 <div class="sr-only">{!! __('Social Security Number', 'fmr') !!}</div>
-                                <div>{{ $person->ssn }}</div>
+                                <div>{{ $person->meta->ssn }}</div>
                             </div>
                         </div>
                     @endif
 
-                    @if($person->groupLeader)
+                    @if($person->meta->groupLeader)
                         <div class="flex items-center space-x-2">
                             <x-heroicon-o-user-circle class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
@@ -60,9 +60,9 @@
         </div>
     </div>
 
-    @set($hasBasicInfo, $person->birthDate || $person->listing)
-    @set($hasHomeInfo, $person->homeEmail || $person->homePhone || $person->homeMobile || $person->homeWebpage || $person->homeAddress || $person->homeZip || $person->homeCity || $person->homeVisitingAddress)
-    @set($hasWorkInfo, $person->workEmail || $person->workPhone || $person->workMobile || $person->workWebpage || $person->workAddress || $person->workZip || $person->workCity || $person->workVisitingAddress)
+    @set($hasBasicInfo, $person->meta->birthDate || $person->meta->listing)
+    @set($hasHomeInfo, $person->meta->homeEmail || $person->meta->homePhone || $person->meta->homeMobile || $person->meta->homeWebpage || $person->meta->homeAddress || $person->meta->homeZip || $person->meta->homeCity || $person->meta->homeVisitingAddress)
+    @set($hasWorkInfo, $person->meta->workEmail || $person->meta->workPhone || $person->meta->workMobile || $person->meta->workWebpage || $person->meta->workAddress || $person->meta->workZip || $person->meta->workCity || $person->meta->workVisitingAddress)
     @set($hasAdditionalInfo, $hasBasicInfo || $hasHomeInfo || $hasWorkInfo)
     
     @if($hasAdditionalInfo)
@@ -89,35 +89,35 @@
 
             @if($hasBasicInfo)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
-                    @if($person->birthDate)
+                    @if($person->meta->birthDate)
                         <div class="flex items-start space-x-3">
                             <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                             <div class="text-gray-700">
                                 <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
-                                <div>{{ $person->birthDate }}</div>
+                                <div>{{ $person->meta->birthDate }}</div>
                             </div>
                         </div>
                     @endif
 
-                    @if($person->ssn)
+                    @if($person->meta->ssn)
                         <div class="flex items-start space-x-3">
                             <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                             <div class="text-gray-700">
                                 <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
-                                <div>{{ $person->ssn }}</div>
+                                <div>{{ $person->meta->ssn }}</div>
                             </div>
                         </div>
                     @endif
 
-                    @if($person->listing)
+                    @if($person->meta->listing)
                         <div class="flex items-start space-x-3">
                             <x-heroicon-o-list-bullet class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
 
                             <div class="text-gray-700">
                                 <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
-                                <div>{{ $person->listing }}</div>
+                                <div>{{ $person->meta->listing }}</div>
                             </div>
                         </div>
                     @endif
@@ -133,84 +133,84 @@
                         </h3>
 
                         <div class="space-y-5">
-                            @if($person->homeEmail)
+                            @if($person->meta->homeEmail)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                        <x-link href="mailto:{{ $person->homeEmail }}">
-                                            {{ $person->homeEmail }}
+                                        <x-link href="mailto:{{ $person->meta->homeEmail }}">
+                                            {{ $person->meta->homeEmail }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->homePhone)
+                            @if($person->meta->homePhone)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                        <x-link href="tel:{{ $person->homePhone }}">
-                                            {{ $person->homePhone }}
+                                        <x-link href="tel:{{ $person->meta->homePhone }}">
+                                            {{ $person->meta->homePhone }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->homeMobile)
+                            @if($person->meta->homeMobile)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                        <x-link href="tel:{{ $person->homeMobile }}">
-                                            {{ $person->homeMobile }}
+                                        <x-link href="tel:{{ $person->meta->homeMobile }}">
+                                            {{ $person->meta->homeMobile }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->homeWebpage)
+                            @if($person->meta->homeWebpage)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                        <x-link href="{{ $person->homeWebpage }}" target="_blank">
-                                            {{ $person->homeWebpage }}
+                                        <x-link href="{{ $person->meta->homeWebpage }}" target="_blank">
+                                            {{ $person->meta->homeWebpage }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->homeAddress || $person->homeZip || $person->homeCity)
+                            @if($person->meta->homeAddress || $person->meta->homeZip || $person->meta->homeCity)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
-                                        @if($person->homeAddress)
-                                            <div>{{ $person->homeAddress }}</div>
+                                        @if($person->meta->homeAddress)
+                                            <div>{{ $person->meta->homeAddress }}</div>
                                         @endif
-                                        @if($person->homeZip || $person->homeCity)
+                                        @if($person->meta->homeZip || $person->meta->homeCity)
                                             <div>
-                                                @if($person->homeZip){{ $person->homeZip }}@endif
-                                                @if($person->homeZip && $person->homeCity), @endif
-                                                @if($person->homeCity){{ $person->homeCity }}@endif
+                                                @if($person->meta->homeZip){{ $person->meta->homeZip }}@endif
+                                                @if($person->meta->homeZip && $person->meta->homeCity), @endif
+                                                @if($person->meta->homeCity){{ $person->meta->homeCity }}@endif
                                             </div>
                                         @endif
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->homeVisitingAddress)
+                            @if($person->meta->homeVisitingAddress)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
-                                        <div>{{ $person->homeVisitingAddress }}</div>
+                                        <div>{{ $person->meta->homeVisitingAddress }}</div>
                                     </div>
                                 </div>
                             @endif
@@ -226,86 +226,85 @@
                         </h3>
 
                         <div class="space-y-5">
-                            @if($person->workEmail)
+                            @if($person->meta->workEmail)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
-                                        <x-link href="mailto:{{ $person->workEmail }}">
-                                            {{ $person->workEmail }}
+                                        <x-link href="mailto:{{ $person->meta->workEmail }}">
+                                            {{ $person->meta->workEmail }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->workPhone)
+                            @if($person->meta->workPhone)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
-                                        <x-link href="tel:{{ $person->workPhone }}">
-                                            {{ $person->workPhone }}
+                                        <x-link href="tel:{{ $person->meta->workPhone }}">
+                                            {{ $person->meta->workPhone }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->workMobile)
+                            @if($person->meta->workMobile)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-device-phone-mobile class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Mobile', 'fmr') !!}</div>
-                                        <x-link href="tel:{{ $person->workMobile }}">
-                                            {{ $person->workMobile }}
+                                        <x-link href="tel:{{ $person->meta->workMobile }}">
+                                            {{ $person->meta->workMobile }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->workWebpage)
+                            @if($person->meta->workWebpage)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
-                                        <x-link href="{{ $person->workWebpage }}" target="_blank">
-                                            {{ $person->workWebpage }}
+                                        <x-link href="{{ $person->meta->workWebpage }}" target="_blank">
+                                            {{ $person->meta->workWebpage }}
                                         </x-link>
                                     </div>
                                 </div>
                             @endif
 
-                            @if($person->workAddress || $person->workZip || $person->workCity)
+                            @if($person->meta->workAddress || $person->meta->workZip || $person->meta->workCity)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
-                                        @if($person->workAddress)
-                                            <div>{{ $person->workAddress }}</div>
+                                        @if($person->meta->workAddress)
+                                            <div>{{ $person->meta->workAddress }}</div>
                                         @endif
-                                        @if($person->workZip || $person->workCity)
-                                    <div>
-
-                                    @if($person->workZip){{ $person->workZip }}@endif
-                                    @if($person->workZip && $person->workCity), @endif
-                                    @if($person->workCity){{ $person->workCity }}@endif
+                                        @if($person->meta->workZip || $person->meta->workCity)
+                                            <div>
+                                                @if($person->meta->workZip){{ $person->meta->workZip }}@endif
+                                                @if($person->meta->workZip && $person->meta->workCity), @endif
+                                                @if($person->meta->workCity){{ $person->meta->workCity }}@endif
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             @endif
-                        </div>
-                        </div>
-                            @endif
 
-                            @if($person->workVisitingAddress)
+                            @if($person->meta->workVisitingAddress)
                                 <div class="flex items-start space-x-3">
                                     <x-heroicon-o-building-office-2 class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
                                     
                                     <div class="text-gray-700">
                                         <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
-                                        <div>{{ $person->workVisitingAddress }}</div>
+                                        <div>{{ $person->meta->workVisitingAddress }}</div>
                                     </div>
                                 </div>
                             @endif
@@ -338,14 +337,14 @@
                     @foreach($assignments as $assignment)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <x-link href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}">
+                                <x-link href="{!! route('assignments.index', ['role' => $assignment->roleTerm->slug]) !!}">
                                     {{ $assignment->roleTerm->name }}
                                 </x-link>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->board)
-                                    <x-link href="{{ get_permalink($assignment->board->ID) }}">
+                                    <x-link href="{!! get_permalink($assignment->board->ID) !!}">
                                         {{ $assignment->board->post_title }}
                                     </x-link>
                                 @endif
@@ -353,7 +352,7 @@
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($assignment->decisionAuthority)
-                                    <x-link href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}">
+                                    <x-link href="{!! route('decision-authorities.show', $assignment->decisionAuthority) !!}">
                                         {{ $assignment->decisionAuthority->title }}
                                     </x-link>
                                 @endif
@@ -364,7 +363,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <x-link href="{{ route('assignments.show', $assignment) }}">{!! __('View', 'fmr') !!}</x-link>
+                                <x-link href="{!! route('assignments.show', $assignment) !!}">{!! __('View', 'fmr') !!}</x-link>
                             </td>
                         </tr>
                     @endforeach

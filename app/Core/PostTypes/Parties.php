@@ -215,7 +215,8 @@ class Parties
     {   
         $query = Post::persons()
             ->published()
-            ->withMeta('person_party', $party_id);
+            ->withMeta('person_party', $party_id)
+            ->with(['meta']);
 
         if ($active) {
             $query->whereHas('personAssignments', function($query) {
@@ -227,6 +228,8 @@ class Parties
             });
         }
 
-        return $query->orderBy('post_title')->get();
+        $members = $query->orderBy('post_title')->get();
+
+        return $members->format();
     }
 }

@@ -4,9 +4,7 @@ namespace App\View\Composers;
 
 use App\Models\Post;
 use App\Models\DecisionAuthority;
-use App\Models\Term;
 use Roots\Acorn\View\Composer;
-use Illuminate\Support\Str;
 
 class Board extends Composer
 {
@@ -20,22 +18,6 @@ class Board extends Composer
         'partials.post-types.content-board',
     ];
 
-    /**
-     * List of meta fields to be passed via the board object.
-     *
-     * @var array
-     */
-    protected static $metaFields = [
-        'board_category',
-        'board_shortening',
-        'board_address',
-        'board_visiting_address',
-        'board_zip',
-        'board_city',
-        'board_website',
-        'board_email',
-        'board_phone',
-    ];
 
     /**
      * Data to be passed to view before rendering.
@@ -45,13 +27,13 @@ class Board extends Composer
     public function with()
     {
         return [
-            'board' => $this->boardWithMeta(),
+            'board' => $this->board(),
             'decisionAuthorities' => $this->decisionAuthorities(),
         ];
     }
 
     /**
-     * Retrieve the board object.
+     * Retrieve the board object with formatted meta fields.
      */
     public function board()
     {
@@ -61,33 +43,9 @@ class Board extends Composer
             return null;
         }
 
-        return Post::find($boardId);
-    }
-
-    /**
-     * Retrieve the board object with aggregated meta fields.
-     */
-    public function boardWithMeta()
-    {
-        $board = $this->board();
-        
-        if (!$board) {
-            return null;
-        }
-
-        $metaValues = $this->boardMeta();
-        
-        foreach ($metaValues as $key => $value) {
-            $propertyName = Str::camel(Str::replace('board_', '', $key)); 
-            
-            // Handle taxonomy relations - convert term IDs to term names
-            if ($key === 'board_category' && $value) {
-                $term = Term::find($value);
-                $board->$propertyName =$term;
-            }
-        }
-
-        return $board;
+        return Post::with(['meta', 'categoryTerm'])
+            ->find($boardId)
+            ?->format();
     }
 
     /**
@@ -95,29 +53,15 @@ class Board extends Composer
      */
     public function decisionAuthorities()
     {
-        $board = $this->board();
+        $boardId = get_the_ID(); // @phpstan-ignore-line
         
-        if (!$board) {
+        if (!$boardId) {
             return collect();
         }
 
-        return DecisionAuthority::where('board_id', $board->ID)
+        return DecisionAuthority::where('board_id', $boardId)
             ->with('typeTerm')
             ->orderBy('start_date', 'desc')
             ->get();
-    }
-
-    /**
-     * Get all visible board meta fields in a single query.
-     */
-    public function boardMeta()
-    {
-        $board = $this->board();
-        
-        if (!$board) {
-            return [];
-        }
-
-        return $board->getMetaValues(static::$metaFields);
     }
 }

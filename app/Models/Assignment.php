@@ -95,6 +95,40 @@ class Assignment extends Model
     }
 
     /**
+     * Transform this assignment to clean API format
+     */
+    public function toApiFormat(): array
+    {
+        $data = $this->toArray();
+        
+        // Remove unwanted fields
+        unset($data['author_id']);
+        unset($data['role_term_id']);
+        unset($data['board']);
+        unset($data['role_term']);
+        unset($data['created_at']);
+        unset($data['updated_at']);
+        
+        if ($this->relationLoaded('roleTerm')) {
+            $data['role'] = $this->roleTerm?->name;
+        }
+        
+        if ($this->relationLoaded('board')) {
+            $data['board_id'] = $this->board->ID;
+        }
+        
+        return $data;
+    }
+
+    /**
+     * Transform a collection of assignments to API format
+     */
+    public static function toApiCollection($assignments): array
+    {
+        return $assignments->map(fn($assignment) => $assignment->toApiFormat())->toArray();
+    }
+
+    /**
      * Scope a query to only include active assignments (ongoing).
      */
     public function scopeActive($query)
@@ -136,39 +170,5 @@ class Assignment extends Model
     public function scopePast($query)
     {
         return $query->inactive();
-    }
-
-    /**
-     * Transform this assignment to clean API format
-     */
-    public function toApiFormat(): array
-    {
-        $data = $this->toArray();
-        
-        // Remove unwanted fields
-        unset($data['author_id']);
-        unset($data['role_term_id']);
-        unset($data['board']);
-        unset($data['role_term']);
-        unset($data['created_at']);
-        unset($data['updated_at']);
-        
-        if ($this->relationLoaded('roleTerm')) {
-            $data['role'] = $this->roleTerm?->name;
-        }
-        
-        if ($this->relationLoaded('board')) {
-            $data['board_id'] = $this->board->ID;
-        }
-        
-        return $data;
-    }
-
-    /**
-     * Transform a collection of assignments to API format
-     */
-    public static function toApiCollection($assignments): array
-    {
-        return $assignments->map(fn($assignment) => $assignment->toApiFormat())->toArray();
     }
 }

@@ -1,11 +1,11 @@
 <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8">
     <div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
-            {{ $board->post_title }}
+            {{ $board->name }}
             
-            @if($board->shortening)
+            @if($board->meta->shortening)
                 <span class="text-2xl font-normal text-gray-600 ml-2">
-                    ({{ $board->shortening }})
+                    ({{ $board->meta->shortening }})
                 </span>
             @endif
         </h1>
@@ -15,51 +15,51 @@
                 <x-heroicon-o-tag class="h-5 w-5 text-primary-600 flex-shrink-0" />
                 
                 <div class="text-gray-700">
-                    {{ $board->category->name }}
+                    {{ $board->category }}
                 </div>
             </div>
         @endif
     </div>
 
-    @if($board->website || $board->email || $board->phone)
+    @if($board->meta->website || $board->meta->email || $board->meta->phone)
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 py-5 mt-5">
-            @if($board->website)
+            @if($board->meta->website)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-globe-alt class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Website', 'fmr') !!}</div>
                         
-                        <x-link href="{{ $board->website }}" target="_blank">
-                            {{ $board->website }}
+                        <x-link href="{{ $board->meta->website }}" target="_blank">
+                            {{ $board->meta->website }}
                         </x-link>
                     </div>
                 </div>
             @endif
 
-            @if($board->email)
+            @if($board->meta->email)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-envelope class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Email', 'fmr') !!}</div>
                         
-                        <x-link href="mailto:{{ $board->email }}">
-                            {{ $board->email }}
+                        <x-link href="mailto:{{ $board->meta->email }}">
+                            {{ $board->meta->email }}
                         </x-link>
                     </div>
                 </div>
             @endif
 
-            @if($board->phone)
+            @if($board->meta->phone)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-phone class="h-5 w-5 text-primary-600 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Phone', 'fmr') !!}</div>
                         
-                        <x-link href="tel:{{ $board->phone }}">
-                            {{ $board->phone }}
+                        <x-link href="tel:{{ $board->meta->phone }}">
+                            {{ $board->meta->phone }}
                         </x-link>
                     </div>
                 </div>
@@ -67,37 +67,37 @@
         </div>
     @endif
 
-    @if($board->address || $board->zip || $board->city || $board->visitingAddress)
+    @if($board->meta->address || $board->meta->zip || $board->meta->city || $board->meta->visitingAddress)
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 pt-5">
-            @if($board->address || $board->zip || $board->city)
+            @if($board->meta->address || $board->meta->zip || $board->meta->city)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-map-pin class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Address', 'fmr') !!}</div>
                         
-                        @if($board->address)
-                            <div>{{ $board->address }}</div>
+                        @if($board->meta->address)
+                            <div>{{ $board->meta->address }}</div>
                         @endif
 
-                        @if($board->zip || $board->city)
+                        @if($board->meta->zip || $board->meta->city)
                             <div>
-                                @if($board->zip){{ $board->zip }}@endif
-                                @if($board->zip && $board->city), @endif
-                                @if($board->city){{ $board->city }}@endif
+                                @if($board->meta->zip){{ $board->meta->zip }}@endif
+                                @if($board->meta->zip && $board->meta->city), @endif
+                                @if($board->meta->city){{ $board->meta->city }}@endif
                             </div>
                         @endif
                     </div>
                 </div>
             @endif
 
-            @if($board->visitingAddress)
+            @if($board->meta->visitingAddress)
                 <div class="flex items-start space-x-3">
                     <x-heroicon-o-building-office class="h-5 w-5 text-primary-600 mt-0.5 flex-shrink-0" />
                     
                     <div class="text-gray-700">
                         <div class="font-bold">{!! __('Visiting Address', 'fmr') !!}</div>
-                        <div>{{ $board->visitingAddress }}</div>
+                        <div>{{ $board->meta->visitingAddress }}</div>
                     </div>
                 </div>
             @endif

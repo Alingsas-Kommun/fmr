@@ -1,94 +1,94 @@
 <div class="bg-primary-50 rounded-lg overflow-hidden">
     <div class="p-8">
         <div class="flex items-center space-x-6">
-            @if($thumbnail)
+            @if($party->image())
                 <div class="flex-shrink-0">
                     <div class="w-24 h-24 flex items-center justify-center">
-                        {!! $thumbnail !!}
+                        {!! $party->image('thumbnail', 'w-full h-full object-cover') !!}
                     </div>
                 </div>
             @endif
             
             <div class="flex-1 space-y-1">
                 <h1 class="text-3xl font-bold text-gray-900">
-                    {{ $party->post_title }}
+                    {{ $party->name }}
 
-                    @if($party->shortening)
+                    @if($party->meta->shortening)
                         <span class="text-2xl font-normal text-gray-600">
-                            ({{ $party->shortening }})
+                            ({{ $party->meta->shortening }})
                         </span>
                     @endif
                 </h1>
                 
-                @if($party->description)
+                @if($party->meta->description)
                     <div class="prose max-w-none text-gray-700">
-                        {!! wp_kses_post($party->description) !!}
+                        {!! wp_kses_post($party->meta->description) !!}
                     </div>
                 @endif  
             </div>
         </div>
 
-        @set($hasContactInfo, $party->address || $party->zip || $party->city || $party->email || $party->phone || $party->website || $party->groupLeader)
+        @set($hasContactInfo, $party->meta->address || $party->meta->zip || $party->meta->city || $party->meta->email || $party->meta->phone || $party->meta->website || $party->meta->groupLeader)
 
         @if($hasContactInfo)
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 mt-8 pt-6">
-                @if($party->address || $party->zip || $party->city)
+                @if($party->meta->address || $party->meta->zip || $party->meta->city)
                     <div class="flex items-start space-x-3">
                         <x-heroicon-o-map-pin class="h-6 w-6 text-primary-600 mt-0.5 flex-shrink-0" />
                         
                         <div class="text-gray-700">
-                            @if($party->address)
-                                <div>{{ $party->address }}</div>
+                            @if($party->meta->address)
+                                <div>{{ $party->meta->address }}</div>
                             @endif
 
-                            @if($party->zip || $party->city)
+                            @if($party->meta->zip || $party->meta->city)
                                 <div>
-                                    @if($party->zip){{ $party->zip }}@endif
-                                    @if($party->zip && $party->city), @endif
-                                    @if($party->city){{ $party->city }}@endif
+                                    @if($party->meta->zip){{ $party->meta->zip }}@endif
+                                    @if($party->meta->zip && $party->meta->city), @endif
+                                    @if($party->meta->city){{ $party->meta->city }}@endif
                                 </div>
                             @endif
                         </div>
                     </div>
                 @endif
 
-                @if($party->email)
+                @if($party->meta->email)
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
                         
-                        <x-link href="mailto:{{ $party->email }}">
-                            {{ $party->email }}
+                        <x-link href="mailto:{{ $party->meta->email }}">
+                            {{ $party->meta->email }}
                         </x-link>
                     </div>
                 @endif
 
-                @if($party->phone)
+                @if($party->meta->phone)
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-phone class="h-6 w-6 text-primary-600 flex-shrink-0" />
                         
-                        <x-link href="tel:{{ $party->phone }}">
-                            {{ $party->phone }}
+                        <x-link href="tel:{{ $party->meta->phone }}">
+                            {{ $party->meta->phone }}
                         </x-link>
                     </div>
                 @endif
 
-                @if($party->website)
+                @if($party->meta->website)
                     <div class="flex items-center space-x-3">
                         <x-heroicon-o-globe-alt class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
-                        <x-link href="{{ $party->website }}" target="_blank" rel="noopener noreferrer">
-                            {{ $party->website }}
+                        <x-link href="{{ $party->meta->website }}" target="_blank" rel="noopener noreferrer">
+                            {{ $party->meta->website }}
                         </x-link>
                     </div>
                 @endif
 
-                @if($party->groupLeader)
+                @if($party->meta->groupLeader)
                     <div class="flex items-start space-x-3 md:col-span-2">
                         <x-heroicon-o-user-circle class="h-6 w-6 text-primary-600 mt-0.5 flex-shrink-0" />
                         
                         <div class="text-gray-700">
                             <div class="font-medium">{!! __('Group Leader, City Council', 'fmr') !!}</div>
-                            <div>{{ $party->groupLeader }}</div>
+                            <div>{{ $party->meta->groupLeader }}</div>
                         </div>
                     </div>
                 @endif
@@ -103,12 +103,12 @@
     @if($activeMembers->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($activeMembers as $member)
-                <a href="{{ get_permalink($member->ID) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
+                <a href="{{ $member->url }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
-                        @if($member->thumbnail())
+                        @if($member->image())
                             <div class="flex-shrink-0">
                                 <div class="w-16 h-16 rounded-full overflow-hidden">
-                                    {!! $member->thumbnail() !!}
+                                    {!! $member->image('thumbnail', 'w-full h-full object-cover') !!}
                                 </div>
                             </div>
                         @else
@@ -119,10 +119,10 @@
 
                         <div class="flex-1 min-w-0">
                             <h3 class="text-md font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
-                                @if($member->getMeta('person_firstname') && $member->getMeta('person_lastname'))
-                                    {{ $member->getMeta('person_firstname') }} {{ $member->getMeta('person_lastname') }}
+                                @if($member->meta->firstname && $member->meta->lastname)
+                                    {{ $member->meta->firstname }} {{ $member->meta->lastname }}
                                 @else
-                                    {{ $member->post_title }}
+                                    {{ $member->name }}
                                 @endif
                             </h3>
                         </div>
@@ -149,10 +149,10 @@
         @if($inactiveMembers->isNotEmpty())
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach($inactiveMembers as $member)
-                    <a href="{!! get_edit_post_link($member->ID) !!}" target="_blank" class="flex items-center space-x-4 bg-gray-100 rounded-lg p-4">
+                    <a href="{!! $member->editUrl() !!}" target="_blank" class="flex items-center space-x-4 bg-gray-100 rounded-lg p-4">
                         <div class="flex-1 min-w-0">
                             <h3 class="text-md font-normal text-gray-900 transition-colors duration-200">
-                                {!! $member->post_title !!}
+                                {!! $member->name !!}
                             </h3>
                         </div>
 

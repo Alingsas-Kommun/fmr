@@ -86,13 +86,6 @@
             <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
                 @forelse($assignments as $assignment)
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-200 transition-colors duration-150">
-                        {{-- <td class="px-6 py-4 whitespace-nowrap">
-                            @if($assignment->board)
-                                <a href="{{ get_permalink($assignment->board->ID) }}" class="text-primary-500 hover:text-primary-600"> 
-                                    {{ $assignment->board->post_title }}
-                                </a>
-                            @endif
-                        </td> --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($assignment->decisionAuthority)
                                 <x-link href="{{ route('decision-authorities.show', $assignment->decisionAuthority) }}">
