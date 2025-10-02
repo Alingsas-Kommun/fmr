@@ -114,4 +114,31 @@ class DecisionAuthority extends Model
     {
         return $query->inactive();
     }
+
+    /**
+     * Transform this decision authority to clean API format
+     */
+    public function toApiFormat(): array
+    {
+        $data = $this->toArray();
+        
+        // Remove unwanted fields
+        unset($data['author_id']);
+        unset($data['type_term_id']);
+        unset($data['type_term']);
+        unset($data['created_at']);
+        unset($data['updated_at']);
+        
+        $data['type'] = $this->typeTerm?->name;
+        
+        return $data;
+    }
+
+    /**
+     * Transform a collection of decision authorities to API format
+     */
+    public static function toApiCollection($decisionAuthorities): array
+    {
+        return $decisionAuthorities->map(fn($da) => $da->toApiFormat())->toArray();
+    }
 }

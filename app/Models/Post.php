@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use function App\Core\getImageElement;
+use App\Services\PostTransformService;
 
+use function App\Core\getImageElement;
 use Illuminate\Database\Eloquent\Model;
 use App\Database\Eloquent\Relations\BelongsToMeta;
 
@@ -134,16 +135,13 @@ class Post extends Model
      */
     public function getMeta($key, $default = null)
     {
-        $visibility = $this->getMetaVisibility($key);
-        
-        // If user is logged out and visibility is false, return default
-        if (!$visibility && !is_user_logged_in()) {
-            return $default;
-        }
-
-        return $this->meta()
+        $value = $this->meta()
             ->where('meta_key', $key)
             ->value('meta_value') ?? $default;
+            
+        $visibleValue = $this->checkMetaVisibility($key, $value);
+        
+        return $visibleValue !== null ? $visibleValue : $default;
     }
 
     public function getMetaVisibility($key)
@@ -154,6 +152,32 @@ class Post extends Model
     }
 
     /**
+     * Check if a meta value should be visible based on visibility settings
+     * 
+     * @param string $key The meta key
+     * @param mixed $value The meta value
+     * @param array $metaValues Array of all meta values (for performance)
+     * @return mixed|null Returns the value if visible, null if hidden
+     */
+    private function checkMetaVisibility($key, $value, $metaValues = null)
+    {
+        $visibilityKey = $key . '_visibility';
+        $isVisible = true;
+        
+        if ($metaValues !== null) {
+            $isVisible = $metaValues[$visibilityKey] ?? true;
+        } else {
+            $isVisible = $this->getMetaVisibility($key);
+        }
+        
+        if (!$isVisible && !\is_user_logged_in()) {
+            return null;
+        }
+        
+        return $value;
+    }
+
+    /**
      * Get multiple meta values by keys with visibility check
      *
      * @param array $keys
@@ -161,19 +185,16 @@ class Post extends Model
      */
     public function getMetaValues(array $keys)
     {
-        // Add visibility keys
         $visibilityKeys = array_map(function($key) {
             return $key . '_visibility';
         }, $keys);
 
-        // Get all meta values in a single query
         $allMetaKeys = array_merge($keys, $visibilityKeys);
         $metaValues = $this->meta()
             ->whereIn('meta_key', $allMetaKeys)
             ->pluck('meta_value', 'meta_key')
             ->toArray();
 
-        // Process the results and check visibility
         $result = [];
         
         foreach ($keys as $key) {
@@ -192,15 +213,9 @@ class Post extends Model
      */
     private function processMetaValueWithVisibility($key, $metaValues)
     {
-        $visibilityKey = $key . '_visibility';
-        $isVisible = $metaValues[$visibilityKey] ?? true;
-        
-        // If user is logged out and visibility is false, return null
-        if (!$isVisible && !is_user_logged_in()) {
-            return null;
-        }
-        
-        return $metaValues[$key] ?? null;
+        $value = $metaValues[$key] ?? null;
+
+        return $this->checkMetaVisibility($key, $value, $metaValues);
     }
 
     /**
@@ -242,5 +257,53 @@ class Post extends Model
         return $query->whereDoesntHave('personAssignments', function($query) {
             $query->active();
         });
+    }
+
+    /**
+     * Get loaded meta data with visibility checks applied
+     * This method uses already loaded meta relationship for better performance
+     */
+    public function getLoadedMetaWithVisibility(): array
+    {
+        if (!$this->relationLoaded('meta')) {
+            return [];
+        }
+
+        $meta = [];
+        $metaValues = [];
+        
+        foreach ($this->meta as $metaItem) {
+            $metaValues[$metaItem->meta_key] = $metaItem->meta_value;
+        }
+
+        foreach ($metaValues as $key => $value) {
+            if (str_ends_with($key, '_visibility')) {
+                continue;
+            }
+            
+            $meta[$key] = $this->checkMetaVisibility($key, $value, $metaValues);
+        }
+
+        return $meta;
+    }
+
+    /**
+     * Format this post using the transform service
+     */
+    public function format(bool $includeMeta = false): array
+    {
+        $service = app(PostTransformService::class);
+        
+        return $service->transform($this, $includeMeta);
+    }
+
+    /**
+     * Format a collection of posts using the transform service
+     */
+    public static function formatCollection($posts, bool $includeMeta = false): array
+    {
+        $service = app(PostTransformService::class);
+
+        return $service->transformCollection($posts, $includeMeta);
     }
 }

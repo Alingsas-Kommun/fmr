@@ -11,17 +11,7 @@ class AssignmentController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Assignment::with([
-                'decisionAuthority' => function($q) {
-                    $q->select('id', 'title', 'board_id', 'type', 'start_date', 'end_date');
-                }, 
-                'person' => function($q) {
-                    $q->select('ID', 'post_title');
-                },
-                'roleTerm' => function($q) {
-                    $q->select('term_id', 'name');
-                }
-            ]);
+            $query = Assignment::with(['roleTerm', 'board']);
 
             // Apply filters
             if ($request->filled('decision_authority_id')) {
@@ -68,18 +58,13 @@ class AssignmentController extends Controller
                           ->take($perPage)
                           ->get();
 
-            // Add computed role attribute to each item
-            $items->each(function ($assignment) {
-                $assignment->role = $assignment->role;
-            });
-
             return response()->json([
-                'data' => $items,
+                'data' => Assignment::toApiCollection($items),
                 'meta' => [
-                    'current_page' => $page,
-                    'per_page' => $perPage,
-                    'total' => $total,
-                    'last_page' => ceil($total / $perPage)
+                    'current_page' => intval($page),
+                    'per_page' => intval($perPage),
+                    'total' => intval($total),
+                    'pages' => intval(ceil($total / $perPage))
                 ]
             ]);
         } catch (\Exception $e) {
@@ -90,22 +75,11 @@ class AssignmentController extends Controller
     public function show($id)
     {
         try {
-            $assignment = Assignment::with([
-                'decisionAuthority' => function($q) {
-                    $q->select('id', 'title', 'board_id', 'type', 'start_date', 'end_date');
-                },
-                'person' => function($q) {
-                    $q->select('ID', 'post_title');
-                },
-                'roleTerm' => function($q) {
-                    $q->select('term_id', 'name');
-                }
-            ])->findOrFail($id);
-
-            $assignment->role = $assignment->role;
+            $assignment = Assignment::with(['roleTerm', 'board'])
+                ->findOrFail($id);
 
             return response()->json([
-                'data' => $assignment
+                'data' => $assignment->toApiFormat()
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
