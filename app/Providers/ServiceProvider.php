@@ -6,7 +6,6 @@ use Roots\Acorn\Sage\SageServiceProvider;
 use App\Services\AnniversaryService;
 use App\Services\ExportService;
 use App\Services\AssignmentExportService;
-use App\Services\PostTransformService;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DecisionAuthorityController;
 use App\Http\Controllers\HomeController;
@@ -23,7 +22,6 @@ class ServiceProvider extends SageServiceProvider
         $this->app->singleton(AnniversaryService::class);
         $this->app->singleton(ExportService::class);
         $this->app->singleton(AssignmentExportService::class);
-        $this->app->singleton(PostTransformService::class);
         
         // Register controllers
         $this->app->singleton(AssignmentController::class);

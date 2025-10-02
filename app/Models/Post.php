@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use App\Services\PostTransformService;
+use App\Collections\PostCollection;
+use App\Transformers\PostTransformer;
 
-use function App\Core\getImageElement;
 use Illuminate\Database\Eloquent\Model;
 use App\Database\Eloquent\Relations\BelongsToMeta;
+
+use function App\Core\getImageElement;
 
 class Post extends Model
 {
@@ -25,6 +27,14 @@ class Post extends Model
         'post_date',
         'post_modified'
     ];
+
+    /**
+     * Create a new Eloquent collection instance.
+     */
+    public function newCollection(array $models = []): PostCollection
+    {
+        return new PostCollection($models);
+    }
 
     /**
      * Get all post meta fields
@@ -219,6 +229,42 @@ class Post extends Model
     }
 
     /**
+     * Get loaded meta data with visibility checks applied
+     * This method uses already loaded meta relationship for better performance
+     */
+    public function getLoadedMetaWithVisibility(): array
+    {
+        if (!$this->relationLoaded('meta')) {
+            return [];
+        }
+
+        $meta = [];
+        $metaValues = [];
+        
+        foreach ($this->meta as $metaItem) {
+            $metaValues[$metaItem->meta_key] = $metaItem->meta_value;
+        }
+
+        foreach ($metaValues as $key => $value) {
+            if (str_ends_with($key, '_visibility')) {
+                continue;
+            }
+            
+            $meta[$key] = $this->checkMetaVisibility($key, $value, $metaValues);
+        }
+
+        return $meta;
+    }
+
+    /**
+     * Format this single post
+     */
+    public function format(): PostTransformer
+    {
+        return new PostTransformer($this);
+    }
+
+    /**
      * Scope a query to only include published posts
      */
     public function scopePublished($query)
@@ -257,53 +303,5 @@ class Post extends Model
         return $query->whereDoesntHave('personAssignments', function($query) {
             $query->active();
         });
-    }
-
-    /**
-     * Get loaded meta data with visibility checks applied
-     * This method uses already loaded meta relationship for better performance
-     */
-    public function getLoadedMetaWithVisibility(): array
-    {
-        if (!$this->relationLoaded('meta')) {
-            return [];
-        }
-
-        $meta = [];
-        $metaValues = [];
-        
-        foreach ($this->meta as $metaItem) {
-            $metaValues[$metaItem->meta_key] = $metaItem->meta_value;
-        }
-
-        foreach ($metaValues as $key => $value) {
-            if (str_ends_with($key, '_visibility')) {
-                continue;
-            }
-            
-            $meta[$key] = $this->checkMetaVisibility($key, $value, $metaValues);
-        }
-
-        return $meta;
-    }
-
-    /**
-     * Format this post using the transform service
-     */
-    public function format(bool $includeMeta = false): array
-    {
-        $service = app(PostTransformService::class);
-        
-        return $service->transform($this, $includeMeta);
-    }
-
-    /**
-     * Format a collection of posts using the transform service
-     */
-    public static function formatCollection($posts, bool $includeMeta = false): array
-    {
-        $service = app(PostTransformService::class);
-
-        return $service->transformCollection($posts, $includeMeta);
     }
 }

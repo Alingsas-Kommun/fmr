@@ -49,7 +49,7 @@ class PersonController extends Controller
                           ->get();
 
             return response()->json([
-                'data' => Post::formatCollection($items),
+                'data' => $items->apiFormat(),
                 'meta' => [
                     'current_page' => intval($page),
                     'per_page' => intval($perPage),
@@ -71,7 +71,7 @@ class PersonController extends Controller
                 ->findOrFail($id);
 
             return response()->json([
-                'data' => $person->format(true)
+                'data' => $person->format()->toArray(includeMeta: true)
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

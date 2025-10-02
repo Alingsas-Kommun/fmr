@@ -37,7 +37,7 @@ class BoardController extends Controller
                           ->get();
 
             return response()->json([
-                'data' => Post::formatCollection($items),
+                'data' => $items->apiFormat(),
                 'meta' => [
                     'current_page' => intval($page),
                     'per_page' => intval($perPage),
@@ -59,7 +59,7 @@ class BoardController extends Controller
                 ->findOrFail($id);
 
             return response()->json([
-                'data' => $board->format(true)
+                'data' => $board->format()->toArray(includeMeta: true)
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

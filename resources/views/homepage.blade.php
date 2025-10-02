@@ -21,29 +21,31 @@
         </div>
     @endif
 
-    <div class="pt-15 pb-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-                @foreach($parties as $party)
-                    <a href="{{ get_permalink($party->ID) }}" class="group flex flex-col items-center text-center">
-                        @if($party->thumbnail())
-                            <div class="flex items-center justify-center mb-3">
-                                {!! $party->thumbnail('h-16 w-auto') !!}
-                            </div>
-                        @else
-                            <div class="flex items-center justify-center mb-3">
-                                <x-heroicon-o-user-group class="h-16 w-16 text-gray-400" />
-                            </div>
-                        @endif
-                        
-                        <h3 class="text-sm font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200 mb-1">
-                            {{ $party->post_title }}
-                        </h3>
-                    </a>
-                @endforeach
+    @if($parties->isNotEmpty())
+        <div class="pt-15 pb-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                    @foreach($parties as $party)
+                        <a href="{{ $party->url }}" class="group flex flex-col items-center text-center">
+                            @if($party->image())
+                                <div class="flex items-center justify-center mb-3">
+                                    {!! $party->image('medium', 'h-16 w-auto') !!}
+                                </div>
+                            @else
+                                <div class="flex items-center justify-center mb-3">
+                                    <x-heroicon-o-user-group class="h-16 w-16 text-gray-400" />
+                                </div>
+                            @endif
+                            
+                            <h3 class="text-sm font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200 mb-1">
+                                {!! $party->name !!}
+                            </h3>
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @if($groupLeaders->isNotEmpty())
         <div class="py-8">
@@ -51,13 +53,11 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($groupLeaders as $leader)
-                    <a href="{{ get_permalink($leader->ID) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
+                    <a href="{!! $leader->url !!}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                         <div class="flex items-center space-x-4">
-                            @if($leader->thumbnail())
+                            @if($leader->image())
                                 <div class="flex-shrink-0">
-                                    <div class="w-16 h-16 rounded-full overflow-hidden">
-                                        {!! $leader->thumbnail() !!}
-                                    </div>
+                                    {!! $leader->image('medium', 'w-16 h-16 rounded-full') !!}
                                 </div>
                             @else
                                 <div class="w-16 h-16 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
@@ -67,22 +67,22 @@
 
                             <div class="flex-1 min-w-0 space-y-1">
                                 <h3 class="text-md font-semibold text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
-                                    @if($leader->getMeta('person_firstname') && $leader->getMeta('person_lastname'))
-                                        {{ $leader->getMeta('person_firstname') }} {{ $leader->getMeta('person_lastname') }}
+                                    @if($leader->meta->firstname && $leader->meta->lastname)
+                                        {!! $leader->meta->firstname !!} {!! $leader->meta->lastname !!}
                                     @else
-                                        {{ $leader->post_title }}
+                                        {!! $leader->name !!}
                                     @endif
                                 </h3>
 
                                 @if($leader->party)
                                     <span class="flex items-center space-x-1 text-sm">
-                                        @if($leader->party->thumbnail())
-                                            {!! $leader->party->thumbnail('w-4 h-4 flex-shrink-0') !!}
+                                        @if($leader->party->image())
+                                            {!! $leader->party->image('medium', 'w-4 h-4 flex-shrink-0') !!}
                                         @else
                                             <x-heroicon-o-user-group class="h-5 w-5 text-primary-600 flex-shrink-0" />
                                         @endif
 
-                                        <span>{{ $leader->party->post_title }}</span>
+                                        <span>{{ $leader->party->name }}</span>
                                     </span>
                                 @endif
                             </div>
@@ -109,9 +109,11 @@
                                 <div class="flex items-center justify-between">
                                     <div class="flex-1 min-w-0 space-y-1">
                                         @if($authority->board)
+                                            @set($board, $authority->board->format())
+                                            
                                             <span class="inline-flex items-center text-xs font-medium text-primary-600 space-x-1">
                                                 <x-heroicon-o-building-office-2 class="h-3 w-3 text-primary-600 flex-shrink-0" />
-                                                <span>{!! $authority->board->post_title !!}</span>
+                                                <span>{!! $board->name !!}</span>
                                             </span>
                                         @endif
 

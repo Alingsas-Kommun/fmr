@@ -15,13 +15,16 @@ class HomeController extends Controller
         $parties = Post::parties()
             ->published()
             ->orderBy('post_title')
-            ->get();
+            ->with(['meta'])
+            ->get()
+            ->format();
 
         $groupLeaders = Post::persons()
             ->published()
             ->withMeta('person_group_leader', '1')
-            ->with('party')
-            ->get();
+            ->with(['meta', 'party.meta'])
+            ->get()
+            ->format();
 
         $decisionAuthorities = DecisionAuthority::with(['board', 'typeTerm'])
             ->ongoing()

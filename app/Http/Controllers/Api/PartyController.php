@@ -27,7 +27,7 @@ class PartyController extends Controller
                           ->get();
 
             return response()->json([
-                'data' => Post::formatCollection($items),
+                'data' => $items->apiFormat(),
                 'meta' => [
                     'current_page' => intval($page),
                     'per_page' => intval($perPage),
@@ -49,7 +49,7 @@ class PartyController extends Controller
                 ->findOrFail($id);
 
             return response()->json([
-                'data' => $party->format(true)
+                'data' => $party->format()->toArray(includeMeta: true)
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
