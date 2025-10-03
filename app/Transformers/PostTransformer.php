@@ -149,25 +149,42 @@ class PostTransformer
         $data = array_merge($data, $this->getExtractedData());
 
         if ($includeMeta) {
-            $data['meta'] = $this->getCleanMeta();
+            $data['meta'] = $this->getCleanMeta(filterByExpectedFields: true);
         }
 
         return $data;
     }
 
-    public function getCleanMeta(): array
+    public function getCleanMeta(bool $filterByExpectedFields = true): array
     {
-        $systemKeys = ['_edit_lock', '_edit_last', '_thumbnail_id'];
         $extractedFields = $this->getExtractedFields($this->post->post_type);
         
-        $filteredMeta = array_filter($this->rawMeta, function ($key) use ($systemKeys, $extractedFields) {
-            return !in_array($key, $systemKeys) && 
-                   !in_array($key, $extractedFields) &&
-                   !str_ends_with($key, '_visibility');
-        }, ARRAY_FILTER_USE_KEY);
+        if ($filterByExpectedFields) {
+            $expectedFields = FieldGroupService::getExpectedFieldsForPostType($this->post->post_type);
+            
+            $allowedKeys = array_merge(
+                array_keys($expectedFields),
+                ['_thumbnail_id']
+            );
+            
+            $filteredMeta = array_filter($this->rawMeta, function ($key) use ($extractedFields, $allowedKeys) {
+                return in_array($key, $allowedKeys) && 
+                       !in_array($key, $extractedFields) &&
+                       !str_ends_with($key, '_visibility');
+            }, ARRAY_FILTER_USE_KEY);
+        } else {
+            $systemKeys = ['_edit_lock', '_edit_last', '_thumbnail_id'];
+            
+            $filteredMeta = array_filter($this->rawMeta, function ($key) use ($systemKeys, $extractedFields) {
+                return !in_array($key, $systemKeys) && 
+                       !in_array($key, $extractedFields) &&
+                       !str_ends_with($key, '_visibility');
+            }, ARRAY_FILTER_USE_KEY);
+        }
 
         return FieldGroupService::formatMetaValues($filteredMeta, $this->post->post_type, $extractedFields);
     }
+
 
     // Helper methods
     protected function getExtractedFields(string $postType): array
