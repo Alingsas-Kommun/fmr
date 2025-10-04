@@ -6,6 +6,7 @@ use App\Http\Controllers\SearchController;
 use App\Models\Post;
 use App\Models\Term;
 use Livewire\Attributes\Url;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AdvancedSearch extends Component
@@ -27,6 +28,15 @@ class AdvancedSearch extends Component
     
     #[Url]
     public ?int $roleId = null;
+
+    /**
+     * Sorting properties.
+     */
+    #[Url]
+    public ?string $sortBy = null;
+    
+    #[Url]
+    public string $sortDirection = 'asc';
 
     /**
      * Search results.
@@ -58,6 +68,12 @@ class AdvancedSearch extends Component
         }
         if (request()->has('roleId')) {
             $this->roleId = (int) request()->get('roleId');
+        }
+        if (request()->has('sortBy')) {
+            $this->sortBy = request()->get('sortBy');
+        }
+        if (request()->has('sortDirection')) {
+            $this->sortDirection = request()->get('sortDirection', 'asc');
         }
         
         // Only perform search if there's a query or filters
@@ -104,7 +120,32 @@ class AdvancedSearch extends Component
         }
 
         $searchController = app(SearchController::class);
-        $this->results = $searchController->advancedSearch($this->query, $this->boardId, $this->partyId, $this->roleId);
+        $this->results = $searchController->advancedSearch($this->query, $this->boardId, $this->partyId, $this->roleId, $this->sortBy, $this->sortDirection);
+    }
+
+    /**
+     * Sort the results by a specific column.
+     */
+    public function sortBy(string $column)
+    {
+        if ($this->sortBy === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $column;
+            $this->sortDirection = 'asc';
+        }
+
+        // Re-perform search with new sorting
+        $this->performSearch();
+    }
+
+    /**
+     * Listen for sort events from Alpine.js.
+     */
+    #[On('sortBy')]
+    public function handleSortBy($column)
+    {
+        $this->sortBy($column);
     }
 
     /**
@@ -136,6 +177,8 @@ class AdvancedSearch extends Component
         $this->boardId = null;
         $this->partyId = null;
         $this->roleId = null;
+        $this->sortBy = null;
+        $this->sortDirection = 'asc';
         $this->results = collect();
     }
 

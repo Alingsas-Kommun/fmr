@@ -40,7 +40,7 @@ class SearchController extends Controller
     /**
      * Perform advanced search with filters.
      */
-    public function advancedSearch(string $query, ?int $boardId = null, ?int $partyId = null, ?int $roleId = null)
+    public function advancedSearch(string $query, ?int $boardId = null, ?int $partyId = null, ?int $roleId = null, ?string $sortBy = null, string $sortDirection = 'asc')
     {
         // If no search criteria provided, return empty results
         if (empty($query) && is_null($boardId) && is_null($partyId) && is_null($roleId)) {
@@ -82,7 +82,13 @@ class SearchController extends Controller
             ])
             ->get();
 
-        return $this->transformResults($persons);
+        $results = $this->transformResults($persons);
+        
+        if ($sortBy) {
+            $results = $this->sortResults($results, $sortBy, $sortDirection);
+        }
+
+        return $results;
     }
 
     /**
@@ -200,5 +206,25 @@ class SearchController extends Controller
                 ] : null,
             ];
         });
+    }
+
+    /**
+     * Sort the results by the specified column and direction.
+     */
+    private function sortResults($results, string $sortBy, string $sortDirection)
+    {
+        return $results->sortBy(function ($item) use ($sortBy) {
+            // Handle nested properties like party.title
+            if (str_contains($sortBy, '.')) {
+                $keys = explode('.', $sortBy);
+                $value = $item;
+                foreach ($keys as $key) {
+                    $value = $value->{$key} ?? '';
+                }
+                return $value;
+            }
+            
+            return $item->{$sortBy} ?? '';
+        }, SORT_REGULAR, $sortDirection === 'desc');
     }
 }

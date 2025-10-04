@@ -1,4 +1,6 @@
-<div>
+<div x-data="{}" @sort-table.window="$dispatch('sortBy', { column: $event.detail.column })">
+    @use('App\Utilities\TableColumn')
+
     <div class="md:bg-primary-50 rounded-xl mt-3 md:p-8">
         <form method="GET" action="{{ route('search.show') }}" class="space-y-6">
             <div class="space-y-1">
@@ -127,47 +129,18 @@
         </form>
     </div>
 
+    @php
+        $columns = [
+            TableColumn::link('firstname', __('First Name', 'fmr'), 'url'),
+            TableColumn::link('lastname', __('Last Name', 'fmr'), 'url'),
+            TableColumn::imageLink('party.title', __('Party', 'fmr'), 'party.url', 'party.thumbnail')
+        ];
+    @endphp
+
     <div class="py-8">
         <div class="max-w-6xl mx-auto">
             <div wire:loading class="w-full">
-                <div class="bg-white rounded-lg border border-gray-200">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <div class="h-6 bg-gray-200 rounded animate-pulse w-48"></div>
-                    </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                        {{ __('First Name', 'fmr') }}
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                        {{ __('Last Name', 'fmr') }}
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                        {{ __('Party', 'fmr') }}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @for($i = 0; $i < 5; $i++)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="h-4 bg-gray-200 rounded animate-pulse w-24"></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="h-4 bg-gray-200 rounded animate-pulse w-32"></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="h-4 bg-gray-200 rounded animate-pulse w-20"></div>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <x-table :columns="$columns" :loading="true" class="w-full" />
             </div>
             
             <div wire:loading.remove>
@@ -182,65 +155,16 @@
                                 @endif
                             </h2>
                         </div>
-                        
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                            {{ __('First Name', 'fmr') }}
-                                        </th>
 
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                            {{ __('Last Name', 'fmr') }}
-                                        </th>
-                                        
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                                            {{ __('Party', 'fmr') }}
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($results as $result)
-                                        <tr class="hover:bg-gray-50">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    <x-link href="{{ $result->url }}" :underline="false">
-                                                        {{ $result->firstname ?? '' }}
-                                                    </x-link>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    <x-link href="{{ $result->url }}" :underline="false">
-                                                        {{ $result->lastname ?? '' }}
-                                                    </x-link>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">
-                                                    @if($result->party)
-                                                        <x-link href="{{ $result->party->url }}" class="flex items-center space-x-2" :underline="false">
-                                                            @if($result->party->thumbnail)
-                                                                <div class="flex-shrink-0">
-                                                                    {!! $result->party->thumbnail !!}
-                                                                </div>
-                                                            @endif
-                                                            <span>{{ $result->party->title }}</span>
-                                                        </x-link>
-                                                    @else
-                                                        <span class="text-gray-400">{{ __('No party', 'fmr') }}</span>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                        <x-table 
+                            :data="$results->toArray()" 
+                            :columns="$columns"
+                            :empty-message="__('No elected officials found', 'fmr')"
+                            :sort-by="$sortBy"
+                            :sort-direction="$sortDirection"
+                            mode="livewire"
+                            class="w-full"
+                        />
                     </div>
                 @elseif($query || $boardId || $partyId || $roleId)
                     <x-alert type="warning">

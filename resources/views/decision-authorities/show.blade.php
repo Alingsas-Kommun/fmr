@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@use('App\Utilities\TableColumn')
+
 @section('content')
     <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8 mt-3 mb-8">
         <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
@@ -44,64 +46,46 @@
     </div>
 
     @if($activeAssignments->count() > 0)
+        @php
+            $tableData = $activeAssignments->map(function ($assignment) {
+                return (object) [
+                    'id' => $assignment->id,
+                    'person' => [
+                        'url' => get_permalink($assignment->person->ID),
+                        'text' => $assignment->person->post_title,
+                    ],
+                    'role' => [
+                        'url' => route('assignments.index', ['role' => $assignment->roleTerm->slug]),
+                        'text' => $assignment->roleTerm->name,
+                    ],
+                    'period' => date('j M Y', strtotime($assignment->period_start)) . ' – ' . date('j M Y', strtotime($assignment->period_end)),
+                    'view' => [
+                        'url' => route('assignments.show', $assignment),
+                        'text' => __('View', 'fmr'),
+                    ]
+                ];
+            })->toArray();
+        @endphp
+
+        @set($columns, [
+            TableColumn::link('person.text', __('Name', 'fmr'), 'person.url'),
+            TableColumn::link('role.text', __('Role', 'fmr'), 'role.url'),
+            TableColumn::text('period', __('Period', 'fmr')),
+            TableColumn::arrowLink('view.text', '', 'view.url')
+        ])
+
         <div class="py-4">
             <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
         </div>
 
-        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-100 dark:bg-gray-200">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {{ __('Name', 'fmr') }}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {{ __('Role', 'fmr') }}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {{ __('Period', 'fmr') }}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {{ __('Actions', 'fmr') }}
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
-                    @forelse($activeAssignments as $assignment)
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4">
-                                <x-link href="{{ get_permalink($assignment->person->ID) }}">
-                                    {{ $assignment->person->post_title }}
-                                </x-link>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <x-link href="{{ route('assignments.index', ['role' => $assignment->roleTerm->slug]) }}">
-                                    {{ $assignment->roleTerm->name }}
-                                </x-link>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                {{ date('j M Y', strtotime($assignment->period_start)) }} –
-                                {{ date('j M Y', strtotime($assignment->period_end)) }}
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <x-link href="{{ route('assignments.show', $assignment) }}">
-                                    {{ __('View', 'fmr') }}
-                                </x-link>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3" class="px-6 py-4 text-center text-gray-500">
-                                {{ __('No active assignments found.', 'fmr') }}
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+        <div class="bg-white rounded-lg border border-gray-200">
+            <x-table 
+                :data="$tableData" 
+                :columns="$columns"
+                mode="static"
+                :empty-message="__('No active assignments found.', 'fmr')"
+                class="w-full"
+            />
         </div>
     @else
         <x-alert type="info">
