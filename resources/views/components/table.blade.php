@@ -180,13 +180,11 @@
                                         <span>{{ $column['label'] ?? '' }}</span>
                                         
                                         @if($column['label'] && $sortable && ($column['sortable'] ?? true))
-                                            @if($mode === 'livewire')
-                                                <button
-                                                    type="button"
-                                                    @click="$dispatch('sort-table', { column: '{{ $column['key'] }}' })"
-                                                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 opacity-50 group-hover:opacity-100 bg-white px-1.5 py-1 text-sm leading-5 font-semibold text-gray-800 transition hover:border-gray-300 hover:text-gray-900 hover:shadow-xs focus:ring-3 focus:ring-gray-300/25 active:border-gray-200 active:shadow-none"
-                                                >
-                                            @endif
+                                            <button
+                                                type="button"
+                                                @click="$dispatch('sort-table', { column: '{{ $column['key'] }}' })"
+                                                class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 opacity-50 group-hover:opacity-100 bg-white px-1.5 py-1 text-sm leading-5 font-semibold text-gray-800 transition hover:border-gray-300 hover:text-gray-900 hover:shadow-xs focus:ring-3 focus:ring-gray-300/25 active:border-gray-200 active:shadow-none"
+                                            >
                                                 @if($sortBy && $sortBy === $column['key'])
                                                     @if($sortDirection === 'asc')
                                                         <x-heroicon-o-chevron-up class="w-4 h-4" />

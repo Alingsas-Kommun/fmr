@@ -162,7 +162,7 @@
                             :empty-message="__('No elected officials found', 'fmr')"
                             :sort-by="$sortBy"
                             :sort-direction="$sortDirection"
-                            mode="livewire"
+                            mode="dynamic"
                             class="w-full"
                         />
                     </div>
