@@ -280,12 +280,12 @@
                     TableColumn::link('firstname', 'First Name', 'url'),
                     TableColumn::link('lastname', 'Last Name', 'url'),
                     TableColumn::text('email', 'Email', 'text-sm text-gray-600'),
-                    TableColumn::badge('status', 'Status', [
+                    TableColumn::badgeMap('status', 'Status', [
                         'active' => 'bg-green-100 text-green-800',
                         'inactive' => 'bg-red-100 text-red-800',
                         'pending' => 'bg-yellow-100 text-yellow-800'
                     ]),
-                    TableColumn::badge('role', 'Role', [
+                    TableColumn::badgeMap('role', 'Role', [
                         'admin' => 'bg-purple-100 text-purple-800',
                         'moderator' => 'bg-blue-100 text-blue-800',
                         'editor' => 'bg-orange-100 text-orange-800',
@@ -310,7 +310,7 @@
                     @set($customColumns, [
                         TableColumn::text('id', 'ID', 'font-mono text-sm text-gray-500'),
                         TableColumn::link('firstname', 'Name', 'url', 'text-lg font-semibold'),
-                        TableColumn::badge('status', 'Status', [
+                        TableColumn::badgeMap('status', 'Status', [
                             'active' => 'bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium',
                             'inactive' => 'bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium',
                             'pending' => 'bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium'

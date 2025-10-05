@@ -23,11 +23,9 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::view(General::getRouteSlug('style-guide'), 'styleguide')->name('styleguide');
 
 // Assignment routes
-Route::get(General::getRouteSlug('assignments'), [AssignmentController::class, 'index'])->name('assignments.index');
 Route::get(General::getRouteSlug('assignments').'/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
 
 // Decision authority routes
-Route::get(General::getRouteSlug('decision-authorities'), [DecisionAuthorityController::class, 'index'])->name('decision-authorities.index');
 Route::get(General::getRouteSlug('decision-authorities').'/{decisionAuthority}', [DecisionAuthorityController::class, 'show'])->name('decision-authorities.show');
 
 // Search routes

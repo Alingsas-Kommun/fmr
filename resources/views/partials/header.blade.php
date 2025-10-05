@@ -50,16 +50,6 @@
 
                     <div class="flex items-center space-x-6">
                         @user
-                            <nav class="hidden md:flex items-center space-x-5">
-                                <a href="{{ route('assignments.index') }}" class="text-gray-700 hover:text-gray-800 font-semibold">
-                                    {!! __('Assignments', 'fmr') !!}
-                                </a>
-
-                                <a href="{{ route('decision-authorities.index') }}" class="text-gray-700 hover:text-gray-800 font-semibold">
-                                    {!! __('Decision Authorities', 'fmr') !!}
-                                </a>
-                            </nav>
-
                             @set($current_user, wp_get_current_user())
                             @set($avatar_url, get_avatar_url($current_user->ID, ['size' => 100]))
 

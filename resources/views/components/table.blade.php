@@ -27,7 +27,7 @@
                 
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-white">
                             <tr>
                                 @foreach($columns as $column)
                                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700 tracking-wider">
@@ -115,13 +115,13 @@
                         return item[column.key] || '';
                     }
                 }"
-                class="{{ $responsive ? 'min-w-full overflow-x-auto rounded-xl' : '' }}"
+                class="{{ $responsive ? 'min-w-full overflow-x-auto rounded-lg' : '' }}"
             >
                 <table class="min-w-full align-middle text-sm whitespace-nowrap">
                     <thead>
                         <tr class="border-b-1 border-gray-100 {{ $headerClass }}">
                             <template x-for="column in columns" :key="column.key">
-                                <th class="group px-6 py-3 font-semibold text-gray-900 {{ $headerThClass }}" :class="column.align || 'text-start'">
+                                <th class="group px-6 py-3 font-semibold bg-white text-gray-900 {{ $headerThClass }}" :class="column.align || 'text-start'">
                                     <div class="inline-flex items-center gap-2">
                                         <span x-text="column.label || ''"></span>
                                         
@@ -150,10 +150,10 @@
 
                     <tbody class="{{ $bodyClass }}">
                         <template x-for="(item, index) in sortedData" :key="item.id || index">
-                            <tr class="border-t border-gray-100 even:bg-gray-50 hover:bg-gray-50 {{ $rowClass }}">
+                            <tr class="border-t border-gray-100 even:bg-gray-50 hover:bg-gray-50 dark:hover:bg-gray-200 {{ $rowClass }}">
                                 <template x-for="column in columns" :key="column.key">
                                     <td class="px-6 py-3" :class="column.align || 'text-start'">
-                                        <div x-html="renderColumn(item, column)"></div>
+                                        <div x-html="renderColumn(item, column)" class="flex"></div>
                                     </td>
                                 </template>
                             </tr>
@@ -170,12 +170,12 @@
                 </table>
             </div>
         @else
-            <div class="{{ $responsive ? 'min-w-full overflow-x-auto rounded-xl' : '' }}">
+            <div class="{{ $responsive ? 'min-w-full overflow-x-auto' : '' }}">
                 <table class="min-w-full align-middle text-sm whitespace-nowrap">
                     <thead>
                         <tr class="border-b-1 border-gray-100 {{ $headerClass }}">
                             @foreach($columns as $column)
-                                <th class="group px-6 py-3 font-semibold text-gray-900 {{ $column['align'] ?? 'text-start' }}">
+                                <th class="group px-6 py-3 font-semibold bg-white text-gray-900 {{ $column['align'] ?? 'text-start' }}">
                                     <div class="inline-flex items-center gap-2">
                                         <span>{{ $column['label'] ?? '' }}</span>
                                         

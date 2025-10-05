@@ -64,6 +64,22 @@ class Person extends Composer
             return collect();
         }
 
-        return $person->activeAssignments;
+        $assignments = $person->activeAssignments;
+
+        return $assignments->map(function ($assignment) {
+            return (object) [
+                'id' => $assignment->id,
+                'role' => $assignment->roleTerm->name,
+                'decisionAuthority' => $assignment->decisionAuthority ? [
+                    'url' => route('decision-authorities.show', $assignment->decisionAuthority),
+                    'text' => $assignment->decisionAuthority->title,
+                ] : null,
+                'period' => $assignment->period_start->format('j M Y') . ' - ' . $assignment->period_end->format('j M Y'),
+                'view' => [
+                    'url' => route('assignments.show', $assignment),
+                    'text' => __('View', 'fmr'),
+                ]
+            ];
+        })->toArray();
     }
 }

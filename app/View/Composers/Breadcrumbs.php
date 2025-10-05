@@ -66,12 +66,8 @@ class Breadcrumbs extends Composer
 
         // Laravel routes
         switch ($routeName) {
-            case 'assignments.index':
-                return $this->getAssignmentsIndexBreadcrumbs();
             case 'assignments.show':
                 return $this->getAssignmentsShowBreadcrumbs();
-            case 'decision-authorities.index':
-                return $this->getDecisionAuthoritiesIndexBreadcrumbs();
             case 'decision-authorities.show':
                 return $this->getDecisionAuthoritiesShowBreadcrumbs();
             case 'search.show':
@@ -134,21 +130,6 @@ class Breadcrumbs extends Composer
     }
 
     /**
-     * Get breadcrumbs for assignments index.
-     */
-    private function getAssignmentsIndexBreadcrumbs(): array
-    {
-        return [
-            [
-                'label' => __('Assignments', 'fmr'),
-                'url' => route('assignments.index'),
-                'icon' => 'heroicon-o-clipboard-document-list',
-                'current' => true,
-            ]
-        ];
-    }
-
-    /**
      * Get breadcrumbs for assignments show.
      */
     private function getAssignmentsShowBreadcrumbs(): array
@@ -156,7 +137,7 @@ class Breadcrumbs extends Composer
         $breadcrumbs = [
             [
                 'label' => __('Assignments', 'fmr'),
-                'url' => route('assignments.index'),
+                'url' => '#',
                 'icon' => 'heroicon-o-clipboard-document-list',
                 'current' => false,
             ]
@@ -198,21 +179,6 @@ class Breadcrumbs extends Composer
     }
 
     /**
-     * Get breadcrumbs for decision authorities index.
-     */
-    private function getDecisionAuthoritiesIndexBreadcrumbs(): array
-    {
-        return [
-            [
-                'label' => __('Decision Authorities', 'fmr'),
-                'url' => route('decision-authorities.index'),
-                'icon' => 'heroicon-o-scale',
-                'current' => true,
-            ]
-        ];
-    }
-
-    /**
      * Get breadcrumbs for decision authorities show.
      */
     private function getDecisionAuthoritiesShowBreadcrumbs(): array
@@ -220,7 +186,7 @@ class Breadcrumbs extends Composer
         $breadcrumbs = [
             [
                 'label' => __('Decision Authorities', 'fmr'),
-                'url' => route('decision-authorities.index'),
+                'url' => '#',
                 'icon' => 'heroicon-o-scale',
                 'current' => false,
             ]

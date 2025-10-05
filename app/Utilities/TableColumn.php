@@ -2,6 +2,7 @@
 
 namespace App\Utilities;
 
+use Exception;
 use Illuminate\Support\Facades\Blade;
 
 class TableColumn
@@ -24,7 +25,7 @@ class TableColumn
         ]);
     }
 
-    public static function link(string $key, ?string $label = null, string $urlKey = 'url', string $class = 'text-blue-600 hover:text-blue-800'): array
+    public static function link(string $key, ?string $label = null, string $urlKey = 'url', string $class = ''): array
     {
         return self::make($key, $label, [
             'render' => function ($item) use ($key, $urlKey, $class) {
@@ -32,14 +33,14 @@ class TableColumn
                 $value = data_get($item, $key);
                 
                 return Blade::render(
-                    '<x-link href="{{ $url }}" class="' . $class . '">{{ $value }}</x-link>',
+                    '<x-link href="{{ $url }}" class="!inline-block ' . $class . '">{{ $value }}</x-link>',
                     ['url' => $url, 'value' => $value]
                 );
             }
         ]);
     }
 
-    public static function arrowLink(string $key, ?string $label = null, string $urlKey = 'url', string $class = 'text-blue-600 hover:text-blue-800'): array
+    public static function arrowLink(string $key, ?string $label = null, string $urlKey = 'url', string $class = ''): array
     {
         return self::make($key, $label, [
             'render' => function ($item) use ($key, $urlKey, $class) {
@@ -80,7 +81,21 @@ class TableColumn
         ]);
     }
 
-    public static function badge(string $key, ?string $label = null, array $colorMap = [], string $class = ''): array
+    public static function badge(string $key, ?string $label = null, string $class = 'bg-primary-100 text-primary-800'): array
+    {
+        return self::make($key, $label, [
+            'render' => function ($item) use ($key, $class) {
+                $value = data_get($item, $key);
+                
+                return Blade::render(
+                    '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ' . $class . '">{{ $value }}</span>',
+                    ['value' => ucfirst($value)]
+                );
+            }
+        ]);
+    }
+
+    public static function badgeMap(string $key, ?string $label = null, array $colorMap = [], string $class = ''): array
     {
         return self::make($key, $label, [
             'render' => function ($item) use ($key, $colorMap, $class) {
@@ -115,18 +130,6 @@ class TableColumn
     {
         return self::make($key, $label, [
             'render' => $render
-        ]);
-    }
-
-    public static function blade(string $key, ?string $label = null, string $template, array $data = []): array
-    {
-        return self::make($key, $label, [
-            'render' => function ($item) use ($key, $template, $data) {
-                $value = data_get($item, $key);
-                $templateData = array_merge($data, ['item' => $item, 'value' => $value]);
-                
-                return Blade::render($template, $templateData);
-            }
         ]);
     }
 

@@ -1,3 +1,5 @@
+@use('App\Utilities\TableColumn')
+
 <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
     <div class="flex items-center space-x-6">
         @if($person->image())
@@ -126,7 +128,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @if($hasHomeInfo)
-                    <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                    <div class="bg-white rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                             <x-heroicon-o-home class="h-5 w-5 text-primary-600 mr-3" />
                             {!! __('Home Information', 'fmr') !!}
@@ -219,7 +221,7 @@
                 @endif
 
                 @if($hasWorkInfo)
-                    <div class="bg-white dark:bg-gray-200 rounded-lg border border-gray-200 dark:border-gray-300 p-6">
+                    <div class="bg-white rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
                             <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
                             {!! __('Work Information', 'fmr') !!}
@@ -317,62 +319,25 @@
 </div>
 
 
-<div class="my-6">
-    <h2 class="text-2xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
-    
-    @if($assignments->isNotEmpty())
-        <div class="bg-primary-50 rounded-lg overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-100 dark:bg-gray-200">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Role', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Board', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Decision Authority', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Period', 'fmr') !!}</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">{!! __('Actions', 'fmr') !!}</th>
-                    </tr>
-                </thead>
+@if(!empty($assignments))
+    <div class="mt-5">
+        <h2 class="text-xl font-semibold mb-4">{!! __('Assignments', 'fmr') !!}</h2>
+        
+        <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200 dark:border-gray-300 overflow-hidden">
+            @set($columns, [
+                TableColumn::text('role', __('Role', 'fmr')),
+                TableColumn::link('decisionAuthority.text', __('Decision Authority', 'fmr'), 'decisionAuthority.url', 'truncate max-w-60'),
+                TableColumn::text('period', __('Period', 'fmr')),
+                TableColumn::arrowLink('view.text', '', 'view.url')
+            ])
 
-                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
-                    @foreach($assignments as $assignment)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <x-link href="{!! route('assignments.index', ['role' => $assignment->roleTerm->slug]) !!}">
-                                    {{ $assignment->roleTerm->name }}
-                                </x-link>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                @if($assignment->board)
-                                    <x-link href="{!! get_permalink($assignment->board->ID) !!}">
-                                        {{ $assignment->board->post_title }}
-                                    </x-link>
-                                @endif
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                @if($assignment->decisionAuthority)
-                                    <x-link href="{!! route('decision-authorities.show', $assignment->decisionAuthority) !!}">
-                                        {{ $assignment->decisionAuthority->title }}
-                                    </x-link>
-                                @endif
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ $assignment->period_start->format('Y-m-d') }} - {{ $assignment->period_end->format('Y-m-d') }}
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <x-link href="{!! route('assignments.show', $assignment) !!}">{!! __('View', 'fmr') !!}</x-link>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <x-table :data="$assignments" :columns="$columns" :empty-message="__('No assignments found.', 'fmr')" class="w-full" />
         </div>
-    @else
+    </div>
+@else
+    <div class="mt-5">
         <x-alert type="info">
             {{ __('No assignments found.', 'fmr') }}
         </x-alert>
-    @endif
-</div>
+    </div>
+@endif

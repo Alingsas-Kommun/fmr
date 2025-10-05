@@ -59,9 +59,25 @@ class Board extends Composer
             return collect();
         }
 
-        return DecisionAuthority::where('board_id', $boardId)
+        $decisionAuthorities = DecisionAuthority::where('board_id', $boardId)
             ->with('typeTerm')
             ->orderBy('start_date', 'desc')
             ->get();
+
+        return $decisionAuthorities->map(function ($authority) {
+            return (object) [
+                'id' => $authority->id,
+                'title' => [
+                    'url' => route('decision-authorities.show', $authority),
+                    'text' => $authority->title,
+                ],
+                'type' => $authority->typeTerm->name,
+                'period' => $authority->start_date->format('j M Y') . ' - ' . $authority->end_date->format('j M Y'),
+                'view' => [
+                    'url' => route('decision-authorities.show', $authority),
+                    'text' => __('View', 'fmr'),
+                ]
+            ];
+        })->toArray();
     }
 }

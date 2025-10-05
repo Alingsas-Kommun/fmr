@@ -105,62 +105,21 @@
     @endif
 </div>
 
-@if($decisionAuthorities->isNotEmpty())
+@use('App\Utilities\TableColumn')
+
+@if(!empty($decisionAuthorities))
     <div class="mt-6">
-        <h2 class="text-2xl font-semibold mb-4">{!! __('Decision Authorities', 'fmr') !!}</h2>
-        <div class="bg-white dark:bg-gray-100 rounded-lg overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-100 dark:bg-gray-200">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {!! __('Title', 'fmr') !!}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {!! __('Type', 'fmr') !!}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                            {!! __('Period', 'fmr') !!}
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider sr-only">
-                            {!! __('Actions', 'fmr') !!}
-                        </th>
-                    </tr>
-                </thead>
+        <h2 class="text-xl font-semibold mb-4">{!! __('Decision Authorities', 'fmr') !!}</h2>
+        
+        <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200 overflow-hidden">
+            @set($columns, [
+                TableColumn::link('title.text', __('Title', 'fmr'), 'title.url'),
+                TableColumn::badge('type', __('Type', 'fmr')),
+                TableColumn::text('period', __('Period', 'fmr')),
+                TableColumn::arrowLink('view.text', '', 'view.url')
+            ])
 
-                <tbody class="bg-gray-50 dark:bg-gray-100 divide-y divide-gray-200">
-                    @foreach($decisionAuthorities as $authority)
-                        <tr>
-                            <td class="px-6 py-4">
-                                <x-link href="{{ route('decision-authorities.show', $authority) }}">
-                                    {{ $authority->title }}
-                                </x-link>
-                            </td>
-                            
-                            <td class="px-6 py-4">
-                                @if($authority->typeTerm)
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 text-gray-800">
-                                        {{ $authority->typeTerm->name }}
-                                    </span>
-                                @else
-                                    <span class="text-gray-400 italic">{{ __('No type assigned', 'fmr') }}</span>
-                                @endif
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <div class="text-sm">
-                                    {{ $authority->start_date->format('j M Y') }} - {{ $authority->end_date->format('j M Y') }}
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4">
-                                <x-link href="{{ route('decision-authorities.show', $authority) }}">
-                                    {!! __('View', 'fmr') !!}
-                                </x-link>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <x-table :data="$decisionAuthorities" :columns="$columns" :empty-message="__('No decision authorities found.', 'fmr')" class="w-full" />
         </div>
     </div>
 @endif

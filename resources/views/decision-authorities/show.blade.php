@@ -3,7 +3,7 @@
 @use('App\Utilities\TableColumn')
 
 @section('content')
-    <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8 mt-3 mb-8">
+    <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8 mt-3 mb-3">
         <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-2">
@@ -45,47 +45,20 @@
         </div>
     </div>
 
-    @if($activeAssignments->count() > 0)
-        @php
-            $tableData = $activeAssignments->map(function ($assignment) {
-                return (object) [
-                    'id' => $assignment->id,
-                    'person' => [
-                        'url' => get_permalink($assignment->person->ID),
-                        'text' => $assignment->person->post_title,
-                    ],
-                    'role' => [
-                        'url' => route('assignments.index', ['role' => $assignment->roleTerm->slug]),
-                        'text' => $assignment->roleTerm->name,
-                    ],
-                    'period' => date('j M Y', strtotime($assignment->period_start)) . ' – ' . date('j M Y', strtotime($assignment->period_end)),
-                    'view' => [
-                        'url' => route('assignments.show', $assignment),
-                        'text' => __('View', 'fmr'),
-                    ]
-                ];
-            })->toArray();
-        @endphp
-
-        @set($columns, [
-            TableColumn::link('person.text', __('Name', 'fmr'), 'person.url'),
-            TableColumn::link('role.text', __('Role', 'fmr'), 'role.url'),
-            TableColumn::text('period', __('Period', 'fmr')),
-            TableColumn::arrowLink('view.text', '', 'view.url')
-        ])
-
+    @if(! empty($assignments))
         <div class="py-4">
             <h2 class="text-xl font-semibold">{{ __('Active Assignments', 'fmr') }}</h2>
         </div>
 
-        <div class="bg-white rounded-lg border border-gray-200">
-            <x-table 
-                :data="$tableData" 
-                :columns="$columns"
-                mode="static"
-                :empty-message="__('No active assignments found.', 'fmr')"
-                class="w-full"
-            />
+        <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200">
+            @set($columns, [
+                TableColumn::link('person.text', __('Name', 'fmr'), 'person.url'),
+                TableColumn::badge('role', __('Role', 'fmr')),
+                TableColumn::text('period', __('Period', 'fmr')),
+                TableColumn::arrowLink('view.text', '', 'view.url')
+            ])
+
+            <x-table :data="$assignments" :columns="$columns" :empty-message="__('No active assignments found.', 'fmr')" class="w-full" />
         </div>
     @else
         <x-alert type="info">
