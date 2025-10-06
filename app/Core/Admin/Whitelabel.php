@@ -25,6 +25,11 @@ class Whitelabel
         add_action('login_enqueue_scripts', [$this, 'enqueueAdminAssets'], 0);
 
         /**
+         * Enqueue dynamic login logo
+         */
+        add_action('login_enqueue_scripts', [$this, 'enqueueLoginLogo'], 10);
+
+        /**
          * Enqueue admin assets with CSS variables
          */
         add_action('login_enqueue_scripts', [$this, 'enqueueColorVariables']);
@@ -133,5 +138,56 @@ class Whitelabel
 
         $css_output = ':root {' . implode(';', array_map('esc_html', $css_vars)) . '}';
         wp_add_inline_style('wp-admin', $css_output);
+    }
+
+    /**
+     * Enqueue dynamic logo CSS for login screen.
+     *
+     * @return void
+     */
+    public function enqueueLoginLogo():void
+    {
+        // Skip asset loading in CLI context
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
+
+        // Get logotype from settings
+        $logotype_id = setting('logotype_default');
+        
+        if (!$logotype_id) {
+            return;
+        }
+
+        // Get image data
+        $image_data = wp_get_attachment_image_src($logotype_id, 'full');
+        
+        if (!$image_data) {
+            return;
+        }
+
+        $image_url = $image_data[0];
+        $image_width = $image_data[1];
+        $image_height = $image_data[2];
+
+        // Calculate aspect ratio and dimensions
+        $aspect_ratio = $image_width / $image_height;
+        $max_height = 70; // Keep the same height as before
+        $calculated_width = $max_height * $aspect_ratio;
+
+        // Build CSS for login logo
+        $css = sprintf(
+            'body.login #login h1 a,
+            body.login .login h1 a {
+                background-image: url("%s") !important;
+                width: %spx !important;
+                height: %spx !important;
+            }',
+            esc_url($image_url),
+            esc_attr($calculated_width),
+            esc_attr($max_height)
+        );
+
+        wp_add_inline_style('admin-css', $css);
     }
 }
