@@ -14,6 +14,7 @@ class HomeController extends Controller
     {
         $parties = Post::parties()
             ->published()
+            ->withActiveMembers()
             ->orderBy('post_title')
             ->with(['meta'])
             ->get()

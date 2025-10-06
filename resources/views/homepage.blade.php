@@ -55,14 +55,16 @@
                 @foreach($groupLeaders as $leader)
                     <a href="{!! $leader->url !!}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                         <div class="flex items-center space-x-4">
-                            @if($leader->image())
-                                <div class="flex-shrink-0">
-                                    {!! $leader->image('medium', 'w-16 h-16 rounded-full') !!}
-                                </div>
-                            @else
-                                <div class="w-16 h-16 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                    <x-heroicon-o-user class="h-8 w-8 text-primary-600" />
-                                </div>
+                            @if($setting('show_person_image'))
+                                @if($leader->image())
+                                    <div class="flex-shrink-0">
+                                        {!! $leader->image('medium', 'w-16 h-16 rounded-full') !!}
+                                    </div>
+                                @else
+                                    <div class="w-16 h-16 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                                        <x-heroicon-o-user class="h-8 w-8 text-primary-600" />
+                                    </div>
+                                @endif
                             @endif
 
                             <div class="flex-1 min-w-0 space-y-1">

@@ -171,4 +171,15 @@ class Assignment extends Model
     {
         return $query->inactive();
     }
+
+    /**
+     * Check if this assignment is currently active.
+     */
+    public function isActive(): bool
+    {
+        $today = now();
+        
+        return $this->period_start <= $today && 
+               ($this->period_end >= $today || $this->period_end === null);
+    }
 }

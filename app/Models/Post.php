@@ -291,6 +291,9 @@ class Post extends Model
         });
     }
 
+    /**
+     * Scope a query to only include posts with active assignments
+     */
     public function scopeActiveAssignments($query)
     {
         return $query->whereHas('personAssignments', function($query) {
@@ -298,10 +301,30 @@ class Post extends Model
         });
     }
 
+    /**
+     * Scope a query to only include posts with inactive assignments
+     */
     public function scopeInactiveAssignments($query)
     {
         return $query->whereDoesntHave('personAssignments', function($query) {
             $query->active();
+        });
+    }
+
+    /**
+     * Scope to get parties that have at least one active member
+     */
+    public function scopeWithActiveMembers($query)
+    {
+        return $query->whereIn('ID', function($subQuery) {
+            $subQuery->select('meta_value')
+                ->from('postmeta')
+                ->where('meta_key', 'person_party')
+                ->whereIn('post_id', Post::persons()
+                    ->published()
+                    ->activeAssignments()
+                    ->select('ID')
+                );
         });
     }
 }

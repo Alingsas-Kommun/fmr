@@ -15,14 +15,16 @@
                     
                     @if($assignment->person)
                         <div class="flex items-center space-x-2">
-                            @if($assignment->person->thumbnail())
-                                <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
-                                    {!! $assignment->person->thumbnail() !!}
-                                </div>
-                            @else
-                                <div class="w-6 h-6 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                    <x-heroicon-o-user class="w-4 h-4 text-primary-600" />
-                                </div>
+                            @if($setting('show_person_image'))
+                                @if($assignment->person->thumbnail())
+                                    <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
+                                        {!! $assignment->person->thumbnail() !!}
+                                    </div>
+                                @else
+                                    <div class="w-6 h-6 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                                        <x-heroicon-o-user class="w-4 h-4 text-primary-600" />
+                                    </div>
+                                @endif
                             @endif
                             
                             <x-link href="{{ get_permalink($assignment->person->ID) }}" :underline="false" class="font-medium">

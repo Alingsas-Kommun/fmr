@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
-use App\Http\Controllers\Admin\RoleController;
-use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
     /**
      * Display the specified assignment.
      */
-    public function show(Assignment $assignment)
+    public function show($id)
     {
-        $assignment->load(['board', 'decisionAuthority', 'person']);
+        $assignment = Assignment::with(['board', 'decisionAuthority', 'person'])
+            ->findOrFail($id);
+
+        if (!is_user_logged_in() && !$assignment->isActive()) { // @phpstan-ignore-line
+            abort(404);
+        }
 
         return view('assignments.show', [
             'assignment' => $assignment

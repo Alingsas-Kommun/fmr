@@ -4,6 +4,7 @@ namespace App\Core\Admin\Traits;
 
 use App\Models\Post;
 use App\Models\Term;
+
 use function Roots\view;
 
 /**
@@ -137,7 +138,14 @@ trait FieldGroupTrait
                         $row['_type'] = 'row';
                         foreach ($row['fields'] as &$field) {
                             $field['_type'] = 'field';
-                            $field['value'] = $this->getFieldValue($field['id'], $post);
+                            
+                            // Handle default values for checkboxes
+                            if ($field['type'] === 'checkbox') {
+                                $default_value = $field['default'] ?? false;
+                                $field['value'] = $this->getFieldValue($field['id'], $post, $default_value);
+                            } else {
+                                $field['value'] = $this->getFieldValue($field['id'], $post);
+                            }
                             
                             if ($field['type'] === 'post_relation' && isset($field['post_type'])) {
                                 $field['options'] = $this->getPostRelationOptions($field['post_type'], $field['display_field'] ?? 'post_title', $field['label'] ?? '');
@@ -156,7 +164,14 @@ trait FieldGroupTrait
                     } elseif (isset($row['id'])) {
                         // Simple configuration - this row is actually a field
                         $row['_type'] = 'field';
-                        $row['value'] = $this->getFieldValue($row['id'], $post);
+                        
+                        // Handle default values for checkboxes
+                        if ($row['type'] === 'checkbox') {
+                            $default_value = $row['default'] ?? false;
+                            $row['value'] = $this->getFieldValue($row['id'], $post, $default_value);
+                        } else {
+                            $row['value'] = $this->getFieldValue($row['id'], $post);
+                        }
                         
                         if ($row['type'] === 'post_relation' && isset($row['post_type'])) {
                             $row['options'] = $this->getPostRelationOptions($row['post_type'], $row['display_field'] ?? 'post_title', $row['label'] ?? '');
@@ -264,6 +279,10 @@ trait FieldGroupTrait
             case 'textarea':
                 return sanitize_textarea_field($value);
             case 'checkbox':
+                // Handle checkbox values - if not submitted, use default or false
+                if ($value === null || $value === '') {
+                    return $field['default'] ?? false;
+                }
                 return (bool) $value;
             case 'image':
                 return absint($value); // Ensure it's a positive integer (attachment ID)
@@ -299,7 +318,9 @@ trait FieldGroupTrait
                     $has_value = true;
                 }
             } else if ($field['type'] === 'checkbox') {
-                $this->saveFieldValue($field['id'], 0, $post_id);
+                // For checkboxes not submitted, use default value or false
+                $default_value = $field['default'] ?? false;
+                $this->saveFieldValue($field['id'], $default_value ? 1 : 0, $post_id);
             }
 
             $visibility_id = $field['id'] . '_visibility';

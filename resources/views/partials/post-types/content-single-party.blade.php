@@ -105,16 +105,18 @@
             @foreach($activeMembers as $member)
                 <a href="{{ $member->url }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
-                        @if($member->image())
-                            <div class="flex-shrink-0">
-                                <div class="w-16 h-16 rounded-full overflow-hidden">
-                                    {!! $member->image('thumbnail', 'w-full h-full object-cover') !!}
+                        @if($setting('show_person_image'))
+                            @if($member->image())
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full overflow-hidden">
+                                        {!! $member->image('thumbnail', 'w-full h-full object-cover') !!}
+                                    </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                <x-heroicon-o-user class="h-8 w-8 text-primary-600" />
-                            </div>
+                            @else
+                                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                                    <x-heroicon-o-user class="h-8 w-8 text-primary-600" />
+                                </div>
+                            @endif
                         @endif
 
                         <div class="flex-1 min-w-0">

@@ -28,10 +28,12 @@
                         @for ($i = 0; $i < 2; $i++)
                             <div class="block w-100 px-4 py-3 border-b border-gray-100 last-of-type:border-b-0">
                                 <div class="flex items-center space-x-3">
-                                    <div class="flex-shrink-0">
-                                        <div class="w-12 h-12 bg-gray-200 rounded-full animate-pulse"></div>
-                                    </div>
-                                    
+                                    @if($setting('show_person_image'))
+                                        <div class="flex-shrink-0">
+                                            <div class="w-12 h-12 bg-gray-200 rounded-full animate-pulse"></div>
+                                        </div>
+                                    @endif
+
                                     <div class="flex-1 min-w-0 space-y-2">
                                         <div class="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                                         <div class="h-3 bg-gray-200 rounded animate-pulse w-1/2"></div>
@@ -53,17 +55,19 @@
                                 @foreach ($results as $result)
                                     <a href="{{ $result->url }}" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last-of-type:border-b-0 group">
                                         <div class="flex items-center space-x-3">
-                                            <div class="flex-shrink-0">
-                                                @if($result->thumbnail)
-                                                    <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                                                        {!! $result->thumbnail !!}
-                                                    </div>
-                                                @else
-                                                    <div class="w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">
-                                                        <x-heroicon-o-user class="w-7 h-7 text-primary-600" />
-                                                    </div>
-                                                @endif
-                                            </div>
+                                            @if($setting('show_person_image'))
+                                                <div class="flex-shrink-0">
+                                                    @if($result->thumbnail)
+                                                        <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                                                            {!! $result->thumbnail !!}
+                                                        </div>
+                                                    @else
+                                                        <div class="w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">
+                                                            <x-heroicon-o-user class="w-7 h-7 text-primary-600" />
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endif
                                             
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-md font-medium text-gray-900 group-hover:text-primary-700 transition-colors duration-200">

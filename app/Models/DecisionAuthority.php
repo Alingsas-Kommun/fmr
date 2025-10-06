@@ -141,4 +141,15 @@ class DecisionAuthority extends Model
     {
         return $decisionAuthorities->map(fn($da) => $da->toApiFormat())->toArray();
     }
+
+    /**
+     * Check if this decision authority is currently active.
+     */
+    public function isActive(): bool
+    {
+        $today = now();
+        
+        return $this->start_date <= $today && 
+               ($this->end_date >= $today || $this->end_date === null);
+    }
 }

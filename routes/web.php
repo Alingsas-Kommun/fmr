@@ -23,10 +23,14 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::view(General::getRouteSlug('style-guide'), 'styleguide')->name('styleguide');
 
 // Assignment routes
-Route::get(General::getRouteSlug('assignments').'/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
+Route::get(General::getRouteSlug('assignments').'/{assignment}', [AssignmentController::class, 'show'])
+    ->where('assignment', '[0-9]+')
+    ->name('assignments.show');
 
 // Decision authority routes
-Route::get(General::getRouteSlug('decision-authorities').'/{decisionAuthority}', [DecisionAuthorityController::class, 'show'])->name('decision-authorities.show');
+Route::get(General::getRouteSlug('decision-authorities').'/{decisionAuthority}', [DecisionAuthorityController::class, 'show'])
+    ->where('decisionAuthority', '[0-9]+')
+    ->name('decision-authorities.show');
 
 // Search routes
 Route::get(General::getRouteSlug('search'), [SearchController::class, 'search'])->name('search.show');

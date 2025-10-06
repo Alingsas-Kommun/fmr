@@ -1,7 +1,7 @@
 @props(['breadcrumbs' => []])
 
 @if(!empty($breadcrumbs))
-    <nav class="flex items-center space-x-1 text-sm text-gray-600 py-2" aria-label="Breadcrumb">
+    <nav class="flex items-center space-x-1 text-sm text-gray-600 py-2 overflow-x-auto" aria-label="Breadcrumb">
         <ol class="flex items-center">
             @foreach($breadcrumbs as $index => $breadcrumb)
                 <li class="flex items-center">

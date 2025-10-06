@@ -113,7 +113,7 @@
         <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200 overflow-hidden">
             @set($columns, [
                 TableColumn::link('title.text', __('Title', 'fmr'), 'title.url', 'truncate max-w-60'),
-                TableColumn::badge('type', __('Type', 'fmr')),
+                TableColumn::text('type', __('Type', 'fmr')),
                 TableColumn::text('period', __('Period', 'fmr')),
                 TableColumn::arrowLink('view.text', '', 'view.url')
             ])

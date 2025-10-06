@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
-use Roots\Acorn\Sage\SageServiceProvider;
-use App\Services\AnniversaryService;
+use App\Exceptions\Handler;
 use App\Services\ExportService;
-use App\Services\AssignmentExportService;
-use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\DecisionAuthorityController;
+use App\Services\AnniversaryService;
 use App\Http\Controllers\HomeController;
+use App\Services\AssignmentExportService;
+use Roots\Acorn\Sage\SageServiceProvider;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AssignmentController;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use App\Http\Controllers\DecisionAuthorityController;
 
 class ServiceProvider extends SageServiceProvider
 {
@@ -28,6 +30,9 @@ class ServiceProvider extends SageServiceProvider
         $this->app->singleton(DecisionAuthorityController::class);
         $this->app->singleton(HomeController::class);
         $this->app->singleton(SearchController::class);
+        
+        // Register custom exception handler
+        $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
 
     /**

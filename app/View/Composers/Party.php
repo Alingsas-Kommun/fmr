@@ -25,9 +25,21 @@ class Party extends Composer
      */
     public function with()
     {
+        $party = $this->party();
+        
+        if (!$party) {
+            return [];
+        }
+
+        $activeMembers = $this->members(active: true);
+        
+        if ($activeMembers->isEmpty() && !is_user_logged_in()) {
+            abort(404);
+        }
+
         return [
-            'party' => $this->party(),
-            'activeMembers' => $this->members(active: true),
+            'party' => $party,
+            'activeMembers' => $activeMembers,
             'inactiveMembers' => is_user_logged_in() ? $this->members(active:false) : collect(),
         ];
     }

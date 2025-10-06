@@ -2,16 +2,18 @@
 
 <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
     <div class="flex items-center space-x-6">
-        @if($person->image())
-            <div class="flex-shrink-0">
-                <div class="w-30 h-30 flex items-center justify-center rounded-full overflow-hidden">
-                    {!! $person->image('thumbnail', 'w-full h-full object-cover') !!}
+        @if($setting('show_person_image'))
+            @if($person->image())
+                <div class="flex-shrink-0">
+                    <div class="w-30 h-30 flex items-center justify-center rounded-full overflow-hidden">
+                        {!! $person->image('thumbnail', 'w-full h-full object-cover') !!}
+                    </div>
                 </div>
-            </div>
-        @else
-            <div class="w-30 h-30 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                <x-heroicon-o-user class="h-15 w-15 text-primary-600" />
-            </div>
+            @else
+                <div class="w-30 h-30 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <x-heroicon-o-user class="h-15 w-15 text-primary-600" />
+                </div>
+            @endif
         @endif
         
         <div class="flex-1">
@@ -130,7 +132,7 @@
                 @if($hasHomeInfo)
                     <div class="bg-white rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                            <x-heroicon-o-home class="h-5 w-5 text-primary-600 mr-3" />
+                            <x-heroicon-o-home class="h-6 w-6 text-primary-600 mr-3" />
                             {!! __('Home Information', 'fmr') !!}
                         </h3>
 
@@ -223,7 +225,7 @@
                 @if($hasWorkInfo)
                     <div class="bg-white rounded-lg border border-gray-200 dark:border-gray-300 p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-6 flex items-center pb-3 border-b border-gray-200 dark:border-gray-300">
-                            <x-heroicon-o-building-office-2 class="h-5 w-5 text-primary-600 mr-3" />
+                            <x-heroicon-o-building-office-2 class="h-6 w-6 text-primary-600 mr-3" />
                             {!! __('Work Information', 'fmr') !!}
                         </h3>
 

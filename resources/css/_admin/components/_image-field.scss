@@ -14,6 +14,13 @@
         &[id*="darkmode"] {
             background: #111;
         }
+
+        &[id*="site_icon"] {
+            img {
+                width: 55px;
+                height: 55px;
+            }
+        }
         
         img {
             max-width: 200px;

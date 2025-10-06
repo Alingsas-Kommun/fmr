@@ -25,9 +25,21 @@ class Person extends Composer
      */
     public function with()
     {
+        $person = $this->person();
+        
+        if (!$person) {
+            return [];
+        }
+
+        $assignments = $this->assignments();
+        
+        if (empty($assignments) && !is_user_logged_in()) {
+            abort(404);
+        }
+
         return [
-            'person' => $this->person(),
-            'assignments' => $this->assignments(),
+            'person' => $person,
+            'assignments' => $assignments,
         ];
     }
 
@@ -74,7 +86,7 @@ class Person extends Composer
                     'url' => route('decision-authorities.show', $assignment->decisionAuthority),
                     'text' => $assignment->decisionAuthority->title,
                 ] : null,
-                'period' => $assignment->period_start->format('j M Y') . ' - ' . $assignment->period_end->format('j M Y'),
+                'period' => $assignment->period_start->format('Y-m-d') . ' - ' . $assignment->period_end->format('Y-m-d'),
                 'view' => [
                     'url' => route('assignments.show', $assignment),
                     'text' => __('View', 'fmr'),

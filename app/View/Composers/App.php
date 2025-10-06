@@ -24,6 +24,7 @@ class App extends Composer
         return [
             'siteName' => $this->siteName(),
             'logotype' => $this->logotype(),
+            'logotypeDarkmode' => $this->logotypeDarkmode(),
             'setting' => function ($name, $default = null) {
                 return setting($name, $default);
             },
@@ -43,6 +44,11 @@ class App extends Composer
 
     public function logotype()
     {
-        return getImageElement(setting('logotype_default'), 'full', 'w-auto h-12 dark:invert dark:hue-rotate-180');
+        return getImageElement(setting('logotype_default'), 'full', 'w-auto h-12 dark:hidden');
+    }
+
+    public function logotypeDarkmode()
+    {
+        return getImageElement(setting('logotype_darkmode'), 'full', 'w-auto h-12 hidden dark:block');
     }
 }

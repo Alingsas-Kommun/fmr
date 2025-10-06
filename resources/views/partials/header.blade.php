@@ -37,8 +37,9 @@
             >
                 <div class="flex items-center justify-between">
                     <a href="{{ route('homepage') }}" class="flex-shrink-0">
-                        @if($logotype)
+                        @if($logotype || $logotypeDarkmode)
                             {!! $logotype !!}
+                            {!! $logotypeDarkmode !!}
                         @else
                             <span class="text-2xl font-bold">{{ $siteName }}</span>
                         @endif
@@ -57,7 +58,11 @@
                                 <x-dropdown align="right" width="48" contentClasses="divide-y divide-gray-100 dark:divide-gray-300 bg-white dark:bg-gray-100">
                                     <x-slot name="trigger">
                                         <button class="flex items-center space-x-2 text-sm px-4 py-2 bg-gray-200/50 dark:bg-gray-300/50 border border-gray-300/30 rounded-md transition-colors duration-200">
-                                            <img src="{{ $avatar_url }}" alt="{{ $current_user->display_name }}" class="w-7 h-7 rounded-full">
+                                            @if($avatar_url)
+                                                <img src="{{ $avatar_url }}" alt="{{ $current_user->display_name }}" class="w-7 h-7 rounded-full">
+                                            @else
+                                                <x-heroicon-o-user-circle class="w-7 h-7 text-primary-500" />
+                                            @endif
                                             
                                             <span class="font-semibold text-gray-700">
                                                 {{ $current_user->display_name }}

@@ -4,6 +4,7 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 class Breadcrumbs extends Composer
 {
@@ -19,7 +20,7 @@ class Breadcrumbs extends Composer
     public function with(): array
     {
         return [
-            'breadcrumbs' => $this->buildBreadcrumbs(),
+            'breadcrumbs' => $this->buildBreadcrumbs()
         ];
     }
 
@@ -28,6 +29,12 @@ class Breadcrumbs extends Composer
      */
     public function buildBreadcrumbs(): array
     {
+        // Don't show breadcrumbs when we're rendering the 404 view
+        $currentView = $this->view->getName();
+        if ($currentView === '404') {
+            return [];
+        }
+
         $currentRoute = Route::currentRouteName();
         $routeBreadcrumbs = $this->getRouteBreadcrumbs($currentRoute);
         
@@ -145,7 +152,7 @@ class Breadcrumbs extends Composer
 
         // Get the assignment data from the route parameter
         $assignment = request()->route('assignment');
-        if ($assignment) {
+        if ($assignment && is_object($assignment)) {
             // Load the roleTerm relationship if not already loaded
             if (!$assignment->relationLoaded('roleTerm')) {
                 $assignment->load('roleTerm');
@@ -194,7 +201,7 @@ class Breadcrumbs extends Composer
 
         // Get the decision authority data from the route parameter
         $decisionAuthority = request()->route('decisionAuthority');
-        if ($decisionAuthority) {
+        if ($decisionAuthority && is_object($decisionAuthority)) {
             // Load the typeTerm relationship if not already loaded
             if (!$decisionAuthority->relationLoaded('typeTerm')) {
                 $decisionAuthority->load('typeTerm');
