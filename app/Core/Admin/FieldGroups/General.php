@@ -17,6 +17,32 @@ class General extends OptionsFieldGroup
     {
         return [
             [
+                'id' => 'general_settings',
+                'label' => __('General', 'fmr'),
+                'tab' => 'general',
+                'tab_label' => __('General', 'fmr'),
+                'fields' => [
+                    [
+                        'id' => 'site_title',
+                        'label' => __('Site Title', 'fmr'),
+                        'type' => 'text',
+                        'cols' => 6,
+                        'default' => 'Alingsås',
+                        'description' => __('Main title of the website', 'fmr'),
+                        'optional' => true,
+                    ],
+                    [
+                        'id' => 'site_description',
+                        'label' => __('Site Description', 'fmr'),
+                        'type' => 'text',
+                        'cols' => 6,
+                        'default' => 'Alingsås',
+                        'description' => __('Description of the website', 'fmr'),
+                        'optional' => true,
+                    ],
+                ],
+            ],
+            [
                 'id' => 'branding_settings',
                 'label' => __('Branding', 'fmr'),
                 'tab' => 'general',

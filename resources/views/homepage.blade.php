@@ -6,11 +6,11 @@
             <div class="mx-auto max-w-3xl py-15 px-4">
                 <div class="text-center">
                     <h1 class="text-3xl font-bold tracking-tight text-primary-600 sm:text-4xl text-balance">
-                        {!! __('Find your politician in Alingsås', 'fmr') !!}
+                        {!! $setting('site_title', __('Find your politician', 'fmr')) !!}
                     </h1>
 
                     <p class="mt-3 text-lg leading-8 text-gray-800">
-                        {!! __('Search through assignments, parties and politicians in the municipality of Alingsås.', 'fmr') !!}
+                        {!! $setting('site_description', __('Search through assignments, parties and politicians in the municipality.', 'fmr')) !!}
                     </p>
                 </div>
                 
