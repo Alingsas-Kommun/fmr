@@ -1,3 +1,4 @@
+@use('App\Utilities\TableColumn')
 <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8">
     <div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
@@ -105,21 +106,19 @@
     @endif
 </div>
 
-@use('App\Utilities\TableColumn')
-
 @if(!empty($decisionAuthorities))
     <div class="mt-6">
         <h2 class="text-xl font-semibold mb-4">{!! __('Decision Authorities', 'fmr') !!}</h2>
         
         <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200 overflow-hidden">
             @set($columns, [
-                TableColumn::link('title.text', __('Title', 'fmr'), 'title.url'),
+                TableColumn::link('title.text', __('Title', 'fmr'), 'title.url', 'truncate max-w-60'),
                 TableColumn::badge('type', __('Type', 'fmr')),
                 TableColumn::text('period', __('Period', 'fmr')),
                 TableColumn::arrowLink('view.text', '', 'view.url')
             ])
 
-            <x-table :data="$decisionAuthorities" :columns="$columns" :empty-message="__('No decision authorities found.', 'fmr')" class="w-full" />
+            <x-sortable-table :data="$decisionAuthorities" :columns="$columns" :empty-message="__('No decision authorities found.', 'fmr')" class="w-full" />
         </div>
     </div>
 @endif

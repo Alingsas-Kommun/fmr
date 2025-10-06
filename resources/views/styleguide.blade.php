@@ -297,9 +297,9 @@
                 <!-- Basic Table -->
                 <div class="mb-12">
                     <h3 class="text-xl font-medium text-gray-900 mb-6">Basic Table with Static Sorting</h3>
-                    <p class="text-sm text-gray-600 mb-4">Click column headers to sort. Uses client-side Alpine.js sorting for instant response.</p>
+                    <p class="text-sm text-gray-600 mb-4">Click column headers to sort. Uses client-side Alpine.js sorting for instant response. Three-state cycle: unsorted → ascending → descending → unsorted.</p>
                     
-                    <x-table :data="$sampleData" :columns="$tableColumns" mode="static" class="w-full"/>
+                    <x-sortable-table :data="$sampleData" :columns="$tableColumns" class="w-full"/>
                 </div>
 
                 <!-- Table with Custom Styling -->
@@ -318,10 +318,9 @@
                         TableColumn::text('email', 'Contact', 'text-sm text-blue-600')
                     ])
                     
-                    <x-table 
+                    <x-sortable-table 
                         :data="$sampleData" 
                         :columns="$customColumns"
-                        mode="static"
                         header-class="bg-primary-600 text-white"
                         header-th-class="text-white"
                         row-class="hover:bg-blue-50"
@@ -329,10 +328,36 @@
                     />
                 </div>
 
+                <!-- URL Mode Table -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-medium text-gray-900 mb-6">Table with URL Sorting</h3>
+                    <p class="text-sm text-gray-600 mb-4">Table with sorting that uses URL parameters and page reload. Good for server-side sorting. Click column headers to cycle through: unsorted → ascending → descending → unsorted.</p>
+                    
+                    @set($urlColumns, [
+                        TableColumn::link('firstname', 'First Name', 'url'),
+                        TableColumn::link('lastname', 'Last Name', 'url'),
+                        TableColumn::text('email', 'Email', 'text-sm text-gray-600'),
+                        TableColumn::badgeMap('status', 'Status', [
+                            'active' => 'bg-green-100 text-green-800',
+                            'inactive' => 'bg-red-100 text-red-800',
+                            'pending' => 'bg-yellow-100 text-yellow-800'
+                        ])
+                    ])
+                    
+                    <x-table 
+                        :data="array_slice($sampleData, 0, 4)" 
+                        :columns="$urlColumns"
+                        mode="url"
+                        :sort-by="request('sortBy')"
+                        :sort-direction="request('sortDirection', 'asc')"
+                        class="w-full"
+                    />
+                </div>
+
                 <!-- Non-Sortable Table -->
                 <div class="mb-12">
                     <h3 class="text-xl font-medium text-gray-900 mb-6">Non-Sortable Table</h3>
-                    <p class="text-sm text-gray-600 mb-4">Table without sorting functionality for display-only data using static mode.</p>
+                    <p class="text-sm text-gray-600 mb-4">Table without sorting functionality for display-only data.</p>
                     
                     @set($displayColumns, [
                         TableColumn::text('firstname', 'First Name'),
@@ -344,7 +369,6 @@
                     <x-table 
                         :data="array_slice($sampleData, 0, 3)" 
                         :columns="$displayColumns"
-                        mode="static"
                         :sortable="false"
                         class="w-full"
                     />

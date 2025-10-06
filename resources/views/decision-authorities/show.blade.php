@@ -52,13 +52,13 @@
 
         <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200">
             @set($columns, [
-                TableColumn::link('person.text', __('Name', 'fmr'), 'person.url'),
+                TableColumn::link('person.text', __('Name', 'fmr'), 'person.url', 'truncate max-w-60'),
                 TableColumn::badge('role', __('Role', 'fmr')),
                 TableColumn::text('period', __('Period', 'fmr')),
                 TableColumn::arrowLink('view.text', '', 'view.url')
             ])
 
-            <x-table :data="$assignments" :columns="$columns" :empty-message="__('No active assignments found.', 'fmr')" class="w-full" />
+            <x-sortable-table :data="$assignments" :columns="$columns" :empty-message="__('No active assignments found.', 'fmr')" class="w-full" />
         </div>
     @else
         <x-alert type="info">

@@ -1,6 +1,6 @@
-<div x-data="{}" @sort-table.window="$dispatch('sortBy', { column: $event.detail.column })">
-    @use('App\Utilities\TableColumn')
+@use('App\Utilities\TableColumn')
 
+<div x-data="{}" @sort-table.window="$dispatch('sortBy', { column: $event.detail.column })">
     <div class="md:bg-primary-50 rounded-xl mt-3 md:p-8">
         <form method="GET" action="{{ route('search.show') }}" class="space-y-6">
             <div class="space-y-1">
@@ -156,15 +156,7 @@
                             </h2>
                         </div>
 
-                        <x-table 
-                            :data="$results->toArray()" 
-                            :columns="$columns"
-                            :empty-message="__('No elected officials found', 'fmr')"
-                            :sort-by="$sortBy"
-                            :sort-direction="$sortDirection"
-                            mode="dynamic"
-                            class="w-full"
-                        />
+                        <x-table :data="$results->toArray()" :columns="$columns" :empty-message="__('No elected officials found', 'fmr')" :sort-by="$sortBy" :sort-direction="$sortDirection" mode="livewire" class="w-full" />
                     </div>
                 @elseif($query || $boardId || $partyId || $roleId)
                     <x-alert type="warning">

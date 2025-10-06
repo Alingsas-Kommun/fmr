@@ -331,7 +331,7 @@
                 TableColumn::arrowLink('view.text', '', 'view.url')
             ])
 
-            <x-table :data="$assignments" :columns="$columns" :empty-message="__('No assignments found.', 'fmr')" class="w-full" />
+            <x-sortable-table :data="$assignments" :columns="$columns" :empty-message="__('No assignments found.', 'fmr')" class="w-full" />
         </div>
     </div>
 @else

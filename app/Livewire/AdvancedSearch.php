@@ -129,7 +129,13 @@ class AdvancedSearch extends Component
     public function sortBy(string $column)
     {
         if ($this->sortBy === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+            if ($this->sortDirection === 'asc') {
+                $this->sortDirection = 'desc';
+            } else {
+                // Reset to unsorted state
+                $this->sortBy = null;
+                $this->sortDirection = 'asc';
+            }
         } else {
             $this->sortBy = $column;
             $this->sortDirection = 'asc';
