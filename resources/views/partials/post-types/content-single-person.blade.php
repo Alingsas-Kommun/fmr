@@ -1,7 +1,7 @@
 @use('App\Utilities\TableColumn')
 
-<div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8" x-data="{ showMoreInfo: false }">
-    <div class="flex items-center space-x-6">
+<div class="rounded-lg bg-primary-50 overflow-hidden p-8" x-data="{ showMoreInfo: false }">
+    <div class="flex flex-wrap items-center gap-3">
         @if($setting('show_person_image'))
             @if($person->image())
                 <div class="flex-shrink-0">
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             @else
-                <div class="w-30 h-30 bg-gray-50 md:bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <div class="w-30 h-30 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                     <x-heroicon-o-user class="h-15 w-15 text-primary-600" />
                 </div>
             @endif
@@ -37,17 +37,19 @@
                 </h1>
             @endif
             
-            @set($hasContactInfo, $person->meta->ssn || $person->meta->groupLeader)
+            @set($hasContactInfo, $person->meta->workEmail || $person->meta->groupLeader)
             
             @if($hasContactInfo)
-                <div class="flex items-center space-x-4 mt-2">
-                    @if($person->meta->ssn)
+                <div class="flex items-center flex-wrap gap-2 mt-2">
+                    @if($person->meta->workEmail)
                         <div class="flex items-center space-x-2">
-                            <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0" />
+                            <x-heroicon-o-envelope class="h-6 w-6 text-primary-600 flex-shrink-0" />
 
                             <div class="text-gray-700">
-                                <div class="sr-only">{!! __('Social Security Number', 'fmr') !!}</div>
-                                <div>{{ $person->meta->ssn }}</div>
+                                <div class="sr-only">{!! __('Email', 'fmr') !!}</div>
+                                <x-link href="mailto:{{ $person->meta->workEmail }}">
+                                    {{ $person->meta->workEmail }}
+                                </x-link>
                             </div>
                         </div>
                     @endif
@@ -66,7 +68,7 @@
 
     @set($hasBasicInfo, $person->meta->birthDate || $person->meta->listing)
     @set($hasHomeInfo, $person->meta->homeEmail || $person->meta->homePhone || $person->meta->homeMobile || $person->meta->homeWebpage || $person->meta->homeAddress || $person->meta->homeZip || $person->meta->homeCity || $person->meta->homeVisitingAddress)
-    @set($hasWorkInfo, $person->meta->workEmail || $person->meta->workPhone || $person->meta->workMobile || $person->meta->workWebpage || $person->meta->workAddress || $person->meta->workZip || $person->meta->workCity || $person->meta->workVisitingAddress)
+    @set($hasWorkInfo, $person->meta->workPhone || $person->meta->workMobile || $person->meta->workWebpage || $person->meta->workAddress || $person->meta->workZip || $person->meta->workCity || $person->meta->workVisitingAddress)
     @set($hasAdditionalInfo, $hasBasicInfo || $hasHomeInfo || $hasWorkInfo)
     
     @if($hasAdditionalInfo)

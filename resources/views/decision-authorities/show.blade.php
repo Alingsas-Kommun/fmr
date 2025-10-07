@@ -3,7 +3,7 @@
 @use('App\Utilities\TableColumn')
 
 @section('content')
-    <div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8 mt-3 mb-3">
+    <div class="bg-primary-50 rounded-lg overflow-hidden p-8 mt-3 mb-3">
         <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-2">

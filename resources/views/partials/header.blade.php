@@ -89,14 +89,6 @@
 
                                                 {{ __('Settings', 'fmr') }}
                                             </x-dropdown-link>
-
-                                            <x-dropdown-link href="{!! admin_url() !!}">
-                                                <x-slot name="icon">
-                                                    <x-heroicon-o-squares-2x2 class="w-5 h-5 text-primary-500" />
-                                                </x-slot>
-
-                                                {{ __('Dashboard', 'fmr') }}
-                                            </x-dropdown-link>
                                         </div>
 
                                         <div class="px-2 py-3">

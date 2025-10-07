@@ -9,13 +9,12 @@ class DecisionAuthorityController extends Controller
     /**
      * Display the specified decision authority.
      *
-     * @param int $id
+     * @param DecisionAuthority $decisionAuthority
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(DecisionAuthority $decisionAuthority)
     {        
-        $decisionAuthority = DecisionAuthority::with('typeTerm')
-            ->findOrFail($id);
+        $decisionAuthority->load('typeTerm');
 
         if (!is_user_logged_in() && !$decisionAuthority->isActive()) {
             abort(404);

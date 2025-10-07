@@ -1,5 +1,5 @@
 @use('App\Utilities\TableColumn')
-<div class="md:bg-primary-50 rounded-lg overflow-hidden md:p-8">
+<div class="bg-primary-50 rounded-lg overflow-hidden p-8">
     <div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
             {{ $board->name }}

@@ -279,10 +279,7 @@ trait FieldGroupTrait
             case 'textarea':
                 return sanitize_textarea_field($value);
             case 'checkbox':
-                // Handle checkbox values - if not submitted, use default or false
-                if ($value === null || $value === '') {
-                    return $field['default'] ?? false;
-                }
+                // For checkboxes, convert to boolean - don't use default here
                 return (bool) $value;
             case 'image':
                 return absint($value); // Ensure it's a positive integer (attachment ID)
@@ -318,9 +315,7 @@ trait FieldGroupTrait
                     $has_value = true;
                 }
             } else if ($field['type'] === 'checkbox') {
-                // For checkboxes not submitted, use default value or false
-                $default_value = $field['default'] ?? false;
-                $this->saveFieldValue($field['id'], $default_value ? 1 : 0, $post_id);
+                $this->saveFieldValue($field['id'], 0, $post_id);
             }
 
             $visibility_id = $field['id'] . '_visibility';

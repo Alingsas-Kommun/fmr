@@ -22,7 +22,7 @@
                                 <x-dynamic-component :component="$breadcrumb['icon']" class="w-3.5 h-3.5" />
                             @endif
                             
-                            <span class="truncate max-w-[200px]">{{ $breadcrumb['label'] }}</span>
+                            <span class="truncate max-w-[300px]">{{ $breadcrumb['label'] }}</span>
                         </span>
                     @endif
                     

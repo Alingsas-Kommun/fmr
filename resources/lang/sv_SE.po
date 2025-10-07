@@ -1560,3 +1560,11 @@ msgstr "Visa personbild"
 #: app/Core/Admin/FieldGroups/General.php:73
 msgid "Site icon to display in the browser tab"
 msgstr "Webbplatsikon som ska visas i webbläsarfliken"
+
+#: app/Core/Admin/FieldGroups/Miscellaneous.php:26
+msgid "Notes"
+msgstr "Anteckningar"
+
+#: app/Core/Admin/FieldGroups/Miscellaneous.php:16
+msgid "Miscellaneous"
+msgstr "Övrigt"

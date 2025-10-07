@@ -51,7 +51,7 @@
         <div class="py-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">{!! __('Group Leaders', 'fmr') !!}</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach($groupLeaders as $leader)
                     <a href="{!! $leader->url !!}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                         <div class="flex items-center space-x-4">
@@ -105,7 +105,7 @@
                 <div class="mb-8">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">{!! $typeName !!}</h3>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach($authorities as $authority)
                             <a href="{{ route('decision-authorities.show', $authority->id) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                                 <div class="flex items-center justify-between">

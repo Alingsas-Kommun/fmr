@@ -4,7 +4,6 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 class Breadcrumbs extends Composer
 {
@@ -29,9 +28,7 @@ class Breadcrumbs extends Composer
      */
     public function buildBreadcrumbs(): array
     {
-        // Don't show breadcrumbs when we're rendering the 404 view
-        $currentView = $this->view->getName();
-        if ($currentView === '404') {
+        if ($this->view->getName() === '404') {
             return [];
         }
 
@@ -46,7 +43,7 @@ class Breadcrumbs extends Composer
         $breadcrumbs = [
             [
                 'label' => __('Home', 'fmr'),
-                'url' => home_url('/'), // @phpstan-ignore-line
+                'url' => home_url('/'),
                 'icon' => 'heroicon-o-home',
                 'current' => false,
             ]
@@ -160,7 +157,7 @@ class Breadcrumbs extends Composer
             
             if ($assignment->roleTerm) {
                 $breadcrumbs[] = [
-                    'label' => $assignment->roleTerm->name,
+                    'label' => sprintf(__('%s (%s)', 'fmr'), $assignment->roleTerm->name, $assignment->person->post_title),
                     'url' => '#',
                     'icon' => null,
                     'current' => true,

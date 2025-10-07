@@ -152,7 +152,7 @@ class FieldGroupService
     public static function shouldIncludeField(string $fieldId): bool
     {
         // Skip system fields
-        $systemFields = ['_edit_lock', '_edit_last', '_thumbnail_id'];
+        $systemFields = ['_edit_lock', '_edit_last', '_thumbnail_id', 'notes'];
         if (in_array($fieldId, $systemFields)) {
             return false;
         }

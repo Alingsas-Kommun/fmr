@@ -9,10 +9,9 @@ class AssignmentController extends Controller
     /**
      * Display the specified assignment.
      */
-    public function show($id)
+    public function show(Assignment $assignment)
     {
-        $assignment = Assignment::with(['board', 'decisionAuthority', 'person'])
-            ->findOrFail($id);
+        $assignment->load(['board', 'decisionAuthority', 'person']);
 
         if (!is_user_logged_in() && !$assignment->isActive()) { // @phpstan-ignore-line
             abort(404);

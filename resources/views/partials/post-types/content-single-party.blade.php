@@ -1,6 +1,6 @@
 <div class="bg-primary-50 rounded-lg overflow-hidden">
     <div class="p-8">
-        <div class="flex items-center space-x-6">
+        <div class="flex flex-wrap items-center gap-5">
             @if($party->image())
                 <div class="flex-shrink-0">
                     <div class="w-24 h-24 flex items-center justify-center">
@@ -101,7 +101,7 @@
     <h2 class="text-2xl font-semibold mb-6">{!! __('Active Members', 'fmr') !!}</h2>
 
     @if($activeMembers->isNotEmpty())
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($activeMembers as $member)
                 <a href="{{ $member->url }}" class="group bg-primary-50 rounded-lg duration-200 p-4">
                     <div class="flex items-center space-x-4">
