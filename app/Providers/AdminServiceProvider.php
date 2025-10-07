@@ -5,7 +5,7 @@ namespace App\Providers;
 use Roots\Acorn\Sage\SageServiceProvider;
 use Illuminate\Support\Facades\Vite;
 use App\Core\Admin\Cleanup;
-use App\Core\Admin\Whitelabel;
+use App\Core\Admin\Assets;
 use App\Core\Admin\Assignments\Index as AssignmentsIndex;
 use App\Core\Admin\Assignments\Edit as AssignmentsEdit;
 use App\Core\Admin\DecisionAuthorities\Index as DecisionAuthoritiesIndex;
@@ -30,7 +30,7 @@ class AdminServiceProvider extends SageServiceProvider
     {
         // Register admin services
         $this->app->singleton(Cleanup::class);
-        $this->app->singleton(Whitelabel::class);
+        $this->app->singleton(Assets::class);
         
         // Register admin pages - these use singleton patterns, so we bind them differently
         $this->app->singleton(AssignmentsIndex::class, function () {
@@ -80,17 +80,12 @@ class AdminServiceProvider extends SageServiceProvider
             $this->app->make(ConfigurationPage::class);
         });
 
-        add_action('after_setup_theme', function () {
-            $this->app->make(Whitelabel::class);
-            $this->app->make(Cleanup::class);
-        });
+        $this->app->make(Assets::class);
+        $this->app->make(Cleanup::class);
 
         // Load field groups and relation handlers
         add_action('init', [$this, 'loadFieldGroups']);
         add_action('init', [$this, 'registerRelationHandlers']);
-        
-        // Enqueue admin assets
-        add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
     }
 
     /**
@@ -129,54 +124,6 @@ class AdminServiceProvider extends SageServiceProvider
                 $this->app->make($className);
             }
         }
-    }
-
-    /**
-     * Enqueue admin assets.
-     */
-    public function enqueueAdminAssets($hook_suffix = null): void
-    {
-        // Skip asset loading in CLI context
-        if (php_sapi_name() === 'cli') {
-            return;
-        }
-
-        // Don't enqueue on taxonomy pages
-        $excluded_pages = ['term.php', 'edit-tags.php'];
-        if ($hook_suffix && in_array($hook_suffix, $excluded_pages)) {
-            return;
-        }
-
-        // Enqueue WordPress media library for image fields
-        wp_enqueue_media();
-
-        $style = Vite::asset('resources/css/admin.scss');
-        wp_enqueue_style('admin-css', $style, false, '');
-
-        $script = Vite::asset('resources/js/admin.js');
-        wp_enqueue_script('admin-js', $script, ['jquery', 'underscore', 'wp-util'], null, true);
-
-        wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
-
-        // Add the noConflict wrapper to avoid conflicts with WP Underscore library
-        wp_add_inline_script(
-            'alpine-safe',
-            <<<JS
-            (function() {
-                var old_ = window._; // save WP's Underscore
-                delete window._;     // remove temporarily
-
-                // Start Alpine after load
-                document.addEventListener('alpine:init', function() {
-                    if (old_) window._ = old_; // restore Underscore
-                });
-
-                if (window.Alpine) {
-                    window.Alpine.start();
-                }
-            })();
-            JS
-        );
     }
 
     /**

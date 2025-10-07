@@ -2,7 +2,14 @@ body.login {
     background-color: #f6f6f6;
 
     a {
-        color: #000 !important;
+        color: #000000 !important;
+        text-decoration: underline !important;
+        text-decoration-color: var(--wp-admin-color-secondary) !important;
+        text-underline-offset: 3px !important;
+
+        &:hover {
+            text-underline-offset: 4px !important;
+        }
     }
 
     #login {
@@ -19,33 +26,35 @@ body.login {
     }
 
     .button {
-        color: #236151;
-    }
-
-    .button,
-    .button-primary {
-        border-color: #236151;
+        color: var(--wp-admin-color-secondary);
+        border-color: var(--wp-admin-color-secondary);
 
         &:hover {
-            border-color: #236151;
+            border-color: var(--wp-admin-color-secondary);
+            color: var(--wp-admin-color-secondary);
         }
     }
 
     .button-primary {
-        background: #236151 !important;
+        background: var(--wp-admin-color-primary) !important;
         color: #fff;
         border: 0 !important;
+        border-color: var(--wp-admin-color-primary);
+
+        &:hover {
+            border-color: var(--wp-admin-color-primary);
+        }
     }
 
     #loginform {
         a {
-            color: #236151 !important;
+            color: var(--wp-admin-color-primary) !important;
         }
 
         .input {
             &:focus {
-                border-color: #236151;
-                box-shadow: 0 0 0 1px #236151;
+                border-color: var(--wp-admin-color-primary);
+                box-shadow: 0 0 0 1px var(--wp-admin-color-primary);
             }
         }
     }

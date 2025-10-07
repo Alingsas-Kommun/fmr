@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Vite;
 
 use function App\Core\setting;
 
-class Whitelabel
+class Assets
 {
     public function __construct()
     {
@@ -22,7 +22,7 @@ class Whitelabel
         /**
          * Enqueue custom login assets
          */
-        add_action('login_enqueue_scripts', [$this, 'enqueueAdminAssets'], 0);
+        add_action('login_enqueue_scripts', [$this, 'enqueueLoginAssets'], 0);
 
         /**
          * Enqueue dynamic login logo
@@ -33,6 +33,7 @@ class Whitelabel
          * Enqueue admin assets with CSS variables
          */
         add_action('login_enqueue_scripts', [$this, 'enqueueColorVariables']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueColorVariables']);
 
         // Set the color profile to only use the custom one
@@ -91,7 +92,7 @@ class Whitelabel
      *
      * @return void
      */
-    public function enqueueAdminAssets():void
+    public function enqueueLoginAssets():void
     {
         // Skip asset loading in CLI context
         if (php_sapi_name() === 'cli') {
@@ -103,7 +104,55 @@ class Whitelabel
     }
 
     /**
-     * Enqueue admin assets with CSS variables for admin area.
+     * Enqueue admin assets.
+     */
+    public function enqueueAdminAssets($hook_suffix = null): void
+    {
+        // Skip asset loading in CLI context
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
+
+        // Don't enqueue on taxonomy pages
+        $excluded_pages = ['term.php', 'edit-tags.php'];
+        if ($hook_suffix && in_array($hook_suffix, $excluded_pages)) {
+            return;
+        }
+
+        // Enqueue WordPress media library for image fields
+        wp_enqueue_media();
+
+        $style = Vite::asset('resources/css/admin.scss');
+        wp_enqueue_style('admin-css', $style, false, '');
+
+        $script = Vite::asset('resources/js/admin.js');
+        wp_enqueue_script('admin-js', $script, ['jquery', 'underscore', 'wp-util'], null, true);
+
+        wp_enqueue_script('alpine-safe', 'https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js', [], null, true);
+
+        // Add the noConflict wrapper to avoid conflicts with WP Underscore library
+        wp_add_inline_script(
+            'alpine-safe',
+            <<<JS
+            (function() {
+                var old_ = window._; // save WP's Underscore
+                delete window._;     // remove temporarily
+
+                // Start Alpine after load
+                document.addEventListener('alpine:init', function() {
+                    if (old_) window._ = old_; // restore Underscore
+                });
+
+                if (window.Alpine) {
+                    window.Alpine.start();
+                }
+            })();
+            JS
+        );
+    }
+
+    /**
+     * Enqueue admin assets with CSS variables for admin area and login pages.
      *
      * @return void
      */
@@ -137,7 +186,13 @@ class Whitelabel
         ));
 
         $css_output = ':root {' . implode(';', array_map('esc_html', $css_vars)) . '}';
-        wp_add_inline_style('wp-admin', $css_output);
+        
+        // Determine if we're on login page or admin page
+        if (is_admin()) {
+            wp_add_inline_style('wp-admin', $css_output);
+        } else {
+            wp_add_inline_style('admin-css', $css_output);
+        }
     }
 
     /**
