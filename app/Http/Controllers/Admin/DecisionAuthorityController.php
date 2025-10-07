@@ -216,15 +216,25 @@ class DecisionAuthorityController
             $query->where('board_id', $args['board_filter']);
         }
 
-        if (!empty($args['start_date'])) {
+        $hasStart = !empty($args['start_date']);
+        $hasEnd = !empty($args['end_date']);
+
+        if ($hasStart && $hasEnd) {
+            $filterStart = $args['start_date'];
+            $filterEnd = $args['end_date'];
+
+            $query->where('start_date', '<=', $filterEnd)
+                  ->where(function($q) use ($filterStart) {
+                      $q->where('end_date', '>=', $filterStart)
+                        ->orWhereNull('end_date');
+                  });
+        } elseif ($hasStart) {
             $query->where('start_date', '<=', $args['start_date'])
                   ->where(function($q) use ($args) {
                       $q->where('end_date', '>=', $args['start_date'])
                         ->orWhereNull('end_date');
                   });
-        }
-
-        if (!empty($args['end_date'])) {
+        } elseif ($hasEnd) {
             $query->where('start_date', '<=', $args['end_date'])
                   ->where(function($q) use ($args) {
                       $q->where('end_date', '>=', $args['end_date'])

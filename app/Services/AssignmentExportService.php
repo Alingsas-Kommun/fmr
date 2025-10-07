@@ -72,13 +72,12 @@ class AssignmentExportService
         $totalCount = $query->count();
         
         if ($totalCount > 1000) {
-            // For large datasets, process in chunks to avoid memory issues
-            $allAssignments = collect();
-            $query->chunk(500, function ($chunk) use ($allAssignments) {
-                $allAssignments = $allAssignments->merge($chunk);
-            });
-
-            return $allAssignments;
+            // For large datasets, stream results with lazy() and merge into a single collection
+            return $this->assignmentController
+                ->buildFilteredQuery($filters)
+                ->lazy(500)
+                ->collect()
+                ->values();
         } else {
             // For smaller datasets, get all at once
             return $query->get();
@@ -123,11 +122,11 @@ class AssignmentExportService
         
         if ($totalCount > 500) {
             // Process in batches for large datasets
-            $assignments->chunk($batchSize, function ($batch) use (&$rows) {
+            foreach ($assignments->chunk($batchSize) as $batch) {
                 foreach ($batch as $assignment) {
                     $rows[] = $this->prepareAssignmentRow($assignment);
                 }
-            });
+            }
         } else {
             // Process all at once for smaller datasets
             foreach ($assignments as $assignment) {

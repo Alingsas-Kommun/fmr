@@ -264,15 +264,25 @@ class AssignmentController
             $query->where('person_id', $args['person_filter']);
         }
 
-        if (!empty($args['period_start'])) {
+        $hasStart = !empty($args['period_start']);
+        $hasEnd = !empty($args['period_end']);
+
+        if ($hasStart && $hasEnd) {
+            $filterStart = $args['period_start'];
+            $filterEnd = $args['period_end'];
+
+            $query->where('period_start', '<=', $filterEnd)
+                  ->where(function($q) use ($filterStart) {
+                      $q->where('period_end', '>=', $filterStart)
+                        ->orWhereNull('period_end');
+                  });
+        } elseif ($hasStart) {
             $query->where('period_start', '<=', $args['period_start'])
                   ->where(function($q) use ($args) {
                       $q->where('period_end', '>=', $args['period_start'])
                         ->orWhereNull('period_end');
                   });
-        }
-
-        if (!empty($args['period_end'])) {
+        } elseif ($hasEnd) {
             $query->where('period_start', '<=', $args['period_end'])
                   ->where(function($q) use ($args) {
                       $q->where('period_end', '>=', $args['period_end'])
