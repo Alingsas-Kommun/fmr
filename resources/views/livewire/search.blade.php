@@ -1,7 +1,7 @@
 <div class="max-w-lg mx-auto relative" x-data="{ showResults: true }" x-on:click.outside="showResults = false" x-on:keydown.escape.window="showResults = false">
-    <form wire:submit="search" class="flex gap-x-4">
+    <form wire:submit="search" class="flex gap-x-4 relative md:static">
         <label for="search" class="sr-only">{{ __('Search', 'fmr') }}</label>
-        <div class="flex-auto relative">
+        <div class="flex-auto static md:relative">
             <input 
                 wire:model.live="query"
                 type="text" 
@@ -22,11 +22,10 @@
                 x-transition:leave-end="opacity-0 scale-95" 
                 class="absolute top-full left-0 right-0 mt-1 z-50"
             >
-                
-                <div wire:loading class="overflow-y-auto bg-white border border-gray-200 rounded-lg">
+                <div wire:loading class="w-full overflow-y-auto bg-white border border-gray-200 rounded-lg">
                     <div class="py-2 px-2">
                         @for ($i = 0; $i < 2; $i++)
-                            <div class="block w-100 px-4 py-3 border-b border-gray-100 last-of-type:border-b-0">
+                            <div class="block w-full px-4 py-3 border-b border-gray-100 last-of-type:border-b-0">
                                 <div class="flex items-center space-x-3">
                                     @if($setting('show_person_image'))
                                         <div class="flex-shrink-0">
