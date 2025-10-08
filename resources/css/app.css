@@ -229,6 +229,20 @@
   display: none !important;
 }
 
+/* View Transitions */
+::view-transition-old(root) {
+  animation-delay: 700ms;
+}
+
+::view-transition-new(root) {
+  animation: circle-in 700ms;
+}
+
+@keyframes circle-in {
+  from { clip-path: circle(0% at 50% 0%); }
+  to { clip-path: circle(200% at 50% 0%); }
+}
+
 /* Shame */
 a:where(:not(.wp-element-button)) {
   text-decoration: none;

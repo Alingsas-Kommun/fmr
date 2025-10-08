@@ -33,15 +33,26 @@ export function themeSwitcher() {
         setTheme(theme) {
             this.currentTheme = theme;
             
-            // Use the existing ThemeManager
-            if (window.themeManager) {
-                window.themeManager.setTheme(theme);
-            }
+            const updateTheme = () => {
+                // Use the existing ThemeManager
+                if (window.themeManager) {
+                    window.themeManager.setTheme(theme);
+                }
+                
+                // Dispatch event for other components
+                document.dispatchEvent(new CustomEvent('themeChanged', {
+                    detail: { theme }
+                }));
+            };
             
-            // Dispatch event for other components
-            document.dispatchEvent(new CustomEvent('themeChanged', {
-                detail: { theme }
-            }));
+            // Check if View Transitions API is supported
+            if (!document.startViewTransition) {
+                updateTheme();
+                return;
+            }
+
+            // Use View Transitions API for smooth theme change
+            document.startViewTransition(updateTheme);
         },
         
         getButtonTitle() {
