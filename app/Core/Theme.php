@@ -19,6 +19,7 @@ class Theme
         add_action('after_setup_theme', [$this, 'addThemeSupport'], 20);
         add_action('after_setup_theme', [$this, 'removeThemeSupport'], 20);
         add_action('wp_enqueue_scripts', [$this, 'themeAssets'], 100);
+        add_action('wp_enqueue_scripts', [$this, 'dequeueWordPressStyles'], 100);
         add_action('wp_head', [$this, 'enqueueFrontendColorVariables']);
     }
 
@@ -87,6 +88,17 @@ class Theme
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
          */
         remove_theme_support('core-block-patterns');
+        
+        /**
+         * Disable WordPress global styles and CSS custom properties.
+         * This prevents WordPress from adding CSS variables from theme.json
+         */
+        remove_theme_support('wp-block-styles');
+        
+        /**
+         * Disable editor styles (prevents WordPress from adding editor-specific CSS)
+         */
+        remove_editor_styles();
     }
 
     /**
@@ -100,6 +112,16 @@ class Theme
         wp_enqueue_script('app-js', Vite::asset('resources/js/app.js'), ['wp-i18n'], null, true);
         wp_set_script_translations('app-js', 'fmr', get_stylesheet_directory() . '/resources/lang/'); 
      }
+
+    /**
+     * Dequeue WordPress default styles and remove inline styles.
+     *
+     * @return void
+     */
+    public function dequeueWordPressStyles()
+    {
+        wp_dequeue_style('global-styles');
+    }
 
     /**
      * Enqueue frontend assets with CSS variables for primary hue.
