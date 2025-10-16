@@ -126,7 +126,7 @@ class TableColumn
         ]);
     }
 
-    public static function custom(string $key, ?string $label = null, callable $render): array
+    public static function custom(string $key, callable $render, ?string $label = null): array
     {
         return self::make($key, $label, [
             'render' => $render
