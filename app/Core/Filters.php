@@ -18,6 +18,7 @@ class Filters
         add_action('excerpt_more', [$this, 'filterReadMore'], 10);
         add_filter('get_the_archive_title', [$this, 'removeArchivePrefix']);
         add_filter('theme_file_path', [$this, 'themeFilePath'], 10, 2);
+        add_filter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 2);
 
         do_action('after_setup_theme_filters');
     }
@@ -109,5 +110,22 @@ class Filters
         return $file === 'theme.json'
             ? public_path('build/assets/theme.json')
             : $path;
+    }
+
+    /**
+     * Add type="module" attribute to app and admin scripts.
+     *
+     * @param string $tag
+     * @param string $handle
+     *
+     * @return string
+     */
+    public function scriptLoaderTag($tag, $handle)
+    {
+        if ($handle === 'app-js' || $handle === 'admin-js') {
+            return str_replace(' src', ' type="module" src', $tag);
+        }
+        
+        return $tag;
     }
 }

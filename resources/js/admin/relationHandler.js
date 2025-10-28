@@ -16,7 +16,10 @@ export function relationHandler(config, existingData = []) {
         /** @type {Set} Set of expanded relation IDs */
         expandedRelations: new Set(),
         /** @type {Object} Grouped relations by status (ongoing/historical) */
-        groupedRelations: {},
+        groupedRelations: {
+            ongoing: [],
+            historical: []
+        },
         /** @type {Object} New relation object being created */
         newRelation: {},
         /** @type {boolean} Whether to show the new relation form */
