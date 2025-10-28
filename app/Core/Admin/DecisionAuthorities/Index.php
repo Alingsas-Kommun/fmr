@@ -83,6 +83,15 @@ class Index extends \WP_List_Table
             null
         );
 
+        add_action('admin_head', function () {
+            global $parent_file, $submenu_file;
+        
+            if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'type' && !isset($_GET['post_type'])) {
+                $parent_file = 'decision_authorities';
+                $submenu_file = 'edit-tags.php?taxonomy=type';
+            }
+        });
+
         // Hook into admin actions
         add_action('admin_action_delete_decision_authority', [self::$instance, 'handle_delete_decision_authority']);
 

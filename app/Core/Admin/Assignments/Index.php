@@ -84,6 +84,15 @@ class Index extends \WP_List_Table
             null
         );
 
+        add_action('admin_head', function () {
+            global $parent_file, $submenu_file;
+        
+            if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'role' && !isset($_GET['post_type'])) {
+                $parent_file = 'assignments';
+                $submenu_file = 'edit-tags.php?taxonomy=role';
+            }
+        });
+
         // Hook into admin actions
         add_action('admin_action_delete_assignment', [self::$instance, 'handle_delete_assignment']);
 
