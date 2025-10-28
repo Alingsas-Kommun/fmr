@@ -56,17 +56,7 @@ class SearchController extends Controller
 
         // Add search criteria if query is provided
         if (!empty($query)) {
-            $personsQuery->where(function ($q) use ($query) {
-                $q->where('post_title', 'like', '%' . $query . '%')
-                  ->orWhereHas('meta', function ($metaQ) use ($query) {
-                      $metaQ->where('meta_key', 'person_firstname')
-                            ->where('meta_value', 'like', '%' . $query . '%');
-                  })
-                  ->orWhereHas('meta', function ($metaQ) use ($query) {
-                      $metaQ->where('meta_key', 'person_lastname')
-                            ->where('meta_value', 'like', '%' . $query . '%');
-                  });
-            });
+            $this->applySearchCriteria($personsQuery, $query);
         }
 
         // Apply filters
@@ -96,52 +86,66 @@ class SearchController extends Controller
      */
     private function buildSearchQuery(string $query)
     {
-        return Post::persons()
+        $queryBuilder = Post::persons()
             ->with('party')
             ->published()
             ->whereHas('personAssignments', function ($assignQ) {
                 $assignQ->active();
-            })
-            ->where(function ($q) use ($query) {
-                // Search by post title
-                $q->where('post_title', 'like', '%' . $query . '%')
-                  // Search by firstname
-                  ->orWhereHas('meta', function ($metaQ) use ($query) {
-                      $metaQ->where('meta_key', 'person_firstname')
-                            ->where('meta_value', 'like', '%' . $query . '%');
-                  })
-                  // Search by lastname
-                  ->orWhereHas('meta', function ($metaQ) use ($query) {
-                      $metaQ->where('meta_key', 'person_lastname')
-                            ->where('meta_value', 'like', '%' . $query . '%');
-                  })
-                  // Search by party name
-                  ->orWhereHas('meta', function ($metaQ) use ($query) {
-                      $metaQ->where('meta_key', 'person_party')
-                            ->whereIn('meta_value', function ($subQ) use ($query) {
-                                $subQ->select('ID')
-                                     ->from('posts')
-                                     ->where('post_type', 'party')
-                                     ->where('post_title', 'like', '%' . $query . '%');
-                            });
-                  })
-                  // Search by role (active assignments only)
-                  ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
-                      $assignQ->active()
-                              ->whereHas('roleTerm', function ($roleQ) use ($query) {
-                                  $roleQ->where('name', 'like', '%' . $query . '%');
-                              });
-                  })
-                  // Search by board (active assignments only)
-                  ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
-                      $assignQ->active()
-                              ->whereHas('decisionAuthority', function ($daQ) use ($query) {
-                                  $daQ->whereHas('board', function ($boardQ) use ($query) {
-                                      $boardQ->where('post_title', 'like', '%' . $query . '%');
-                                  });
-                              });
-                  });
             });
+
+        // Apply search criteria
+        if (!empty($query)) {
+            $this->applySearchCriteria($queryBuilder, $query);
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Apply comprehensive search criteria to the query.
+     */
+    private function applySearchCriteria($queryBuilder, string $query): void
+    {
+        $queryBuilder->where(function ($q) use ($query) {
+            // Search by post title
+            $q->where('post_title', 'like', '%' . $query . '%')
+              // Search by firstname
+              ->orWhereHas('meta', function ($metaQ) use ($query) {
+                  $metaQ->where('meta_key', 'person_firstname')
+                        ->where('meta_value', 'like', '%' . $query . '%');
+              })
+              // Search by lastname
+              ->orWhereHas('meta', function ($metaQ) use ($query) {
+                  $metaQ->where('meta_key', 'person_lastname')
+                        ->where('meta_value', 'like', '%' . $query . '%');
+              })
+              // Search by party name
+              ->orWhereHas('meta', function ($metaQ) use ($query) {
+                  $metaQ->where('meta_key', 'person_party')
+                        ->whereIn('meta_value', function ($subQ) use ($query) {
+                            $subQ->select('ID')
+                                 ->from('posts')
+                                 ->where('post_type', 'party')
+                                 ->where('post_title', 'like', '%' . $query . '%');
+                        });
+              })
+              // Search by role (active assignments only)
+              ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
+                  $assignQ->active()
+                          ->whereHas('roleTerm', function ($roleQ) use ($query) {
+                              $roleQ->where('name', 'like', '%' . $query . '%');
+                          });
+              })
+              // Search by board (active assignments only)
+              ->orWhereHas('personAssignments', function ($assignQ) use ($query) {
+                  $assignQ->active()
+                          ->whereHas('decisionAuthority', function ($daQ) use ($query) {
+                              $daQ->whereHas('board', function ($boardQ) use ($query) {
+                                  $boardQ->where('post_title', 'like', '%' . $query . '%');
+                              });
+                          });
+              });
+        });
     }
 
     /**
