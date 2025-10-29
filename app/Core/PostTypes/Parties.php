@@ -45,6 +45,9 @@ class Parties
         
         // Add members meta box
         add_action('add_meta_boxes', [__CLASS__, 'addMembersMetaBox']);
+        
+        // Disable months dropdown filter
+        add_filter('disable_months_dropdown', [__CLASS__, 'disableMonthsDropdown'], 10, 2);
     }
 
     /**
@@ -99,6 +102,11 @@ class Parties
     public static function addColumns($columns)
     {
         unset($columns['date']);
+        unset($columns['author']);
+
+        if (isset($columns['title'])) {
+            $columns['title'] = __('Name', 'fmr');
+        }
 
         $columns_to_add = [];
         $columns_to_add[] = [
@@ -133,6 +141,7 @@ class Parties
 
                 if ($attachment_id) {
                     $image_html = wp_get_attachment_image($attachment_id, 'thumbnail');
+                    
                     echo Blade::render(
                         '<a href="{!! $link !!}">{!! $image_html !!}</a>',
                         [
@@ -157,7 +166,23 @@ class Parties
 
                 break;
             case 'party-group-leader':
-                echo get_meta_field($post_id, 'party_group_leader');
+                $party = Post::find($post_id);
+                $group_leader = $party ? $party->getGroupLeader() : null;
+
+                if ($group_leader) {
+                    $leaderName = $group_leader->post_title;
+                    $leaderLink = get_edit_post_link($group_leader->ID);
+
+                    echo Blade::render(
+                        '<a href="{!! $link !!}">{!! $name !!}</a>',
+                        [
+                            'link' => $leaderLink,
+                            'name' => $leaderName
+                        ]
+                    );
+                } else {
+                    echo '-';
+                }
 
                 break;
         }
@@ -231,5 +256,21 @@ class Parties
         $members = $query->orderBy('post_title')->get();
 
         return $members->format();
+    }
+
+    /**
+     * Disable months dropdown filter for this post type
+     *
+     * @param bool $disable
+     * @param string $post_type
+     * @return bool
+     */
+    public static function disableMonthsDropdown($disable, $post_type)
+    {
+        if ($post_type === self::$base) {
+            return true;
+        }
+        
+        return $disable;
     }
 }

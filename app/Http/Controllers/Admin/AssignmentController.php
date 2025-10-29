@@ -264,6 +264,15 @@ class AssignmentController
             $query->where('person_id', $args['person_filter']);
         }
 
+        if (!empty($args['party_filter'])) {
+            $query->whereHas('person', function($q) use ($args) {
+                $q->whereHas('meta', function($q) use ($args) {
+                    $q->where('meta_key', 'person_party')
+                      ->where('meta_value', $args['party_filter']);
+                });
+            });
+        }
+
         $hasStart = !empty($args['period_start']);
         $hasEnd = !empty($args['period_end']);
 

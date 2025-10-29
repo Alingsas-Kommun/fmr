@@ -54,6 +54,19 @@
                 </div>
 
                 <div class="filter-bar-group">
+                    <label for="party_filter">{{ __('Party', 'fmr') }}</label>
+                    <select name="party_filter" id="party_filter">
+                        <option value="">{{ __('All parties', 'fmr') }}</option>
+
+                        @foreach($filter_data['parties'] as $party)
+                            <option value="{{ $party->id }}" {{ selected($_REQUEST['party_filter'] ?? '', $party->id) }}>
+                                {{ $party->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="filter-bar-group">
                     <label for="period_start">{{ __('Start Date', 'fmr') }}</label>
                     <input type="date" name="period_start" id="period_start" value="{{ $_REQUEST['period_start'] ?? '' }}">
                 </div>

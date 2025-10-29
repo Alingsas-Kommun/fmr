@@ -194,7 +194,7 @@ class PostTransformer
         // Define which fields should be extracted to first level for each post type
         $extractedFieldIds = match($postType) {
             'person' => ['person_firstname', 'person_lastname', 'person_group_leader'],
-            'party' => ['party_description', 'party_shortening', 'party_group_leader'],
+            'party' => ['party_description', 'party_shortening'],
             'board' => ['board_shortening'],
             default => []
         };

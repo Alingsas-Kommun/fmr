@@ -37,10 +37,16 @@ class Party extends Composer
             abort(404);
         }
 
+        // Get group leader from the underlying Post model
+        $partyPost = Post::find($party->id);
+        $groupLeader = $partyPost ? $partyPost->getGroupLeader() : null;
+        $groupLeaderFormatted = $groupLeader ? $groupLeader->format() : null;
+
         return [
             'party' => $party,
             'activeMembers' => $activeMembers,
             'inactiveMembers' => is_user_logged_in() ? $this->members(active:false) : collect(),
+            'groupLeader' => $groupLeaderFormatted,
         ];
     }
 

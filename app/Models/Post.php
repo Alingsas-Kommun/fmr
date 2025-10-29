@@ -121,6 +121,21 @@ class Post extends Model
     }
 
     /**
+     * Get the group leader for a party
+     * Returns the person who is the group leader of this party
+     *
+     * @return Post|null
+     */
+    public function getGroupLeader()
+    {
+        return static::persons()
+            ->published()
+            ->withMeta('person_party', $this->ID)
+            ->withMeta('person_group_leader', '1')
+            ->first();
+    }
+
+    /**
      * Get the thumbnail ID for the post
      */
     public function thumbnail($class = '')

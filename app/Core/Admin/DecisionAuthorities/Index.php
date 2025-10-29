@@ -260,7 +260,7 @@ class Index extends \WP_List_Table
     {
         return [
             'cb'            => '<input type="checkbox" />',
-            'title'         => __('Title', 'fmr'),
+            'title'         => __('Name', 'fmr'),
             'board'         => __('Board', 'fmr'),
             'type'          => __('Type', 'fmr'),
             'period'        => __('Period', 'fmr'),

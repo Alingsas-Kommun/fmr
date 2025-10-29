@@ -49,6 +49,9 @@ class Persons
         // Thumbnail visibility toggle
         add_filter('admin_post_thumbnail_html', [__CLASS__, 'addThumbnailVisibilityToggle'], 10, 2);
         add_action('save_post', [__CLASS__, 'saveThumbnailVisibility']);
+        
+        // Disable months dropdown filter
+        add_filter('disable_months_dropdown', [__CLASS__, 'disableMonthsDropdown'], 10, 2);
     }
 
     /**
@@ -104,6 +107,10 @@ class Persons
     {
         unset($columns['date']);
         unset($columns['author']);
+        
+        if (isset($columns['title'])) {
+            $columns['title'] = __('Name', 'fmr');
+        }
 
         $columns_to_add = [];
         $columns_to_add[] = [
@@ -117,11 +124,6 @@ class Persons
             'priority' => 3,
         ];
         $columns_to_add[] = [
-            'slug' => 'person-birthday',
-            'title' => __('Birthday', 'fmr'),
-            'priority' => 4,
-        ];
-        $columns_to_add[] = [
             'slug' => 'person-group-leader',
             'title' => __('Group Leader', 'fmr'),
             'priority' => 6,
@@ -130,12 +132,6 @@ class Persons
             'slug' => 'person-status',
             'title' => __('Status', 'fmr'),
             'priority' => 7,
-        ];
-
-        $columns_to_add[] = [
-            'slug' => 'author',
-            'title' => __('Author', 'fmr'),
-            'priority' => 8,
         ];
 
         foreach ($columns_to_add as $col) {
@@ -189,11 +185,6 @@ class Persons
                 } else {
                     echo '-';
                 }
-
-                break;
-            case 'person-birthday':
-                $birthday = get_meta_field($post_id, 'person_birth_date');
-                echo $birthday ? date('Y-m-d', strtotime($birthday)) : '-';
 
                 break;
             case 'person-group-leader':
@@ -320,5 +311,21 @@ class Persons
         
         $visibility = isset($_POST['_thumbnail_id_visibility']) && $_POST['_thumbnail_id_visibility'] == '1' ? 1 : 0;
         update_post_meta($post_id, '_thumbnail_id_visibility', $visibility);
+    }
+
+    /**
+     * Disable months dropdown filter for this post type
+     *
+     * @param bool $disable
+     * @param string $post_type
+     * @return bool
+     */
+    public static function disableMonthsDropdown($disable, $post_type)
+    {
+        if ($post_type === self::$base) {
+            return true;
+        }
+        
+        return $disable;
     }
 }

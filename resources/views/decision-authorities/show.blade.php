@@ -32,14 +32,14 @@
                 </div>
             </div>
 
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 md:ml-auto border-t md:border-t-0 border-gray-200 dark:border-gray-300 pt-6 md:pt-0 mt-3 md:mt-0">
                 <div class="flex items-center space-x-2 mb-2">
-                    <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0" />
-                    <span class="sr-only">{{ __('Period', 'fmr') }}</span>
-                    <div class="text-lg font-semibold text-gray-900">
-                        {{ date('j M Y', strtotime($decisionAuthority->start_date)) }} –
-                        {{ date('j M Y', strtotime($decisionAuthority->end_date)) }}
-                    </div>
+                    <x-heroicon-o-calendar class="h-5 w-5 text-primary-600 flex-shrink-0" />
+                    <span class="text-sm font-medium text-gray-700">{{ __('Period', 'fmr') }}</span>
+                </div>
+
+                <div class="text-lg font-semibold text-gray-900">
+                    {!! sprintf('%s - %s', $decisionAuthority->start_date->formatDate(), $decisionAuthority->end_date->formatDate()) !!}
                 </div>
             </div>
         </div>

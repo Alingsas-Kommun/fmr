@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="bg-primary-50 rounded-lg overflow-hidden p-8 mt-3">
-        <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 mb-8">
+        <div class="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 mb-8">
             <div class="flex items-center space-x-6 flex-1">
                 <div class="flex-shrink-0">
                     <div class="w-20 h-20 bg-primary-100 dark:bg-primary-200 rounded-lg flex items-center justify-center">
@@ -42,7 +42,7 @@
                 </div>
                 
                 <div class="text-lg font-semibold text-gray-900">
-                    {{ $assignment->period_start->format('j M Y') }} - {{ $assignment->period_end->format('j M Y') }}
+                    {!! sprintf('%s - %s', $assignment->period_start->formatDate(), $assignment->period_end->formatDate()) !!}
                 </div>
             </div>
         </div>

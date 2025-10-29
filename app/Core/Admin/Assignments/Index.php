@@ -4,6 +4,7 @@ namespace App\Core\Admin\Assignments;
 
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\BoardController;
+use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Blade;
@@ -143,6 +144,7 @@ class Index extends \WP_List_Table
         $roleController = app(RoleController::class);
         $boardController = app(BoardController::class);
         $personController = app(PersonController::class);
+        $partyController = app(PartyController::class);
 
         echo view('admin.assignments.index', [
             'list' => $this,
@@ -150,6 +152,7 @@ class Index extends \WP_List_Table
                 'roles' => $roleController->getAll(),
                 'boards' => $boardController->getAll(),
                 'persons' => $personController->getAll(),
+                'parties' => $partyController->getAll(),
             ]
         ])->render();
     }
@@ -571,6 +574,7 @@ class Index extends \WP_List_Table
             'role_filter' => $_REQUEST['role_filter'] ?? '',
             'board_filter' => $_REQUEST['board_filter'] ?? '',
             'person_filter' => $_REQUEST['person_filter'] ?? '',
+            'party_filter' => $_REQUEST['party_filter'] ?? '',
             'author_filter' => $_REQUEST['author_filter'] ?? '',
             'period_start' => $_REQUEST['period_start'] ?? '',
             'period_end' => $_REQUEST['period_end'] ?? ''

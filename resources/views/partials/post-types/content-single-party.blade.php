@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        @set($hasContactInfo, $party->meta->address || $party->meta->zip || $party->meta->city || $party->meta->email || $party->meta->phone || $party->meta->website || $party->meta->groupLeader)
+        @set($hasContactInfo, $party->meta->address || $party->meta->zip || $party->meta->city || $party->meta->email || $party->meta->phone || $party->meta->website || $groupLeader)
 
         @if($hasContactInfo)
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 mt-8 pt-6">
@@ -82,13 +82,21 @@
                     </div>
                 @endif
 
-                @if($party->meta->groupLeader)
+                @if($groupLeader)
                     <div class="flex items-start space-x-3 md:col-span-2">
                         <x-heroicon-o-user-circle class="h-6 w-6 text-primary-600 mt-0.5 flex-shrink-0" />
                         
                         <div class="text-gray-700">
                             <div class="font-medium">{!! __('Group Leader, City Council', 'fmr') !!}</div>
-                            <div>{{ $party->meta->groupLeader }}</div>
+                            <div>
+                                <x-link href="{{ $groupLeader->url }}">
+                                    @if($groupLeader->meta->firstname && $groupLeader->meta->lastname)
+                                        {{ $groupLeader->meta->firstname }} {{ $groupLeader->meta->lastname }}
+                                    @else
+                                        {{ $groupLeader->name }}
+                                    @endif
+                                </x-link>
+                            </div>
                         </div>
                     </div>
                 @endif

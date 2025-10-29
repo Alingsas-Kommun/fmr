@@ -12,6 +12,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AssignmentController;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use App\Http\Controllers\DecisionAuthorityController;
+use Carbon\Carbon;
 
 class ServiceProvider extends SageServiceProvider
 {
@@ -40,7 +41,9 @@ class ServiceProvider extends SageServiceProvider
      */
     public function boot(): void
     {
-        // Services are ready to be injected wherever needed
-        // No specific boot logic required for these services
+        // Register Carbon macro for localized date formatting
+        Carbon::macro('formatDate', function ($format = 'j M Y') {
+            return $this->locale(get_site_locale())->translatedFormat($format);
+        });
     }
 }

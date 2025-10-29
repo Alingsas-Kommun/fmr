@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\AssignmentController as AdminAssignmentController
 use App\Http\Controllers\Admin\BoardController;
 use App\Http\Controllers\Admin\DecisionAuthorityController as AdminDecisionAuthorityController;
 use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Utilities\Dir;
@@ -52,6 +53,7 @@ class AdminServiceProvider extends SageServiceProvider
         $this->app->singleton(AnniversaryController::class);
         $this->app->singleton(BoardController::class);
         $this->app->singleton(PersonController::class);
+        $this->app->singleton(PartyController::class);
         $this->app->singleton(RoleController::class);
         $this->app->singleton(TypeController::class);
     }

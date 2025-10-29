@@ -234,6 +234,10 @@ class AssignmentExportService
             $filterParts[] = 'person_' . $filters['person_filter'];
         }
         
+        if (!empty($filters['party_filter'])) {
+            $filterParts[] = 'party_' . $filters['party_filter'];
+        }
+        
         if (!empty($filters['search'])) {
             $filterParts[] = 'search_' . sanitize_title(substr($filters['search'], 0, 20));
         }

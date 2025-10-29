@@ -45,17 +45,6 @@ class PartyDetails extends FieldGroup
                             ],
                         ],
                     ],
-                    [
-                        'fields' => [
-                            [
-                                'id' => 'party_group_leader',
-                                'label' => __('Group Leader, City Council', 'fmr'),
-                                'type' => 'text',
-                                'optional' => true,
-                                'cols' => 12,
-                            ],
-                        ],
-                    ],
                 ],
             ],
             [

@@ -3,6 +3,7 @@
 namespace App\Core\PostTypes;
 
 use function App\Core\{arraySpliceAssoc};
+use Illuminate\Support\Facades\Blade;
 
 class Boards
 {
@@ -35,6 +36,7 @@ class Boards
 
         add_filter('manage_' . self::$base . '_posts_columns', [__CLASS__, 'addColumns']);
         add_action('manage_' . self::$base . '_posts_custom_column', [__CLASS__, 'addColumnData'], 10, 2);
+        add_filter('disable_months_dropdown', [__CLASS__, 'disableMonthsDropdown'], 10, 2);
     }
 
     /**
@@ -89,6 +91,11 @@ class Boards
     public static function addColumns($columns)
     {
         unset($columns['date']);
+        unset($columns['author']);
+
+        if (isset($columns['title'])) {
+            $columns['title'] = __('Name', 'fmr');
+        }
 
         $columns_to_add = [];
         $columns_to_add[] = [
@@ -113,7 +120,26 @@ class Boards
     {
         switch ($column) {
             case 'board-category':
-                echo get_meta_field($post_id, 'board_category');
+                $term_id = get_meta_field($post_id, 'board_category');
+                $term = $term_id ? get_term($term_id, 'type') : null;
+                
+                if ($term && !is_wp_error($term) && $term->name) {
+                    $termLink = get_edit_term_link($term_id, 'type');
+                    
+                    if ($termLink) {
+                        echo Blade::render(
+                            '<a href="{!! $link !!}">{!! $title !!}</a>',
+                            [
+                                'link' => $termLink,
+                                'title' => $term->name
+                            ]
+                        );
+                    } else {
+                        echo esc_html($term->name);
+                    }
+                } else {
+                    echo '-';
+                }
 
                 break;
             case 'board-shortening':
@@ -121,5 +147,21 @@ class Boards
 
                 break;
         }
+    }
+
+    /**
+     * Disable months dropdown filter for this post type
+     *
+     * @param bool $disable
+     * @param string $post_type
+     * @return bool
+     */
+    public static function disableMonthsDropdown($disable, $post_type)
+    {
+        if ($post_type === self::$base) {
+            return true;
+        }
+        
+        return $disable;
     }
 }
