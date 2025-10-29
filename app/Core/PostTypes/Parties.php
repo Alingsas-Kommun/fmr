@@ -10,26 +10,71 @@ use function Roots\view;
 
 class Parties
 {
+    /**
+     * The base of the post type
+     *
+     * @var string
+     */
     public static $base = 'party';
 
+    /**
+     * The singular of the post type
+     *
+     * @var string
+     */
     public static $singular;
 
+    /**
+     * The plural of the post type
+     *
+     * @var string
+     */
     public static $plural;
 
+    /**
+     * The icon of the post type
+     *
+     * @var string
+     */
     public static $icon = 'dashicons-groups';
 
+    /**
+     * The supports of the post type
+     *
+     * @var array
+     */
     public static $supports = [
         'title',
         'thumbnail',
         'author',
     ];
 
+    /**
+     * The archive page of the post type
+     *
+     * @var bool
+     */
     public static $archive_page = false;
 
+    /**
+     * The single page of the post type
+     *
+     * @var bool
+     */
     public static $single_page = true;
 
+    /**
+     * The labels of the post type
+     *
+     * @var array
+     */
     public static $labels = [];
 
+    /**
+     * Constructor. Set up the post type properties.
+     *
+     * @return void
+     */
     public function __construct()
     {
         self::$singular = __('Party', 'fmr');
@@ -99,6 +144,12 @@ class Parties
         register_post_type(self::$base, $args);
     }
 
+    /**
+     * Add columns to the post type
+     *
+     * @param array $columns
+     * @return array
+     */
     public static function addColumns($columns)
     {
         unset($columns['date']);
@@ -132,6 +183,13 @@ class Parties
         return $columns;
     }
 
+    /**
+     * Add column data to the post type
+     *
+     * @param string $column
+     * @param int $post_id
+     * @return void
+     */
     public static function addColumnData($column, $post_id)
     {
         switch ($column) {
@@ -188,6 +246,11 @@ class Parties
         }
     }
 
+    /**
+     * Set the width of the party image column
+     *
+     * @return void
+     */
     public static function partyImageColumnWidth()
     {
         echo '<style type="text/css">';
@@ -196,6 +259,11 @@ class Parties
         echo '</style>';
     }
 
+    /**
+     * Add members meta box
+     *
+     * @return void
+     */
     public static function addMembersMetaBox()
     {
         add_meta_box(
@@ -208,6 +276,12 @@ class Parties
         );
     }
 
+    /**
+     * Render members meta box
+     *
+     * @param object $post
+     * @return void
+     */
     public static function renderMembersMetaBox($post)
     {
         $active_members = self::getActiveMembers($post->ID);
@@ -219,11 +293,23 @@ class Parties
         ])->render();
     }
 
+    /**
+     * Get active members
+     *
+     * @param int $party_id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public static function getActiveMembers($party_id)
     {
         return self::getPartyMembers($party_id, true);
     }
 
+    /**
+     * Get inactive members
+     *
+     * @param int $party_id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public static function getInactiveMembers($party_id)
     {
         return self::getPartyMembers($party_id, false);

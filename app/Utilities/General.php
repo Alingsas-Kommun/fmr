@@ -4,6 +4,13 @@ namespace App\Utilities;
 
 class General
 {
+    /**
+     * Pretty print
+     * 
+     * @param mixed $print
+     * @param bool $wp_die
+     * @return void
+     */
     public static function pp($print, $wp_die = false)
     {
         echo '<pre>';

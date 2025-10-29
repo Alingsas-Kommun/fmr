@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PartyController extends Controller
 {
+    /**
+     * Get all parties.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -40,6 +46,13 @@ class PartyController extends Controller
         }
     }
 
+    /**
+     * Get a specific party.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Request $request, $id)
     {
         try {

@@ -8,6 +8,9 @@ class AssignmentController extends Controller
 {
     /**
      * Display the specified assignment.
+     * 
+     * @param Assignment $assignment
+     * @return \Illuminate\View\View
      */
     public function show(Assignment $assignment)
     {

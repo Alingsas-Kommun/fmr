@@ -10,10 +10,33 @@ use function Roots\view;
 
 class Details extends MetaBox
 {
+    /**
+     * The role controller
+     *
+     * @var RoleController
+     */
     protected $roleController;
+
+    /**
+     * The person controller
+     *
+     * @var PersonController
+     */
     protected $personController;
+
+    /**
+     * The decision authority controller
+     *
+     * @var DecisionAuthorityController
+     */
     protected $decisionAuthorityController;
 
+    /**
+     * Constructor. Set up the meta box properties.
+     *
+     * @param EditPage $editPage
+     * @return void
+     */
     public function __construct($editPage)
     {   
         $this->roleController = app(RoleController::class);
@@ -25,6 +48,8 @@ class Details extends MetaBox
 
     /**
      * Initialize the meta box properties.
+     * 
+     * @return void
      */
     protected function initializeProperties()
     {
@@ -36,6 +61,10 @@ class Details extends MetaBox
 
     /**
      * Render the meta box content.
+     *
+     * @param object $object
+     * @param string $box
+     * @return void
      */
     public function render($object, $box)
     {        
@@ -51,6 +80,10 @@ class Details extends MetaBox
 
     /**
      * Handle saving the meta box data.
+     *
+     * @param array $data
+     * @param object $object
+     * @return void
      */
     public function save($data, $object) {}
 }

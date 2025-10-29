@@ -6,14 +6,42 @@ use App\Core\Admin\Abstracts\FieldGroup;
 
 class PartyDetails extends FieldGroup
 {
+    /**
+     * The post types for the party details
+     *
+     * @var array
+     */
     protected static $post_types = ['party'];
+
+    /**
+     * The ID for the party details
+     *
+     * @var string
+     */
     protected static $id = 'party_details';
+
+    /**
+     * The priority for the party details
+     *
+     * @var string
+     */
     protected static $priority = 'high';
 
+    /**
+     * Get the title for the party details
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Party Details', 'fmr');
     }
+
+    /**
+     * Get the fields for the party details
+     *
+     * @return array
+     */
 
     protected function getFields()
     {

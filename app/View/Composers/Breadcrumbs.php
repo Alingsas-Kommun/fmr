@@ -25,6 +25,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Build breadcrumbs by merging from different sources.
+     * 
+     * @return array
      */
     public function buildBreadcrumbs(): array
     {
@@ -56,6 +58,9 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for specific routes.
+     * 
+     * @param string|null $routeName
+     * @return array
      */
     private function getRouteBreadcrumbs(?string $routeName): array
     {
@@ -86,6 +91,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for WordPress single posts.
+     * 
+     * @return array
      */
     private function getWordPressBreadcrumbs(): array
     {
@@ -135,6 +142,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for assignments show.
+     * 
+     * @return array
      */
     private function getAssignmentsShowBreadcrumbs(): array
     {
@@ -184,6 +193,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for decision authorities show.
+     * 
+     * @return array
      */
     private function getDecisionAuthoritiesShowBreadcrumbs(): array
     {
@@ -233,6 +244,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for search.
+     * 
+     * @return array
      */
     private function getSearchBreadcrumbs(): array
     {
@@ -268,6 +281,8 @@ class Breadcrumbs extends Composer
 
     /**
      * Get breadcrumbs for styleguide.
+     * 
+     * @return array
      */
     private function getStyleguideBreadcrumbs(): array
     {

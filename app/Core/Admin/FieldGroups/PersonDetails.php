@@ -6,14 +6,35 @@ use App\Core\Admin\Abstracts\FieldGroup;
 
 class PersonDetails extends FieldGroup
 {
+    /**
+     * The post types for the person details
+     *
+     * @var array
+     */
     protected static $post_types = ['person'];
-    protected static $id = 'person_details';
 
+    /**
+     * The ID for the person details
+     *
+     * @var string
+     */
+    protected static $id = 'person_details';
+    
+    /**
+     * Get the title for the person details
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Person Details', 'fmr');
     }
 
+    /**
+     * Get the fields for the person details
+     *
+     * @return array
+     */
     protected function getFields()
     {
         return [

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class DecisionAuthorityController extends Controller
 {
+    /**
+     * Get all decision authorities.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -77,6 +83,12 @@ class DecisionAuthorityController extends Controller
         }
     }
 
+    /**
+     * Get a specific decision authority.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show($id)
     {
         try {

@@ -52,6 +52,8 @@ class Party extends Composer
 
     /**
      * Retrieve the party object with aggregated meta fields.
+     * 
+     * @return object|null
      */
     public function party()
     {
@@ -68,6 +70,9 @@ class Party extends Composer
 
     /**
      * Get all members for the party based on active status.
+     * 
+     * @param bool $active
+     * @return Collection
      */
     public function members($active = true)
     {

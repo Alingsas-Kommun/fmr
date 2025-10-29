@@ -10,26 +10,71 @@ use Illuminate\Support\Facades\Blade;
 
 class Persons
 {
+    /**
+     * The base of the post type
+     *
+     * @var string
+     */
     public static $base = 'person';
 
+    /**
+     * The singular of the post type
+     *
+     * @var string
+     */
     public static $singular;
 
+    /**
+     * The plural of the post type
+     *
+     * @var string
+     */
     public static $plural;
 
+    /**
+     * The icon of the post type
+     *
+     * @var string
+     */
     public static $icon = 'dashicons-businessperson';
 
+    /**
+     * The supports of the post type
+     *
+     * @var array
+     */
     public static $supports = [
         'title',
         'thumbnail',
         'author',
     ];
 
+    /**
+     * The archive page of the post type
+     *
+     * @var bool
+     */
     public static $archive_page = false;
 
+    /**
+     * The single page of the post type
+     *
+     * @var bool
+     */
     public static $single_page = true;
 
+    /**
+     * The labels of the post type
+     *
+     * @var array
+     */
     public static $labels = [];
 
+    /**
+     * Constructor. Set up the post type properties.
+     *
+     * @return void
+     */
     public function __construct()
     {
         self::$singular = __('Person', 'fmr');
@@ -81,6 +126,8 @@ class Persons
 
     /**
      * Register the custom post type
+     * 
+     * @return void
      */
     public function register()
     {
@@ -103,6 +150,12 @@ class Persons
         register_post_type(self::$base, $args);
     }
 
+    /**
+     * Add columns to the post type
+     *
+     * @param array $columns
+     * @return array
+     */
     public static function addColumns($columns)
     {
         unset($columns['date']);
@@ -141,6 +194,13 @@ class Persons
         return $columns;
     }
 
+    /**
+     * Add column data to the post type
+     *
+     * @param string $column
+     * @param int $post_id
+     * @return void
+     */
     public static function addColumnData($column, $post_id)
     {
         switch ($column) {
@@ -201,6 +261,11 @@ class Persons
         }
     }
 
+    /**
+     * Set the width of the person image column
+     *
+     * @return void
+     */
     public static function personImageColumnWidth()
     {
         echo '<style type="text/css">';
@@ -212,6 +277,8 @@ class Persons
 
     /**
      * Add party filter dropdown to the persons admin list
+     * 
+     * @return void
      */
     public static function addPartyFilter()
     {
@@ -244,6 +311,9 @@ class Persons
 
     /**
      * Filter persons by party
+     *
+     * @param \WP_Query $query
+     * @return void
      */
     public static function filterByParty($query)
     {

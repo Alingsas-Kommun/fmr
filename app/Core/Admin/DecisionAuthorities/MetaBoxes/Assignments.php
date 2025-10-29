@@ -11,15 +11,42 @@ use App\Http\Controllers\Admin\AssignmentController;
 
 class Assignments extends RelationHandler
 {
+    /**
+     * The meta box id for the decision authority assignments
+     *
+     * @var string
+     */ 
     protected static $meta_box_id = 'decision_authority_assignments';
+
+    /**
+     * The context for the decision authority assignments
+     *
+     * @var string
+     */
     protected static $context = 'normal';
+
+    /**
+     * The priority for the decision authority assignments
+     *
+     * @var string
+     */
     protected static $priority = 'high';
 
+    /**
+     * Get the title for the decision authority assignments
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Assignments', 'fmr');
     }
 
+    /**
+     * Get the config for the decision authority assignments
+     *
+     * @return array
+     */
     protected function getConfig()
     {
         return [
@@ -63,6 +90,12 @@ class Assignments extends RelationHandler
         ];
     }
 
+    /**
+     * Load the existing data for the decision authority assignments
+     *
+     * @param int $decision_authority_id
+     * @return array
+     */
     protected function loadExistingData($decision_authority_id)
     {
         if (!$decision_authority_id) {
@@ -74,6 +107,13 @@ class Assignments extends RelationHandler
         return $controller->getByDecisionAuthority($decision_authority_id);
     }
 
+    /**
+     * Process the relation data for the decision authority assignments
+     *
+     * @param int $decision_authority_id
+     * @param array $relation_data
+     * @return void
+     */
     protected function processRelationData($decision_authority_id, $relation_data)
     {
         $data = json_decode(stripslashes($relation_data), true);
@@ -111,6 +151,11 @@ class Assignments extends RelationHandler
         }
     }
 
+    /**
+     * Get the persons for the decision authority assignments
+     *
+     * @return array
+     */
     private function getPersons()
     {
         $personController = app(PersonController::class);
@@ -125,6 +170,11 @@ class Assignments extends RelationHandler
         return $options;
     }
 
+    /**
+     * Get the roles for the decision authority assignments
+     *
+     * @return array
+     */
     private function getRoles()
     {
         $roleController = app(RoleController::class);

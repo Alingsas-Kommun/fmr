@@ -6,14 +6,35 @@ use App\Core\Admin\Abstracts\FieldGroup;
 
 class BoardDetails extends FieldGroup
 {
+    /**
+     * The post types for the board details
+     *
+     * @var array
+     */
     protected static $post_types = ['board'];
+    
+    /**
+     * The ID for the board details
+     *
+     * @var string
+     */
     protected static $id = 'board_details';
 
+    /**
+     * Get the title for the board details
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Board Details', 'fmr');
     }
 
+    /**
+     * Get the fields for the board details
+     *
+     * @return array
+     */
     protected function getFields()
     {
         return [

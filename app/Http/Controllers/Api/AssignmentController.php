@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
+    /**
+     * Get all assignments.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -72,6 +78,12 @@ class AssignmentController extends Controller
         }
     }
 
+    /**
+     * Get a specific assignment.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show($id)
     {
         try {

@@ -10,6 +10,8 @@ class AssignmentController
 {
     /**
      * Get all assignments.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAll()
     {
@@ -18,6 +20,9 @@ class AssignmentController
 
     /**
      * Get assignments for a specific decision authority.
+     *
+     * @param int $decision_authority_id
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getByDecisionAuthority($decision_authority_id)
     {
@@ -28,7 +33,10 @@ class AssignmentController
     }
 
     /**
-     * Delete all assignments for a decision authority.
+     * Delete assignments for a specific decision authority.
+     *
+     * @param int $decision_authority_id
+     * @return bool
      */
     public function deleteByDecisionAuthority($decision_authority_id)
     {

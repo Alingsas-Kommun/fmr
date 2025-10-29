@@ -9,6 +9,9 @@ class FieldGroupService
 {
     /**
      * Get expected meta fields for a post type based on field group definitions
+     *
+     * @param string $postType
+     * @return array
      */
     public static function getExpectedFieldsForPostType(string $postType): array
     {
@@ -25,6 +28,9 @@ class FieldGroupService
 
     /**
      * Get all field group classes for a specific post type
+     *
+     * @param string $postType
+     * @return array
      */
     protected static function getFieldGroupsForPostType(string $postType): array
     {
@@ -59,6 +65,9 @@ class FieldGroupService
 
     /**
      * Get fields from a specific field group class
+     *
+     * @param string $fieldGroupClass
+     * @return array
      */
     protected static function getFieldsFromGroup(string $fieldGroupClass): array
     {
@@ -75,6 +84,9 @@ class FieldGroupService
 
     /**
      * Extract field definitions from field group structure
+     *
+     * @param array $groups
+     * @return array
      */
     protected static function extractFieldsFromGroup(array $groups): array
     {
@@ -117,6 +129,10 @@ class FieldGroupService
 
     /**
      * Cast value based on field type (handles both existing values and defaults)
+     *
+     * @param mixed $value
+     * @param string $type
+     * @return mixed
      */
     public static function castValueByType($value, string $type): mixed
     {
@@ -132,6 +148,9 @@ class FieldGroupService
 
     /**
      * Get default value for a field type
+     * 
+     * @param string $type
+     * @return mixed
      */
     public static function getDefaultValueForType(string $type): mixed
     {
@@ -140,6 +159,9 @@ class FieldGroupService
 
     /**
      * Get default value for a field based on its definition
+     * 
+     * @param array $fieldDefinition
+     * @return mixed
      */
     public static function getDefaultValueForField(array $fieldDefinition): mixed
     {
@@ -148,6 +170,9 @@ class FieldGroupService
 
     /**
      * Check if a field should be included in the meta object
+     * 
+     * @param string $fieldId
+     * @return bool
      */
     public static function shouldIncludeField(string $fieldId): bool
     {
@@ -167,6 +192,10 @@ class FieldGroupService
 
     /**
      * Remove prefix from field key based on post type
+     * 
+     * @param string $key
+     * @param string $postType
+     * @return string
      */
     public static function removePrefix(string $key, string $postType): string
     {
@@ -181,6 +210,9 @@ class FieldGroupService
 
     /**
      * Get relation field IDs for a post type (fields that should be excluded from meta)
+     * 
+     * @param string $postType
+     * @return array
      */
     public static function getRelationFieldIds(string $postType): array
     {
@@ -201,6 +233,11 @@ class FieldGroupService
 
     /**
      * Format meta values for display with proper casting and prefix removal
+     * 
+     * @param array $rawMeta
+     * @param string $postType
+     * @param array $excludeFields
+     * @return array
      */
     public static function formatMetaValues(array $rawMeta, string $postType, array $excludeFields = []): array
     {

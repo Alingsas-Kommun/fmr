@@ -9,9 +9,26 @@ use function Roots\view;
 
 class Details extends MetaBox
 {
+    /**
+     * The board controller
+     *
+     * @var BoardController
+     */
     protected $boardController;
+
+    /**
+     * The type controller
+     *
+     * @var TypeController
+     */
     protected $typeController;
 
+    /**
+     * Constructor. Set up the meta box properties.
+     *
+     * @param EditPage $editPage
+     * @return void
+     */
     public function __construct($editPage)
     {
         $this->boardController = app(BoardController::class);
@@ -33,6 +50,10 @@ class Details extends MetaBox
 
     /**
      * Render the meta box content.
+     *
+     * @param object $object
+     * @param string $box
+     * @return void
      */
     public function render($object, $box)
     {        
@@ -48,6 +69,10 @@ class Details extends MetaBox
 
     /**
      * Handle saving the meta box data.
+     *
+     * @param array $data
+     * @param object $object
+     * @return void
      */
     public function save($data, $object) {}
 }

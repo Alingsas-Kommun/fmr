@@ -9,8 +9,18 @@ use Illuminate\Http\Request;
 
 class AnniversaryController extends Controller
 {
+    /**
+     * The anniversary service instance.
+     *
+     * @var AnniversaryService
+     */
     protected $anniversaryService;
 
+    /**
+     * Constructor.
+     *
+     * @param AnniversaryService $anniversaryService
+     */
     public function __construct(AnniversaryService $anniversaryService)
     {
         $this->anniversaryService = $anniversaryService;

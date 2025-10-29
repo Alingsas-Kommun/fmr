@@ -19,6 +19,8 @@ class Post extends Composer
 
     /**
      * Retrieve the post title.
+     * 
+     * @return string
      */
     public function title(): string
     {

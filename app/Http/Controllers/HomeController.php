@@ -9,6 +9,8 @@ class HomeController extends Controller
 {
     /**
      * Display the homepage
+     * 
+     * @return \Illuminate\View\View
      */
     public function index()
     {

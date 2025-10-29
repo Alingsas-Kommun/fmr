@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Blade;
 
 class TableColumn
 {
+    /**
+     * Make a column
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param array $options
+     * @return array
+     */
     public static function make(string $key, ?string $label = null, array $options = []): array
     {
         return array_merge([
@@ -15,6 +23,14 @@ class TableColumn
         ], $options);
     }
 
+    /**
+     * Text column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $class
+     * @return array
+     */
     public static function text(string $key, ?string $label = null, string $class = ''): array
     {
         return self::make($key, $label, [
@@ -25,6 +41,15 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Link column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $urlKey
+     * @param string $class
+     * @return array
+     */
     public static function link(string $key, ?string $label = null, string $urlKey = 'url', string $class = ''): array
     {
         return self::make($key, $label, [
@@ -40,6 +65,15 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Arrow link column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $urlKey
+     * @param string $class
+     * @return array
+     */
     public static function arrowLink(string $key, ?string $label = null, string $urlKey = 'url', string $class = ''): array
     {
         return self::make($key, $label, [
@@ -58,6 +92,16 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Image link column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $urlKey
+     * @param string $imageKey
+     * @param string $class
+     * @return array
+     */
     public static function imageLink(string $key, ?string $label = null, string $urlKey = 'url', string $imageKey = 'image', string $class = 'text-blue-600 hover:text-blue-800'): array
     {
         return self::make($key, $label, [
@@ -81,6 +125,14 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Badge column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $class
+     * @return array
+     */
     public static function badge(string $key, ?string $label = null, string $class = 'bg-primary-100 text-primary-800'): array
     {
         return self::make($key, $label, [
@@ -95,6 +147,15 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Badge map column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param array $colorMap
+     * @param string $class
+     * @return array
+     */
     public static function badgeMap(string $key, ?string $label = null, array $colorMap = [], string $class = ''): array
     {
         return self::make($key, $label, [
@@ -110,6 +171,16 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Badge link column renderer
+     * 
+     * @param string $key
+     * @param string|null $label
+     * @param string $urlKey
+     * @param array $colorMap
+     * @param string $class
+     * @return array
+     */
     public static function badgeLink(string $key, ?string $label = null, string $urlKey = 'url', array $colorMap = [], string $class = ''): array
     {
         return self::make($key, $label, [
@@ -126,6 +197,14 @@ class TableColumn
         ]);
     }
 
+    /**
+     * Custom column renderer
+     * 
+     * @param string $key
+     * @param callable $render
+     * @param string|null $label
+     * @return array
+     */
     public static function custom(string $key, callable $render, ?string $label = null): array
     {
         return self::make($key, $label, [
@@ -135,6 +214,10 @@ class TableColumn
 
     /**
      * Pre-render all data with PHP column renderers for static mode.
+     * 
+     * @param array $data
+     * @param array $columns
+     * @return array
      */
     public static function preRenderData(array $data, array $columns): array
     {

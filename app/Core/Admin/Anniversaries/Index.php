@@ -13,6 +13,11 @@ if (!defined('ABSPATH')) {
 
 class Index
 {
+    /**
+     * The instance of the index page
+     *
+     * @var Index
+     */
     private static $instance = null;
 
     /**

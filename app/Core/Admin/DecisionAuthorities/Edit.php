@@ -11,9 +11,25 @@ use Illuminate\Http\Request;
 
 class Edit extends EditPage
 {
+    /**
+     * The decision authority controller
+     *
+     * @var DecisionAuthorityController
+     */
     protected $controller;
+
+    /**
+     * The board controller
+     *
+     * @var BoardController
+     */
     protected $boardController;
 
+    /**
+     * Constructor. Set up the edit page properties.
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->controller = app(DecisionAuthorityController::class);
@@ -24,6 +40,8 @@ class Edit extends EditPage
 
     /**
      * Initialize the properties that must be defined by child classes.
+     * 
+     * @return void
      */
     protected function initializeProperties()
     {
@@ -44,6 +62,8 @@ class Edit extends EditPage
 
     /**
      * Initialize button text properties with custom values.
+     *  
+     * @return void
      */
     protected function initializeSubmitTexts()
     {
@@ -52,7 +72,9 @@ class Edit extends EditPage
     }
 
     /**
-     * Register custom meta boxes. Override this method in child classes.
+     * Register custom meta boxes.
+     *
+     * @return void
      */
     protected function registerCustomMetaBoxes()
     {
@@ -62,14 +84,21 @@ class Edit extends EditPage
 
     /**
      * Get the current object being edited.
+     *
+     * @param int $id
+     * @return DecisionAuthority
      */
     protected function getCurrentObject($id = null)
     {
         return $this->controller->show($id);
     }
 
-    /**
+    /** 
      * Handle the save operation.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return bool
      */
     protected function handleSave(Request $request, $id = null)
     {
@@ -94,6 +123,8 @@ class Edit extends EditPage
 
     /**
      * Get the success message for create operation.
+     *
+     * @return string
      */
     protected function getCreateSuccessMessage()
     {
@@ -102,6 +133,8 @@ class Edit extends EditPage
 
     /**
      * Get the success message for update operation.
+     *
+     * @return string
      */
     protected function getUpdateSuccessMessage()
     {

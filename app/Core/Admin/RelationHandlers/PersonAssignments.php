@@ -10,17 +10,56 @@ use Illuminate\Http\Request;
 
 class PersonAssignments extends RelationHandler
 {
+    /**
+     * The post type for the person assignments
+     *
+     * @var string
+     */
     protected static $post_type = 'person';
+
+    /**
+     * The meta box id for the person assignments
+     *
+     * @var string
+     */
     protected static $meta_box_id = 'person_assignments';
+
+    /**
+     * The priority for the person assignments
+     *
+     * @var string
+     */
     protected static $priority = 'low';
+
+    /**
+     * The decision authorities for the person assignments
+     *
+     * @var array
+     */
     protected static $decision_authorities = [];
+
+    /**
+     * The role terms for the person assignments
+     *
+     * @var array
+     */
     protected static $role_terms = [];
 
+    /**
+     * Get the title for the person assignments
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Assignments', 'fmr');
     }
-
+    
+    /**
+     * Get the config for the person assignments
+     *
+     * @return array
+     */
     protected function getConfig()
     {
         return [
@@ -64,6 +103,12 @@ class PersonAssignments extends RelationHandler
         ];
     }
 
+    /**
+     * Load the existing data for the person assignments
+     *
+     * @param int $post_id
+     * @return array
+     */
     protected function loadExistingData($post_id)
     {
         $this->loadDecisionAuthorities();
@@ -75,6 +120,11 @@ class PersonAssignments extends RelationHandler
         return $assignments;
     }
 
+    /**
+     * Load the decision authorities for the person assignments
+     *
+     * @return void
+     */
     protected function loadDecisionAuthorities()
     {
         $controller = app(DecisionAuthorityController::class);
@@ -97,6 +147,13 @@ class PersonAssignments extends RelationHandler
         static::$decision_authorities = $groupedAuthorities;
     }
     
+    /**
+     * Format the time period for the person assignments
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @return string
+     */
     protected function formatTimePeriod($startDate, $endDate)
     {
         $start = $startDate ? date('Y-m-d', strtotime($startDate)) : '';
@@ -105,6 +162,11 @@ class PersonAssignments extends RelationHandler
         return $start . ' - ' . $end;
     }
 
+    /**
+     * Load the role terms for the person assignments
+     *
+     * @return void
+     */
     protected function loadRoleTerms()
     {
         $roleController = app(RoleController::class);
@@ -113,6 +175,13 @@ class PersonAssignments extends RelationHandler
         static::$role_terms = $roleTerms->pluck('name', 'term_id')->toArray();
     }
 
+    /**
+     * Process the relation data for the person assignments
+     *
+     * @param int $post_id
+     * @param array $relation_data
+     * @return void
+     */
     protected function processRelationData($post_id, $relation_data)
     {
         $data = json_decode(stripslashes($relation_data), true);

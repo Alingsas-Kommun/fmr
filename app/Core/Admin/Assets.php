@@ -43,7 +43,8 @@ class Assets
 
     /**
      * Register custom admin colors
-     *
+     * 
+     * @return void
      */
     public static function registerAdminColors():void
     {
@@ -71,6 +72,9 @@ class Assets
 
     /**
      * Change the admin colors to the new custom one
+     * 
+     * @param string $color_scheme
+     * @return string
      */
     public static function userAdminColor($color_scheme):string
     {
@@ -81,6 +85,8 @@ class Assets
 
     /**
      * Remove color scheme picker
+     *
+     * @return void
      */
     public static function removeSchemePicker():void
     {
@@ -105,6 +111,9 @@ class Assets
 
     /**
      * Enqueue admin assets.
+     * 
+     * @param string|null $hook_suffix
+     * @return void
      */
     public function enqueueAdminAssets($hook_suffix = null): void
     {

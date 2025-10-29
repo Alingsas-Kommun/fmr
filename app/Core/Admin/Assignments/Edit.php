@@ -19,7 +19,9 @@ class Edit extends EditPage
     }
 
     /**
-     * Initialize the properties that must be defined by child classes.
+     * Initialize the properties that must be defined by child classes
+     * 
+     * @return void
      */
     protected function initializeProperties()
     {
@@ -40,6 +42,8 @@ class Edit extends EditPage
 
     /**
      * Initialize button text properties with custom values.
+     * 
+     * @return void
      */
     protected function initializeSubmitTexts()
     {
@@ -49,6 +53,8 @@ class Edit extends EditPage
 
     /**
      * Register custom meta boxes. Override this method in child classes.
+     * 
+     * @return void
      */
     protected function registerCustomMetaBoxes()
     {
@@ -57,6 +63,9 @@ class Edit extends EditPage
 
     /**
      * Get the current object being edited.
+     * 
+     * @param int $id
+     * @return Assignment
      */
     protected function getCurrentObject($id = null)
     {
@@ -65,6 +74,10 @@ class Edit extends EditPage
 
     /**
      * Handle the save operation.
+     * 
+     * @param Request $request
+     * @param int $id
+     * @return bool
      */
     protected function handleSave(Request $request, $id = null)
     {
@@ -89,6 +102,8 @@ class Edit extends EditPage
 
     /**
      * Get the success message for create operation.
+     * 
+     * @return string
      */
     protected function getCreateSuccessMessage()
     {
@@ -97,6 +112,8 @@ class Edit extends EditPage
 
     /**
      * Get the success message for update operation.
+     * 
+     * @return string
      */
     protected function getUpdateSuccessMessage()
     {

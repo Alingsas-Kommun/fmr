@@ -13,10 +13,23 @@ abstract class FieldGroup
 {
     use FieldGroupTrait;
 
+    /**
+     * The post types for the field group.
+     *
+     * @var array
+     */
     protected static $post_types = [];
 
+    /**
+     * Get the title for the field group.
+     *
+     * @return string
+     */
     abstract protected function getTitle();
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->title = $this->getTitle();
@@ -29,6 +42,11 @@ abstract class FieldGroup
         }
     }
 
+    /**
+     * Register the field group.
+     *
+     * @return void
+     */
     public function register()
     {
         // Register meta box for each post type
@@ -44,7 +62,13 @@ abstract class FieldGroup
         }
     }
 
-
+    /**
+     * Save field values to post meta
+     * 
+     * @param int $post_id
+     * @param object $post
+     * @return void
+     */
     public function save($post_id, $post)
     {
         if (!isset($_POST[static::$id . '_nonce']) || 
@@ -67,6 +91,11 @@ abstract class FieldGroup
 
     /**
      * Get field value from post meta
+     * 
+     * @param string $field_id
+     * @param object $post
+     * @param string $default
+     * @return string
      */
     protected function getFieldValue($field_id, $post = null, $default = '')
     {
@@ -81,6 +110,11 @@ abstract class FieldGroup
 
     /**
      * Save field value to post meta
+     * 
+     * @param string $field_id
+     * @param string $value
+     * @param int $post_id
+     * @return void
      */
     protected function saveFieldValue($field_id, $value, $post_id = null)
     {
@@ -93,6 +127,10 @@ abstract class FieldGroup
 
     /**
      * Delete field value from post meta
+     * 
+     * @param string $field_id
+     * @param int $post_id
+     * @return void
      */
     protected function deleteFieldValue($field_id, $post_id = null)
     {

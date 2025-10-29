@@ -9,16 +9,49 @@ use Illuminate\Http\Request;
 
 class BoardDecisionAuthorities extends RelationHandler
 {
+    /**
+     * The post type for the board decision authorities
+     *
+     * @var string
+     */
     protected static $post_type = 'board';
+
+    /**
+     * The meta box id for the board decision authorities
+     *
+     * @var string
+     */
     protected static $meta_box_id = 'board_decision_authorities';
+
+    /**
+     * The priority for the board decision authorities
+     *
+     * @var string
+     */
     protected static $priority = 'low';
+
+    /**
+     * The type terms for the board decision authorities
+     *
+     * @var array
+     */
     protected static $type_terms = [];
 
+    /**
+     * Get the title for the board decision authorities
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('Decision Authorities', 'fmr');
     }
 
+    /**
+     * Get the config for the board decision authorities
+     *
+     * @return array
+     */
     protected function getConfig()
     {
         return [
@@ -59,6 +92,12 @@ class BoardDecisionAuthorities extends RelationHandler
         ];
     }
 
+    /**
+     * Load the existing data for the board decision authorities
+     *
+     * @param int $post_id
+     * @return array
+     */
     protected function loadExistingData($post_id)
     {
         $this->loadTypeTerms();
@@ -69,6 +108,11 @@ class BoardDecisionAuthorities extends RelationHandler
         return $decision_authorities;
     }
 
+    /**
+     * Load the type terms for the board decision authorities
+     *
+     * @return void
+     */
     protected function loadTypeTerms()
     {
         $typeController = app(TypeController::class);
@@ -77,6 +121,13 @@ class BoardDecisionAuthorities extends RelationHandler
         static::$type_terms = $typeTerms->pluck('name', 'term_id')->toArray();
     }
 
+    /**
+     * Process the relation data for the board decision authorities
+     *
+     * @param int $post_id
+     * @param array $relation_data
+     * @return void
+     */
     protected function processRelationData($post_id, $relation_data)
     {
         $data = json_decode(stripslashes($relation_data), true);

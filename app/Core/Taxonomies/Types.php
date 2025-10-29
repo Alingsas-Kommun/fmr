@@ -4,10 +4,25 @@ namespace App\Core\Taxonomies;
 
 class Types
 {
+    /**
+     * The base of the taxonomy
+     *
+     * @var string
+     */
     public static $base = 'type';
 
+    /**
+     * The post types of the taxonomy
+     *
+     * @var array
+     */
     public static $postTypes = ['board'];
 
+    /**
+     * Constructor. Set up the taxonomy properties.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->register();
@@ -16,6 +31,11 @@ class Types
         add_filter("manage_edit-" . self::$base . "_columns", [$this, 'removeColumns']);
     }
 
+    /**
+     * Register the taxonomy
+     *
+     * @return void
+     */
     public function register()
     {
         $args = [
@@ -66,6 +86,9 @@ class Types
 
     /**
      * Remove Description, Slug, and Count columns from the terms list table
+     * 
+     * @param array $columns
+     * @return array
      */
     public function removeColumns($columns)
     {

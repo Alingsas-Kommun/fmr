@@ -7,25 +7,70 @@ use Illuminate\Support\Facades\Blade;
 
 class Boards
 {
+    /**
+     * The base of the post type
+     *
+     * @var string
+     */
     public static $base = 'board';
 
+    /**
+     * The singular of the post type
+     *
+     * @var string
+     */
     public static $singular;
 
+    /**
+     * The plural of the post type
+     *
+     * @var string
+     */
     public static $plural;
 
+    /**
+     * The icon of the post type
+     *
+     * @var string
+     */
     public static $icon = 'dashicons-building';
 
+    /**
+     * The supports of the post type
+     *
+     * @var array
+     */
     public static $supports = [
         'title',
         'author',
     ];
 
+    /**
+     * The archive page of the post type
+     *
+     * @var bool
+     */
     public static $archive_page = false;
 
+    /**
+     * The single page of the post type
+     *
+     * @var bool
+     */
     public static $single_page = true;
 
+    /**
+     * The labels of the post type
+     *
+     * @var array
+     */
     public static $labels = [];
 
+    /**
+     * Constructor. Set up the post type properties.
+     *
+     * @return void
+     */
     public function __construct()
     {
         self::$singular = __('Board', 'fmr');
@@ -88,6 +133,12 @@ class Boards
         register_post_type(self::$base, $args);
     }
 
+    /**
+     * Add columns to the post type
+     *
+     * @param array $columns
+     * @return array
+     */
     public static function addColumns($columns)
     {
         unset($columns['date']);
@@ -116,6 +167,13 @@ class Boards
         return $columns;
     }
 
+    /**
+     * Add column data to the post type
+     *
+     * @param string $column
+     * @param int $post_id
+     * @return void
+     */
     public static function addColumnData($column, $post_id)
     {
         switch ($column) {

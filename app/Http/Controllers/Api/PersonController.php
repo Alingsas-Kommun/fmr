@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
+    /**
+     * Get all persons.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -62,6 +68,13 @@ class PersonController extends Controller
         }
     }
 
+    /**
+     * Get a specific person.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Request $request, $id)
     {
         try {

@@ -40,16 +40,22 @@ class AdvancedSearch extends Component
 
     /**
      * Search results.
+     * 
+     * @var \Illuminate\Support\Collection
      */
     public $results;
 
     /**
      * Filter options.
+     * 
+     * @var array
      */
     public $filters = [];
 
     /**
      * Mount the component.
+     * 
+     * @return void
      */
     public function mount()
     {
@@ -85,6 +91,8 @@ class AdvancedSearch extends Component
 
     /**
      * Updated query - perform search when query changes.
+     * 
+     * @return void
      */
     public function updatedQuery()
     {
@@ -93,17 +101,29 @@ class AdvancedSearch extends Component
 
     /**
      * Updated filters - perform search when filters change.
+     * 
+     * @return void
      */
     public function updatedBoardId()
     {
         $this->performSearch();
     }
 
+    /**
+     * Updated party id - perform search when party id changes.
+     * 
+     * @return void
+     */
     public function updatedPartyId()
     {
         $this->performSearch();
     }
 
+    /**
+     * Updated role id - perform search when role id changes.
+     * 
+     * @return void
+     */
     public function updatedRoleId()
     {
         $this->performSearch();
@@ -111,6 +131,8 @@ class AdvancedSearch extends Component
 
     /**
      * Perform the search using SearchController.
+     * 
+     * @return void
      */
     public function performSearch()
     {
@@ -125,6 +147,9 @@ class AdvancedSearch extends Component
 
     /**
      * Sort the results by a specific column.
+     * 
+     * @param string $column
+     * @return void
      */
     public function sortBy(string $column)
     {
@@ -156,6 +181,8 @@ class AdvancedSearch extends Component
 
     /**
      * Load filter options.
+     * 
+     * @return void
      */
     private function loadFilters()
     {
@@ -176,6 +203,8 @@ class AdvancedSearch extends Component
 
     /**
      * Clear all filters and search query.
+     * 
+     * @return void
      */
     public function clearFilters()
     {
@@ -190,6 +219,8 @@ class AdvancedSearch extends Component
 
     /**
      * Check if there are any search criteria (query or filters).
+     * 
+     * @return bool
      */
     private function hasSearchCriteria(): bool
     {
@@ -201,6 +232,8 @@ class AdvancedSearch extends Component
 
     /**
      * Render the component.
+     * 
+     * @return \Illuminate\View\View
      */
     public function render()
     {

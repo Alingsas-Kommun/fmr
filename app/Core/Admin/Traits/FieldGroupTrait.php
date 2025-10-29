@@ -12,12 +12,39 @@ use function Roots\view;
  */
 trait FieldGroupTrait
 {
+    /** 
+     * The ID for the field group
+     *
+     * @var string
+     */
     protected static $id;
+
+    /**
+     * The context for the field group
+     *
+     * @var string
+     */
     protected static $context = 'normal';
+
+    /**
+     * The priority for the field group
+     *
+     * @var string
+     */
     protected static $priority = 'low';
-    
+
+    /**
+     * The title for the field group
+     *
+     * @var string
+     */
     protected $title;
 
+    /**
+     * Get the title for the field group
+     *
+     * @return string
+     */
     abstract protected function getTitle();
     
     /**
@@ -60,6 +87,11 @@ trait FieldGroupTrait
         return $tabs;
     }
 
+    /**
+     * Get the fields for the field group
+     *
+     * @return array
+     */
     protected function getFields()
     {
         return [];
@@ -92,6 +124,12 @@ trait FieldGroupTrait
         return $flattened;
     }
 
+    /**
+     * Prepare the tabs for the field group
+     *
+     * @param Post $post
+     * @return array
+     */
     protected function prepareTabs($post = null)
     {
         $tabs = $this->extractTabs();
@@ -115,6 +153,13 @@ trait FieldGroupTrait
         return $prepared_tabs;
     }
 
+    /**
+     * Prepare the groups for the field group
+     *
+     * @param Post $post
+     * @param string $tab_id
+     * @return array
+     */
     protected function prepareGroups($post = null, $tab_id = null)
     {
         $groups = [];

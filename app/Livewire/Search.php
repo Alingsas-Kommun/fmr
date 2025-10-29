@@ -39,6 +39,8 @@ class Search extends Component
 
     /**
      * Updated query - perform search when query changes.
+     * 
+     * @return void
      */
     public function updatedQuery()
     {
@@ -47,6 +49,8 @@ class Search extends Component
 
     /**
      * Perform the search using SearchController.
+     * 
+     * @return void
      */
     public function performSearch()
     {

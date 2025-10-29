@@ -34,6 +34,8 @@ class Board extends Composer
 
     /**
      * Retrieve the board object with formatted meta fields.
+     * 
+     * @return object|null
      */
     public function board()
     {
@@ -50,6 +52,8 @@ class Board extends Composer
 
     /**
      * Get decision authorities for the board.
+     * 
+     * @return Array
      */
     public function decisionAuthorities()
     {

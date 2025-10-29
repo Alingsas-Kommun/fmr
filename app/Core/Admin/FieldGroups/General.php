@@ -6,13 +6,28 @@ use App\Core\Admin\Abstracts\OptionsFieldGroup;
 
 class General extends OptionsFieldGroup
 {
+    /**
+     * The ID for the general settings
+     *
+     * @var string
+     */
     protected static $id = 'general';
-
+    
+    /**
+     * Get the title for the general settings
+     *
+     * @return string
+     */
     protected function getTitle()
     {
         return __('General', 'fmr');
     }
-
+    
+    /**
+     * Get the fields for the general settings
+     *
+     * @return array
+     */
     protected function getFields()
     {
         return [

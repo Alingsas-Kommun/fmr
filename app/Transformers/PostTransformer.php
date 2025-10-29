@@ -8,11 +8,27 @@ use Illuminate\Support\Str;
 
 class PostTransformer
 {
+    /**
+     * The post instance.
+     *
+     * @var Post
+     */
     protected $post;
+
+    /**
+     * The raw meta data.
+     *
+     * @var array
+     */
     protected $rawMeta;
+
+    /**
+     * The relations.
+     *
+     * @var array
+     */
     protected $relations = [];
-    
-    // Core properties
+
     public readonly int $id;
     public readonly string $name;
     public readonly string $url;
@@ -22,7 +38,12 @@ class PostTransformer
     
     // Relation properties (dynamically added if relations are loaded)
     // Note: These are set in constructor only if relations exist
-
+        
+    /**
+     * Constructor.
+     *
+     * @param Post $post
+     */
     public function __construct(Post $post)
     {
         $this->post = $post;
@@ -61,6 +82,8 @@ class PostTransformer
 
     /**
      * Build meta object with cleaned properties
+     * 
+     * @return object
      */
     protected function buildMetaObject(): object
     {
@@ -77,6 +100,8 @@ class PostTransformer
 
     /**
      * Get party data if relation is loaded
+     * 
+     * @return object|null
      */
     protected function getPartyData(): ?object
     {
@@ -89,6 +114,8 @@ class PostTransformer
 
     /**
      * Get category data if relation is loaded
+     * 
+     * @return string|null
      */
     protected function getCategoryData(): ?string
     {
@@ -100,6 +127,10 @@ class PostTransformer
 
     /**
      * Get the image for the post
+     * 
+     * @param string $size
+     * @param string $class
+     * @return string|null
      */
     public function image(string $size = 'thumbnail', string $class = ''): ?string
     {
@@ -116,6 +147,8 @@ class PostTransformer
 
     /**
      * Get the edit URL for the post
+     * 
+     * @return string
      */
 
      public function editUrl(): string
@@ -123,7 +156,12 @@ class PostTransformer
         return get_edit_post_link($this->id);
     }
 
-    // Conversion methods
+    /**
+     * Convert the post to an array
+     * 
+     * @param bool $includeMeta
+     * @return array
+     */
     public function toArray(bool $includeMeta = false): array
     {
         $data = [
@@ -155,6 +193,12 @@ class PostTransformer
         return $data;
     }
 
+    /**
+     * Get clean meta data
+     * 
+     * @param bool $filterByExpectedFields
+     * @return array
+     */
     public function getCleanMeta(bool $filterByExpectedFields = true): array
     {
         $extractedFields = $this->getExtractedFields($this->post->post_type);
@@ -186,7 +230,12 @@ class PostTransformer
     }
 
 
-    // Helper methods
+    /**
+     * Get extracted fields
+     * 
+     * @param string $postType
+     * @return array
+     */
     protected function getExtractedFields(string $postType): array
     {
         $expectedFields = FieldGroupService::getExpectedFieldsForPostType($postType);
@@ -203,6 +252,11 @@ class PostTransformer
         return array_intersect($extractedFieldIds, array_keys($expectedFields));
     }
 
+    /**
+     * Get extracted data
+     * 
+     * @return array
+     */
     protected function getExtractedData(): array
     {
         $data = [];
@@ -232,6 +286,9 @@ class PostTransformer
 
     /**
      * Magic method to check if a dynamic property exists
+     * 
+     * @param string $name
+     * @return bool
      */
     public function __isset($name)
     {
@@ -240,6 +297,9 @@ class PostTransformer
 
     /**
      * Magic method to get dynamic properties
+     * 
+     * @param string $name
+     * @return mixed
      */
     public function __get($name)
     {

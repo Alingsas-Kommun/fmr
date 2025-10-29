@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
+    /**
+     * Get all boards.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -50,6 +56,13 @@ class BoardController extends Controller
         }
     }
 
+    /**
+     * Get a specific board.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Request $request, $id)
     {
         try {

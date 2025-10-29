@@ -45,6 +45,8 @@ class Person extends Composer
 
     /**
      * Retrieve the person object with formatted meta fields.
+     * 
+     * @return object|null
      */
     public function person()
     {
@@ -61,6 +63,8 @@ class Person extends Composer
 
     /**
      * Get active assignments for the person.
+     * 
+     * @return array
      */
     public function assignments()
     {

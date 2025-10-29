@@ -19,6 +19,11 @@ class App extends Composer
         '*',
     ];
 
+    /**
+     * Data to be passed to view before rendering.
+     *
+     * @return array
+     */
     public function with(): array
     {
         return [
@@ -36,17 +41,29 @@ class App extends Composer
 
     /**
      * Retrieve the site name.
+     * 
+     * @return string
      */
     public function siteName(): string
     {
         return get_bloginfo('name', 'display');
     }
 
+    /**
+     * Retrieve the logotype.
+     * 
+     * @return string
+     */
     public function logotype()
     {
         return getImageElement(setting('logotype_default'), 'full', 'w-auto h-12 dark:hidden');
     }
 
+    /**
+     * Retrieve the logotype for dark mode.
+     * 
+     * @return string
+     */
     public function logotypeDarkmode()
     {
         return getImageElement(setting('logotype_darkmode'), 'full', 'w-auto h-12 hidden dark:block');
