@@ -39,7 +39,7 @@ class Types
     public function register()
     {
         $args = [
-            'hierarchical' => false,
+            'hierarchical' => true,
             'label' => __('Types', 'fmr'),
             'labels' => [
                 'name'              => __('Types', 'fmr'),

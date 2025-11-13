@@ -210,9 +210,8 @@ class Breadcrumbs extends Composer
         // Get the decision authority data from the route parameter
         $decisionAuthority = request()->route('decisionAuthority');
         if ($decisionAuthority && is_object($decisionAuthority)) {
-            // Load the typeTerm relationship if not already loaded
-            if (!$decisionAuthority->relationLoaded('typeTerm')) {
-                $decisionAuthority->load('typeTerm');
+            if (!$decisionAuthority->relationLoaded('board.categoryTerm')) {
+                $decisionAuthority->load('board.categoryTerm');
             }
             
             if ($decisionAuthority->title) {

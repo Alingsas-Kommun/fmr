@@ -27,12 +27,10 @@ class PersonController
      */
     public function isActive($person_id)
     {   
-        return Post::where('ID', $person_id)
+        return Post::persons()
+            ->where('ID', $person_id)
             ->published()
-            ->type('person')
-            ->whereHas('personAssignments', function($query) {
-                $query->active();
-            })
+            ->active()
             ->exists();
     }
 }

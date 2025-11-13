@@ -64,7 +64,7 @@ class Board extends Composer
         }
 
         $decisionAuthorities = DecisionAuthority::where('board_id', $boardId)
-            ->with('typeTerm')
+            ->with('board.categoryTerm')
             ->orderBy('start_date', 'desc')
             ->active()
             ->get();
@@ -76,7 +76,7 @@ class Board extends Composer
                     'url' => route('decision-authorities.show', $authority),
                     'text' => $authority->title,
                 ],
-                'type' => $authority->typeTerm->name,
+                'type' => $authority->board?->categoryTerm?->name ?? '',
                 'period' => $authority->start_date->format('Y-m-d') . ' - ' . $authority->end_date->format('Y-m-d'),
                 'view' => [
                     'url' => route('decision-authorities.show', $authority),

@@ -13,17 +13,27 @@ class AnniversaryService
      *
      * @param float|null $minYears
      * @param float|null $maxYears
+     * @param int|null $boardId
      * @return Collection
      */
-    public function getPersonsByServiceYears(?float $minYears = null, ?float $maxYears = null): Collection
+    public function getPersonsByServiceYears(?float $minYears = null, ?float $maxYears = null, ?int $boardId = null): Collection
     {
-        return Post::persons()
+        $query = Post::persons()
             ->published()
             ->with(['personAssignments' => function ($query) {
-                $query->with(['roleTerm', 'decisionAuthority'])
+                $query->with(['roleTerm', 'decisionAuthority.board'])
                       ->orderBy('period_start', 'asc');
-            }])
-            ->get()
+            }]);
+
+        if ($boardId !== null) {
+            $query->whereHas('personAssignments', function ($q) use ($boardId) {
+                $q->whereHas('decisionAuthority', function ($q) use ($boardId) {
+                    $q->where('board_id', $boardId);
+                });
+            });
+        }
+
+        return $query->get()
             ->map(function ($person) {
                 $serviceYears = $this->calculateServiceYears($person->personAssignments);
                 

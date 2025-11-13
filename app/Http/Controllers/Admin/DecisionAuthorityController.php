@@ -14,7 +14,7 @@ class DecisionAuthorityController
      */
     public function getAll()
     {
-        return DecisionAuthority::with(['board', 'typeTerm'])
+        return DecisionAuthority::with(['board', 'board.categoryTerm'])
             ->orderBy('title')
             ->get();
     }
@@ -28,7 +28,7 @@ class DecisionAuthorityController
     public function getDecisionAuthoritiesForBoard($board_id)
     {
         return DecisionAuthority::where('board_id', $board_id)
-            ->with(['board', 'typeTerm'])
+            ->with(['board', 'board.categoryTerm'])
             ->orderBy('start_date', 'desc')
             ->get();
     }
@@ -55,7 +55,6 @@ class DecisionAuthorityController
         $data = $request->only([
             'board_id',
             'title',
-            'type_term_id',
             'start_date',
             'end_date'
         ]);
@@ -80,7 +79,6 @@ class DecisionAuthorityController
         $decisionAuthority->update($request->only([
             'board_id',
             'title',
-            'type_term_id',
             'start_date',
             'end_date'
         ]));
@@ -151,7 +149,7 @@ class DecisionAuthorityController
      */
     public function buildFilteredQuery($args = [])
     {
-        $query = DecisionAuthority::with(['board', 'typeTerm', 'author']);
+        $query = DecisionAuthority::with(['board', 'board.categoryTerm', 'author']);
 
         $this->applySorting($query, $args);
         $this->applyFilters($query, $args);
@@ -180,7 +178,12 @@ class DecisionAuthorityController
                     ->orderBy('posts.post_title', $order);
                 break;
             case 'type':
-                $query->join('terms', 'decision_authority.type_term_id', '=', 'terms.term_id')
+                $query->join('posts', 'decision_authority.board_id', '=', 'posts.ID')
+                    ->leftJoin('postmeta', function($join) {
+                        $join->on('posts.ID', '=', 'postmeta.post_id')
+                             ->where('postmeta.meta_key', '=', 'board_category');
+                    })
+                    ->leftJoin('terms', 'postmeta.meta_value', '=', 'terms.term_id')
                     ->orderBy('terms.name', $order);
                 break;
             case 'author':
@@ -251,7 +254,7 @@ class DecisionAuthorityController
         if (!empty($search)) {
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', '%' . $search . '%')
-                    ->orWhereHas('typeTerm', function($q) use ($search) {
+                    ->orWhereHas('board.categoryTerm', function($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%');
                     })
                     ->orWhereHas('board', function($q) use ($search) {

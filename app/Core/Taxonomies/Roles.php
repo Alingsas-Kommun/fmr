@@ -16,7 +16,7 @@ class Roles
      *
      * @var array
      */
-    public static $postTypes = [];
+    public static $postTypes = ['assignments-roles'];
 
     /**
      * Constructor. Set up the taxonomy properties.
@@ -25,6 +25,15 @@ class Roles
      */
     public function __construct()
     {
+        register_post_type('assignments-roles', [
+            'label' => __('Assignments roles', 'fmr'),
+            'public' => false,
+            'show_ui' => false,
+            'show_in_menu' => false,
+            'rewrite' => false,
+            'query_var' => true,
+        ]);
+        
         $this->register();
 
         add_action('admin_head', [$this, 'removeFields']);
@@ -39,7 +48,7 @@ class Roles
     public function register()
     {
         $args = [
-            'hierarchical' => false,
+            'hierarchical' => true,
             'label' => __('Roles', 'fmr'),
             'labels' => [
                 'name'              => __('Roles', 'fmr'),

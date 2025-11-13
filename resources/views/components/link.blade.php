@@ -5,7 +5,7 @@
 ])
 
 @php
-    $baseClasses = 'inline-flex items-center text-sm font-medium transition-colors duration-200';
+    $baseClasses = 'inline-flex items-center text-sm font-medium pb-1 transition-colors duration-200';
     $colorClasses = "text-gray-700 hover:text-gray-800";
     $underlineClasses = $underline ? "!underline !decoration-secondary-300 dark:!decoration-secondary-700 underline-offset-4 hover:!underline-offset-5" : '';
 

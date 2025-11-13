@@ -327,6 +327,24 @@ class Post extends Model
     }
 
     /**
+     * Scope a query to only include posts with active status
+     */
+    public function scopeActive($query)
+    {
+        return $query->withMeta('person_active', '1');
+    }
+
+    /**
+     * Scope a query to only include posts with inactive status
+     */
+    public function scopeInactive($query)
+    {
+        return $query->whereDoesntHave('meta', function ($meta) {
+            $meta->where('meta_key', 'person_active')->where('meta_value', '1');
+        });
+    }
+
+    /**
      * Scope to get parties that have at least one active member
      */
     public function scopeWithActiveMembers($query)
@@ -337,7 +355,7 @@ class Post extends Model
                 ->where('meta_key', 'person_party')
                 ->whereIn('post_id', Post::persons()
                     ->published()
-                    ->activeAssignments()
+                    ->withMeta('person_active', '1')
                     ->select('ID')
                 );
         });

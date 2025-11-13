@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    @set($hasBasicInfo, $person->meta->birthDate || $person->meta->listing)
+    @set($hasBasicInfo,  $person->meta->listing || $person->meta->ssn)
     @set($hasHomeInfo, $person->meta->homeEmail || $person->meta->homePhone || $person->meta->homeMobile || $person->meta->homeWebpage || $person->meta->homeAddress || $person->meta->homeZip || $person->meta->homeCity || $person->meta->homeVisitingAddress)
     @set($hasWorkInfo, $person->meta->workPhone || $person->meta->workMobile || $person->meta->workWebpage || $person->meta->workAddress || $person->meta->workZip || $person->meta->workCity || $person->meta->workVisitingAddress)
     @set($hasAdditionalInfo, $hasBasicInfo || $hasHomeInfo || $hasWorkInfo)
@@ -95,17 +95,6 @@
 
             @if($hasBasicInfo)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
-                    @if($person->meta->birthDate)
-                        <div class="flex items-start space-x-3">
-                            <x-heroicon-o-calendar class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-
-                            <div class="text-gray-700">
-                                <div class="font-bold">{!! __('Birth Date', 'fmr') !!}</div>
-                                <div>{{ $person->meta->birthDate }}</div>
-                            </div>
-                        </div>
-                    @endif
-
                     @if($person->meta->ssn)
                         <div class="flex items-start space-x-3">
                             <x-heroicon-o-identification class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />

@@ -14,7 +14,7 @@ class DecisionAuthorityController extends Controller
      */
     public function show(DecisionAuthority $decisionAuthority)
     {        
-        $decisionAuthority->load('typeTerm');
+        $decisionAuthority->load('board.categoryTerm');
 
         if (!is_user_logged_in() && !$decisionAuthority->isActive()) {
             abort(404);
@@ -23,7 +23,11 @@ class DecisionAuthorityController extends Controller
         $activeAssignments = $decisionAuthority->assignments()
             ->with('person', 'roleTerm', 'board')
             ->active()
-            ->get();
+            ->get()
+            ->sortBy(function ($assignment) {
+                return (int) ($assignment->roleTerm->term_order ?? 9999);
+            })
+            ->values();
 
         $assignments = $activeAssignments->map(function ($assignment) {
             return (object) [

@@ -28,14 +28,10 @@ class Person extends Composer
         $person = $this->person();
         
         if (!$person) {
-            return [];
+            abort(404);
         }
 
         $assignments = $this->assignments();
-        
-        if (empty($assignments) && !is_user_logged_in()) {
-            abort(404);
-        }
 
         return [
             'person' => $person,
@@ -56,7 +52,10 @@ class Person extends Composer
             return null;
         }
 
-        return Post::with(['meta', 'party.meta'])
+        return Post::persons()
+            ->with(['meta', 'party.meta'])
+            ->published()
+            ->active()
             ->find($personId)
             ?->format();
     }

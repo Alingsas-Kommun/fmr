@@ -39,6 +39,15 @@ class Term extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'term_order' => 'integer',
+    ];
+
+    /**
      * Get the term taxonomy relationship.
      */
     public function termTaxonomy()

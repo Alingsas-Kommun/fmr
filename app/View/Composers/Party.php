@@ -89,9 +89,9 @@ class Party extends Composer
             ->orderBy('post_title');
 
         if ($active) {
-            $persons->activeAssignments();
+            $persons->active();
         } else {
-            $persons->inactiveAssignments();
+            $persons->inactive();
         }
 
         return $persons->get()->format();

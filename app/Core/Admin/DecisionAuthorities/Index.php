@@ -383,19 +383,19 @@ class Index extends \WP_List_Table
      */
     public function column_type($item)
     {
-        if (!$item->typeTerm) {
+        if (!$item->board->categoryTerm) {
             return '—';
         }
 
         $edit_link = add_query_arg(
             [
                 'taxonomy' => 'type',
-                'tag_ID' => $item->typeTerm->term_id,
+                'tag_ID' => $item->board->categoryTerm->term_id,
             ],
             admin_url('term.php')
         );
 
-        $type_name = esc_html($item->typeTerm->name);
+        $type_name = esc_html($item->board->categoryTerm->name);
         
         return Blade::render(
             '<a href="{!! $url !!}">{!! $name !!}</a>',

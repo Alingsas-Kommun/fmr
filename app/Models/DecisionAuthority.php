@@ -21,7 +21,6 @@ class DecisionAuthority extends Model
     protected $fillable = [
         'board_id',
         'title',
-        'type_term_id',
         'author_id',
         'start_date',
         'end_date',
@@ -53,14 +52,6 @@ class DecisionAuthority extends Model
     public function assignments()
     {
         return $this->hasMany(Assignment::class);
-    }
-
-    /**
-     * Get the type term associated with the decision authority.
-     */
-    public function typeTerm()
-    {
-        return $this->belongsTo(Term::class, 'type_term_id', 'term_id');
     }
 
     /**
@@ -124,12 +115,12 @@ class DecisionAuthority extends Model
         
         // Remove unwanted fields
         unset($data['author_id']);
-        unset($data['type_term_id']);
         unset($data['type_term']);
         unset($data['created_at']);
         unset($data['updated_at']);
+        unset($data['board']);
         
-        $data['type'] = $this->typeTerm?->name;
+        $data['type'] = $this->board?->categoryTerm?->name ?? null;
         
         return $data;
     }

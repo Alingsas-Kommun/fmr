@@ -16,20 +16,18 @@
                     </x-link>
                 </div>
 
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $decisionAuthority->title }}</h1>
-                
-                <div class="flex items-center space-x-2">                        
-                    <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
-                    
-                    @if($decisionAuthority->typeTerm)
+                <h1 class="text-3xl font-bold text-gray-900">{{ $decisionAuthority->title }}</h1>
+
+                @if($decisionAuthority->board->categoryTerm)
+                    <div class="flex items-center space-x-2 mt-4">                        
+                        <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
+                        
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-500 space-x-1">
                             <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
-                            <span>{{ $decisionAuthority->typeTerm->name }}</span>
-                        </span>
-                    @else
-                        <span class="text-gray-400 italic">{{ __('No type assigned', 'fmr') }}</span>
-                    @endif
-                </div>
+                            <span>{{ $decisionAuthority->board->categoryTerm->name }}</span>
+                        </span>  
+                    </div>
+                @endif
             </div>
 
             <div class="flex-shrink-0 md:ml-auto border-t md:border-t-0 border-gray-200 dark:border-gray-300 pt-6 md:pt-0 mt-3 md:mt-0">

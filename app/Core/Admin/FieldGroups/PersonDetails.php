@@ -61,27 +61,13 @@ class PersonDetails extends FieldGroup
                         ],
                     ],
                     [
-                        'fields' => [
-                            [
-                                'id' => 'person_birth_date',
-                                'label' => __('Date of birth', 'fmr'),
-                                'type' => 'date',
-                                'cols' => 6,
-                                'optional' => true,
-                                'visibility' => [
-                                    'default' => false,
-                                ],
-                            ],
-                            [
-                                'id' => 'person_ssn',
-                                'label' => __('Social security number', 'fmr'),
-                                'type' => 'text',
-                                'cols' => 6,
-                                'optional' => true,
-                                'visibility' => [
-                                    'default' => false,
-                                ],
-                            ],
+                        'id' => 'person_ssn',
+                        'label' => __('Social security number', 'fmr'),
+                        'type' => 'text',
+                        'cols' => 12,
+                        'optional' => true,
+                        'visibility' => [
+                            'default' => false,
                         ],
                     ],
                 ],
@@ -115,10 +101,18 @@ class PersonDetails extends FieldGroup
                     [
                         'fields' => [
                             [
+                                'id' => 'person_active',
+                                'label' => __('Active', 'fmr'),
+                                'type' => 'checkbox',
+                                'cols' => 4,
+                                'on_label' => __('Yes', 'fmr'),
+                                'off_label' => __('No', 'fmr'),
+                            ],
+                            [
                                 'id' => 'person_group_leader',
                                 'label' => __('Group leader', 'fmr'),
                                 'type' => 'checkbox',
-                                'cols' => 6,
+                                'cols' => 4,
                                 'on_label' => __('Yes', 'fmr'),
                                 'off_label' => __('No', 'fmr'),
                             ],
@@ -126,7 +120,7 @@ class PersonDetails extends FieldGroup
                                 'id' => 'person_listing',
                                 'label' => __('Listing', 'fmr'),
                                 'type' => 'text',
-                                'cols' => 6,
+                                'cols' => 4,
                                 'optional' => true,
                                 'visibility' => [
                                     'default' => false,

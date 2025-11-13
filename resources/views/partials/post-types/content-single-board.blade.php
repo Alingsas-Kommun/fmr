@@ -1,7 +1,7 @@
 @use('App\Utilities\TableColumn')
 <div class="bg-primary-50 rounded-lg overflow-hidden p-8">
     <div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center">
             {{ $board->name }}
             
             @if($board->meta->shortening)
@@ -12,12 +12,13 @@
         </h1>
 
         @if($board->category)
-            <div class="flex items-center space-x-2">
-                <x-heroicon-o-tag class="h-5 w-5 text-primary-600 flex-shrink-0" />
+            <div class="flex items-center space-x-2 mt-4">                        
+                <span class="sr-only">{{ __('Type', 'fmr') }}:</span>
                 
-                <div class="text-gray-700">
-                    {{ $board->category }}
-                </div>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-500 space-x-1">
+                    <x-heroicon-o-tag class="h-4 w-4 text-primary-600 flex-shrink-0" />
+                    <span>{{ $board->category }}</span>
+                </span>  
             </div>
         @endif
     </div>

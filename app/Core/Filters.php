@@ -19,6 +19,7 @@ class Filters
         add_filter('get_the_archive_title', [$this, 'removeArchivePrefix']);
         add_filter('theme_file_path', [$this, 'themeFilePath'], 10, 2);
         add_filter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 2);
+        add_action('admin_menu', [$this, 'removeSubmenu'], 999);
 
         do_action('after_setup_theme_filters');
     }
@@ -127,5 +128,15 @@ class Filters
         }
         
         return $tag;
+    }
+
+    /**
+     * Remove submenu page.
+     *
+     * @return void
+     */
+    public function removeSubmenu()
+    {
+        remove_submenu_page('options-general.php', 'to-options');
     }
 }

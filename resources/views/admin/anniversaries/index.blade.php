@@ -26,6 +26,15 @@
                             </option>
                         @endfor
                     </select>
+                    
+                    <select id="board" name="board">
+                        <option value="">{{ __('Choose board', 'fmr') }}</option>
+                        @foreach($boards as $board)
+                            <option value="{{ $board->ID }}" {{ $boardId == $board->ID ? 'selected' : '' }}>
+                                {{ $board->post_title }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 
                 <div class="filter-actions">
@@ -46,10 +55,23 @@
                     <h3>{{ __('Results', 'fmr') }} ({!! sprintf(_n('%d person found', '%d persons found', $results->count(), 'fmr'), $results->count()) !!})</h3>
                     
                     <div class="export-buttons">
-                        <a href="{{ admin_url('admin.php?page=anniversaries&export=excel&min-years=' . $minYears . '&max-years=' . $maxYears) }}" class="button button-secondary">
+                        @php
+                            $exportParams = [];
+                            if ($minYears !== null) {
+                                $exportParams[] = 'min-years=' . $minYears;
+                            }
+                            if ($maxYears !== null) {
+                                $exportParams[] = 'max-years=' . $maxYears;
+                            }
+                            if ($boardId !== null) {
+                                $exportParams[] = 'board=' . $boardId;
+                            }
+                            $exportQueryString = !empty($exportParams) ? '&' . implode('&', $exportParams) : '';
+                        @endphp
+                        <a href="{{ admin_url('admin.php?page=anniversaries&export=excel' . $exportQueryString) }}" class="button button-secondary">
                             📊 {{ __('Export Excel', 'fmr') }}
                         </a>
-                        <a href="{{ admin_url('admin.php?page=anniversaries&export=csv&min-years=' . $minYears . '&max-years=' . $maxYears) }}" class="button button-secondary">
+                        <a href="{{ admin_url('admin.php?page=anniversaries&export=csv' . $exportQueryString) }}" class="button button-secondary">
                             📄 {{ __('Export CSV', 'fmr') }}
                         </a>
                     </div>

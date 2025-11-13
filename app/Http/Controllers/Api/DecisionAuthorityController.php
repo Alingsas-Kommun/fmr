@@ -17,15 +17,17 @@ class DecisionAuthorityController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = DecisionAuthority::with(['typeTerm']);
+            $query = DecisionAuthority::with(['board.categoryTerm']);
 
             // Apply filters
             if ($request->filled('board_id')) {
                 $query->where('board_id', $request->board_id);
             }
 
-            if ($request->filled('type_term_id')) {
-                $query->where('type_term_id', $request->type_term_id);
+            if ($request->filled('category_term_id')) {
+                $query->whereHas('board', function($q) use ($request) {
+                    $q->withMeta('board_category', $request->category_term_id);
+                });
             }
 
             if ($request->filled('active')) {
@@ -92,7 +94,7 @@ class DecisionAuthorityController extends Controller
     public function show($id)
     {
         try {
-            $decisionAuthority = DecisionAuthority::with(['typeTerm'])
+            $decisionAuthority = DecisionAuthority::with(['board.categoryTerm'])
                 ->findOrFail($id);
 
             return response()->json([

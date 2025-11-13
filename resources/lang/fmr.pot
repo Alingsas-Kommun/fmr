@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-07T08:50:10+00:00\n"
+"POT-Creation-Date: 2025-11-13T14:32:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fmr\n"
@@ -65,120 +65,125 @@ msgstr ""
 msgid "Save Configuration"
 msgstr ""
 
-#: app/Core/Admin/Anniversaries/Index.php:50
-#: app/Core/Admin/Anniversaries/Index.php:51
+#: app/Core/Admin/Anniversaries/Index.php:55
+#: app/Core/Admin/Anniversaries/Index.php:56
 #: resources/views/admin/anniversaries/index.blade.php:2
 msgid "Anniversaries"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:27
 #: app/Core/Admin/Assignments/Edit.php:29
-#: app/Core/Admin/Assignments/Edit.php:32
+#: app/Core/Admin/Assignments/Edit.php:31
+#: app/Core/Admin/Assignments/Edit.php:34
 #: resources/views/admin/assignments/index.blade.php:3
 msgid "Add new assignment"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:31
+#: app/Core/Admin/Assignments/Edit.php:33
 msgid "Edit assignment"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:46
+#: app/Core/Admin/Assignments/Edit.php:50
 msgid "Create Assignment"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:47
+#: app/Core/Admin/Assignments/Edit.php:51
 msgid "Update Assignment"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:95
+#: app/Core/Admin/Assignments/Edit.php:110
 msgid "Assignment created successfully."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Edit.php:103
+#: app/Core/Admin/Assignments/Edit.php:120
 msgid "Assignment updated successfully."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:69
 #: app/Core/Admin/Assignments/Index.php:70
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:20
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:21
-#: app/View/Composers/Breadcrumbs.php:146
+#: app/Core/Admin/Assignments/Index.php:71
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:42
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:55
+#: app/View/Composers/Breadcrumbs.php:152
 #: resources/views/admin/assignments/index.blade.php:2
-#: resources/views/partials/post-types/content-single-person.blade.php:339
+#: resources/views/partials/post-types/content-single-person.blade.php:331
 msgid "Assignments"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:80
 #: app/Core/Admin/Assignments/Index.php:81
-#: app/Core/Taxonomies/Roles.php:23
-#: app/Core/Taxonomies/Roles.php:25
+#: app/Core/Admin/Assignments/Index.php:82
+#: app/Core/Taxonomies/Roles.php:52
+#: app/Core/Taxonomies/Roles.php:54
 msgid "Roles"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:93
+#: app/Core/Admin/Assignments/Index.php:90
+#: app/Core/Admin/Assignments/Index.php:91
+msgid "Sorting of taxonomies"
+msgstr ""
+
+#: app/Core/Admin/Assignments/Index.php:117
 msgid "Assignments per page"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:121
-#: app/Core/Admin/Assignments/Index.php:167
-#: app/Core/Admin/Assignments/Index.php:191
-#: app/Core/Admin/DecisionAuthorities/Index.php:147
+#: app/Core/Admin/Assignments/Index.php:145
+#: app/Core/Admin/Assignments/Index.php:193
+#: app/Core/Admin/Assignments/Index.php:217
+#: app/Core/Admin/DecisionAuthorities/Index.php:156
 msgid "You do not have permission to perform this action."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:156
-#: app/Core/Admin/DecisionAuthorities/Index.php:136
+#: app/Core/Admin/Assignments/Index.php:182
+#: app/Core/Admin/DecisionAuthorities/Index.php:145
 msgid "Invalid request."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:163
-#: app/Core/Admin/DecisionAuthorities/Index.php:143
+#: app/Core/Admin/Assignments/Index.php:189
+#: app/Core/Admin/DecisionAuthorities/Index.php:152
 msgid "Security check failed. Please try again."
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:229
-#: app/Core/Admin/DecisionAuthorities/Index.php:205
+#: app/Core/Admin/Assignments/Index.php:255
+#: app/Core/Admin/DecisionAuthorities/Index.php:214
 msgid "All"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:239
-#: app/Core/Admin/DecisionAuthorities/Index.php:215
+#: app/Core/Admin/Assignments/Index.php:265
+#: app/Core/Admin/DecisionAuthorities/Index.php:224
 msgid "Ongoing"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:249
-#: app/Core/Admin/DecisionAuthorities/Index.php:225
+#: app/Core/Admin/Assignments/Index.php:275
+#: app/Core/Admin/DecisionAuthorities/Index.php:234
 msgid "Past"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:265
-#: app/Core/Admin/DecisionAuthorities/Index.php:241
+#: app/Core/Admin/Assignments/Index.php:291
+#: app/Core/Admin/DecisionAuthorities/Index.php:250
 msgid "Delete"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:278
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:33
-#: app/Core/PostTypes/Persons.php:35
+#: app/Core/Admin/Assignments/Index.php:304
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:60
+#: app/Core/PostTypes/Persons.php:80
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:6
 msgid "Person"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:279
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:42
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:43
-#: app/Core/Taxonomies/Roles.php:26
-#: app/Services/AssignmentExportService.php:101
+#: app/Core/Admin/Assignments/Index.php:305
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:69
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:82
+#: app/Core/Taxonomies/Roles.php:55
+#: app/Services/AssignmentExportService.php:100
 #: resources/views/admin/assignments/index.blade.php:18
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:22
 #: resources/views/decision-authorities/show.blade.php:58
 #: resources/views/livewire/advanced-search.blade.php:114
-#: resources/views/partials/post-types/content-single-person.blade.php:343
+#: resources/views/partials/post-types/content-single-person.blade.php:335
 msgid "Role"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:280
-#: app/Core/Admin/DecisionAuthorities/Index.php:255
-#: app/Core/PostTypes/Boards.php:30
+#: app/Core/Admin/Assignments/Index.php:306
+#: app/Core/Admin/DecisionAuthorities/Index.php:264
+#: app/Core/PostTypes/Boards.php:76
 #: resources/views/admin/assignments/index.blade.php:33
 #: resources/views/admin/decision-authorities/index.blade.php:19
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:6
@@ -188,66 +193,65 @@ msgstr ""
 msgid "Board"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:281
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:34
-#: app/Services/AssignmentExportService.php:102
+#: app/Core/Admin/Assignments/Index.php:307
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:73
+#: app/Services/AssignmentExportService.php:101
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:43
 #: resources/views/assignments/show.blade.php:74
-#: resources/views/partials/post-types/content-single-person.blade.php:344
+#: resources/views/partials/post-types/content-single-person.blade.php:336
 msgid "Decision Authority"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:282
-#: app/Core/Admin/DecisionAuthorities/Index.php:257
-#: app/Services/AssignmentExportService.php:103
+#: app/Core/Admin/Assignments/Index.php:308
+#: app/Core/Admin/DecisionAuthorities/Index.php:266
+#: app/Services/AssignmentExportService.php:102
 #: resources/views/assignments/show.blade.php:43
 #: resources/views/decision-authorities/show.blade.php:39
 #: resources/views/decision-authorities/show.blade.php:59
 #: resources/views/partials/post-types/content-single-board.blade.php:122
-#: resources/views/partials/post-types/content-single-person.blade.php:345
+#: resources/views/partials/post-types/content-single-person.blade.php:337
 msgid "Period"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:283
-#: app/Core/Admin/DecisionAuthorities/Index.php:258
-#: app/Core/PostTypes/Persons.php:137
+#: app/Core/Admin/Assignments/Index.php:309
+#: app/Core/Admin/DecisionAuthorities/Index.php:267
 msgid "Author"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:334
+#: app/Core/Admin/Assignments/Index.php:360
 msgid "Export to Excel"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:335
-#: resources/views/admin/anniversaries/index.blade.php:52
+#: app/Core/Admin/Assignments/Index.php:361
+#: resources/views/admin/anniversaries/index.blade.php:76
 msgid "Export Excel"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:337
+#: app/Core/Admin/Assignments/Index.php:363
 msgid "Export to CSV"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:338
-#: resources/views/admin/anniversaries/index.blade.php:56
+#: app/Core/Admin/Assignments/Index.php:364
+#: resources/views/admin/anniversaries/index.blade.php:80
 msgid "Export CSV"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:393
-#: app/Core/Admin/DecisionAuthorities/Index.php:329
+#: app/Core/Admin/Assignments/Index.php:419
+#: app/Core/Admin/DecisionAuthorities/Index.php:338
 msgid "Edit"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:395
+#: app/Core/Admin/Assignments/Index.php:421
 msgid "Are you sure you want to delete this assignment?"
 msgstr ""
 
-#: app/Core/Admin/Assignments/Index.php:396
-#: app/Core/Admin/DecisionAuthorities/Index.php:332
+#: app/Core/Admin/Assignments/Index.php:422
+#: app/Core/Admin/DecisionAuthorities/Index.php:341
 msgid "Remove"
 msgstr ""
 
-#: app/Core/Admin/Assignments/MetaBoxes/Details.php:32
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Details.php:29
+#: app/Core/Admin/Assignments/MetaBoxes/Details.php:57
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Details.php:46
 msgid "Details"
 msgstr ""
 
@@ -255,41 +259,41 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: app/Core/Admin/ConfigurationPage.php:13
-#: app/Core/Admin/ConfigurationPage.php:15
+#: app/Core/Admin/ConfigurationPage.php:18
+#: app/Core/Admin/ConfigurationPage.php:20
 msgid "Configuration"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:31
-#: app/Core/Admin/DecisionAuthorities/Edit.php:34
-#: app/Core/Admin/DecisionAuthorities/Edit.php:36
+#: app/Core/Admin/DecisionAuthorities/Edit.php:49
+#: app/Core/Admin/DecisionAuthorities/Edit.php:52
+#: app/Core/Admin/DecisionAuthorities/Edit.php:54
 msgid "Add new decision authority"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:35
+#: app/Core/Admin/DecisionAuthorities/Edit.php:53
 msgid "Edit decision authority"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:50
+#: app/Core/Admin/DecisionAuthorities/Edit.php:70
 msgid "Create Decision Authority"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:51
+#: app/Core/Admin/DecisionAuthorities/Edit.php:71
 msgid "Update Decision Authority"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:100
+#: app/Core/Admin/DecisionAuthorities/Edit.php:131
 msgid "Decision authority created successfully."
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Edit.php:108
+#: app/Core/Admin/DecisionAuthorities/Edit.php:141
 msgid "Decision authority updated successfully."
 msgstr ""
 
 #: app/Core/Admin/DecisionAuthorities/Index.php:68
 #: app/Core/Admin/DecisionAuthorities/Index.php:69
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:19
-#: app/View/Composers/Breadcrumbs.php:195
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:47
+#: app/View/Composers/Breadcrumbs.php:203
 #: resources/views/admin/decision-authorities/index.blade.php:2
 #: resources/views/partials/post-types/content-single-board.blade.php:116
 msgid "Decision Authorities"
@@ -297,898 +301,905 @@ msgstr ""
 
 #: app/Core/Admin/DecisionAuthorities/Index.php:79
 #: app/Core/Admin/DecisionAuthorities/Index.php:80
-#: app/Core/Taxonomies/Types.php:23
-#: app/Core/Taxonomies/Types.php:25
+#: app/Core/Taxonomies/Types.php:43
+#: app/Core/Taxonomies/Types.php:45
 msgid "Types"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:92
+#: app/Core/Admin/DecisionAuthorities/Index.php:101
 msgid "Decision Authorities per page"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:254
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:32
-#: resources/views/partials/post-types/content-single-board.blade.php:120
-msgid "Title"
+#: app/Core/Admin/DecisionAuthorities/Index.php:263
+#: app/Core/PostTypes/Boards.php:148
+#: app/Core/PostTypes/Parties.php:159
+#: app/Core/PostTypes/Persons.php:165
+#: resources/views/decision-authorities/show.blade.php:57
+msgid "Name"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:256
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:39
-#: app/Core/Taxonomies/Types.php:26
-#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:22
+#: app/Core/Admin/DecisionAuthorities/Index.php:265
+#: app/Core/Taxonomies/Types.php:46
 #: resources/views/decision-authorities/show.blade.php:23
 #: resources/views/partials/post-types/content-single-board.blade.php:121
 msgid "Type"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/Index.php:331
+#: app/Core/Admin/DecisionAuthorities/Index.php:340
 msgid "Are you sure you want to delete this decision authority?"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:27
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:27
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:54
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:66
 msgid "assignment"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:28
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:28
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:55
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:67
 msgid "assignments"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:50
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:46
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:51
-#: app/Http/Controllers/Admin/AnniversaryController.php:93
-#: resources/views/admin/anniversaries/index.blade.php:78
-#: resources/views/admin/assignments/index.blade.php:63
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:77
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:79
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:90
+#: app/Http/Controllers/Admin/AnniversaryController.php:112
+#: resources/views/admin/anniversaries/index.blade.php:102
+#: resources/views/admin/assignments/index.blade.php:78
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:74
 #: resources/views/admin/decision-authorities/index.blade.php:35
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:43
 msgid "Start Date"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:57
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:53
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:58
-#: app/Http/Controllers/Admin/AnniversaryController.php:94
-#: resources/views/admin/anniversaries/index.blade.php:79
-#: resources/views/admin/assignments/index.blade.php:68
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:84
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:86
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:97
+#: app/Http/Controllers/Admin/AnniversaryController.php:113
+#: resources/views/admin/anniversaries/index.blade.php:103
+#: resources/views/admin/assignments/index.blade.php:83
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:80
 #: resources/views/admin/decision-authorities/index.blade.php:40
 #: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:56
 msgid "End Date"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:119
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:164
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:8
 msgid "Select Person"
 msgstr ""
 
-#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:133
+#: app/Core/Admin/DecisionAuthorities/MetaBoxes/Assignments.php:183
 #: resources/views/admin/assignments/meta-boxes/details.blade.php:24
 msgid "Select Role"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:14
+#: app/Core/Admin/FieldGroups/BoardDetails.php:30
 msgid "Board Details"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:22
-#: app/Core/Admin/FieldGroups/PartyDetails.php:23
-#: app/Core/Admin/FieldGroups/PersonDetails.php:24
+#: app/Core/Admin/FieldGroups/BoardDetails.php:43
+#: app/Core/Admin/FieldGroups/PartyDetails.php:51
+#: app/Core/Admin/FieldGroups/PersonDetails.php:45
 msgid "Basic Information"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:24
-#: app/Core/Admin/FieldGroups/General.php:13
-#: app/Core/Admin/FieldGroups/General.php:21
+#: app/Core/Admin/FieldGroups/BoardDetails.php:45
 #: app/Core/Admin/FieldGroups/General.php:23
-#: app/Core/Admin/FieldGroups/General.php:49
-#: app/Core/Admin/FieldGroups/PartyDetails.php:25
+#: app/Core/Admin/FieldGroups/General.php:36
+#: app/Core/Admin/FieldGroups/General.php:38
+#: app/Core/Admin/FieldGroups/General.php:64
+#: app/Core/Admin/FieldGroups/PartyDetails.php:53
 msgid "General"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:30
-#: app/Core/PostTypes/Boards.php:96
+#: app/Core/Admin/FieldGroups/BoardDetails.php:51
+#: app/Core/PostTypes/Boards.php:154
 msgid "Category"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:41
-#: app/Core/Admin/FieldGroups/PartyDetails.php:42
-#: app/Core/PostTypes/Boards.php:101
-#: app/Core/PostTypes/Parties.php:111
+#: app/Core/Admin/FieldGroups/BoardDetails.php:62
+#: app/Core/Admin/FieldGroups/PartyDetails.php:70
+#: app/Core/PostTypes/Boards.php:159
+#: app/Core/PostTypes/Parties.php:170
 msgid "Shortening"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:51
-#: app/Core/Admin/FieldGroups/BoardDetails.php:53
-#: app/Core/Admin/FieldGroups/PartyDetails.php:63
-#: app/Core/Admin/FieldGroups/PartyDetails.php:65
+#: app/Core/Admin/FieldGroups/BoardDetails.php:73
+#: app/Core/Admin/FieldGroups/BoardDetails.php:75
+#: app/Core/Admin/FieldGroups/PartyDetails.php:80
+#: app/Core/Admin/FieldGroups/PartyDetails.php:82
 msgid "Contact Details"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:59
-#: app/Core/Admin/FieldGroups/PersonDetails.php:128
-#: app/Core/Admin/FieldGroups/PersonDetails.php:235
+#: app/Core/Admin/FieldGroups/BoardDetails.php:81
+#: app/Core/Admin/FieldGroups/PersonDetails.php:143
+#: app/Core/Admin/FieldGroups/PersonDetails.php:250
 msgid "Visiting address"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:66
-#: app/Core/Admin/FieldGroups/PartyDetails.php:71
-#: app/Core/Admin/FieldGroups/PersonDetails.php:138
-#: app/Core/Admin/FieldGroups/PersonDetails.php:245
+#: app/Core/Admin/FieldGroups/BoardDetails.php:88
+#: app/Core/Admin/FieldGroups/PartyDetails.php:88
+#: app/Core/Admin/FieldGroups/PersonDetails.php:153
+#: app/Core/Admin/FieldGroups/PersonDetails.php:260
 #: resources/views/partials/post-types/content-single-board.blade.php:83
-#: resources/views/partials/post-types/content-single-person.blade.php:205
-#: resources/views/partials/post-types/content-single-person.blade.php:303
+#: resources/views/partials/post-types/content-single-person.blade.php:197
+#: resources/views/partials/post-types/content-single-person.blade.php:295
 msgid "Address"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:77
-#: app/Core/Admin/FieldGroups/PartyDetails.php:82
+#: app/Core/Admin/FieldGroups/BoardDetails.php:99
+#: app/Core/Admin/FieldGroups/PartyDetails.php:99
 msgid "ZIP Code"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:84
-#: app/Core/Admin/FieldGroups/PartyDetails.php:89
-#: app/Core/Admin/FieldGroups/PersonDetails.php:162
-#: app/Core/Admin/FieldGroups/PersonDetails.php:269
+#: app/Core/Admin/FieldGroups/BoardDetails.php:106
+#: app/Core/Admin/FieldGroups/PartyDetails.php:106
+#: app/Core/Admin/FieldGroups/PersonDetails.php:177
+#: app/Core/Admin/FieldGroups/PersonDetails.php:284
 msgid "City"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:95
-#: app/Core/Admin/FieldGroups/PartyDetails.php:100
+#: app/Core/Admin/FieldGroups/BoardDetails.php:117
+#: app/Core/Admin/FieldGroups/PartyDetails.php:117
 #: resources/views/partials/post-types/content-single-board.blade.php:34
-#: resources/views/partials/post-types/content-single-person.blade.php:191
-#: resources/views/partials/post-types/content-single-person.blade.php:289
+#: resources/views/partials/post-types/content-single-person.blade.php:183
+#: resources/views/partials/post-types/content-single-person.blade.php:281
 msgid "Website"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:106
-#: app/Core/Admin/FieldGroups/PartyDetails.php:111
+#: app/Core/Admin/FieldGroups/BoardDetails.php:128
+#: app/Core/Admin/FieldGroups/PartyDetails.php:128
 msgid "E-mail"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/BoardDetails.php:116
-#: app/Core/Admin/FieldGroups/PartyDetails.php:121
-#: app/Core/Admin/FieldGroups/PersonDetails.php:204
-#: app/Core/Admin/FieldGroups/PersonDetails.php:311
+#: app/Core/Admin/FieldGroups/BoardDetails.php:138
+#: app/Core/Admin/FieldGroups/PartyDetails.php:138
+#: app/Core/Admin/FieldGroups/PersonDetails.php:219
+#: app/Core/Admin/FieldGroups/PersonDetails.php:326
 #: resources/views/partials/post-types/content-single-board.blade.php:64
-#: resources/views/partials/post-types/content-single-person.blade.php:163
-#: resources/views/partials/post-types/content-single-person.blade.php:261
+#: resources/views/partials/post-types/content-single-person.blade.php:155
+#: resources/views/partials/post-types/content-single-person.blade.php:253
 msgid "Phone"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:27
+#: app/Core/Admin/FieldGroups/General.php:42
 msgid "Site Title"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:31
+#: app/Core/Admin/FieldGroups/General.php:46
 msgid "Main title of the website"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:36
+#: app/Core/Admin/FieldGroups/General.php:51
 msgid "Site Description"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:40
+#: app/Core/Admin/FieldGroups/General.php:55
 msgid "Description of the website"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:47
+#: app/Core/Admin/FieldGroups/General.php:62
 msgid "Branding"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:55
+#: app/Core/Admin/FieldGroups/General.php:70
 msgid "Logotype (Default)"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:58
+#: app/Core/Admin/FieldGroups/General.php:73
 msgid "Logo for light mode"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:62
+#: app/Core/Admin/FieldGroups/General.php:77
 msgid "Logotype (Dark Mode)"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:65
+#: app/Core/Admin/FieldGroups/General.php:80
 msgid "Logo for dark mode"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:70
+#: app/Core/Admin/FieldGroups/General.php:85
 msgid "Site Icon"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:73
+#: app/Core/Admin/FieldGroups/General.php:88
 msgid "Site icon to display in the browser tab"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:82
+#: app/Core/Admin/FieldGroups/General.php:97
 msgid "Primary Color"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:90
+#: app/Core/Admin/FieldGroups/General.php:105
 msgid "Secondary Color"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:98
+#: app/Core/Admin/FieldGroups/General.php:113
 msgid "Tertiary Color"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:110
+#: app/Core/Admin/FieldGroups/General.php:125
 msgid "Display Settings"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:117
+#: app/Core/Admin/FieldGroups/General.php:132
 msgid "Show Breadcrumbs"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:121
-#: app/Core/Admin/FieldGroups/General.php:131
-#: app/Core/Admin/FieldGroups/General.php:141
-#: app/Core/Admin/FieldGroups/General.php:151
-#: app/Core/Admin/FieldGroups/General.php:170
-#: app/Core/Admin/FieldGroups/PersonDetails.php:101
-#: app/Core/PostTypes/Persons.php:201
+#: app/Core/Admin/FieldGroups/General.php:136
+#: app/Core/Admin/FieldGroups/General.php:146
+#: app/Core/Admin/FieldGroups/General.php:156
+#: app/Core/Admin/FieldGroups/General.php:166
+#: app/Core/Admin/FieldGroups/General.php:185
+#: app/Core/Admin/FieldGroups/PersonDetails.php:108
+#: app/Core/Admin/FieldGroups/PersonDetails.php:116
+#: app/Core/PostTypes/Persons.php:252
 #: resources/views/admin/relation-handler/form.blade.php:134
 msgid "Yes"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:122
-#: app/Core/Admin/FieldGroups/General.php:132
-#: app/Core/Admin/FieldGroups/General.php:142
-#: app/Core/Admin/FieldGroups/General.php:152
-#: app/Core/Admin/FieldGroups/General.php:171
-#: app/Core/Admin/FieldGroups/PersonDetails.php:102
-#: app/Core/PostTypes/Persons.php:201
+#: app/Core/Admin/FieldGroups/General.php:137
+#: app/Core/Admin/FieldGroups/General.php:147
+#: app/Core/Admin/FieldGroups/General.php:157
+#: app/Core/Admin/FieldGroups/General.php:167
+#: app/Core/Admin/FieldGroups/General.php:186
+#: app/Core/Admin/FieldGroups/PersonDetails.php:109
+#: app/Core/Admin/FieldGroups/PersonDetails.php:117
+#: app/Core/PostTypes/Persons.php:252
 #: resources/views/admin/relation-handler/form.blade.php:134
 msgid "No"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:123
+#: app/Core/Admin/FieldGroups/General.php:138
 msgid "Display breadcrumb navigation"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:127
+#: app/Core/Admin/FieldGroups/General.php:142
 msgid "Show Search"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:133
+#: app/Core/Admin/FieldGroups/General.php:148
 msgid "Display search functionality"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:137
+#: app/Core/Admin/FieldGroups/General.php:152
 msgid "Show Advanced Search"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:143
+#: app/Core/Admin/FieldGroups/General.php:158
 msgid "Display advanced search link"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:147
+#: app/Core/Admin/FieldGroups/General.php:162
 msgid "Show Person Image"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:153
+#: app/Core/Admin/FieldGroups/General.php:168
 msgid "Display person image"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:161
+#: app/Core/Admin/FieldGroups/General.php:176
 msgid "API Settings"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:163
+#: app/Core/Admin/FieldGroups/General.php:178
 msgid "API"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:167
+#: app/Core/Admin/FieldGroups/General.php:182
 msgid "Enable API"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:172
+#: app/Core/Admin/FieldGroups/General.php:187
 msgid "Enable API access for external integrations"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:176
+#: app/Core/Admin/FieldGroups/General.php:191
 msgid "API Key"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/General.php:179
+#: app/Core/Admin/FieldGroups/General.php:194
 msgid "API key for external access"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/Miscellaneous.php:16
+#: app/Core/Admin/FieldGroups/Miscellaneous.php:45
 msgid "Miscellaneous"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/Miscellaneous.php:26
+#: app/Core/Admin/FieldGroups/Miscellaneous.php:60
 msgid "Notes"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PartyDetails.php:15
+#: app/Core/Admin/FieldGroups/PartyDetails.php:37
 msgid "Party Details"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PartyDetails.php:31
+#: app/Core/Admin/FieldGroups/PartyDetails.php:59
 msgid "Description"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PartyDetails.php:52
-#: app/Core/PostTypes/Parties.php:116
-#: resources/views/partials/post-types/content-single-party.blade.php:96
-msgid "Group Leader, City Council"
-msgstr ""
-
-#: app/Core/Admin/FieldGroups/PersonDetails.php:14
+#: app/Core/Admin/FieldGroups/PersonDetails.php:30
 msgid "Person Details"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:22
+#: app/Core/Admin/FieldGroups/PersonDetails.php:43
 msgid "Personal Information"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:30
-#: app/Services/AssignmentExportService.php:98
+#: app/Core/Admin/FieldGroups/PersonDetails.php:51
+#: app/Services/AssignmentExportService.php:97
 msgid "Firstname"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:36
-#: app/Services/AssignmentExportService.php:99
+#: app/Core/Admin/FieldGroups/PersonDetails.php:57
+#: app/Services/AssignmentExportService.php:98
 msgid "Lastname"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:46
-msgid "Date of birth"
-msgstr ""
-
-#: app/Core/Admin/FieldGroups/PersonDetails.php:56
+#: app/Core/Admin/FieldGroups/PersonDetails.php:65
 msgid "Social security number"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:70
+#: app/Core/Admin/FieldGroups/PersonDetails.php:77
 msgid "Politics Information"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:77
-#: app/Core/PostTypes/Parties.php:35
-#: app/Core/PostTypes/Persons.php:116
+#: app/Core/Admin/FieldGroups/PersonDetails.php:84
+#: app/Core/PostTypes/Parties.php:80
+#: app/Core/PostTypes/Persons.php:176
+#: resources/views/admin/assignments/index.blade.php:63
 #: resources/views/livewire/advanced-search.blade.php:85
 #: resources/views/livewire/advanced-search.blade.php:148
 msgid "Party"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:84
+#: app/Core/Admin/FieldGroups/PersonDetails.php:91
 msgid "Total kilometers"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:98
+#: app/Core/Admin/FieldGroups/PersonDetails.php:105
+#: app/Core/PostTypes/Persons.php:258
+#: resources/views/admin/parties/party-members.blade.php:7
+msgid "Active"
+msgstr ""
+
+#: app/Core/Admin/FieldGroups/PersonDetails.php:113
 msgid "Group leader"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:106
-#: resources/views/partials/post-types/content-single-person.blade.php:126
+#: app/Core/Admin/FieldGroups/PersonDetails.php:121
+#: resources/views/partials/post-types/content-single-person.blade.php:118
 msgid "Listing"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:120
-#: resources/views/partials/post-types/content-single-person.blade.php:139
+#: app/Core/Admin/FieldGroups/PersonDetails.php:135
+#: resources/views/partials/post-types/content-single-person.blade.php:131
 msgid "Home Information"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:122
+#: app/Core/Admin/FieldGroups/PersonDetails.php:137
 msgid "Addresses"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:152
-#: app/Core/Admin/FieldGroups/PersonDetails.php:259
+#: app/Core/Admin/FieldGroups/PersonDetails.php:167
+#: app/Core/Admin/FieldGroups/PersonDetails.php:274
 msgid "Zip code"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:176
-#: app/Core/Admin/FieldGroups/PersonDetails.php:283
+#: app/Core/Admin/FieldGroups/PersonDetails.php:191
+#: app/Core/Admin/FieldGroups/PersonDetails.php:298
 msgid "Webpage"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:190
-#: app/Core/Admin/FieldGroups/PersonDetails.php:297
+#: app/Core/Admin/FieldGroups/PersonDetails.php:205
+#: app/Core/Admin/FieldGroups/PersonDetails.php:312
 #: resources/views/partials/post-types/content-single-board.blade.php:49
-#: resources/views/partials/post-types/content-single-person.blade.php:149
-#: resources/views/partials/post-types/content-single-person.blade.php:247
+#: resources/views/partials/post-types/content-single-person.blade.php:52
+#: resources/views/partials/post-types/content-single-person.blade.php:141
+#: resources/views/partials/post-types/content-single-person.blade.php:239
 msgid "Email"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:214
-#: app/Core/Admin/FieldGroups/PersonDetails.php:321
-#: resources/views/partials/post-types/content-single-person.blade.php:177
-#: resources/views/partials/post-types/content-single-person.blade.php:275
+#: app/Core/Admin/FieldGroups/PersonDetails.php:229
+#: app/Core/Admin/FieldGroups/PersonDetails.php:336
+#: resources/views/partials/post-types/content-single-person.blade.php:169
+#: resources/views/partials/post-types/content-single-person.blade.php:267
 msgid "Mobile"
 msgstr ""
 
-#: app/Core/Admin/FieldGroups/PersonDetails.php:228
-#: resources/views/partials/post-types/content-single-person.blade.php:237
+#: app/Core/Admin/FieldGroups/PersonDetails.php:243
+#: resources/views/partials/post-types/content-single-person.blade.php:229
 msgid "Work Information"
 msgstr ""
 
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:25
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:58
 msgid "decision authority"
 msgstr ""
 
-#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:26
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:59
 msgid "decision authorities"
 msgstr ""
 
-#: app/Core/Admin/RelationHandlers/PersonAssignments.php:103
+#: app/Core/Admin/RelationHandlers/BoardDecisionAuthorities.php:65
+#: resources/views/partials/post-types/content-single-board.blade.php:120
+msgid "Title"
+msgstr ""
+
+#: app/Core/Admin/RelationHandlers/PersonAssignments.php:160
 msgid "ongoing"
 msgstr ""
 
-#: app/Core/Admin/Traits/FieldGroupTrait.php:231
-#: app/Core/Admin/Traits/FieldGroupTrait.php:264
+#: app/Core/Admin/Traits/FieldGroupTrait.php:276
+#: app/Core/Admin/Traits/FieldGroupTrait.php:309
 #: resources/views/admin/relation-handler/form.blade.php:71
 #: resources/views/admin/relation-handler/form.blade.php:100
 #, php-format
 msgid "Select %s"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:31
-#: app/View/Composers/Breadcrumbs.php:120
+#: app/Core/PostTypes/Boards.php:77
+#: app/View/Composers/Breadcrumbs.php:124
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:48
+#: app/Core/PostTypes/Boards.php:95
 msgctxt "Post type general name"
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:49
+#: app/Core/PostTypes/Boards.php:96
 msgctxt "Post type singular name"
 msgid "Board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:50
+#: app/Core/PostTypes/Boards.php:97
 msgctxt "Admin Menu text"
 msgid "Boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:51
+#: app/Core/PostTypes/Boards.php:98
 msgctxt "Add New on Toolbar"
 msgid "Board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:52
-#: app/Core/PostTypes/Parties.php:62
-#: app/Core/PostTypes/Persons.php:66
+#: app/Core/PostTypes/Boards.php:99
+#: app/Core/PostTypes/Parties.php:110
+#: app/Core/PostTypes/Persons.php:114
 msgid "Add new"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:53
+#: app/Core/PostTypes/Boards.php:100
 msgid "Add new board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:54
+#: app/Core/PostTypes/Boards.php:101
 msgid "New board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:55
+#: app/Core/PostTypes/Boards.php:102
 msgid "Edit board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:56
+#: app/Core/PostTypes/Boards.php:103
 msgid "View board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:57
+#: app/Core/PostTypes/Boards.php:104
 msgid "All board"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:58
+#: app/Core/PostTypes/Boards.php:105
 msgid "Search boards"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:59
+#: app/Core/PostTypes/Boards.php:106
 msgid "Parent boards:"
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:60
+#: app/Core/PostTypes/Boards.php:107
 msgid "No boards found."
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:61
+#: app/Core/PostTypes/Boards.php:108
 msgid "No boards found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Boards.php:77
+#: app/Core/PostTypes/Boards.php:124
 msgid "boards"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:36
-#: app/View/Composers/Breadcrumbs.php:112
+#: app/Core/PostTypes/Parties.php:81
+#: app/View/Composers/Breadcrumbs.php:116
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:58
+#: app/Core/PostTypes/Parties.php:106
 msgctxt "Post type general name"
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:59
+#: app/Core/PostTypes/Parties.php:107
 msgctxt "Post type singular name"
 msgid "Party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:60
+#: app/Core/PostTypes/Parties.php:108
 msgctxt "Admin Menu text"
 msgid "Parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:61
+#: app/Core/PostTypes/Parties.php:109
 msgctxt "Add New on Toolbar"
 msgid "Party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:63
+#: app/Core/PostTypes/Parties.php:111
 msgid "Add new party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:64
+#: app/Core/PostTypes/Parties.php:112
 msgid "New party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:65
+#: app/Core/PostTypes/Parties.php:113
 msgid "Edit party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:66
+#: app/Core/PostTypes/Parties.php:114
 msgid "View party"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:67
-#: app/Core/PostTypes/Persons.php:238
+#: app/Core/PostTypes/Parties.php:115
+#: app/Core/PostTypes/Persons.php:296
+#: resources/views/admin/assignments/index.blade.php:65
 msgid "All parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:68
+#: app/Core/PostTypes/Parties.php:116
 msgid "Search parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:69
+#: app/Core/PostTypes/Parties.php:117
 msgid "Parent parties:"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:70
+#: app/Core/PostTypes/Parties.php:118
 msgid "No parties found."
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:71
+#: app/Core/PostTypes/Parties.php:119
 msgid "No parties found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:87
+#: app/Core/PostTypes/Parties.php:135
 msgid "parties"
 msgstr ""
 
-#: app/Core/PostTypes/Parties.php:178
+#: app/Core/PostTypes/Parties.php:175
+#: resources/views/partials/post-types/content-single-party.blade.php:96
+msgid "Group Leader, City Council"
+msgstr ""
+
+#: app/Core/PostTypes/Parties.php:271
 msgid "Party Members"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:36
-#: app/View/Composers/Breadcrumbs.php:104
+#: app/Core/PostTypes/Persons.php:81
+#: app/View/Composers/Breadcrumbs.php:108
 #: resources/views/admin/assignments/index.blade.php:48
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:62
+#: app/Core/PostTypes/Persons.php:110
 msgctxt "Post type general name"
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:63
+#: app/Core/PostTypes/Persons.php:111
 msgctxt "Post type singular name"
 msgid "Person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:64
+#: app/Core/PostTypes/Persons.php:112
 msgctxt "Admin Menu text"
 msgid "Persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:65
+#: app/Core/PostTypes/Persons.php:113
 msgctxt "Add New on Toolbar"
 msgid "Person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:67
+#: app/Core/PostTypes/Persons.php:115
 msgid "Add new person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:68
+#: app/Core/PostTypes/Persons.php:116
 msgid "New person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:69
+#: app/Core/PostTypes/Persons.php:117
 msgid "Edit person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:70
+#: app/Core/PostTypes/Persons.php:118
 msgid "View person"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:71
+#: app/Core/PostTypes/Persons.php:119
 #: resources/views/admin/assignments/index.blade.php:50
 msgid "All persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:72
+#: app/Core/PostTypes/Persons.php:120
 msgid "Search persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:73
+#: app/Core/PostTypes/Persons.php:121
 msgid "Parent persons:"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:74
+#: app/Core/PostTypes/Persons.php:122
 msgid "No persons found."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:75
+#: app/Core/PostTypes/Persons.php:123
 msgid "No persons found in Trash."
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:91
+#: app/Core/PostTypes/Persons.php:141
 msgid "persons"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:121
-msgid "Birthday"
-msgstr ""
-
-#: app/Core/PostTypes/Persons.php:126
-#: resources/views/partials/post-types/content-single-person.blade.php:62
+#: app/Core/PostTypes/Persons.php:181
+#: resources/views/partials/post-types/content-single-person.blade.php:65
 msgid "Group Leader"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:131
+#: app/Core/PostTypes/Persons.php:186
 msgid "Status"
 msgstr ""
 
-#: app/Core/PostTypes/Persons.php:207
-#: resources/views/admin/parties/party-members.blade.php:7
-msgid "Active"
-msgstr ""
-
-#: app/Core/PostTypes/Persons.php:207
+#: app/Core/PostTypes/Persons.php:258
 #: resources/views/admin/parties/party-members.blade.php:13
 msgid "Inactive"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:27
+#: app/Core/Taxonomies/Roles.php:29
+msgid "Assignments roles"
+msgstr ""
+
+#: app/Core/Taxonomies/Roles.php:56
 msgctxt "Admin menu name"
 msgid "Roles"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:28
+#: app/Core/Taxonomies/Roles.php:57
 msgid "Search roles"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:29
+#: app/Core/Taxonomies/Roles.php:58
 #: resources/views/admin/assignments/index.blade.php:20
 msgid "All roles"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:30
+#: app/Core/Taxonomies/Roles.php:59
 msgid "Parent role"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:31
+#: app/Core/Taxonomies/Roles.php:60
 msgid "Parent role:"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:32
+#: app/Core/Taxonomies/Roles.php:61
 msgid "Edit role"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:33
+#: app/Core/Taxonomies/Roles.php:62
 msgid "Update role"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:34
+#: app/Core/Taxonomies/Roles.php:63
 msgid "Add new role"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:35
+#: app/Core/Taxonomies/Roles.php:64
 msgid "New role name"
 msgstr ""
 
-#: app/Core/Taxonomies/Roles.php:36
+#: app/Core/Taxonomies/Roles.php:65
 msgid "No roles were found"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:27
+#: app/Core/Taxonomies/Types.php:47
 msgctxt "Admin menu name"
 msgid "Types"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:28
+#: app/Core/Taxonomies/Types.php:48
 msgid "Search types"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:29
+#: app/Core/Taxonomies/Types.php:49
 msgid "All types"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:30
+#: app/Core/Taxonomies/Types.php:50
 msgid "Parent type"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:31
+#: app/Core/Taxonomies/Types.php:51
 msgid "Parent type:"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:32
+#: app/Core/Taxonomies/Types.php:52
 msgid "Edit type"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:33
+#: app/Core/Taxonomies/Types.php:53
 msgid "Update type"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:34
+#: app/Core/Taxonomies/Types.php:54
 msgid "Add new type"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:35
+#: app/Core/Taxonomies/Types.php:55
 msgid "New type name"
 msgstr ""
 
-#: app/Core/Taxonomies/Types.php:36
+#: app/Core/Taxonomies/Types.php:56
 msgid "No types were found"
 msgstr ""
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:92
-#: resources/views/admin/anniversaries/index.blade.php:77
+#: app/Http/Controllers/Admin/AnniversaryController.php:111
+#: resources/views/admin/anniversaries/index.blade.php:101
 msgid "Position"
 msgstr ""
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:95
+#: app/Http/Controllers/Admin/AnniversaryController.php:114
 msgid "Service Time"
 msgstr ""
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:111
-#: app/Services/AssignmentExportService.php:174
-#: resources/views/admin/anniversaries/index.blade.php:87
+#: app/Http/Controllers/Admin/AnniversaryController.php:130
+#: app/Services/AssignmentExportService.php:173
+#: resources/views/admin/anniversaries/index.blade.php:111
 msgid "Unknown Role"
 msgstr ""
 
-#: app/Http/Controllers/Admin/AnniversaryController.php:120
-#: resources/views/admin/anniversaries/index.blade.php:97
+#: app/Http/Controllers/Admin/AnniversaryController.php:139
+#: resources/views/admin/anniversaries/index.blade.php:121
 msgid "Result:"
 msgstr ""
 
-#: app/Http/Controllers/DecisionAuthorityController.php:40
-#: app/View/Composers/Board.php:79
-#: app/View/Composers/Person.php:92
+#: app/Http/Controllers/DecisionAuthorityController.php:39
+#: app/View/Composers/Board.php:83
+#: app/View/Composers/Person.php:95
 msgid "View"
 msgstr ""
 
-#: app/Http/Controllers/HomeController.php:36
-msgid "Other"
-msgstr ""
-
-#: app/Services/AnniversaryService.php:190
+#: app/Services/AnniversaryService.php:200
 #, php-format
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Services/AnniversaryService.php:191
+#: app/Services/AnniversaryService.php:201
 #, php-format
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Services/AnniversaryService.php:192
+#: app/Services/AnniversaryService.php:202
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Services/AssignmentExportService.php:100
+#: app/Services/AssignmentExportService.php:99
 msgid "SSN"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:104
+#: app/Services/AssignmentExportService.php:103
 msgid "Email (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:105
+#: app/Services/AssignmentExportService.php:104
 msgid "Mobile (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:106
+#: app/Services/AssignmentExportService.php:105
 msgid "Phone (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:107
+#: app/Services/AssignmentExportService.php:106
 msgid "Address (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:108
+#: app/Services/AssignmentExportService.php:107
 msgid "Zip Code (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:109
+#: app/Services/AssignmentExportService.php:108
 msgid "City (work)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:110
+#: app/Services/AssignmentExportService.php:109
 msgid "Email (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:111
+#: app/Services/AssignmentExportService.php:110
 msgid "Mobile (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:112
+#: app/Services/AssignmentExportService.php:111
 msgid "Phone (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:113
+#: app/Services/AssignmentExportService.php:112
 msgid "Address (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:114
+#: app/Services/AssignmentExportService.php:113
 msgid "Zip Code (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:115
+#: app/Services/AssignmentExportService.php:114
 msgid "City (home)"
 msgstr ""
 
-#: app/Services/AssignmentExportService.php:175
+#: app/Services/AssignmentExportService.php:174
 msgid "Unknown Authority"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:48
+#: app/View/Composers/Breadcrumbs.php:47
 msgid "Home"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:170
-#: app/View/Composers/Breadcrumbs.php:178
+#: app/View/Composers/Breadcrumbs.php:169
+#, php-format
+msgid "%s (%s)"
+msgstr ""
+
+#: app/View/Composers/Breadcrumbs.php:176
+#: app/View/Composers/Breadcrumbs.php:184
 msgid "Assignment Details"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:219
 #: app/View/Composers/Breadcrumbs.php:227
+#: app/View/Composers/Breadcrumbs.php:235
 msgid "Decision Authority Details"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:244
+#: app/View/Composers/Breadcrumbs.php:254
 #: resources/views/livewire/advanced-search.blade.php:35
 #: resources/views/livewire/search.blade.php:3
-#: resources/views/livewire/search.blade.php:117
+#: resources/views/livewire/search.blade.php:116
 msgid "Search"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:262
+#: app/View/Composers/Breadcrumbs.php:272
 msgid "Search Results"
 msgstr ""
 
-#: app/View/Composers/Breadcrumbs.php:279
+#: app/View/Composers/Breadcrumbs.php:291
 msgid "Style Guide"
 msgstr ""
 
-#: app/View/Composers/Post.php:34
+#: app/View/Composers/Post.php:36
 msgid "Latest Posts"
 msgstr ""
 
 #. translators: %s is replaced with the search query
-#: app/View/Composers/Post.php:44
+#: app/View/Composers/Post.php:46
 #, php-format
 msgid "Search Results for %s"
 msgstr ""
 
-#: app/View/Composers/Post.php:50
+#: app/View/Composers/Post.php:52
 msgid "Not Found"
 msgstr ""
 
@@ -1228,34 +1239,38 @@ msgstr ""
 msgid "Choose max years"
 msgstr ""
 
-#: resources/views/admin/anniversaries/index.blade.php:34
-#: resources/views/admin/assignments/index.blade.php:73
+#: resources/views/admin/anniversaries/index.blade.php:33
+msgid "Choose board"
+msgstr ""
+
+#: resources/views/admin/anniversaries/index.blade.php:45
+#: resources/views/admin/assignments/index.blade.php:88
 #: resources/views/admin/decision-authorities/index.blade.php:45
 msgid "Apply filters"
 msgstr ""
 
-#: resources/views/admin/anniversaries/index.blade.php:37
-#: resources/views/admin/assignments/index.blade.php:74
+#: resources/views/admin/anniversaries/index.blade.php:48
+#: resources/views/admin/assignments/index.blade.php:89
 #: resources/views/admin/decision-authorities/index.blade.php:46
 msgid "Clear filters"
 msgstr ""
 
-#: resources/views/admin/anniversaries/index.blade.php:48
+#: resources/views/admin/anniversaries/index.blade.php:59
 msgid "Results"
 msgstr ""
 
-#: resources/views/admin/anniversaries/index.blade.php:48
+#: resources/views/admin/anniversaries/index.blade.php:59
 #, php-format
 msgid "%d person found"
 msgid_plural "%d persons found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: resources/views/admin/anniversaries/index.blade.php:65
+#: resources/views/admin/anniversaries/index.blade.php:89
 msgid "No persons found matching the specified criteria."
 msgstr ""
 
-#: resources/views/admin/anniversaries/index.blade.php:106
+#: resources/views/admin/anniversaries/index.blade.php:130
 msgid "Use the filters above to find persons by their years of service."
 msgstr ""
 
@@ -1325,10 +1340,6 @@ msgstr ""
 msgid "Select Board"
 msgstr ""
 
-#: resources/views/admin/decision-authorities/meta-boxes/details.blade.php:24
-msgid "Select Type"
-msgstr ""
-
 #: resources/views/admin/edit-page.blade.php:40
 msgid "Enter title..."
 msgstr ""
@@ -1343,17 +1354,17 @@ msgid "Optional"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:5
-#: resources/views/partials/post-types/content-single-party.blade.php:107
+#: resources/views/partials/post-types/content-single-party.blade.php:117
 msgid "Active Members"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:11
-#: resources/views/partials/post-types/content-single-party.blade.php:160
+#: resources/views/partials/post-types/content-single-party.blade.php:170
 msgid "Inactive Members"
 msgstr ""
 
 #: resources/views/admin/parties/party-members.blade.php:44
-#: resources/views/partials/post-types/content-single-party.blade.php:152
+#: resources/views/partials/post-types/content-single-party.blade.php:162
 msgid "No members found for this party."
 msgstr ""
 
@@ -1411,10 +1422,6 @@ msgstr ""
 
 #: resources/views/decision-authorities/show.blade.php:52
 msgid "Active Assignments"
-msgstr ""
-
-#: resources/views/decision-authorities/show.blade.php:57
-msgid "Name"
 msgstr ""
 
 #: resources/views/decision-authorities/show.blade.php:67
@@ -1492,16 +1499,16 @@ msgstr ""
 msgid "No elected officials found"
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:107
+#: resources/views/livewire/search.blade.php:106
 #, php-format
 msgid "No elected officials found for \"%s\""
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:108
+#: resources/views/livewire/search.blade.php:107
 msgid "Try a different name"
 msgstr ""
 
-#: resources/views/livewire/search.blade.php:126
+#: resources/views/livewire/search.blade.php:125
 msgid "Search with more advanced search criteria"
 msgstr ""
 
@@ -1517,65 +1524,56 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: resources/views/partials/header.blade.php:104
-msgid "Dashboard"
-msgstr ""
-
-#: resources/views/partials/header.blade.php:115
+#: resources/views/partials/header.blade.php:106
 msgid "Logout"
 msgstr ""
 
 #: resources/views/partials/post-types/content-single-board.blade.php:105
-#: resources/views/partials/post-types/content-single-person.blade.php:224
-#: resources/views/partials/post-types/content-single-person.blade.php:323
+#: resources/views/partials/post-types/content-single-person.blade.php:216
+#: resources/views/partials/post-types/content-single-person.blade.php:315
 msgid "Visiting Address"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-party.blade.php:182
+#: resources/views/partials/post-types/content-single-party.blade.php:192
 msgid "No inactive members found for this party."
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:52
-#: resources/views/partials/post-types/content-single-person.blade.php:115
-msgid "Social Security Number"
-msgstr ""
-
-#: resources/views/partials/post-types/content-single-person.blade.php:80
+#: resources/views/partials/post-types/content-single-person.blade.php:83
 msgid "Hide Additional Information"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:80
+#: resources/views/partials/post-types/content-single-person.blade.php:83
 msgid "Show Additional Information"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:104
-msgid "Birth Date"
+#: resources/views/partials/post-types/content-single-person.blade.php:107
+msgid "Social Security Number"
 msgstr ""
 
-#: resources/views/partials/post-types/content-single-person.blade.php:355
+#: resources/views/partials/post-types/content-single-person.blade.php:347
 msgid "No assignments found."
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:51
+#: resources/js/frontend/themeSwitcher.js:62
 msgid "Light theme"
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:52
+#: resources/js/frontend/themeSwitcher.js:63
 msgid "Dark theme"
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:53
+#: resources/js/frontend/themeSwitcher.js:64
 msgid "Auto theme"
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:63
+#: resources/js/frontend/themeSwitcher.js:74
 msgid "Switch to dark theme"
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:64
+#: resources/js/frontend/themeSwitcher.js:75
 msgid "Switch to auto theme"
 msgstr ""
 
-#: resources/js/frontend/themeSwitcher.js:65
+#: resources/js/frontend/themeSwitcher.js:76
 msgid "Switch to light theme"
 msgstr ""

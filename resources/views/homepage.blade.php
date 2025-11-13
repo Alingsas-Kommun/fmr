@@ -103,8 +103,12 @@
         <div class="py-8">            
             @foreach($groupedAuthorities as $typeName => $authorities)
                 <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{!! $typeName !!}</h3>
-                    
+                    @if($typeName != 'unsorted')
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{!! $typeName !!}</h3>
+                    @else
+                        <hr class="mb-7 border-gray-200">
+                    @endif
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach($authorities as $authority)
                             <a href="{{ route('decision-authorities.show', $authority->id) }}" class="group bg-primary-50 rounded-lg duration-200 p-4">

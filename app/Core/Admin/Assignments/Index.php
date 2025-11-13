@@ -85,12 +85,26 @@ class Index extends \WP_List_Table
             null
         );
 
+        add_submenu_page(
+            'assignments',
+            __('Sorting of taxonomies', 'fmr'),
+            __('Sorting of taxonomies', 'fmr'),
+            'manage_options',
+            'edit.php?post_type=assignments-roles&page=to-interface-assignments-roles',
+            null
+        );
+
         add_action('admin_head', function () {
             global $parent_file, $submenu_file;
         
             if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'role' && !isset($_GET['post_type'])) {
                 $parent_file = 'assignments';
                 $submenu_file = 'edit-tags.php?taxonomy=role';
+            }
+
+            if (isset($_GET['post_type']) && $_GET['post_type'] === 'assignments-roles' && isset($_GET['page']) && $_GET['page'] === 'to-interface-assignments-roles') {
+                $parent_file = 'assignments';
+                $submenu_file = 'edit.php?post_type=assignments-roles&page=to-interface-assignments-roles';
             }
         });
 

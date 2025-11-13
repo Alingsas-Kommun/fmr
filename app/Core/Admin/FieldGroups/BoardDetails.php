@@ -61,6 +61,7 @@ class BoardDetails extends FieldGroup
                                 'id' => 'board_shortening',
                                 'label' => __('Shortening', 'fmr'),
                                 'type' => 'text',
+                                'optional' => true,
                                 'cols' => 12,
                             ],
                         ],

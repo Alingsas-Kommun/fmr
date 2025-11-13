@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\AnniversaryService;
 use App\Services\ExportService;
+use App\Http\Controllers\Admin\BoardController;
 use Illuminate\Http\Request;
 
 class AnniversaryController extends Controller
@@ -36,25 +37,32 @@ class AnniversaryController extends Controller
     {
         $minYears = $request->get('min-years') !== null ? (float) $request->get('min-years') : null;
         $maxYears = $request->get('max-years') !== null ? (float) $request->get('max-years') : null;
+        $boardId = $request->get('board') !== null && $request->get('board') !== '' ? (int) $request->get('board') : null;
         $export = $request->get('export');
 
         // Handle export requests
-        if ($export && ($minYears !== null || $maxYears !== null)) {
-            return $this->handleExport($export, $minYears, $maxYears);
+        if ($export && ($minYears !== null || $maxYears !== null || $boardId !== null)) {
+            return $this->handleExport($export, $minYears, $maxYears, $boardId);
         }
 
         $results = collect();
 
         // Only perform the expensive calculation if filters are applied
-        if ($minYears !== null || $maxYears !== null) {
-            $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears);
+        if ($minYears !== null || $maxYears !== null || $boardId !== null) {
+            $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears, $boardId);
         }
+
+        // Get boards for the dropdown
+        $boardController = app(BoardController::class);
+        $boards = $boardController->getAll();
 
         return view('admin.anniversaries.index', [
             'results' => $results,
             'minYears' => $minYears,
             'maxYears' => $maxYears,
-            'hasFilters' => $minYears !== null || $maxYears !== null
+            'boardId' => $boardId,
+            'boards' => $boards,
+            'hasFilters' => $minYears !== null || $maxYears !== null || $boardId !== null
         ]);
     }
 
@@ -64,12 +72,13 @@ class AnniversaryController extends Controller
      * @param string $format
      * @param float|null $minYears
      * @param float|null $maxYears
+     * @param int|null $boardId
      * @return void
      */
-    private function handleExport(string $format, ?float $minYears, ?float $maxYears): void
+    private function handleExport(string $format, ?float $minYears, ?float $maxYears, ?int $boardId = null): void
     {
-        $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears);
-        $filename = $this->generateExportFilename($format, $minYears, $maxYears);
+        $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears, $boardId);
+        $filename = $this->generateExportFilename($format, $minYears, $maxYears, $boardId);
 
         // Prepare export data
         $exportData = $this->prepareExportData($results);
@@ -146,9 +155,10 @@ class AnniversaryController extends Controller
      * @param string $format
      * @param float|null $minYears
      * @param float|null $maxYears
+     * @param int|null $boardId
      * @return string
      */
-    private function generateExportFilename(string $format, ?float $minYears, ?float $maxYears): string
+    private function generateExportFilename(string $format, ?float $minYears, ?float $maxYears, ?int $boardId = null): string
     {
         $timestamp = now()->format('Y-m-d_H-i-s');
         $filters = [];
@@ -156,8 +166,13 @@ class AnniversaryController extends Controller
         if ($minYears !== null) {
             $filters[] = "min{$minYears}";
         }
+        
         if ($maxYears !== null) {
             $filters[] = "max{$maxYears}";
+        }
+
+        if ($boardId !== null) {
+            $filters[] = "board{$boardId}";
         }
         
         $filterString = !empty($filters) ? '_' . implode('_', $filters) : '';
