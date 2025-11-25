@@ -3,7 +3,7 @@ name: Create release
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
   release:
@@ -24,14 +24,7 @@ jobs:
             exit 1
           fi
 
-          CLEAN_VERSION="${VERSION#v}"
-
-          if [ -z "$CLEAN_VERSION" ]; then
-            CLEAN_VERSION="$VERSION"
-          fi
-
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "clean_version=$CLEAN_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Setup PHP 8.2
         uses: shivammathur/setup-php@v2
@@ -79,8 +72,8 @@ jobs:
       - name: Create release archive
         id: package_release
         run: |
-          CLEAN_VERSION="${{ steps.extract_version.outputs.clean_version }}"
-          ARCHIVE="theme-${CLEAN_VERSION}.zip"
+          VERSION="${{ steps.extract_version.outputs.version }}"
+          ARCHIVE="theme-${VERSION}.zip"
           cd release
           zip -r "../${ARCHIVE}" theme
           echo "archive=${ARCHIVE}" >> "$GITHUB_OUTPUT"
@@ -88,13 +81,13 @@ jobs:
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
         with:
-          name: theme-${{ steps.extract_version.outputs.clean_version }}
-          path: theme-${{ steps.extract_version.outputs.clean_version }}.zip
+          name: theme-${{ steps.extract_version.outputs.version }}
+          path: theme-${{ steps.extract_version.outputs.version }}.zip
           if-no-files-found: error
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.extract_version.outputs.version }}
-          name: ${{ steps.extract_version.outputs.clean_version }}
-          files: theme-${{ steps.extract_version.outputs.clean_version }}.zip
+          name: ${{ steps.extract_version.outputs.version }}
+          files: theme-${{ steps.extract_version.outputs.version }}.zip
