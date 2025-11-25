@@ -1,0 +1,100 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Build release package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: extract_version
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+
+          if [ -z "$VERSION" ]; then
+            echo "❌ Unable to determine version from tag"
+            exit 1
+          fi
+
+          CLEAN_VERSION="${VERSION#v}"
+
+          if [ -z "$CLEAN_VERSION" ]; then
+            CLEAN_VERSION="$VERSION"
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "clean_version=$CLEAN_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-progress --no-interaction
+
+      - name: Install Node dependencies
+        run: |
+          if npm ci; then
+            echo "npm ci completed successfully"
+          else
+            echo "npm ci failed, falling back to npm install"
+            npm install
+          fi
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Prepare release directory
+        run: |
+          RELEASE_DIR="$(pwd)/release/theme"
+          rm -rf "$(pwd)/release"
+          mkdir -p "$RELEASE_DIR"
+
+          rsync -a ./ "$RELEASE_DIR" \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'node_modules/' \
+            --exclude 'release/' \
+            --exclude '.gitignore' \
+            --exclude '.editorconfig*' \
+            --exclude 'package-lock.json' \
+            --exclude 'yarn.lock' \
+            --exclude '.DS_Store'
+
+      - name: Create release archive
+        id: package_release
+        run: |
+          CLEAN_VERSION="${{ steps.extract_version.outputs.clean_version }}"
+          ARCHIVE="theme-${CLEAN_VERSION}.zip"
+          cd release
+          zip -r "../${ARCHIVE}" theme
+          echo "archive=${ARCHIVE}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-${{ steps.extract_version.outputs.clean_version }}
+          path: theme-${{ steps.extract_version.outputs.clean_version }}.zip
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.extract_version.outputs.version }}
+          name: ${{ steps.extract_version.outputs.clean_version }}
+          files: theme-${{ steps.extract_version.outputs.clean_version }}.zip
