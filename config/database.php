@@ -12,7 +12,7 @@ return [
             'password' => env('DB_PASSWORD') ?? DB_PASSWORD,
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
-            'prefix' => env('TABLE_PREFIX') ?? TABLE_PREFIX,
+            'prefix' => env('DB_PREFIX') ?? 'fmr_',
             'strict' => true,
             'engine' => null,
         ],
