@@ -36,6 +36,7 @@
     "livewire/livewire": "^3.6",
     "log1x/sage-directives": "^2.0",
     "phpoffice/phpspreadsheet": "^5.1",
+    "pixelfear/composer-dist-plugin": "^0.1.6",
     "roots/acorn": "^5.0",
     "roots/acorn-prettify": "^1.0"
   },
@@ -48,13 +49,30 @@
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "pixelfear/composer-dist-plugin": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
     "post-autoload-dump": [
       "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+    ]
+  },
+  "extra": {
+    "download-dist": [
+      {
+        "name": "public/build",
+        "url": "https://github.com/Alingsas-Kommun/fmr/releases/download/{$version}/public-build-{$version}.zip",
+        "path": "public/build"
+      },
+      {
+        "name": "vendor",
+        "url": "https://github.com/Alingsas-Kommun/fmr/releases/download/{$version}/vendor-{$version}.zip",
+        "path": "vendor"
+      }
     ]
   }
 }

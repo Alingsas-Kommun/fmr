@@ -74,9 +74,13 @@ jobs:
       - name: Create distributable bundles
         run: |
           VERSION="${{ steps.extract_version.outputs.version }}"
-          cd release/theme
-          zip -r "../public-build-${VERSION}.zip" public/build
-          zip -r "../vendor-${VERSION}.zip" vendor
+          WORKSPACE_DIR="$(pwd)"
+
+          cd "$WORKSPACE_DIR/release/theme/public/build"
+          zip -r "$WORKSPACE_DIR/public-build-${VERSION}.zip" .
+
+          cd "$WORKSPACE_DIR/release/theme/vendor"
+          zip -r "$WORKSPACE_DIR/vendor-${VERSION}.zip" .
 
       - name: Create release archive
         id: package_release
