@@ -106,12 +106,11 @@ class Theme
      *
      * @return void
      */
-
-     public function themeAssets()
-     {        
+    public function themeAssets()
+    {        
         wp_enqueue_script('app-js', Vite::asset('resources/js/app.js'), ['wp-i18n'], null, true);
         wp_set_script_translations('app-js', 'fmr', get_stylesheet_directory() . '/resources/lang/');
-     }
+    }
 
     /**
      * Dequeue WordPress default styles and remove inline styles.

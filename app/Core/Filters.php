@@ -18,8 +18,10 @@ class Filters
         add_action('excerpt_more', [$this, 'filterReadMore'], 10);
         add_filter('get_the_archive_title', [$this, 'removeArchivePrefix']);
         add_filter('theme_file_path', [$this, 'themeFilePath'], 10, 2);
-        add_filter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 2);
         add_action('admin_menu', [$this, 'removeSubmenu'], 999);
+        add_filter('script_loader_tag', [$this, 'addTypeModuleAttribute'], 10, 2);
+        add_filter('script_loader_tag', [$this, 'cleanScriptTagOutput'], 999, 2);
+        add_filter('style_loader_tag', [$this, 'cleanStyleTagOutput'], 999, 2);
 
         do_action('after_setup_theme_filters');
     }
@@ -114,6 +116,16 @@ class Filters
     }
 
     /**
+     * Remove submenu page.
+     *
+     * @return void
+     */
+    public function removeSubmenu()
+    {
+        remove_submenu_page('options-general.php', 'to-options');
+    }
+
+    /**
      * Add type="module" attribute to app and admin scripts.
      *
      * @param string $tag
@@ -121,7 +133,7 @@ class Filters
      *
      * @return string
      */
-    public function scriptLoaderTag($tag, $handle)
+    public function addTypeModuleAttribute($tag, $handle)
     {
         if ($handle === 'app-js' || $handle === 'admin-js') {
             return str_replace(' src', ' type="module" src', $tag);
@@ -131,12 +143,37 @@ class Filters
     }
 
     /**
-     * Remove submenu page.
+     * Clean corrupted HTML comments from script tags (FreeBSD encoding issue).
+     * WordPress may add conditional comments that get corrupted on FreeBSD.
      *
-     * @return void
+     * @param string $tag The complete script tag HTML
+     * @param string $handle The script handle
+     * @return string Cleaned script tag
      */
-    public function removeSubmenu()
+    public function cleanScriptTagOutput(string $tag, string $handle): string
     {
-        remove_submenu_page('options-general.php', 'to-options');
+        // Remove corrupted HTML comment patterns
+        $tag = preg_replace('/\d+"?-->/', '', $tag);
+        $tag = preg_replace('/<!--\[if[^\]]*\]>.*?<!\[endif\]-->/s', '', $tag);
+        $tag = preg_replace('/<!--.*?-->/s', '', $tag);
+        
+        return $tag;
+    }
+
+    /**
+     * Clean corrupted HTML comments from style tags (FreeBSD encoding issue).
+     *
+     * @param string $tag The complete style tag HTML
+     * @param string $handle The style handle
+     * @return string Cleaned style tag
+     */
+    public function cleanStyleTagOutput(string $tag, string $handle): string
+    {
+        // Remove corrupted HTML comment patterns
+        $tag = preg_replace('/\d+"?-->/', '', $tag);
+        $tag = preg_replace('/<!--\[if[^\]]*\]>.*?<!\[endif\]-->/s', '', $tag);
+        $tag = preg_replace('/<!--.*?-->/s', '', $tag);
+        
+        return $tag;
     }
 }
