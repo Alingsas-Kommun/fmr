@@ -32,7 +32,7 @@ class Edit extends EditPage
         $this->routeName = 'assignments.show';
         $this->pageTitleEdit = __('Edit assignment', 'fmr');
         $this->addNewButtonTitle = __('Add new assignment', 'fmr');
-        $this->capability = 'manage_options';
+        $this->capability = 'edit_posts';
         $this->nonceAction = 'save_assignment';
         $this->nonceField = '_wpnonce';
         $this->formAction = 'save_assignment';

@@ -67,30 +67,12 @@ class Index extends \WP_List_Table
         $hook = add_menu_page(
             __('Decision Authorities', 'fmr'),
             __('Decision Authorities', 'fmr'),
-            'manage_options',
+            'edit_posts',
             'decision_authorities',
             [self::$instance, 'render_page'],
             'dashicons-list-view',
             30
         );
-
-        add_submenu_page(
-            'decision_authorities',
-            __('Types', 'fmr'),
-            __('Types', 'fmr'),
-            'manage_options',
-            'edit-tags.php?taxonomy=type',
-            null
-        );
-
-        add_action('admin_head', function () {
-            global $parent_file, $submenu_file;
-        
-            if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'type' && !isset($_GET['post_type'])) {
-                $parent_file = 'decision_authorities';
-                $submenu_file = 'edit-tags.php?taxonomy=type';
-            }
-        });
 
         // Hook into admin actions
         add_action('admin_action_delete_decision_authority', [self::$instance, 'handle_delete_decision_authority']);
@@ -152,7 +134,7 @@ class Index extends \WP_List_Table
             wp_die(__('Security check failed. Please try again.', 'fmr'));
         }
 
-        if (!current_user_can('manage_options')) {
+        if (!current_user_can('edit_posts')) {
             wp_die(__('You do not have permission to perform this action.', 'fmr'));
         }
 

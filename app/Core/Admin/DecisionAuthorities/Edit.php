@@ -52,7 +52,7 @@ class Edit extends EditPage
         $this->pageTitle = __('Add new decision authority', 'fmr');
         $this->pageTitleEdit = __('Edit decision authority', 'fmr');
         $this->addNewButtonTitle = __('Add new decision authority', 'fmr');
-        $this->capability = 'manage_options';
+        $this->capability = 'edit_posts';
         $this->nonceAction = 'save_decision_authority';
         $this->nonceField = '_wpnonce';
         $this->formAction = 'save_decision_authority';

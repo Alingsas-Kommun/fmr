@@ -22,6 +22,7 @@ class Filters
         add_filter('script_loader_tag', [$this, 'addTypeModuleAttribute'], 10, 2);
         add_filter('script_loader_tag', [$this, 'cleanScriptTagOutput'], 999, 2);
         add_filter('style_loader_tag', [$this, 'cleanStyleTagOutput'], 999, 2);
+        add_filter( 'should_load_separate_core_block_assets', '__return_false', 99 );
 
         do_action('after_setup_theme_filters');
     }

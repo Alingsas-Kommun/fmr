@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    @set($hasBasicInfo,  $person->meta->listing || $person->meta->ssn)
+    @set($hasBasicInfo, $person->meta->ssn)
     @set($hasHomeInfo, $person->meta->homeEmail || $person->meta->homePhone || $person->meta->homeMobile || $person->meta->homeWebpage || $person->meta->homeAddress || $person->meta->homeZip || $person->meta->homeCity || $person->meta->homeVisitingAddress)
     @set($hasWorkInfo, $person->meta->workPhone || $person->meta->workMobile || $person->meta->workWebpage || $person->meta->workAddress || $person->meta->workZip || $person->meta->workCity || $person->meta->workVisitingAddress)
     @set($hasAdditionalInfo, $hasBasicInfo || $hasHomeInfo || $hasWorkInfo)
@@ -102,17 +102,6 @@
                             <div class="text-gray-700">
                                 <div class="font-bold">{!! __('Social Security Number', 'fmr') !!}</div>
                                 <div>{{ $person->meta->ssn }}</div>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($person->meta->listing)
-                        <div class="flex items-start space-x-3">
-                            <x-heroicon-o-list-bullet class="h-6 w-6 text-primary-600 flex-shrink-0 mt-0.5" />
-
-                            <div class="text-gray-700">
-                                <div class="font-bold">{!! __('Listing', 'fmr') !!}</div>
-                                <div>{{ $person->meta->listing }}</div>
                             </div>
                         </div>
                     @endif

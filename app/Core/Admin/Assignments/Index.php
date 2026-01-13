@@ -69,7 +69,7 @@ class Index extends \WP_List_Table
         $hook = add_menu_page(
             __('Assignments', 'fmr'),
             __('Assignments', 'fmr'),
-            'manage_options',
+            'edit_posts',
             'assignments',
             [self::$instance, 'render_page'],
             'dashicons-portfolio',
@@ -80,7 +80,7 @@ class Index extends \WP_List_Table
             'assignments',
             __('Roles', 'fmr'),
             __('Roles', 'fmr'),
-            'manage_options',
+            'edit_posts',
             'edit-tags.php?taxonomy=role',
             null
         );
@@ -89,7 +89,7 @@ class Index extends \WP_List_Table
             'assignments',
             __('Sorting of taxonomies', 'fmr'),
             __('Sorting of taxonomies', 'fmr'),
-            'manage_options',
+            'edit_posts',
             'edit.php?post_type=assignments-roles&page=to-interface-assignments-roles',
             null
         );
@@ -141,7 +141,7 @@ class Index extends \WP_List_Table
         // Handle export requests
         $export = $_REQUEST['export'] ?? null;
         if ($export && in_array($export, ['excel', 'csv'])) {
-            if (!current_user_can('manage_options')) {
+            if (!current_user_can('edit_posts')) {
                 wp_die(__('You do not have permission to perform this action.', 'fmr'));
             }
     
@@ -189,7 +189,7 @@ class Index extends \WP_List_Table
             wp_die(__('Security check failed. Please try again.', 'fmr'));
         }
 
-        if (!current_user_can('manage_options')) {
+        if (!current_user_can('edit_posts')) {
             wp_die(__('You do not have permission to perform this action.', 'fmr'));
         }
 
@@ -213,7 +213,7 @@ class Index extends \WP_List_Table
             return;
         }
 
-        if (!current_user_can('manage_options')) {
+        if (!current_user_can('edit_posts')) {
             wp_die(__('You do not have permission to perform this action.', 'fmr'));
         }
 

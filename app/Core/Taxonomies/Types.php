@@ -29,6 +29,10 @@ class Types
 
         add_action('admin_head', [$this, 'removeFields']);
         add_filter("manage_edit-" . self::$base . "_columns", [$this, 'removeColumns']);
+
+        add_action('add_meta_boxes', function () {
+            remove_meta_box('typediv', 'board', 'side');
+        });
     }
 
     /**

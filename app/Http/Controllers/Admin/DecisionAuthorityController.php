@@ -20,6 +20,19 @@ class DecisionAuthorityController
     }
 
     /**
+     * Get all active decision authorities with their associated boards.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getAllActive()
+    {
+        return DecisionAuthority::with(['board', 'board.categoryTerm'])
+            ->active()
+            ->orderBy('title')
+            ->get();
+    }
+
+    /**
      * Get decision authorities for a specific board.
      *
      * @param int $board_id

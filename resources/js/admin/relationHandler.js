@@ -340,10 +340,18 @@ export function relationHandler(config, existingData = []) {
         /**
          * Gets the options array for a specific field
          * @param {string} fieldKey - The key of the field to get options for
+         * @param {boolean} useActiveOnly - Whether to use active options only (for new relations)
          * @returns {Array} Array of field options or empty array
          */
-        getFieldOptions(fieldKey) {
+        getFieldOptions(fieldKey, useActiveOnly = false) {
             const field = this.config.fields.find(f => f.key === fieldKey);
+            if (!field) return [];
+            
+            // If useActiveOnly is true and active_options exists, return active options
+            if (useActiveOnly && field.active_options) {
+                return field.active_options;
+            }
+            
             return field?.options || [];
         },
         

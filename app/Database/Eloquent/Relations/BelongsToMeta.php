@@ -114,4 +114,27 @@ class BelongsToMeta extends BelongsTo
             ->values()
             ->all();
     }
+
+    /**
+     * Get the relationship query for existence checks (whereHas).
+     * This overrides the parent method to properly handle meta-based relationships.
+     * Instead of using the dummy_key, we join through postmeta to find the related record.
+     */
+    public function getRelationExistenceQuery(Builder $query, Builder $parentQuery, $columns = ['*'])
+    {
+        // Get the parent model's table and primary key
+        $parentTable = $this->child->getTable();
+        $parentKeyName = $this->child->getKeyName();
+        $qualifiedParentKey = $parentTable . '.' . $parentKeyName;
+        
+        // Build the query by joining through postmeta
+        // The $query parameter is a fresh query builder for the related model (terms)
+        // We need to join postmeta to link posts to terms via the meta_value
+        return $query->select($columns)
+            ->join('postmeta', function($join) use ($qualifiedParentKey) {
+                $join->on('postmeta.post_id', '=', $qualifiedParentKey)
+                     ->where('postmeta.meta_key', '=', $this->metaKey);
+            })
+            ->whereColumn('postmeta.meta_value', '=', $this->getQualifiedOwnerKeyName());
+    }
 }

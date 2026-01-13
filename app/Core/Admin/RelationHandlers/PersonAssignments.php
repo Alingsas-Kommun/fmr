@@ -32,11 +32,18 @@ class PersonAssignments extends RelationHandler
     protected static $priority = 'low';
 
     /**
-     * The decision authorities for the person assignments
+     * The decision authorities for the person assignments (all)
      *
      * @var array
      */
     protected static $decision_authorities = [];
+
+    /**
+     * The active decision authorities for the person assignments
+     *
+     * @var array
+     */
+    protected static $active_decision_authorities = [];
 
     /**
      * The role terms for the person assignments
@@ -72,6 +79,7 @@ class PersonAssignments extends RelationHandler
                     'type' => 'select-grouped',
                     'label' => __('Decision Authority', 'fmr'),
                     'options' => static::$decision_authorities,
+                    'active_options' => static::$active_decision_authorities,
                     'relation_field' => 'decision_authority',
                     'relation_title_key' => 'title',
                     'cols' => 7,
@@ -128,11 +136,14 @@ class PersonAssignments extends RelationHandler
     protected function loadDecisionAuthorities()
     {
         $controller = app(DecisionAuthorityController::class);
-        $authorities = $controller->getAll();
+        $allAuthorities = $controller->getAll();
+        $activeAuthorities = $controller->getAllActive();
         
         $groupedAuthorities = [];
+        $groupedActiveAuthorities = [];
         
-        foreach ($authorities as $authority) {
+        // Build all authorities list
+        foreach ($allAuthorities as $authority) {
             $boardTitle = $authority->board->post_title;
             $timePeriod = $this->formatTimePeriod($authority->start_date, $authority->end_date);
             $title = $authority->title . ' (' . $timePeriod . ')';
@@ -144,7 +155,21 @@ class PersonAssignments extends RelationHandler
             $groupedAuthorities[$boardTitle][$authority->id] = $title;
         }
 
+        // Build active authorities list
+        foreach ($activeAuthorities as $authority) {
+            $boardTitle = $authority->board->post_title;
+            $timePeriod = $this->formatTimePeriod($authority->start_date, $authority->end_date);
+            $title = $authority->title . ' (' . $timePeriod . ')';
+            
+            if (!isset($groupedActiveAuthorities[$boardTitle])) {
+                $groupedActiveAuthorities[$boardTitle] = [];
+            }
+            
+            $groupedActiveAuthorities[$boardTitle][$authority->id] = $title;
+        }
+
         static::$decision_authorities = $groupedAuthorities;
+        static::$active_decision_authorities = $groupedActiveAuthorities;
     }
     
     /**

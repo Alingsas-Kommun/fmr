@@ -97,7 +97,7 @@
                     >
                         <option value="">{{ sprintf(__('Select %s', 'fmr'), $field['label']) }}</option>
                         
-                        <template x-for="(groupOptions, groupLabel) in getFieldOptions('{{ $field['key'] }}')" :key="groupLabel">
+                        <template x-for="(groupOptions, groupLabel) in getFieldOptions('{{ $field['key'] }}', @json($prefix === 'new'))" :key="groupLabel">
                             <optgroup :label="groupLabel">
                                 <template x-for="(label, value) in groupOptions" :key="value">
                                     <option :value="value" :selected="value == {{ $model }}.{{ $field['key'] }}" x-text="label"></option>
