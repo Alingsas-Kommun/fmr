@@ -9,7 +9,7 @@
                         
                         @foreach($persons as $person)
                             <option value="{{ $person->ID }}" {{ $getFieldValue('person_id') == $person->ID ? 'selected' : '' }}>
-                                {{ $person->post_title }}
+                                {!! $person->getMeta('person_firstname') !!} {!! $person->getMeta('person_lastname') !!} ({!! $person->getMeta('person_ssn') !!})
                             </option>
                         @endforeach
                     </select>

@@ -28,7 +28,7 @@
                             @endif
                             
                             <x-link href="{{ get_permalink($assignment->person->ID) }}" :underline="false" class="font-medium">
-                                {{ $assignment->person->post_title }}
+                                {!! $assignment->person->getMeta('person_firstname') !!} {!! $assignment->person->getMeta('person_lastname') !!}
                             </x-link>
                         </div>
                     @endif

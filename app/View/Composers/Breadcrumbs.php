@@ -166,7 +166,7 @@ class Breadcrumbs extends Composer
             
             if ($assignment->roleTerm) {
                 $breadcrumbs[] = [
-                    'label' => sprintf(__('%s (%s)', 'fmr'), $assignment->roleTerm->name, $assignment->person->post_title),
+                    'label' => sprintf(__('%s (%s)', 'fmr'), $assignment->roleTerm->name, $assignment->person->getMeta('person_firstname') . ' ' . $assignment->person->getMeta('person_lastname')),
                     'url' => '#',
                     'icon' => null,
                     'current' => true,
