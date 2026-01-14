@@ -87,9 +87,13 @@ class Persons
         add_action('manage_' . self::$base . '_posts_custom_column', [__CLASS__, 'addColumnData'], 10, 2);
         add_action('admin_head', [__CLASS__, 'personImageColumnWidth']);
         
-        // Party filter
+        // Sortable columns
+        add_filter('manage_edit-' . self::$base . '_sortable_columns', [__CLASS__, 'addSortableColumns']);
+        
+        // Party filter and sorting
         add_action('restrict_manage_posts', [__CLASS__, 'addPartyFilter']);
         add_action('pre_get_posts', [__CLASS__, 'filterByParty']);
+        add_action('pre_get_posts', [__CLASS__, 'handleSorting']);
         
         // Thumbnail visibility toggle
         add_filter('admin_post_thumbnail_html', [__CLASS__, 'addThumbnailVisibilityToggle'], 10, 2);
@@ -310,6 +314,21 @@ class Persons
     }
 
     /**
+     * Add sortable columns to the post type
+     *
+     * @param array $columns
+     * @return array
+     */
+    public static function addSortableColumns($columns)
+    {
+        $columns['person-party'] = 'person-party';
+        $columns['person-group-leader'] = 'person-group-leader';
+        $columns['person-status'] = 'person-status';
+        
+        return $columns;
+    }
+
+    /**
      * Filter persons by party
      *
      * @param \WP_Query $query
@@ -322,14 +341,93 @@ class Persons
         if ($pagenow === 'edit.php' && $typenow === self::$base && isset($_GET['person_party']) && !empty($_GET['person_party'])) {
             $party_id = intval($_GET['person_party']);
             
-            $query->set('meta_query', [
-                [
-                    'key' => 'person_party',
-                    'value' => $party_id,
-                    'compare' => '='
-                ]
-            ]);
+            $meta_query = $query->get('meta_query') ?: [];
+            
+            $meta_query[] = [
+                'key' => 'person_party',
+                'value' => $party_id,
+                'compare' => '='
+            ];
+
+            $query->set('meta_query', $meta_query);
         }
+    }
+
+    /**
+     * Handle sorting for custom columns
+     *
+     * @param \WP_Query $query
+     * @return void
+     */
+    public static function handleSorting($query)
+    {
+        global $pagenow, $typenow;
+        
+        if ($pagenow !== 'edit.php' || $typenow !== self::$base || !is_admin()) {
+            return;
+        }
+        
+        $orderby = $query->get('orderby');
+        
+        if (!$orderby) {
+            return;
+        }
+        
+        switch ($orderby) {
+            case 'person-party':
+                // Sort by party title - join with posts table
+                $query->set('meta_key', 'person_party');
+                
+                // Use posts_clauses for better control
+                add_filter('posts_clauses', [__CLASS__, 'sortByPartyTitle'], 10, 2);
+                break;
+                
+            case 'person-group-leader':
+                $query->set('meta_key', 'person_group_leader');
+                $query->set('orderby', 'meta_value');
+                break;
+                
+            case 'person-status':
+                $query->set('meta_key', 'person_active');
+                $query->set('orderby', 'meta_value');
+                break;
+        }
+    }
+
+    /**
+     * Modify SQL clauses to sort by party title
+     *
+     * @param array $clauses
+     * @param \WP_Query $query
+     * @return array
+     */
+    public static function sortByPartyTitle($clauses, $query)
+    {
+        global $wpdb;
+        
+        // Only apply to our person post type queries
+        if ($query->get('post_type') !== self::$base) {
+            remove_filter('posts_clauses', [__CLASS__, 'sortByPartyTitle'], 10);
+            
+            return $clauses;
+        }
+        
+        // WordPress creates a join to postmeta when meta_key is set
+        // We need to find the postmeta table reference in the existing join
+        // Typically it's just {$wpdb->postmeta} but we'll use a more robust approach
+        $postmeta_alias = $wpdb->postmeta;
+        
+        // Add join to party posts table using the postmeta meta_value
+        $clauses['join'] .= " LEFT JOIN {$wpdb->posts} AS party_posts_sort ON party_posts_sort.ID = CAST({$postmeta_alias}.meta_value AS UNSIGNED) AND party_posts_sort.post_type = 'party'";
+        
+        // Set orderby to party title, with fallback to person title
+        $order = isset($_GET['order']) && strtoupper($_GET['order']) === 'ASC' ? 'ASC' : 'DESC';
+        $clauses['orderby'] = "party_posts_sort.post_title {$order}, {$wpdb->posts}.post_title {$order}";
+        
+        // Remove filter after use to prevent affecting other queries
+        remove_filter('posts_clauses', [__CLASS__, 'sortByPartyTitle'], 10);
+        
+        return $clauses;
     }
 
     /**
