@@ -155,9 +155,9 @@ class Assets
         }
 
         // Get colors from settings
-        $primary_color = setting('primary_color', '#fab526');
+        $primary_color = setting('primary_color', '#236151');
         $secondary_color = setting('secondary_color', '#bd2b30');
-        $tertiary_color = setting('tertiary_color', '#236151');
+        $tertiary_color = setting('tertiary_color', '#fab526');
 
         // Build CSS variables
         $css_vars = array();
