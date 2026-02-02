@@ -20,10 +20,11 @@ class AnniversaryService
     {
         $query = Post::persons()
             ->published()
-            ->with(['personAssignments' => function ($query) {
+            ->with(['meta', 'party', 'personAssignments' => function ($query) {
                 $query->with(['roleTerm', 'decisionAuthority.board'])
                       ->orderBy('period_start', 'asc');
-            }]);
+            }])
+            ->whereHas('personAssignments'); // Only include persons with at least one assignment
 
         if ($boardId !== null) {
             $query->whereHas('personAssignments', function ($q) use ($boardId) {
@@ -37,14 +38,28 @@ class AnniversaryService
             ->map(function ($person) {
                 $serviceYears = $this->calculateServiceYears($person->personAssignments);
                 
+                // Get person fullname (firstname + lastname, fallback to post_title)
+                $firstname = $person->getMeta('person_firstname', '');
+                $lastname = $person->getMeta('person_lastname', '');
+                $fullName = trim($firstname . ' ' . $lastname) ?: $person->post_title;
+                
+                // Get party name
+                $partyName = $person->party->post_title ?? null;
+                
                 return [
                     'person' => $person,
                     'assignments' => $person->personAssignments,
                     'service_years' => $serviceYears,
-                    'service_display' => $this->formatServiceTime($serviceYears)
+                    'service_display' => $this->formatServiceTime($serviceYears),
+                    'full_name' => $fullName,
+                    'party_name' => $partyName
                 ];
             })
             ->filter(function ($result) use ($minYears, $maxYears) {
+                if ($result['assignments']->isEmpty()) {
+                    return false;
+                }
+                
                 return $this->matchesFilter($result['service_years'], $minYears, $maxYears);
             })
             ->sortByDesc('service_years');

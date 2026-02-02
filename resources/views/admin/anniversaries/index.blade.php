@@ -68,9 +68,11 @@
                             }
                             $exportQueryString = !empty($exportParams) ? '&' . implode('&', $exportParams) : '';
                         @endphp
+
                         <a href="{{ admin_url('admin.php?page=anniversaries&export=excel' . $exportQueryString) }}" class="button button-secondary">
                             📊 {{ __('Export Excel', 'fmr') }}
                         </a>
+
                         <a href="{{ admin_url('admin.php?page=anniversaries&export=csv' . $exportQueryString) }}" class="button button-secondary">
                             📄 {{ __('Export CSV', 'fmr') }}
                         </a>
@@ -85,7 +87,12 @@
             @else
                 @foreach($results as $result)
                     <div class="person-result">
-                        <h4>{{ $result['person']->post_title }}</h4>
+                        <h4>
+                            {{ $result['full_name'] }}
+                            @if($result['party_name'])
+                                <span>({{ $result['party_name'] }})</span>
+                            @endif
+                        </h4>
                         
                         <div class="assignments-list">
                             <table class="widefat">

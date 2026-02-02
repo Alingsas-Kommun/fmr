@@ -3,7 +3,6 @@
 // =============================================================================
 
 // Variables
-$primary-color: #236151;
 $border-color: #ccd0d4;
 $light-gray: #f9f9f9;
 $text-color: #23282d;
@@ -102,7 +101,7 @@ $border-radius: 3px;
 
         h4 {
             margin-top: 0;
-            color: $primary-color;
+            color: #000;
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
         }
@@ -152,7 +151,7 @@ $border-radius: 3px;
     .service-summary {
         background: #f0f6fc;
         padding: 10px;
-        border-left: 4px solid $primary-color;
+        border-left: 4px solid #000;
         font-weight: bold;
         margin-top: 15px;
     }

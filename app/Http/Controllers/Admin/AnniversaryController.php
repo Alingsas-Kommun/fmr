@@ -116,9 +116,14 @@ class AnniversaryController extends Controller
 
         $rows = [];
         foreach ($results as $result) {
+            // Build person display name with party
+            $personDisplayName = $result['party_name'] 
+                ? $result['full_name'] . ' (' . $result['party_name'] . ')' 
+                : $result['full_name'];
+            
             // Add person name as a separate row
             $rows[] = [
-                $result['person']->post_title, // Person name in first column
+                $personDisplayName, // Person name in first column
                 '', // Empty columns for other headers
                 '',
                 ''
