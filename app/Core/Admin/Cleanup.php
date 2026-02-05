@@ -11,7 +11,6 @@ class Cleanup
         }
 
         $this->cleanupMenu();
-        $this->disableHeartbeat();
         $this->setupRedirects();
         $this->disableComments();
         $this->disableRevisions();
@@ -36,16 +35,6 @@ class Cleanup
                     $menu[$key][6] = 'dashicons-format-image';
                 }
             }
-        });
-    }
-
-    /**
-     * Disable WordPress heartbeat in admin
-     */
-    private function disableHeartbeat()
-    {
-        add_action('init', function () {
-            wp_deregister_script('heartbeat');
         });
     }
 
