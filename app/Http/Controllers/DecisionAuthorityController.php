@@ -21,7 +21,7 @@ class DecisionAuthorityController extends Controller
         }
         
         $activeAssignments = $decisionAuthority->assignments()
-            ->with('person', 'roleTerm', 'board')
+            ->with('person', 'roleTerm', 'board', 'person.party')
             ->active()
             ->get()
             ->sortBy(function ($assignment) {
@@ -35,6 +35,9 @@ class DecisionAuthorityController extends Controller
                 'person' => [
                     'url' => get_permalink($assignment->person->ID),
                     'text' => $assignment->person->post_title,
+                    'party' => [
+                        'thumbnail' => $assignment->person->party->thumbnail('size-4'),
+                    ],
                 ],
                 'role' => $assignment->roleTerm->name,
                 'period' => date('Y-m-d', strtotime($assignment->period_start)) . ' – ' . date('Y-m-d', strtotime($assignment->period_end)),

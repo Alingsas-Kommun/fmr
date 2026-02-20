@@ -50,7 +50,8 @@
 
         <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200">
             @set($columns, [
-                TableColumn::link('person.text', __('Name', 'fmr'), 'person.url', 'truncate max-w-60'),
+                TableColumn::imageLink('person.text', __('Name', 'fmr'), 'person.url', 'person.party.thumbnail'),
+                //TableColumn::link('person.text', __('Name', 'fmr'), 'person.url', 'truncate max-w-60'), --}}
                 TableColumn::text('role', __('Role', 'fmr')),
                 TableColumn::text('period', __('Period', 'fmr')),
                 TableColumn::arrowLink('view.text', '', 'view.url')
