@@ -36,7 +36,7 @@ class DecisionAuthorityController extends Controller
                     'url' => get_permalink($assignment->person->ID),
                     'text' => $assignment->person->post_title,
                     'party' => [
-                        'thumbnail' => $assignment->person->party->thumbnail('size-4'),
+                        'thumbnail' => $assignment->person->party?->thumbnail('size-4'),
                     ],
                 ],
                 'role' => $assignment->roleTerm->name,
