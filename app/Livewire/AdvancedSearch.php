@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\SearchController;
+use App\Models\DecisionAuthority;
 use App\Models\Post;
 use App\Models\Term;
 use Livewire\Attributes\Url;
@@ -13,8 +14,9 @@ class AdvancedSearch extends Component
 {
     /**
      * The search query.
+     * Uses 'q' to align with form param and redirect; avoids conflict with route path.
      */
-    #[Url]
+    #[Url(as: 'q')]
     public string $query = '';
 
     /**
@@ -186,13 +188,23 @@ class AdvancedSearch extends Component
      */
     private function loadFilters()
     {
+        $boardIds = DecisionAuthority::query()
+            ->active()
+            ->whereHas('assignments', fn ($q) => $q->active())
+            ->pluck('board_id')
+            ->unique()
+            ->values()
+            ->all();
+
         $this->filters = [
             'boards' => Post::boards()
                 ->published()
+                ->whereIn('ID', $boardIds)
                 ->orderBy('post_title')
                 ->get(['ID', 'post_title']),
             'parties' => Post::parties()
                 ->published()
+                ->withActiveMembers()
                 ->orderBy('post_title')
                 ->get(['ID', 'post_title']),
             'roles' => Term::whereHas('termTaxonomy', function ($q) {

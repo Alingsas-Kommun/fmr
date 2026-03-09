@@ -50,9 +50,7 @@ class SearchController extends Controller
         $personsQuery = Post::persons()
             ->with('party')
             ->published()
-            ->whereHas('personAssignments', function ($assignQ) {
-                $assignQ->active();
-            });
+            ->active();
 
         // Add search criteria if query is provided
         if (!empty($query)) {
@@ -89,9 +87,7 @@ class SearchController extends Controller
         $queryBuilder = Post::persons()
             ->with('party')
             ->published()
-            ->whereHas('personAssignments', function ($assignQ) {
-                $assignQ->active();
-            });
+            ->active();
 
         // Apply search criteria
         if (!empty($query)) {
