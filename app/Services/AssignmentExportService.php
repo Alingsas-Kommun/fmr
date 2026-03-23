@@ -96,6 +96,7 @@ class AssignmentExportService
         $headers = [
             __('Firstname', 'fmr'),
             __('Lastname', 'fmr'),
+            __('Party', 'fmr'),
             __('SSN', 'fmr'),
             __('Role', 'fmr'),
             __('Decision Authority', 'fmr'),
@@ -166,9 +167,14 @@ class AssignmentExportService
             'person_home_city',
         ]) : [];
 
+        if ($person) {
+            $person->loadMissing('party');
+        }
+
         return [
             $personMeta['person_firstname'] ?? '',
             $personMeta['person_lastname'] ?? '',
+            $person->party->post_title ?? '',
             $personMeta['person_ssn'] ?? '',
             $assignment->roleTerm->name ?? __('Unknown Role', 'fmr'),
             $assignment->decisionAuthority->title ?? __('Unknown Authority', 'fmr'),

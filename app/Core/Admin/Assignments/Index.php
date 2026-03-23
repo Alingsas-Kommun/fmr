@@ -302,6 +302,7 @@ class Index extends \WP_List_Table
         return [
             'cb'                    => '<input type="checkbox" />',
             'person'                => __('Person', 'fmr'),
+            'party'                 => __('Party', 'fmr'),
             'role'                  => __('Role', 'fmr'),
             'board'                 => __('Board', 'fmr'),
             'decision_authority'    => __('Decision Authority', 'fmr'),
@@ -329,6 +330,7 @@ class Index extends \WP_List_Table
     {
         return [
             'person'             => ['person', false],
+            'party'              => ['party', false],
             'role'               => ['role', false],
             'board'              => ['board', false],
             'decision_authority' => ['decision_authority', false],
@@ -395,7 +397,7 @@ class Index extends \WP_List_Table
 
         $edit_link = get_edit_post_link($item->person->ID);
         $title = esc_html($item->person->post_title);
-        
+
         $edit_assignment_link = add_query_arg(
             ['page' => 'assignment_edit', 'id' => $item->id],
             admin_url('admin.php')
@@ -429,6 +431,35 @@ class Index extends \WP_List_Table
                 'edit_url' => esc_url($edit_link),
                 'title' => $title,
                 'row_actions' => $row_actions
+            ]
+        );
+    }
+
+    /**
+     * Render the party column.
+     *
+     * @param object $item The current assignment item.
+     * @return string The column output.
+     */
+    public function column_party($item)
+    {
+        if (!$item->person) {
+            return '—';
+        }
+
+        $party = $item->person->party;
+        if (!$party) {
+            return '—';
+        }
+
+        $party_edit_link = get_edit_post_link($party->ID);
+        $party_title = esc_html($party->post_title);
+
+        return Blade::render(
+            '<a href="{!! $url !!}">{!! $name !!}</a>',
+            [
+                'url' => esc_url($party_edit_link),
+                'name' => $party_title,
             ]
         );
     }

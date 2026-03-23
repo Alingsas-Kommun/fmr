@@ -2,7 +2,6 @@
 
 namespace App\Core\Admin\DecisionAuthorities\MetaBoxes;
 
-use App\Models\Term;
 use Illuminate\Http\Request;
 use App\Core\Admin\Abstracts\RelationHandler;
 use App\Http\Controllers\Admin\RoleController;
@@ -159,15 +158,12 @@ class Assignments extends RelationHandler
     private function getPersons()
     {
         $personController = app(PersonController::class);
-        $persons = $personController->getAll();
-        
-        $options = ['' => __('Select Person', 'fmr')];
 
-        foreach ($persons as $person) {
-            $options[$person->ID] = $person->post_title;
-        }
-        
-        return $options;
+        return ['' => __('Select Person', 'fmr')]
+            + $personController->getSelectOptions([
+                'name_format' => 'post_title',
+                'include' => ['party_shortening'],
+            ]);
     }
 
     /**

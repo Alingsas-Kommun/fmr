@@ -7,9 +7,9 @@
                     <select name="person_id" id="person_id" class="widefat" required>
                         <option value="">{{ __('Select Person', 'fmr') }}</option>
                         
-                        @foreach($persons as $person)
-                            <option value="{{ $person->ID }}" {{ $getFieldValue('person_id') == $person->ID ? 'selected' : '' }}>
-                                {!! $person->getMeta('person_firstname') !!} {!! $person->getMeta('person_lastname') !!} ({!! $person->getMeta('person_ssn') !!})
+                        @foreach($personOptions as $personId => $label)
+                            <option value="{{ $personId }}" {{ $getFieldValue('person_id') == $personId ? 'selected' : '' }}>
+                                {{ $label }}
                             </option>
                         @endforeach
                     </select>

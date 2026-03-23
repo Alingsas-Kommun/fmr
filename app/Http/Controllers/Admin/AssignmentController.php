@@ -186,7 +186,7 @@ class AssignmentController
      */
     public function buildFilteredQuery($args = [])
     {
-        $query = Assignment::with(['person', 'board', 'decisionAuthority', 'roleTerm', 'author']);
+        $query = Assignment::with(['person.party', 'board', 'decisionAuthority', 'roleTerm', 'author']);
 
         $this->applySorting($query, $args);
         $this->applyFilters($query, $args);
@@ -208,7 +208,27 @@ class AssignmentController
 
         switch ($orderby) {
             case 'person':
-                $query->join('posts as person', 'assignments.person_id', '=', 'person.ID')
+                $query->select('assignments.*')
+                    ->join('posts as person', 'assignments.person_id', '=', 'person.ID')
+                    ->orderBy('person.post_title', $order);
+                break;
+            case 'party':
+                $prefix = $query->getConnection()->getTablePrefix();
+                $aliasPartySort = $prefix . 'party_sort';
+                $aliasPartyMeta = $prefix . 'party_person_meta';
+
+                $query->select('assignments.*')
+                    ->join('posts as person', 'assignments.person_id', '=', 'person.ID')
+                    ->leftJoin('postmeta as party_person_meta', function ($join) {
+                        $join->on('party_person_meta.post_id', '=', 'person.ID')
+                            ->where('party_person_meta.meta_key', '=', 'person_party');
+                    })
+                    ->leftJoin('posts as party_sort', function ($join) use ($aliasPartySort, $aliasPartyMeta) {
+                        // Raw SQL must use prefixed aliases (same as Grammar applies to join aliases).
+                        $join->whereRaw("`{$aliasPartySort}`.`ID` = CAST(`{$aliasPartyMeta}`.`meta_value` AS UNSIGNED)")
+                            ->where('party_sort.post_type', '=', 'party');
+                    })
+                    ->orderBy('party_sort.post_title', $order)
                     ->orderBy('person.post_title', $order);
                 break;
             case 'board':

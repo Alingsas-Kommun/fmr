@@ -69,12 +69,15 @@ class Details extends MetaBox
     public function render($object, $box)
     {        
         echo view('admin.assignments.meta-boxes.details', [
-            'getFieldValue' => function($field, $default = '') {
+            'getFieldValue' => function ($field, $default = '') {
                 return $this->getFieldValue($field, $default);
             },
-            'persons' => $this->personController->getAll(),
+            'personOptions' => $this->personController->getSelectOptions([
+                'name_format' => 'full_name',
+                'include' => ['ssn', 'party_shortening'],
+            ]),
             'decisionAuthorities' => $this->decisionAuthorityController->getAll(),
-            'roles' => $this->roleController->getAll()
+            'roles' => $this->roleController->getAll(),
         ])->render();
     }
 
