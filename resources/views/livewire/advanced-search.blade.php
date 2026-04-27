@@ -4,10 +4,10 @@ use App\Http\Controllers\SearchController;
 use App\Models\DecisionAuthority;
 use App\Models\Post;
 use App\Models\Term;
+use App\Utilities\TableColumn;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-use App\Utilities\TableColumn;
 
 new class extends Component
 {
