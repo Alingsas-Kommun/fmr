@@ -1,4 +1,176 @@
-@use('App\Utilities\TableColumn')
+<?php
+
+use App\Http\Controllers\SearchController;
+use App\Models\DecisionAuthority;
+use App\Models\Post;
+use App\Models\Term;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+use App\Utilities\TableColumn;
+
+new class extends Component
+{
+    #[Url(as: 'q')]
+    public string $query = '';
+
+    #[Url]
+    public ?int $boardId = null;
+
+    #[Url]
+    public ?int $partyId = null;
+
+    #[Url]
+    public ?int $roleId = null;
+
+    #[Url]
+    public ?string $sortBy = null;
+
+    #[Url]
+    public string $sortDirection = 'asc';
+
+    public $results;
+
+    public $filters = [];
+
+    public function mount()
+    {
+        $this->results = collect();
+        $this->loadFilters();
+
+        if (request()->has('q')) {
+            $this->query = request()->get('q') ?? '';
+        }
+        if (request()->has('boardId')) {
+            $this->boardId = (int) request()->get('boardId');
+        }
+        if (request()->has('partyId')) {
+            $this->partyId = (int) request()->get('partyId');
+        }
+        if (request()->has('roleId')) {
+            $this->roleId = (int) request()->get('roleId');
+        }
+        if (request()->has('sortBy')) {
+            $this->sortBy = request()->get('sortBy');
+        }
+        if (request()->has('sortDirection')) {
+            $this->sortDirection = request()->get('sortDirection', 'asc');
+        }
+
+        if ($this->hasSearchCriteria()) {
+            $this->performSearch();
+        }
+    }
+
+    public function updatedQuery()
+    {
+        $this->performSearch();
+    }
+
+    public function updatedBoardId()
+    {
+        $this->performSearch();
+    }
+
+    public function updatedPartyId()
+    {
+        $this->performSearch();
+    }
+
+    public function updatedRoleId()
+    {
+        $this->performSearch();
+    }
+
+    public function performSearch()
+    {
+        if (!$this->hasSearchCriteria()) {
+            $this->results = collect();
+
+            return;
+        }
+
+        $searchController = app(SearchController::class);
+        $this->results = $searchController->advancedSearch(
+            $this->query,
+            $this->boardId,
+            $this->partyId,
+            $this->roleId,
+            $this->sortBy,
+            $this->sortDirection
+        );
+    }
+
+    public function sortBy(string $column)
+    {
+        if ($this->sortBy === $column) {
+            if ($this->sortDirection === 'asc') {
+                $this->sortDirection = 'desc';
+            } else {
+                $this->sortBy = null;
+                $this->sortDirection = 'asc';
+            }
+        } else {
+            $this->sortBy = $column;
+            $this->sortDirection = 'asc';
+        }
+
+        $this->performSearch();
+    }
+
+    #[On('sortBy')]
+    public function handleSortBy($column)
+    {
+        $this->sortBy($column);
+    }
+
+    private function loadFilters()
+    {
+        $boardIds = DecisionAuthority::query()
+            ->active()
+            ->whereHas('assignments', fn ($q) => $q->active())
+            ->pluck('board_id')
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->filters = [
+            'boards' => Post::boards()
+                ->published()
+                ->whereIn('ID', $boardIds)
+                ->orderBy('post_title')
+                ->get(['ID', 'post_title']),
+            'parties' => Post::parties()
+                ->published()
+                ->withActiveMembers()
+                ->orderBy('post_title')
+                ->get(['ID', 'post_title']),
+            'roles' => Term::whereHas('termTaxonomy', function ($q) {
+                $q->where('taxonomy', 'role');
+            })->orderBy('name')->get(['term_id', 'name']),
+        ];
+    }
+
+    public function clearFilters()
+    {
+        $this->query = '';
+        $this->boardId = null;
+        $this->partyId = null;
+        $this->roleId = null;
+        $this->sortBy = null;
+        $this->sortDirection = 'asc';
+        $this->results = collect();
+    }
+
+    private function hasSearchCriteria(): bool
+    {
+        return !empty($this->query) ||
+            !is_null($this->boardId) ||
+            !is_null($this->partyId) ||
+            !is_null($this->roleId);
+    }
+};
+?>
 
 <div x-data="{}" @sort-table.window="$dispatch('sortBy', { column: $event.detail.column })">
     <div class="md:bg-primary-50 rounded-xl mt-3 md:p-8">
@@ -14,17 +186,17 @@
                         {{ __('Search Term', 'fmr') }}
                     </label>
 
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         name="q"
                         wire:model.live="query"
-                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                        class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden"
                         placeholder="{{ __('Search elected officials...', 'fmr') }}"
                     >
                 </div>
 
                 <div class="flex items-end gap-2">
-                    <button 
+                    <button
                         type="submit"
                         :disabled="!$wire.query"
                         class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-tertiary-500 hover:bg-tertiary-600 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
@@ -32,9 +204,9 @@
                         <x-heroicon-o-magnifying-glass class="h-4 w-4 mr-2" />
                         {{ __('Search', 'fmr') }}
                     </button>
-                    
+
                     @if($query || $boardId || $partyId || $roleId)
-                        <button 
+                        <button
                             type="button"
                             wire:click="clearFilters"
                             class="inline-flex items-center px-4 py-3 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cursor-pointer"
@@ -53,20 +225,20 @@
                     </label>
 
                     <div class="relative">
-                        <select 
+                        <select
                             name="boardId"
                             wire:model.live="boardId"
                             class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Boards', 'fmr') }}</option>
-                            
+
                             @foreach($filters['boards'] as $board)
                                 <option value="{{ $board->ID }}" {{ $boardId == $board->ID ? 'selected' : '' }}>
                                     {{ $board->post_title }}
                                 </option>
                             @endforeach
                         </select>
-                        
+
                         <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                             <x-heroicon-o-chevron-down class="h-4 w-4 text-gray-400" />
                         </div>
@@ -79,13 +251,13 @@
                     </label>
 
                     <div class="relative">
-                        <select 
+                        <select
                             name="partyId"
                             wire:model.live="partyId"
                             class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Parties', 'fmr') }}</option>
-                            
+
                             @foreach($filters['parties'] as $party)
                                 <option value="{{ $party->ID }}" {{ $partyId == $party->ID ? 'selected' : '' }}>
                                     {{ $party->post_title }}
@@ -105,13 +277,13 @@
                     </label>
 
                     <div class="relative">
-                        <select 
+                        <select
                             name="roleId"
                             wire:model.live="roleId"
                             class="appearance-none block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm bg-white"
                         >
                             <option value="">{{ __('All Roles', 'fmr') }}</option>
-                            
+
                             @foreach($filters['roles'] as $role)
                                 <option value="{{ $role->term_id }}" {{ $roleId == $role->term_id ? 'selected' : '' }}>
                                     {{ $role->name }}
@@ -141,10 +313,10 @@
             <div wire:loading class="w-full">
                 <x-table :columns="$columns" :loading="true" class="w-full" />
             </div>
-            
+
             <div wire:loading.remove>
                 @if($results->isNotEmpty())
-                    <div class="bg-white dark:bg-gray-100 rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200">
                             <h2 class="text-lg font-medium text-gray-900">
                                 @if($query)

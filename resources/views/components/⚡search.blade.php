@@ -1,25 +1,72 @@
+<?php
+
+use App\Http\Controllers\SearchController;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+
+use function App\Core\setting;
+
+new class extends Component
+{
+    #[Url]
+    public string $query = '';
+
+    public $results;
+
+    public function search()
+    {
+        if (empty($this->query)) {
+            return;
+        }
+
+        if (!setting('show_advanced_search', true)) {
+            return;
+        }
+
+        return redirect()->route('search.show', ['q' => $this->query]);
+    }
+
+    public function updatedQuery()
+    {
+        $this->performSearch();
+    }
+
+    public function performSearch()
+    {
+        if (empty($this->query)) {
+            $this->results = collect();
+
+            return;
+        }
+
+        $searchController = app(SearchController::class);
+        $this->results = $searchController->simpleSearch($this->query);
+    }
+};
+?>
+
 <div class="max-w-lg mx-auto relative" x-data="{ showResults: true }" x-on:click.outside="showResults = false" x-on:keydown.escape.window="showResults = false">
     <form wire:submit="search" class="flex gap-x-4 relative md:static">
         <label for="search" class="sr-only">{{ __('Search', 'fmr') }}</label>
         <div class="flex-auto static md:relative">
-            <input 
+            <input
                 wire:model.live="query"
-                type="text" 
+                type="text"
                 id="search"
-                class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden" 
+                class="block w-full rounded-lg border-0 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-600 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 focus:outline-hidden"
                 placeholder="{{ __('Search elected officials...', 'fmr') }}"
                 autocomplete="off"
                 x-on:focus="showResults = true"
                 x-on:input="showResults = true"
             >
 
-            <div x-show="showResults && $wire.query" 
-                x-transition:enter="transition ease-out duration-100" 
-                x-transition:enter-start="opacity-0 scale-95" 
-                x-transition:enter-end="opacity-100 scale-100" 
-                x-transition:leave="transition ease-in duration-75" 
-                x-transition:leave-start="opacity-100 scale-100" 
-                x-transition:leave-end="opacity-0 scale-95" 
+            <div x-show="showResults && $wire.query"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
                 class="absolute top-full left-0 right-0 mt-1 z-50"
             >
                 <div wire:loading class="w-full overflow-y-auto bg-white border border-gray-200 rounded-lg">
@@ -37,7 +84,7 @@
                                         <div class="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                                         <div class="h-3 bg-gray-200 rounded animate-pulse w-1/2"></div>
                                     </div>
-                                    
+
                                     <div class="flex-shrink-0">
                                         <div class="w-4 h-4 bg-gray-200 rounded animate-pulse"></div>
                                     </div>
@@ -67,7 +114,7 @@
                                                     @endif
                                                 </div>
                                             @endif
-                                            
+
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-md font-medium text-gray-900 group-hover:text-primary-700 transition-colors duration-200">
                                                     {{ $result->title }}
@@ -87,7 +134,7 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            
+
                                             <div class="flex-shrink-0">
                                                 <x-heroicon-o-chevron-right class="w-4 h-4 text-gray-400 group-hover:text-primary-700 transition-colors duration-200" />
                                             </div>
