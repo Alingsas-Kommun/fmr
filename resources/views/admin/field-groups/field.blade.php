@@ -177,7 +177,7 @@
         <x-admin.visibility-toggle
             class="fields-field-visibility"
             :name="$field['visibility']['id']"
-            :is-visible="$field['visibility']['value'] ?? $field['visibility']['default'] ?? true" 
+            :is-visible="$field['visibility']['value'] ?? $field['visibility']['default'] ?? true"
         />
     @endif
 </div>

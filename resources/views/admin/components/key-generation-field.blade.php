@@ -3,7 +3,7 @@
         <div class="key-value">
             <code id="{{ $id }}_display">{{ $value ? str_repeat('*', strlen($value)) : '' }}</code>
             
-            <button type="button" class="button button-small" id="{{ $id }}_toggle">
+            <button type="button" class="button" id="{{ $id }}_toggle">
                 {{ __('Show', 'fmr') }}
             </button>
         </div>
