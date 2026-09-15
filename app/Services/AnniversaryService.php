@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 
 class AnniversaryService
@@ -11,58 +13,62 @@ class AnniversaryService
     /**
      * Get persons with their calculated service years within the specified range.
      *
-     * @param float|null $minYears
-     * @param float|null $maxYears
-     * @param int|null $boardId
+     * @param array $filters
      * @return Collection
      */
-    public function getPersonsByServiceYears(?float $minYears = null, ?float $maxYears = null, ?int $boardId = null): Collection
+    public function getPersonsByServiceYears(array $filters = []): Collection
     {
-        $query = Post::persons()
+        $assignments = fn ($query) => $this->scopeAssignments($query, $filters);
+
+        return Post::persons()
             ->published()
-            ->with(['meta', 'party', 'personAssignments' => function ($query) {
-                $query->with(['roleTerm', 'decisionAuthority.board'])
-                      ->orderBy('period_start', 'asc');
-            }])
-            ->whereHas('personAssignments'); // Only include persons with at least one assignment
-
-        if ($boardId !== null) {
-            $query->whereHas('personAssignments', function ($q) use ($boardId) {
-                $q->whereHas('decisionAuthority', function ($q) use ($boardId) {
-                    $q->where('board_id', $boardId);
-                });
-            });
-        }
-
-        return $query->get()
+            ->with([
+                'meta',
+                'party',
+                'personAssignments' => fn ($query) => $assignments($query)
+                    ->reorder('period_start', 'asc'),
+            ])
+            ->whereHas('personAssignments', $assignments)
+            ->get()
             ->map(function ($person) {
                 $serviceYears = $this->calculateServiceYears($person->personAssignments);
-                
-                // Get person fullname (firstname + lastname, fallback to post_title)
+
                 $firstname = $person->getMeta('person_firstname', '');
                 $lastname = $person->getMeta('person_lastname', '');
                 $fullName = trim($firstname . ' ' . $lastname) ?: $person->post_title;
-                
-                // Get party name
-                $partyName = $person->party->post_title ?? null;
-                
+
                 return [
                     'person' => $person,
                     'assignments' => $person->personAssignments,
                     'service_years' => $serviceYears,
                     'service_display' => $this->formatServiceTime($serviceYears),
                     'full_name' => $fullName,
-                    'party_name' => $partyName
+                    'party_name' => $person->party->post_title ?? null,
                 ];
             })
-            ->filter(function ($result) use ($minYears, $maxYears) {
-                if ($result['assignments']->isEmpty()) {
-                    return false;
-                }
-                
-                return $this->matchesFilter($result['service_years'], $minYears, $maxYears);
-            })
+            ->filter(fn ($result) => $this->matchesFilter(
+                $result['service_years'],
+                $filters['min_years'] ?? null,
+                $filters['max_years'] ?? null
+            ))
             ->sortByDesc('service_years');
+    }
+
+    /**
+     * Limit assignments to the selected board and roles.
+     *
+     * @param Builder|Relation $query
+     * @param array $filters
+     * @return Builder|Relation
+     */
+    private function scopeAssignments(Builder|Relation $query, array $filters): Builder|Relation
+    {
+        return $query
+            ->when($filters['board_id'] ?? null, fn ($q, int $boardId) => $q->whereHas(
+                'decisionAuthority',
+                fn ($q) => $q->where('board_id', $boardId)
+            ))
+            ->when($filters['role_ids'] ?? [], fn ($q, array $roleIds) => $q->whereIn('role_term_id', $roleIds));
     }
 
     /**
@@ -92,16 +98,16 @@ class AnniversaryService
         }
 
         $today = Carbon::today();
-        
+
         $periods = $assignments
-            ->map(fn($assignment) => $this->processAssignmentPeriod($assignment, $today))
+            ->map(fn ($assignment) => $this->processAssignmentPeriod($assignment, $today))
             ->filter()
             ->toArray();
 
         $mergedPeriods = $this->mergeOverlappingPeriods($periods);
 
         $totalDays = collect($mergedPeriods)
-            ->sum(fn($period) => $period['start']->diffInDays($period['end']) + 1);
+            ->sum(fn ($period) => $period['start']->diffInDays($period['end']) + 1);
 
         return $totalDays / 365.25; // Convert to years (using 365.25 to account for leap years)
     }
@@ -117,15 +123,15 @@ class AnniversaryService
     {
         $start = Carbon::parse($assignment->period_start);
         $end = Carbon::parse($assignment->period_end);
-        
+
         // Skip future assignments
         if ($start->gt($today)) {
             return null;
         }
-        
+
         // Cap end date at today if it's in the future
         $end = $end->gt($today) ? $today : $end;
-        
+
         return compact('start', 'end');
     }
 
@@ -143,7 +149,7 @@ class AnniversaryService
 
         // Sort periods by start date using collection
         $sortedPeriods = collect($periods)
-            ->sortBy(fn($period) => $period['start']->timestamp)
+            ->sortBy(fn ($period) => $period['start']->timestamp)
             ->values()
             ->toArray();
 
@@ -153,8 +159,8 @@ class AnniversaryService
             $lastMerged = &$merged[array_key_last($merged)];
 
             if ($this->periodsOverlap($current, $lastMerged)) {
-                $lastMerged['end'] = $current['end']->gt($lastMerged['end']) 
-                    ? $current['end'] 
+                $lastMerged['end'] = $current['end']->gt($lastMerged['end'])
+                    ? $current['end']
                     : $lastMerged['end'];
             } else {
                 $merged[] = $current;
@@ -185,20 +191,20 @@ class AnniversaryService
     public function formatServiceTime(float $years): string
     {
         $totalDays = round($years * 365.25);
-        
+
         $timeParts = [
             'years' => intval($totalDays / 365.25),
             'months' => 0,
             'days' => 0
         ];
-        
+
         $remainingDays = $totalDays - ($timeParts['years'] * 365.25);
         $timeParts['months'] = intval($remainingDays / 30.44);
         $timeParts['days'] = intval($remainingDays - ($timeParts['months'] * 30.44));
 
         return collect($timeParts)
-            ->filter(fn($value) => $value > 0)
-            ->map(fn($value, $key) => $this->formatTimePart($value, $key))
+            ->filter(fn ($value) => $value > 0)
+            ->map(fn ($value, $key) => $this->formatTimePart($value, $key))
             ->implode(', ');
     }
 
