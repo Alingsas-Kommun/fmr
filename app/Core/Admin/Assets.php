@@ -2,6 +2,7 @@
 
 namespace App\Core\Admin;
 
+use App\Utilities\Color;
 use Illuminate\Support\Facades\Vite;
 
 use function App\Core\setting;
@@ -159,31 +160,50 @@ class Assets
         $secondary_color = setting('secondary_color', '#bd2b30');
         $tertiary_color = setting('tertiary_color', '#fab526');
 
-        // Build CSS variables
-        $css_vars = array();
-        array_push($css_vars, sprintf(
-            '--wp-admin-color-primary: %s',
-            esc_attr($primary_color)
-        ));
-        
-        array_push($css_vars, sprintf(
-            '--wp-admin-color-secondary: %s',
-            esc_attr($secondary_color)
-        ));
+        $colors = [
+            'primary' => $primary_color,
+            'secondary' => $secondary_color,
+            'tertiary' => $tertiary_color,
+        ];
 
-        array_push($css_vars, sprintf(
-            '--wp-admin-color-tertiary: %s',
-            esc_attr($tertiary_color)
-        ));
+        $css_vars = [];
+
+        foreach ($colors as $name => $hex) {
+            $css_vars[] = sprintf('--wp-admin-color-%s: %s', $name, esc_attr($hex));
+            $css_vars[] = sprintf('--wp-admin-color-%s-rgb: %s', $name, esc_attr($this->hexToRgbCss($hex)));
+        }
+
+        // Precompute darker primary variants so --rgb vars are literal "R, G, B"
+        // values that work with rgba(var(--x), alpha) (CSS color functions cannot).
+        $primary_darker_10 = Color::mixWithBlack($primary_color, 0.1);
+        $primary_darker_20 = Color::mixWithBlack($primary_color, 0.2);
+
+        $css_vars[] = sprintf('--wp-admin-color-primary-darker-10: %s', esc_attr($primary_darker_10));
+        $css_vars[] = sprintf('--wp-admin-color-primary-darker-10-rgb: %s', esc_attr($this->hexToRgbCss($primary_darker_10)));
+        $css_vars[] = sprintf('--wp-admin-color-primary-darker-20: %s', esc_attr($primary_darker_20));
+        $css_vars[] = sprintf('--wp-admin-color-primary-darker-20-rgb: %s', esc_attr($this->hexToRgbCss($primary_darker_20)));
 
         $css_output = ':root {' . implode(';', array_map('esc_html', $css_vars)) . '}';
-        
+
         // Determine if we're on login page or admin page
         if (is_admin()) {
             wp_add_inline_style('wp-admin', $css_output);
         } else {
             wp_add_inline_style('admin-css', $css_output);
         }
+    }
+
+    /**
+     * Convert a hex color to a CSS rgb triplet (e.g. "35, 97, 81").
+     *
+     * @param string $hex
+     * @return string
+     */
+    private function hexToRgbCss(string $hex): string
+    {
+        $rgb = Color::hexToRgb($hex);
+
+        return sprintf('%d, %d, %d', $rgb['r'], $rgb['g'], $rgb['b']);
     }
 
     /**
