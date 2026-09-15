@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\AnniversaryService;
 use App\Services\ExportService;
-use App\Http\Controllers\Admin\BoardController;
 use Illuminate\Http\Request;
 
 class AnniversaryController extends Controller
@@ -35,55 +34,70 @@ class AnniversaryController extends Controller
      */
     public function index(Request $request)
     {
-        $minYears = $request->get('min-years') !== null ? (float) $request->get('min-years') : null;
-        $maxYears = $request->get('max-years') !== null ? (float) $request->get('max-years') : null;
-        $boardId = $request->get('board') !== null && $request->get('board') !== '' ? (int) $request->get('board') : null;
+        $filters = $this->resolveFilters($request);
         $export = $request->get('export');
 
-        // Handle export requests
-        if ($export && ($minYears !== null || $maxYears !== null || $boardId !== null)) {
-            return $this->handleExport($export, $minYears, $maxYears, $boardId);
+        if ($export && $filters !== []) {
+            return $this->handleExport($export, $filters);
         }
 
-        $results = collect();
-
-        // Only perform the expensive calculation if filters are applied
-        if ($minYears !== null || $maxYears !== null || $boardId !== null) {
-            $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears, $boardId);
-        }
-
-        // Get boards for the dropdown
-        $boardController = app(BoardController::class);
-        $boards = $boardController->getAll();
+        $results = $filters !== []
+            ? $this->anniversaryService->getPersonsByServiceYears($filters)
+            : collect();
 
         return view('admin.anniversaries.index', [
             'results' => $results,
-            'minYears' => $minYears,
-            'maxYears' => $maxYears,
-            'boardId' => $boardId,
-            'boards' => $boards,
-            'hasFilters' => $minYears !== null || $maxYears !== null || $boardId !== null
+            'filters' => $filters,
+            'boards' => app(BoardController::class)->getAll(),
+            'roles' => app(RoleController::class)->getAll(),
+            'hasFilters' => $filters !== [],
         ]);
+    }
+
+    /**
+     * Normalize request input into the filters the service expects.
+     *
+     * @param Request $request
+     * @return array
+     */
+    private function resolveFilters(Request $request): array
+    {
+        $filters = [];
+
+        foreach (['min_years' => 'min-years', 'max_years' => 'max-years'] as $key => $input) {
+            $value = $request->get($input);
+
+            if ($value !== null && $value !== '') {
+                $filters[$key] = (float) $value;
+            }
+        }
+
+        $boardId = $request->get('board');
+        if ($boardId !== null && $boardId !== '') {
+            $filters['board_id'] = (int) $boardId;
+        }
+
+        $roleIds = array_values(array_filter(array_map('intval', (array) $request->get('roles', []))));
+        if ($roleIds !== []) {
+            $filters['role_ids'] = $roleIds;
+        }
+
+        return $filters;
     }
 
     /**
      * Handle export requests for Excel and CSV formats.
      *
      * @param string $format
-     * @param float|null $minYears
-     * @param float|null $maxYears
-     * @param int|null $boardId
+     * @param array $filters
      * @return void
      */
-    private function handleExport(string $format, ?float $minYears, ?float $maxYears, ?int $boardId = null): void
+    private function handleExport(string $format, array $filters): void
     {
-        $results = $this->anniversaryService->getPersonsByServiceYears($minYears, $maxYears, $boardId);
-        $filename = $this->generateExportFilename($format, $minYears, $maxYears, $boardId);
-
-        // Prepare export data
+        $results = $this->anniversaryService->getPersonsByServiceYears($filters);
+        $filename = $this->generateExportFilename($format, $filters);
         $exportData = $this->prepareExportData($results);
 
-        // Create and download export with custom styling
         ExportService::make($exportData['headers'], $exportData['rows'])
             ->setStyles([
                 'font' => ['name' => 'Arial', 'size' => 11],
@@ -95,7 +109,7 @@ class AnniversaryController extends Controller
                 'keywords' => 'anniversaries, export, fmr, service years',
                 'category' => 'Anniversary Report'
             ])
-            ->setFallbackRedirectUrl(admin_url('admin.php?page=anniversaries'))
+            ->setFallbackRedirectUrl(remove_query_arg('export'))
             ->download($format, $filename);
     }
 
@@ -109,46 +123,37 @@ class AnniversaryController extends Controller
     {
         $headers = [
             __('Position', 'fmr'),
+            __('Board', 'fmr'),
             __('Start Date', 'fmr'),
             __('End Date', 'fmr'),
-            __('Service Time', 'fmr')
+            __('Service Time', 'fmr'),
         ];
 
+        $emptyRow = array_pad([], count($headers), '');
         $rows = [];
+
         foreach ($results as $result) {
-            // Build person display name with party
-            $personDisplayName = $result['party_name'] 
-                ? $result['full_name'] . ' (' . $result['party_name'] . ')' 
+            $personDisplayName = $result['party_name']
+                ? $result['full_name'] . ' (' . $result['party_name'] . ')'
                 : $result['full_name'];
-            
-            // Add person name as a separate row
-            $rows[] = [
-                $personDisplayName, // Person name in first column
-                '', // Empty columns for other headers
-                '',
-                ''
-            ];
-            
-            // Add assignment rows
+
+            $rows[] = array_pad([$personDisplayName], count($headers), '');
+
             foreach ($result['assignments'] as $assignment) {
                 $rows[] = [
                     $assignment->roleTerm->name ?? __('Unknown Role', 'fmr'),
+                    $assignment->board?->post_title ?? '',
                     $assignment->period_start->format('Y-m-d H:i:s'),
                     $assignment->period_end->format('Y-m-d H:i:s'),
-                    ''
+                    '',
                 ];
             }
-            
-            // Add service time result row
-            $rows[] = [
-                __('Result:', 'fmr'),
-                '',
-                '',
-                $result['service_display']
-            ];
-            
-            // Add blank row between persons
-            $rows[] = ['', '', '', ''];
+
+            $resultRow = $emptyRow;
+            $resultRow[0] = __('Total time (overlapping periods counted once)', 'fmr');
+            $resultRow[array_key_last($resultRow)] = $result['service_display'];
+            $rows[] = $resultRow;
+            $rows[] = $emptyRow;
         }
 
         return compact('headers', 'rows');
@@ -158,31 +163,23 @@ class AnniversaryController extends Controller
      * Generate export filename with timestamp.
      *
      * @param string $format
-     * @param float|null $minYears
-     * @param float|null $maxYears
-     * @param int|null $boardId
+     * @param array $filters
      * @return string
      */
-    private function generateExportFilename(string $format, ?float $minYears, ?float $maxYears, ?int $boardId = null): string
+    private function generateExportFilename(string $format, array $filters): string
     {
-        $timestamp = now()->format('Y-m-d_H-i-s');
-        $filters = [];
-        
-        if ($minYears !== null) {
-            $filters[] = "min{$minYears}";
-        }
-        
-        if ($maxYears !== null) {
-            $filters[] = "max{$maxYears}";
-        }
+        $filterString = collect($filters)
+            ->reject(fn ($value) => $value === null || $value === [])
+            ->map(fn ($value, $key) => str_replace('_', '', $key) . (is_array($value) ? implode('-', $value) : $value))
+            ->implode('_');
 
-        if ($boardId !== null) {
-            $filters[] = "board{$boardId}";
-        }
-        
-        $filterString = !empty($filters) ? '_' . implode('_', $filters) : '';
         $extension = $format === 'excel' ? 'xlsx' : 'csv';
-        
-        return "anniversaries{$filterString}_{$timestamp}.{$extension}";
+
+        return sprintf(
+            'anniversaries%s_%s.%s',
+            $filterString !== '' ? '_' . $filterString : '',
+            now()->format('Y-m-d_H-i-s'),
+            $extension
+        );
     }
 }
