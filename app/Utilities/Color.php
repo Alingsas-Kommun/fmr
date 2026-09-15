@@ -231,4 +231,50 @@ class Color
             'h' => round($hue, 3)
         ];
     }
+
+    /**
+     * Normalize a hex color to a 6-digit lowercase string without "#".
+     *
+     * @param string $hex
+     * @return string|null
+     */
+    public static function normalizeHex(string $hex): ?string
+    {
+        $hex = ltrim(trim($hex), '#');
+
+        if (strlen($hex) === 3) {
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+        }
+
+        if (strlen($hex) !== 6 || ! ctype_xdigit($hex)) {
+            return null;
+        }
+
+        return strtolower($hex);
+    }
+
+    /**
+     * Mix a hex color with black, matching color-mix(in srgb, color X%, black Y%).
+     *
+     * @param string $hex
+     * @param float $blackPercent Fraction of black (0.1 = 10%).
+     * @return string
+     */
+    public static function mixWithBlack(string $hex, float $blackPercent): string
+    {
+        $normalized = static::normalizeHex($hex);
+
+        if ($normalized === null) {
+            return '#000000';
+        }
+
+        $keep = 1 - $blackPercent;
+
+        return sprintf(
+            '#%02x%02x%02x',
+            (int) round(hexdec(substr($normalized, 0, 2)) * $keep),
+            (int) round(hexdec(substr($normalized, 2, 2)) * $keep),
+            (int) round(hexdec(substr($normalized, 4, 2)) * $keep)
+        );
+    }
 }
