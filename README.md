@@ -343,6 +343,7 @@ npm run build
     - Run: `wp acorn migrate`
     - Rollback: `wp acorn migrate:rollback`
     - Seed: `wp acorn db:seed`
+    - Demo content: `wp acorn fmr:demo-seed` creates a fictional register called FMR Demo (parties, boards, two mandate periods, and assignments). When the site already contains register data, pass `--force` to add the demo register alongside it. Seeding again requires `wp acorn fmr:demo-purge` first, including when `--force` is set. Purge removes the posts and terms marked as demo, the decision authorities and assignments stored in the demo manifest, and restores the previous site title and tagline.
 - Extension tips: Mirror the existing migrations for index/foreign-key patterns, and keep table names snake_cased. When altering WordPress core tables, always guard with `Schema::hasColumn` checks.
 
 ### Routes (Web + API)

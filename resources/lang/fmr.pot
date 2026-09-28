@@ -1570,3 +1570,63 @@ msgstr ""
 #: resources/js/frontend/themeSwitcher.js:76
 msgid "Switch to light theme"
 msgstr ""
+
+#: app/Console/Commands/DemoPurgeCommand.php:21
+msgid "Remove fictional demo content created by fmr:demo-seed."
+msgstr ""
+
+#: app/Console/Commands/DemoPurgeCommand.php:44
+msgid "No demo content is installed."
+msgstr ""
+
+#: app/Console/Commands/DemoPurgeCommand.php:49
+msgid "Demo content has been removed."
+msgstr ""
+
+#: app/Console/Commands/DemoSeedCommand.php:21
+msgid "Create fictional demo content for FMR Demo."
+msgstr ""
+
+#: app/Console/Commands/DemoSeedCommand.php:43
+msgid "Demo content for FMR Demo has been created."
+msgstr ""
+
+#. translators: 1: persons, 2: parties, 3: boards, 4: decision authorities, 5: assignments
+#: app/Console/Commands/DemoSeedCommand.php:46
+#, php-format
+msgid "Created %1$d persons, %2$d parties, %3$d boards, %4$d decision authorities and %5$d assignments."
+msgstr ""
+
+#: app/Services/DemoContentService.php:147
+msgid "Demo content is already installed. Run `wp acorn fmr:demo-purge` before seeding again."
+msgstr ""
+
+#: app/Services/DemoContentService.php:156
+msgid "The site already has register data. Re-run with --force to add demo content alongside it."
+msgstr ""
+
+#: app/Services/DemoContentService.php:413
+msgid "Could not generate enough unique demo names."
+msgstr ""
+
+#: app/Services/DemoContentService.php:682
+msgid "The demo catalog seat counts do not match the council size."
+msgstr ""
+
+#. translators: 1: expected assignments, 2: period title, 3: created assignments
+#: app/Services/DemoContentService.php:696
+#, php-format
+msgid "Expected %1$d council assignments for %2$s, created %3$d."
+msgstr ""
+
+#: app/Services/DemoContentService.php:887
+msgid "The demo catalog is missing a mandate period."
+msgstr ""
+
+#: app/Services/DemoContentService.php:1056
+msgid "The demo catalog is missing."
+msgstr ""
+
+#: app/Services/DemoContentService.php:1062
+msgid "The demo catalog is invalid."
+msgstr ""
