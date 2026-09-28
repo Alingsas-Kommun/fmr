@@ -1,7 +1,9 @@
 <?php
 
-use Roots\Acorn\Application;
+use App\Console\Commands\DemoPurgeCommand;
+use App\Console\Commands\DemoSeedCommand;
 use App\Providers\ThemeServiceProvider;
+use Roots\Acorn\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,10 @@ if (version_compare('6.8.0', get_bloginfo('version'), '>=') === -1) {
 Application::configure()
     ->withProviders([
         ThemeServiceProvider::class,
+    ])
+    ->withCommands([
+        DemoSeedCommand::class,
+        DemoPurgeCommand::class,
     ])
     ->withRouting(
         // Configure routing with named parameters
