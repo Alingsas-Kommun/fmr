@@ -25,7 +25,11 @@ class DecisionAuthorityController extends Controller
             ->active()
             ->get()
             ->sortBy(function ($assignment) {
-                return (int) ($assignment->roleTerm->term_order ?? 9999);
+                return [
+                    (int) ($assignment->roleTerm->term_order ?? 9999),
+                    $assignment->person->party?->post_title ?? "\u{10FFFF}",
+                    $assignment->person->post_title ?? '',
+                ];
             })
             ->values();
 
